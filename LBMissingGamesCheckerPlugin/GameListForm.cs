@@ -10,10 +10,25 @@ namespace LBMissingGamesCheckerPlugin
 {
     public partial class GameListForm : Form
     {
+        private readonly string platformName;
+        private IList<IGame> ownedGames;
+        private IList<IGame> missingGames;
+
         public GameListForm(string platformName)
         {
             InitializeComponent();
 
+            this.platformName = platformName;
+
+            // Optionally, you could initialize the lists here as empty, just in case
+            ownedGames = new List<IGame>();
+            missingGames = new List<IGame>();
+
+
+        }
+
+        private void GameListForm_Load(object sender, EventArgs e)
+        {
             var platform = PluginHelper.DataManager.GetAllPlatforms()
                 .FirstOrDefault(p => p.Name == platformName);
             if (platform == null) return;
@@ -21,12 +36,10 @@ namespace LBMissingGamesCheckerPlugin
             var allGames = PluginHelper.DataManager.GetAllGames()
                 .Where(game => game.Platform == platform.Name).ToList();
 
-            var ownedGames = allGames.Where(game => game.Installed == true).ToList();
-            var missingGames = allGames.Where(game => game.Installed == false).ToList();
+            ownedGames = allGames.Where(game => game.Installed == true).ToList();
+            missingGames = allGames.Where(game => game.Installed == false).ToList();
 
             PopulateGameList(ownedGames, missingGames);
-
-
         }
 
         private void PopulateGameList(IList<IGame> ownedGames, IList<IGame> missingGames)
@@ -37,6 +50,8 @@ namespace LBMissingGamesCheckerPlugin
                 Developer = game.Developer,
                 Publisher = game.Publisher,
                 ReleaseDate = game.ReleaseDate?.ToShortDateString(),
+                Rating = game.Rating,
+                StarRating = game.StarRatingFloat,
                 Installed = game.Installed
             }).ToList();
 
@@ -46,13 +61,10 @@ namespace LBMissingGamesCheckerPlugin
                 Developer = game.Developer,
                 Publisher = game.Publisher,
                 ReleaseDate = game.ReleaseDate?.ToShortDateString(),
+                Rating = game.Rating,
+                StarRating = game.StarRatingFloat,
                 Installed = game.Installed
-            }).ToList() ;
-
-        }
-
-        private void GameListForm_Load(object sender, EventArgs e)
-        {
+            }).ToList();
 
         }
     }
