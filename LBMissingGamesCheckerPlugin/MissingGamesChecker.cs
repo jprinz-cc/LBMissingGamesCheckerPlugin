@@ -12,13 +12,15 @@ namespace LBMissingGamesCheckerPlugin
 
         public System.Drawing.Image IconImage
         { 
-            get { return null; }
+            get { return Properties.Resources.mgc; }
         }
 
         public bool ShowInLaunchBox 
         { 
             get { return true; }
         }
+
+        public bool ShowMenuItem => true;
 
         public bool ShowInBigBox
         { get { return false; } }
@@ -28,7 +30,25 @@ namespace LBMissingGamesCheckerPlugin
 
         public void OnSelected()
         {
-            MessageBox.Show("Hello World!");
+            using (PlatformSelectionForm form = new PlatformSelectionForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedPlatform = form.SelectedPlatform;
+                    if (!string.IsNullOrEmpty(selectedPlatform))
+                    {
+                        ShowGameListForm(selectedPlatform);
+                    }
+                }
+            }
+        }
+
+        private void ShowGameListForm(string platformName)
+        {
+            using (GameListForm form = new GameListForm(platformName))
+            {
+                form.ShowDialog();
+            }
         }
     }
 }
