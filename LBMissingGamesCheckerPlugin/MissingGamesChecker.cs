@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using Unbroken.LaunchBox.Plugins;
 
+
 namespace LBMissingGamesCheckerPlugin
 {
     public class MissingGamesChecker : ISystemMenuItemPlugin

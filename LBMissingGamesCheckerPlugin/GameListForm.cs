@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unbroken.LaunchBox.Plugins;
 using Unbroken.LaunchBox.Plugins.Data;
@@ -40,11 +36,18 @@ namespace LBMissingGamesCheckerPlugin
                 Title = game.Title,
                 Developer = game.Developer,
                 Publisher = game.Publisher,
-                ReleaseDate = game.ReleaseDate,
+                ReleaseDate = game.ReleaseDate?.ToShortDateString(),
                 Installed = game.Installed
             }).ToList();
 
-            //TODO: Add missingGamesGridView data
+            missingGamesGridView.DataSource = missingGames.Select(game => new
+            {
+                Title = game.Title,
+                Developer = game.Developer,
+                Publisher = game.Publisher,
+                ReleaseDate = game.ReleaseDate?.ToShortDateString(),
+                Installed = game.Installed
+            }).ToList() ;
 
         }
 
