@@ -49,12 +49,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameListForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameListForm.Designer.cs">
-      <DependentUpon>GameListForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="MissingGamesChecker.cs" />
     <Compile Include="PlatformSelectionForm.cs">
       <SubType>Form</SubType>
@@ -70,6 +64,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PlatformSelectionForm.resx">
+      <DependentUpon>PlatformSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 using Unbroken.LaunchBox.Plugins;
 
 
@@ -12,16 +13,13 @@ namespace LBMissingGamesCheckerPlugin
         public string MenuItemTitle => "Missing Games Checker";
 
         public System.Drawing.Image IconImage
-        { 
-            get { return Properties.Resources.mgc; }
-        }
+        { get { return Properties.Resources.mgc; } }
 
-        public bool ShowInLaunchBox 
-        { 
-            get { return true; }
-        }
+        public bool ShowInLaunchBox
+        { get { return true; } }
 
-        public bool ShowMenuItem => true;
+        public bool ShowMenuItem
+        { get { return true; } }
 
         public bool ShowInBigBox
         { get { return false; } }
@@ -31,25 +29,18 @@ namespace LBMissingGamesCheckerPlugin
 
         public void OnSelected()
         {
-            using (PlatformSelectionForm form = new PlatformSelectionForm())
-            {
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    string selectedPlatform = form.SelectedPlatform;
-                    if (!string.IsNullOrEmpty(selectedPlatform))
-                    {
-                        ShowGameListForm(selectedPlatform);
-                    }
-                }
-            }
-        }
+            // Get all platforms
+            var platforms = PluginHelper.DataManager.GetAllPlatforms().OrderBy(p => p.SortTitleOrTitle != null ? p.SortTitleOrTitle : p.Name).ToList();
 
-        private void ShowGameListForm(string platformName)
-        {
-            using (GameListForm form = new GameListForm(platformName))
+            if (platforms == null || !platforms.Any())
             {
-                form.ShowDialog();
+                MessageBox.Show("No platforms found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            // Create and show the platform selection form
+            var platformSelectionForm = new PlatformSelectionForm(platforms);
+            platformSelectionForm.ShowDialog();
         }
     }
 }
