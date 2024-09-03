@@ -58,7 +58,7 @@ namespace LBMissingGamesCheckerPlugin
 
         private void ConfirmButton_Click( object sender, EventArgs e )
         {
-            if(platformDropdown.SelectedItem != null)
+            if(platformDropdown.SelectedItem != null || platformDropdown.SelectedIndex >= 0)
             {
                 SelectedPlatform = platformDropdown.SelectedItem.ToString();
                 GetAllPlatformGames(SelectedPlatform);
@@ -196,7 +196,7 @@ namespace LBMissingGamesCheckerPlugin
             lastSortedColumn = columnName;
         }
 
-        // Export to CSV
+        // Export to CSV method
         private void ExportGridViewToCSV(DataGridView gridView, string filePath)
         {
             // Check if the GridView has any rows
@@ -226,6 +226,7 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+        // Export to CSV handler for OwnedGames
         private void ExportOwnedGamesButton_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -241,6 +242,7 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+        // Export to CSV handler for MissingGames
         private void ExportMissingGamesButton_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())

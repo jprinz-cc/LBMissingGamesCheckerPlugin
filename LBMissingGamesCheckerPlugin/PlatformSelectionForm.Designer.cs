@@ -50,6 +50,7 @@
             this.platformDropdown.Name = "platformDropdown";
             this.platformDropdown.Size = new System.Drawing.Size(161, 21);
             this.platformDropdown.TabIndex = 0;
+            this.platformDropdown.Text = "Select a Platform";
             // 
             // confirmButton
             // 
