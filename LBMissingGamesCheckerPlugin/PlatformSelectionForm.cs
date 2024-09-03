@@ -196,6 +196,66 @@ namespace LBMissingGamesCheckerPlugin
             lastSortedColumn = columnName;
         }
 
+        // Export to CSV
+        private void ExportGridViewToCSV(DataGridView gridView, string filePath)
+        {
+            // Check if the GridView has any rows
+            if (gridView.Rows.Count == 0) return;
+
+            // Open a file stream to write the CSV
+            using (var writer = new System.IO.StreamWriter(filePath))
+            {
+                // Write the header
+                for (int i = 0; i < gridView.Columns.Count; i++)
+                {
+                    writer.Write(gridView.Columns[i].HeaderText);
+                    if (i < gridView.Columns.Count - 1) writer.Write(","); // Comma after each column except the last one
+                }
+                writer.WriteLine();
+
+                // Write each row
+                foreach (DataGridViewRow row in gridView.Rows)
+                {
+                    for (int i = 0; i < gridView.Columns.Count; i++)
+                    {
+                        writer.Write(row.Cells[i].Value?.ToString());
+                        if (i < gridView.Columns.Count - 1) writer.Write(","); // Comma after each cell except the last one
+                    }
+                    writer.WriteLine();
+                }
+            }
+        }
+
+        private void ExportOwnedGamesButton_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+                saveFileDialog.Title = "Save Owned Games as CSV";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ExportGridViewToCSV(ownedGamesGridView, saveFileDialog.FileName);
+                    MessageBox.Show("Owned games exported successfully!");
+                }
+            }
+        }
+
+        private void ExportMissingGamesButton_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+                saveFileDialog.Title = "Save Missing Games as CSV";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ExportGridViewToCSV(missingGamesGridView, saveFileDialog.FileName);
+                    MessageBox.Show("Missing games exported successfully!");
+                }
+            }
+        }
+
 
         private void PlatformSelectionForm_Load(object sender, EventArgs e)
         {

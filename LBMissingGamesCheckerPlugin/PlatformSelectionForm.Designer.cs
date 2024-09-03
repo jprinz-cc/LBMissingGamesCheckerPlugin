@@ -37,6 +37,8 @@
             this.lblMissingGamesGridView = new System.Windows.Forms.Label();
             this.lblOwnedGamesCount = new System.Windows.Forms.Label();
             this.lblMissingGamesCount = new System.Windows.Forms.Label();
+            this.btnOwnedCSV = new System.Windows.Forms.Button();
+            this.btnMissingCSV = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ownedGamesGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.missingGamesGridView)).BeginInit();
             this.SuspendLayout();
@@ -122,11 +124,33 @@
             this.lblMissingGamesCount.TabIndex = 8;
             this.lblMissingGamesCount.Text = "0";
             // 
+            // btnOwnedCSV
+            // 
+            this.btnOwnedCSV.Location = new System.Drawing.Point(668, 83);
+            this.btnOwnedCSV.Name = "btnOwnedCSV";
+            this.btnOwnedCSV.Size = new System.Drawing.Size(94, 23);
+            this.btnOwnedCSV.TabIndex = 9;
+            this.btnOwnedCSV.Text = "Export to CSV";
+            this.btnOwnedCSV.UseVisualStyleBackColor = true;
+            this.btnOwnedCSV.Click += new System.EventHandler(this.ExportOwnedGamesButton_Click);
+            // 
+            // btnMissingCSV
+            // 
+            this.btnMissingCSV.Location = new System.Drawing.Point(668, 295);
+            this.btnMissingCSV.Name = "btnMissingCSV";
+            this.btnMissingCSV.Size = new System.Drawing.Size(93, 23);
+            this.btnMissingCSV.TabIndex = 10;
+            this.btnMissingCSV.Text = "Export to CSV";
+            this.btnMissingCSV.UseVisualStyleBackColor = true;
+            this.btnMissingCSV.Click += new System.EventHandler(this.ExportMissingGamesButton_Click);
+            // 
             // PlatformSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 534);
+            this.Controls.Add(this.btnMissingCSV);
+            this.Controls.Add(this.btnOwnedCSV);
             this.Controls.Add(this.lblMissingGamesCount);
             this.Controls.Add(this.lblOwnedGamesCount);
             this.Controls.Add(this.lblMissingGamesGridView);
@@ -157,5 +181,7 @@
         private System.Windows.Forms.Label lblMissingGamesGridView;
         private System.Windows.Forms.Label lblOwnedGamesCount;
         private System.Windows.Forms.Label lblMissingGamesCount;
+        private System.Windows.Forms.Button btnOwnedCSV;
+        private System.Windows.Forms.Button btnMissingCSV;
     }
 }
