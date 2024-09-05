@@ -4,7 +4,7 @@
 
 Missing Games Checker (MGC) is a LaunchBox plugin designed to help users identify missing games in their collection based on platform metadata. It provides an easy-to-use interface that lets you view owned and missing games, and export the results.
 
-## Instructions for Using the Missing Game Checker (MGC)
+## Instructions for Using the Missing Games Checker (MGC)
 
 1. **Install the Plugin**
    - Download the latest release of the MGC plugin from this repository.
