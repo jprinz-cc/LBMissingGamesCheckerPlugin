@@ -540,6 +540,12 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+        // Form close handler
+        private void FormClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         //** Form Init **//
         private void PlatformSelectionForm_Load(object sender, EventArgs e)
         {
