@@ -5,7 +5,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using System.Xml.Linq;
 using Unbroken.LaunchBox.Plugins;
 using Unbroken.LaunchBox.Plugins.Data;
@@ -14,7 +16,24 @@ namespace LBMissingGamesCheckerPlugin
 {
     public partial class PlatformSelectionForm : Form
     {
+        // Holds the currently selected platform
         public string SelectedPlatform { get; private set; }
+
+        // Class to hold the missing game data
+        public class MissingGame
+        {
+            public int? LaunchBoxDbId { get; set; }
+            public string Title { get; set; }
+            public string Developer { get; set; }
+            public string Publisher { get; set; }
+            public DateTime? ReleaseDate { get; set; }
+            public float? CommunityStarRating { get; set; }
+            public string Platform { get; set; }
+            public int? CommunityStarRatingTotalVotes { get; set; }
+            public string VideoUrl { get; set; }
+            public string ReleaseType { get; set; }
+            public string WikipediaUrl { get; set; }
+        }
 
         // Class to hold game data to display
         public class GameDisplayData
@@ -48,6 +67,7 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+
         // Lists to hold sorted games
         private IList<IGame> ownedGames;
         private IList<MissingGame> missingGames;
@@ -78,21 +98,10 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
-        // Confirm button for dropdown platform selection
-        private void ConfirmButton_Click(object sender, EventArgs e)
-        {
-            if (platformDropdown.SelectedItem != null || platformDropdown.SelectedIndex <= 0)
-            {
-                SelectedPlatform = platformDropdown.SelectedItem.ToString();
-                GetAllPlatformGames(SelectedPlatform);
-            }
-            else
-            {
-                MessageBox.Show("Please select a platform.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void GetAllPlatformGames(string selectedPlatform)
+        // Based on the selected platform,
+        // collect all Owned Games from the users collection
+        // and all games from the LaunchBox Metadata.xml file
+        private async void GetAllPlatformGames(string selectedPlatform)
         {
             // Clear lists of populated data
             ownedGames = new List<IGame>();
@@ -117,7 +126,7 @@ namespace LBMissingGamesCheckerPlugin
             }
 
             // Parse the metadata.xml to get all games for the selected platform
-            var allGamesFromMetadata = GetGamesFromMetadata(metadataFilePath, selectedPlatform);
+            var allGamesFromMetadata = await GetGamesFromMetadata(metadataFilePath, selectedPlatform, pbGridViewLoading); // Use await here
 
             // Check if "Released" filter is applied
             bool filterReleasedOnly = chkReleasedOnly.Checked;
@@ -131,106 +140,8 @@ namespace LBMissingGamesCheckerPlugin
             PopulateGameList(ownedGames, missingGames);
         }
 
-        private IList<MissingGame> GetGamesFromMetadata(string metadataFilePath, string platformName)
-        {
-            var games = new List<MissingGame>();
 
-            // Load and parse the metadata.xml file
-            XDocument xmlDoc = XDocument.Load(metadataFilePath);
-
-            // Find games for the selected platform
-            var gameElements = xmlDoc.Descendants("Game")
-                .Where(g => string.Equals((string)g.Element("Platform"), platformName, StringComparison.OrdinalIgnoreCase));
-
-            foreach (var gameElement in gameElements)
-            {
-                var game = new MissingGame
-                {
-                    Platform = platformName,
-                    Title = (string)gameElement.Element("Name") ?? "",
-                    LaunchBoxDbId = ParseInt((string)gameElement.Element("DatabaseID")),
-                    Developer = (string)gameElement.Element("Developer") ?? "",
-                    Publisher = (string)gameElement.Element("Publisher") ?? "",
-                    ReleaseDate = ParseDate((string)gameElement.Element("ReleaseDate")),
-                    CommunityStarRating = ParseFloat((string)gameElement.Element("CommunityRating")),
-                    CommunityStarRatingTotalVotes = ParseInt((string)gameElement.Element("CommunityRatingCount")),
-                    VideoUrl = (string)gameElement.Element("VideoUrl") ?? "",
-                    WikipediaUrl = (string)gameElement.Element("WikipediaUrl") ?? "",
-                    ReleaseType = (string)gameElement.Element("ReleaseType") ?? ""
-                };
-
-                games.Add(game);
-            }
-
-            return games;
-        }
-
-        // Format helpers
-        private DateTime? ParseDate(string dateStr)
-        {
-            if (DateTime.TryParse(dateStr, out DateTime date))
-                return date;
-            return null;
-        }
-
-        private int? ParseInt(string intStr)
-        {
-            if (int.TryParse(intStr, out int value))
-                return value;
-            return 0;
-        }
-
-        private float? ParseFloat(string floatStr)
-        {
-            if (float.TryParse(floatStr, out float value))
-                return value;
-            return 0f;
-        }
-
-        // Add clickable elements to the GridViews
-        private void FormatGridViewCells(DataGridView gridView)
-        {
-            foreach (DataGridViewRow row in gridView.Rows)
-            {
-                // Format LaunchBoxDbId column as a clickable link
-                if (row.Cells["LaunchBoxDbId"].Value != null)
-                {
-                    int lbid;
-                    if (int.TryParse(row.Cells["LaunchBoxDbId"].Value.ToString(), out lbid))
-                    {
-                        row.Cells["LaunchBoxDbId"].Value = $"LaunchBoxDB #{lbid}";
-                        row.Cells["LaunchBoxDbId"].Style.ForeColor = Color.Blue;
-                        row.Cells["LaunchBoxDbId"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
-                        row.Cells["LaunchBoxDbId"].Style.SelectionForeColor = Color.Blue;
-                    }
-                }
-
-                // Format WikipediaUrl column as a clickable link
-                if (row.Cells["WikipediaUrl"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["WikipediaUrl"].Value.ToString()))
-                {
-                    var wikiUrlCellValue = row.Cells["WikipediaUrl"].Value;
-
-                    row.Cells["WikipediaUrl"].Value = "Wikipedia";
-                    row.Cells["WikipediaUrl"].Tag = wikiUrlCellValue;
-                    row.Cells["WikipediaUrl"].Style.ForeColor = Color.Blue;
-                    row.Cells["WikipediaUrl"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
-                    row.Cells["WikipediaUrl"].Style.SelectionForeColor = Color.Blue;
-                }
-
-                // Format VideoUrl column as a clickable link
-                if (row.Cells["VideoUrl"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["VideoUrl"].Value.ToString()))
-                {
-                    var videoUrlCellValue = row.Cells["VideoUrl"].Value;
-
-                    row.Cells["VideoUrl"].Value = "YouTube";
-                    row.Cells["VideoUrl"].Tag = videoUrlCellValue;
-                    row.Cells["VideoUrl"].Style.ForeColor = Color.Blue;
-                    row.Cells["VideoUrl"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
-                    row.Cells["VideoUrl"].Style.SelectionForeColor = Color.Blue;
-                }
-            }
-        }
-
+        // Populate the GridViews with the game lists
         private void PopulateGameList(IList<IGame> ownedGames, IList<MissingGame> missingGames)
         {
             // Clear GridViews if populated
@@ -291,6 +202,117 @@ namespace LBMissingGamesCheckerPlugin
             // Format clickable cells in the GridViews
             FormatGridViewCells(ownedGamesGridView);
             FormatGridViewCells(missingGamesGridView);
+            pbGridViewLoading.Visible = false;
+        }
+
+
+        //** Helper Methods **//
+        // Get the platform games from the metadata.xml file
+        private async Task<IList<MissingGame>> GetGamesFromMetadata(string metadataFilePath, string platformName, ProgressBar progressBar)
+        {
+            var games = new List<MissingGame>();
+
+            // Open the file stream to track the number of bytes read
+            using (FileStream fs = new FileStream(metadataFilePath, FileMode.Open, FileAccess.Read))
+            {
+                long totalBytes = fs.Length; // Total file size
+                long bytesRead = 0;
+                int lastProgress = 0; // To track the last progress value
+
+                XmlReaderSettings settings = new XmlReaderSettings
+                {
+                    Async = true
+                };
+
+                using (XmlReader reader = XmlReader.Create(fs, settings))
+                {
+                    progressBar.Minimum = 0;
+                    progressBar.Maximum = 100;
+                    progressBar.Value = 0;
+                    progressBar.Visible = true;
+
+                    while (await reader.ReadAsync())
+                    {
+                        if (reader.NodeType == XmlNodeType.Element && reader.Name == "Game")
+                        {
+                            var gameElement = XNode.ReadFrom(reader) as XElement;
+
+                            if (string.Equals((string)gameElement.Element("Platform"), platformName, StringComparison.OrdinalIgnoreCase))
+                            {
+                                var game = new MissingGame
+                                {
+                                    Platform = platformName,
+                                    Title = (string)gameElement.Element("Name") ?? "",
+                                    LaunchBoxDbId = ParseInt((string)gameElement.Element("DatabaseID")),
+                                    Developer = (string)gameElement.Element("Developer") ?? "",
+                                    Publisher = (string)gameElement.Element("Publisher") ?? "",
+                                    ReleaseDate = ParseDate((string)gameElement.Element("ReleaseDate")),
+                                    CommunityStarRating = ParseFloat((string)gameElement.Element("CommunityRating")),
+                                    CommunityStarRatingTotalVotes = ParseInt((string)gameElement.Element("CommunityRatingCount")),
+                                    VideoUrl = (string)gameElement.Element("VideoURL") ?? "",
+                                    WikipediaUrl = (string)gameElement.Element("WikipediaURL") ?? "",
+                                    ReleaseType = (string)gameElement.Element("ReleaseType") ?? ""
+                                };
+
+                                games.Add(game);
+                            }
+                        }
+
+                        // Only update the progress bar every 1% or so to reduce UI overhead
+                        bytesRead = fs.Position;
+                        int progress = (int)((double)bytesRead / totalBytes * 100);
+                        if (progress > lastProgress)
+                        {
+                            lastProgress = progress;
+                            progressBar.Value = progress;
+                            progressBar.Refresh();
+                        }
+                    }
+                }
+            }
+            return games;
+        }
+
+        // Add clickable elements to the GridViews
+        private void FormatGridViewCells(DataGridView gridView)
+        {
+            foreach (DataGridViewRow row in gridView.Rows)
+            {
+                // Format LaunchBoxDbId column as a clickable link
+                if (row.Cells["LaunchBoxDbId"].Value != null)
+                {
+                    int lbid;
+                    if (int.TryParse(row.Cells["LaunchBoxDbId"].Value.ToString(), out lbid))
+                    {
+                        row.Cells["LaunchBoxDbId"].Value = $"LaunchBoxDB #{lbid}";
+                        row.Cells["LaunchBoxDbId"].Style.ForeColor = Color.Blue;
+                        row.Cells["LaunchBoxDbId"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
+                        row.Cells["LaunchBoxDbId"].Style.SelectionForeColor = Color.Blue;
+                    }
+                    else
+                    {
+                        row.Cells["LaunchBoxDbId"].Style.ForeColor = Color.Blue;
+                        row.Cells["LaunchBoxDbId"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
+                        row.Cells["LaunchBoxDbId"].Style.SelectionForeColor = Color.Blue;
+                    }
+                }
+
+                // Format WikipediaUrl column as a clickable link
+                if (row.Cells["WikipediaUrl"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["WikipediaUrl"].Value.ToString()))
+                {
+                    row.Cells["WikipediaUrl"].Style.ForeColor = Color.Blue;
+                    row.Cells["WikipediaUrl"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
+                    row.Cells["WikipediaUrl"].Style.SelectionForeColor = Color.Blue;
+                }
+
+                // Format VideoUrl column as a clickable link
+                if (row.Cells["VideoUrl"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["VideoUrl"].Value.ToString()))
+                {
+                    row.Cells["VideoUrl"].Style.ForeColor = Color.Blue;
+                    row.Cells["VideoUrl"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
+                    row.Cells["VideoUrl"].Style.SelectionForeColor = Color.Blue;
+                }
+            }
         }
 
         // GridView sort method
@@ -301,26 +323,7 @@ namespace LBMissingGamesCheckerPlugin
                 : games.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
         }
 
-        // GridView column click handlers
-        private void OwnedGamesGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            string columnName = ownedGamesGridView.Columns[e.ColumnIndex].DataPropertyName;
-            ToggleSortOrder(columnName);
-
-            ownedGamesGridView.DataSource = SortGames((List<GameDisplayData>)ownedGamesGridView.DataSource, columnName);
-
-            FormatGridViewCells(ownedGamesGridView);
-        }
-
-        private void MissingGamesGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            string columnName = missingGamesGridView.Columns[e.ColumnIndex].DataPropertyName;
-            ToggleSortOrder(columnName);
-
-            missingGamesGridView.DataSource = SortGames((List<GameDisplayData>)missingGamesGridView.DataSource, columnName);
-            FormatGridViewCells(missingGamesGridView);
-        }
-
+        // Column sort toggle method
         private void ToggleSortOrder(string columnName)
         {
             if (lastSortedColumn == columnName)
@@ -334,40 +337,24 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
-        // GridView cell click handler
-        private void GridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        // Format helpers
+        private DateTime? ParseDate(string dateStr)
         {
-            var gridView = sender as DataGridView;
-            if (gridView == null || e.RowIndex < 0) return;
-
-            var cell = gridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            var columnName = gridView.Columns[e.ColumnIndex].Name;
-
-            if (columnName == "LaunchBoxDbId" && cell.Value != null)
-            {
-                var lbid = gridView.Rows[e.RowIndex].Cells["LaunchBoxDbId"].Value.ToString().Split('#').LastOrDefault();
-                if (int.TryParse(lbid, out int dbId))
-                {
-                    string url = $"https://gamesdb.launchbox-app.com/games/dbid/{dbId}";
-                    OpenUrl(url);
-                }
-            }
-            else if (columnName == "WikipediaUrl" && cell.Tag != null) 
-            {
-                string url = gridView.Rows[e.RowIndex].Cells["WikipediaUrl"].Tag.ToString();
-                if (!string.IsNullOrWhiteSpace(url))
-                {
-                    OpenUrl(url);
-                }
-            }
-            else if (columnName == "VideoUrl" && cell.Tag != null)
-            {
-                string url = gridView.Rows[e.RowIndex].Cells["VideoUrl"].Tag.ToString();
-                if (!string.IsNullOrWhiteSpace(url))
-                {
-                    OpenUrl(url);
-                }
-            }
+            if (DateTime.TryParse(dateStr, out DateTime date))
+                return date;
+            return null;
+        }
+        private int? ParseInt(string intStr)
+        {
+            if (int.TryParse(intStr, out int value))
+                return value;
+            return 0;
+        }
+        private float? ParseFloat(string floatStr)
+        {
+            if (float.TryParse(floatStr, out float value))
+                return value;
+            return 0f;
         }
 
         // Handle URL requests
@@ -385,32 +372,6 @@ namespace LBMissingGamesCheckerPlugin
             catch (Exception ex)
             {
                 MessageBox.Show($"Failed to open URL {url}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void CheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            // Get the column name from the CheckedListBox
-            string columnName = clbColumnSelection.Items[e.Index].ToString();
-
-            // Find the matching column in the GridView
-            foreach (DataGridViewColumn column in ownedGamesGridView.Columns)
-            {
-                if (column.HeaderText == columnName)
-                {
-                    // Show or hide the column based on the CheckedListBox state
-                    column.Visible = (e.NewValue == CheckState.Checked);
-                    break;
-                }
-            }
-            foreach (DataGridViewColumn column in missingGamesGridView.Columns)
-            {
-                if (column.HeaderText == columnName)
-                {
-                    // Show or hide the column based on the CheckedListBox state
-                    column.Visible = (e.NewValue == CheckState.Checked);
-                    break;
-                }
             }
         }
 
@@ -436,18 +397,113 @@ namespace LBMissingGamesCheckerPlugin
                 {
                     for (int i = 0; i < gridView.Columns.Count; i++)
                     {
-                        if (row.Cells[i].Value?.ToString() == "Wikipedia" || row.Cells[i].Value?.ToString() == "YouTube")
-                        {
-                            writer.Write(row.Cells[i].Tag?.ToString());
-                        }
-                        else
-                        {
-                            writer.Write(row.Cells[i].Value?.ToString());
-                        }
-
+                        writer.Write(row.Cells[i].Value?.ToString());
                         if (i < gridView.Columns.Count - 1) writer.Write(","); // Comma after each cell except the last one
                     }
                     writer.WriteLine();
+                }
+            }
+        }
+
+
+        //** Event Handlers **//
+        // Confirm button handler for dropdown platform selection
+        private void ConfirmButton_Click(object sender, EventArgs e)
+        {
+            if (platformDropdown.SelectedItem != null || platformDropdown.SelectedIndex <= 0)
+            {
+                SelectedPlatform = platformDropdown.SelectedItem.ToString();
+                GetAllPlatformGames(SelectedPlatform);
+            }
+            else
+            {
+                MessageBox.Show("Please select a platform.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ownedGridView column click handlers
+        private void OwnedGamesGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string columnName = ownedGamesGridView.Columns[e.ColumnIndex].DataPropertyName;
+            ToggleSortOrder(columnName);
+
+            ownedGamesGridView.DataSource = SortGames((List<GameDisplayData>)ownedGamesGridView.DataSource, columnName);
+
+            // Reapply formatting and ToolTipText properties
+            FormatGridViewCells(ownedGamesGridView);
+        }
+
+        // missingGridView column click handlers
+        private void MissingGamesGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string columnName = missingGamesGridView.Columns[e.ColumnIndex].DataPropertyName;
+            ToggleSortOrder(columnName);
+
+            missingGamesGridView.DataSource = SortGames((List<GameDisplayData>)missingGamesGridView.DataSource, columnName);
+
+            // Reapply formatting and ToolTipText properties
+            FormatGridViewCells(missingGamesGridView);
+        }
+
+        // GridView cell click handler
+        private void GridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var gridView = sender as DataGridView;
+            if (gridView == null || e.RowIndex < 0) return;
+
+            var cell = gridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            var columnName = gridView.Columns[e.ColumnIndex].Name;
+
+            if (columnName == "LaunchBoxDbId" && cell.Value != null)
+            {
+                var lbid = gridView.Rows[e.RowIndex].Cells["LaunchBoxDbId"].Value.ToString().Split('#').LastOrDefault();
+                if (int.TryParse(lbid, out int dbId))
+                {
+                    string url = $"https://gamesdb.launchbox-app.com/games/dbid/{dbId}";
+                    OpenUrl(url);
+                }
+            }
+            else if (columnName == "WikipediaUrl" && cell.ToolTipText != null) 
+            {
+                string url = gridView.Rows[e.RowIndex].Cells["WikipediaUrl"].Value.ToString();
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    OpenUrl(url);
+                }
+            }
+            else if (columnName == "VideoUrl" && cell.ToolTipText != null)
+            {
+                string url = gridView.Rows[e.RowIndex].Cells["VideoUrl"].Value.ToString();
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    OpenUrl(url);
+                }
+            }
+        }
+
+        // Toggle column visibility based on the CheckedListBox 
+        private void CheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            // Get the column name from the CheckedListBox
+            string columnName = clbColumnSelection.Items[e.Index].ToString();
+
+            // Find the matching column in the GridView
+            foreach (DataGridViewColumn column in ownedGamesGridView.Columns)
+            {
+                if (column.HeaderText == columnName)
+                {
+                    // Show or hide the column based on the CheckedListBox state
+                    column.Visible = (e.NewValue == CheckState.Checked);
+                    break;
+                }
+            }
+            foreach (DataGridViewColumn column in missingGamesGridView.Columns)
+            {
+                if (column.HeaderText == columnName)
+                {
+                    // Show or hide the column based on the CheckedListBox state
+                    column.Visible = (e.NewValue == CheckState.Checked);
+                    break;
                 }
             }
         }
@@ -483,27 +539,15 @@ namespace LBMissingGamesCheckerPlugin
                 }
             }
         }
+
+        //** Form Init **//
         private void PlatformSelectionForm_Load(object sender, EventArgs e)
         {
+            // Set Column Selection checkboxes to checked
             for(int i = 0; i < clbColumnSelection.Items.Count; i++)
             {
                 clbColumnSelection.SetItemChecked(i, true);
             }
         }
-    }
-
-    public class MissingGame
-    {
-        public int? LaunchBoxDbId { get; set; }
-        public string Title { get; set; }
-        public string Developer { get; set; }
-        public string Publisher { get; set; }
-        public DateTime? ReleaseDate { get; set; }
-        public float? CommunityStarRating { get; set; }
-        public string Platform { get; set; }
-        public int? CommunityStarRatingTotalVotes { get; set; }
-        public string VideoUrl { get; set; }
-        public string ReleaseType { get; set; }
-        public string WikipediaUrl { get; set; }
     }
 }

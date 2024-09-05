@@ -54,7 +54,7 @@
             // platformDropdown
             // 
             this.platformDropdown.FormattingEnabled = true;
-            this.platformDropdown.Location = new System.Drawing.Point(12, 91);
+            this.platformDropdown.Location = new System.Drawing.Point(22, 91);
             this.platformDropdown.Name = "platformDropdown";
             this.platformDropdown.Size = new System.Drawing.Size(161, 21);
             this.platformDropdown.TabIndex = 0;
@@ -62,7 +62,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(61, 118);
+            this.confirmButton.Location = new System.Drawing.Point(71, 118);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(112, 23);
             this.confirmButton.TabIndex = 1;
@@ -73,7 +73,7 @@
             // ownedGamesGridView
             // 
             this.ownedGamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ownedGamesGridView.Location = new System.Drawing.Point(246, 89);
+            this.ownedGamesGridView.Location = new System.Drawing.Point(225, 91);
             this.ownedGamesGridView.Name = "ownedGamesGridView";
             this.ownedGamesGridView.Size = new System.Drawing.Size(720, 150);
             this.ownedGamesGridView.TabIndex = 2;
@@ -83,7 +83,7 @@
             // missingGamesGridView
             // 
             this.missingGamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.missingGamesGridView.Location = new System.Drawing.Point(246, 277);
+            this.missingGamesGridView.Location = new System.Drawing.Point(225, 279);
             this.missingGamesGridView.Name = "missingGamesGridView";
             this.missingGamesGridView.Size = new System.Drawing.Size(720, 188);
             this.missingGamesGridView.TabIndex = 3;
@@ -93,7 +93,7 @@
             // lblDropdown
             // 
             this.lblDropdown.AutoSize = true;
-            this.lblDropdown.Location = new System.Drawing.Point(12, 72);
+            this.lblDropdown.Location = new System.Drawing.Point(22, 72);
             this.lblDropdown.Name = "lblDropdown";
             this.lblDropdown.Size = new System.Drawing.Size(131, 13);
             this.lblDropdown.TabIndex = 4;
@@ -102,7 +102,7 @@
             // lblOwnedGamesGridView
             // 
             this.lblOwnedGamesGridView.AutoSize = true;
-            this.lblOwnedGamesGridView.Location = new System.Drawing.Point(246, 70);
+            this.lblOwnedGamesGridView.Location = new System.Drawing.Point(225, 72);
             this.lblOwnedGamesGridView.Name = "lblOwnedGamesGridView";
             this.lblOwnedGamesGridView.Size = new System.Drawing.Size(130, 13);
             this.lblOwnedGamesGridView.TabIndex = 5;
@@ -111,7 +111,7 @@
             // lblMissingGamesGridView
             // 
             this.lblMissingGamesGridView.AutoSize = true;
-            this.lblMissingGamesGridView.Location = new System.Drawing.Point(246, 258);
+            this.lblMissingGamesGridView.Location = new System.Drawing.Point(225, 260);
             this.lblMissingGamesGridView.Name = "lblMissingGamesGridView";
             this.lblMissingGamesGridView.Size = new System.Drawing.Size(131, 13);
             this.lblMissingGamesGridView.TabIndex = 6;
@@ -120,7 +120,7 @@
             // lblOwnedGamesCount
             // 
             this.lblOwnedGamesCount.AutoSize = true;
-            this.lblOwnedGamesCount.Location = new System.Drawing.Point(382, 70);
+            this.lblOwnedGamesCount.Location = new System.Drawing.Point(361, 72);
             this.lblOwnedGamesCount.Name = "lblOwnedGamesCount";
             this.lblOwnedGamesCount.Size = new System.Drawing.Size(13, 13);
             this.lblOwnedGamesCount.TabIndex = 7;
@@ -129,7 +129,7 @@
             // lblMissingGamesCount
             // 
             this.lblMissingGamesCount.AutoSize = true;
-            this.lblMissingGamesCount.Location = new System.Drawing.Point(383, 258);
+            this.lblMissingGamesCount.Location = new System.Drawing.Point(362, 260);
             this.lblMissingGamesCount.Name = "lblMissingGamesCount";
             this.lblMissingGamesCount.Size = new System.Drawing.Size(13, 13);
             this.lblMissingGamesCount.TabIndex = 8;
@@ -137,7 +137,7 @@
             // 
             // btnOwnedCSV
             // 
-            this.btnOwnedCSV.Location = new System.Drawing.Point(872, 65);
+            this.btnOwnedCSV.Location = new System.Drawing.Point(851, 67);
             this.btnOwnedCSV.Name = "btnOwnedCSV";
             this.btnOwnedCSV.Size = new System.Drawing.Size(94, 23);
             this.btnOwnedCSV.TabIndex = 9;
@@ -147,7 +147,7 @@
             // 
             // btnMissingCSV
             // 
-            this.btnMissingCSV.Location = new System.Drawing.Point(872, 253);
+            this.btnMissingCSV.Location = new System.Drawing.Point(851, 255);
             this.btnMissingCSV.Name = "btnMissingCSV";
             this.btnMissingCSV.Size = new System.Drawing.Size(93, 23);
             this.btnMissingCSV.TabIndex = 10;
@@ -162,7 +162,7 @@
             this.gbOptional.Controls.Add(this.chkReleasedOnly);
             this.gbOptional.Location = new System.Drawing.Point(15, 164);
             this.gbOptional.Name = "gbOptional";
-            this.gbOptional.Size = new System.Drawing.Size(213, 249);
+            this.gbOptional.Size = new System.Drawing.Size(204, 228);
             this.gbOptional.TabIndex = 11;
             this.gbOptional.TabStop = false;
             this.gbOptional.Text = "Optional Items";
@@ -180,7 +180,6 @@
             // 
             this.clbColumnSelection.FormattingEnabled = true;
             this.clbColumnSelection.Items.AddRange(new object[] {
-            "Title",
             "Developer",
             "Publisher",
             "Platform",
@@ -193,7 +192,7 @@
             "ReleaseType"});
             this.clbColumnSelection.Location = new System.Drawing.Point(6, 68);
             this.clbColumnSelection.Name = "clbColumnSelection";
-            this.clbColumnSelection.Size = new System.Drawing.Size(191, 169);
+            this.clbColumnSelection.Size = new System.Drawing.Size(191, 154);
             this.clbColumnSelection.TabIndex = 1;
             this.clbColumnSelection.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CheckedListBox_ItemCheck);
             // 
@@ -209,7 +208,7 @@
             // 
             // pbGridViewLoading
             // 
-            this.pbGridViewLoading.Location = new System.Drawing.Point(22, 419);
+            this.pbGridViewLoading.Location = new System.Drawing.Point(21, 418);
             this.pbGridViewLoading.Name = "pbGridViewLoading";
             this.pbGridViewLoading.Size = new System.Drawing.Size(191, 20);
             this.pbGridViewLoading.TabIndex = 12;
@@ -219,7 +218,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 477);
+            this.ClientSize = new System.Drawing.Size(956, 477);
             this.Controls.Add(this.pbGridViewLoading);
             this.Controls.Add(this.gbOptional);
             this.Controls.Add(this.btnMissingCSV);
