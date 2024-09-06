@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -285,32 +286,32 @@ namespace LBMissingGamesCheckerPlugin
                     if (int.TryParse(row.Cells["LaunchBoxDbId"].Value.ToString(), out lbid))
                     {
                         row.Cells["LaunchBoxDbId"].Value = $"LaunchBoxDB #{lbid}";
-                        row.Cells["LaunchBoxDbId"].Style.ForeColor = Color.Blue;
+                        row.Cells["LaunchBoxDbId"].Style.ForeColor = Color.FromArgb(255, 191, 0);
+                        row.Cells["LaunchBoxDbId"].Style.SelectionForeColor = Color.FromArgb(255, 191, 0);
                         row.Cells["LaunchBoxDbId"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
-                        row.Cells["LaunchBoxDbId"].Style.SelectionForeColor = Color.Blue;
                     }
                     else
                     {
-                        row.Cells["LaunchBoxDbId"].Style.ForeColor = Color.Blue;
+                        row.Cells["LaunchBoxDbId"].Style.ForeColor = Color.FromArgb(255, 191, 0);
+                        row.Cells["LaunchBoxDbId"].Style.SelectionForeColor = Color.FromArgb(255, 191, 0);
                         row.Cells["LaunchBoxDbId"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
-                        row.Cells["LaunchBoxDbId"].Style.SelectionForeColor = Color.Blue;
                     }
                 }
 
                 // Format WikipediaUrl column as a clickable link
                 if (row.Cells["WikipediaUrl"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["WikipediaUrl"].Value.ToString()))
                 {
-                    row.Cells["WikipediaUrl"].Style.ForeColor = Color.Blue;
+                    row.Cells["WikipediaUrl"].Style.ForeColor = Color.FromArgb(255, 191, 0);
+                    row.Cells["WikipediaUrl"].Style.SelectionForeColor = Color.FromArgb(255, 191, 0);
                     row.Cells["WikipediaUrl"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
-                    row.Cells["WikipediaUrl"].Style.SelectionForeColor = Color.Blue;
                 }
 
                 // Format VideoUrl column as a clickable link
                 if (row.Cells["VideoUrl"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["VideoUrl"].Value.ToString()))
                 {
-                    row.Cells["VideoUrl"].Style.ForeColor = Color.Blue;
+                    row.Cells["VideoUrl"].Style.ForeColor = Color.FromArgb(255, 191, 0);
+                    row.Cells["VideoUrl"].Style.SelectionForeColor = Color.FromArgb(255, 191, 0);
                     row.Cells["VideoUrl"].Style.Font = new Font(gridView.Font, FontStyle.Underline);
-                    row.Cells["VideoUrl"].Style.SelectionForeColor = Color.Blue;
                 }
             }
         }
@@ -357,6 +358,23 @@ namespace LBMissingGamesCheckerPlugin
             return 0f;
         }
 
+        // Form draggable code
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        private void PlatformSelectionForm_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
         // Handle URL requests
         private void OpenUrl(string url)
         {
@@ -387,8 +405,11 @@ namespace LBMissingGamesCheckerPlugin
                 // Write the header
                 for (int i = 0; i < gridView.Columns.Count; i++)
                 {
-                    writer.Write(gridView.Columns[i].HeaderText);
-                    if (i < gridView.Columns.Count - 1) writer.Write(","); // Comma after each column except the last one
+                    if (gridView.Columns[i].Visible)  // If column is selected
+                    {
+                        writer.Write(gridView.Columns[i].HeaderText);
+                        if (i < gridView.Columns.Count - 1) writer.Write(","); // Comma after each column except the last one
+                    }
                 }
                 writer.WriteLine();
 
@@ -397,8 +418,11 @@ namespace LBMissingGamesCheckerPlugin
                 {
                     for (int i = 0; i < gridView.Columns.Count; i++)
                     {
-                        writer.Write(row.Cells[i].Value?.ToString());
-                        if (i < gridView.Columns.Count - 1) writer.Write(","); // Comma after each cell except the last one
+                        if (gridView.Columns[i].Visible)  // If column is selected
+                        {
+                            writer.Write(row.Cells[i].Value?.ToString());
+                            if (i < gridView.Columns.Count - 1) writer.Write(","); // Comma after each cell except the last one
+                        }
                     }
                     writer.WriteLine();
                 }
@@ -540,27 +564,118 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
-        // Form draggable code
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-        private void PlatformSelectionForm_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
-        }
-
         // Form close handler
         private void FormClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        //** Form Theme **//
+        public void ApplyTheme(Form form)
+        {
+            // Charcoal grey background
+            form.BackColor = Color.FromArgb(54, 57, 63);
+
+            // Loop through all controls and apply styles
+            foreach (Control ctrl in form.Controls)
+            {
+                if (ctrl is Button btn && btn.Name != "btnClose")
+                {
+                    // Buttons with electric blue primary accent
+                    btn.BackColor = Color.FromArgb(44, 156, 255);
+                    btn.ForeColor = Color.White;
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderColor = Color.FromArgb(30, 130, 200);
+                    btn.FlatAppearance.BorderSize = 1;
+                }
+                else if (ctrl is Label lbl)
+                {
+                    // Labels with contrasting text color
+                    lbl.ForeColor = Color.FromArgb(230, 230, 230);
+                }
+                else if (ctrl is ComboBox cbx)
+                {
+                    // ComboBoxes with modern styling
+                    cbx.BackColor = Color.FromArgb(245, 245, 245);
+                    cbx.ForeColor = Color.Black;
+                    cbx.FlatStyle = FlatStyle.Flat;
+                }
+                else if (ctrl is GroupBox gbx)
+                {
+                    // GroupBoxes styled with amber accent
+                    gbx.ForeColor = Color.FromArgb(255, 191, 0);
+                    gbx.BackColor = Color.FromArgb(54, 57, 63);
+                }
+                else if (ctrl is CheckBox chk)
+                {
+                    // Checkboxes styled with amber accent
+                    chk.ForeColor = Color.FromArgb(255, 191, 0);
+                    chk.BackColor = Color.FromArgb(54, 57, 63);
+                }
+                else if (ctrl is CheckedListBox clb)
+                {
+                    // CheckedListBox styled with grey background and white text
+                    clb.BackColor = Color.FromArgb(54, 57, 63);
+                    clb.ForeColor = Color.White;
+                }
+                else if (ctrl is ProgressBar pb)
+                {
+                    // ProgressBar styled with electric blue accent
+                    pb.BackColor = Color.FromArgb(54, 57, 63);
+                    pb.ForeColor = Color.White;
+                    pb.Style = ProgressBarStyle.Continuous;
+                    pb.ForeColor = Color.FromArgb(44, 156, 255);
+                }
+                else if (ctrl is DataGridView dgv)
+                {
+                    // DataGridView with modern theme
+                    dgv.BackgroundColor = Color.FromArgb(54, 57, 63);
+                    dgv.GridColor = Color.FromArgb(44, 156, 255);
+                    dgv.DefaultCellStyle.BackColor = Color.FromArgb(54, 57, 63);
+                    dgv.DefaultCellStyle.ForeColor = Color.White;
+                    dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 156, 255);
+                    dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                    dgv.EnableHeadersVisualStyles = false;
+                }
+            }
+        }
+
+        public class NewProgressBar : ProgressBar
+        {
+            public NewProgressBar()
+            {
+                this.SetStyle(ControlStyles.UserPaint, true);
+            }
+
+            protected override void OnPaintBackground(PaintEventArgs pevent)
+            {
+                // None... Helps control the flicker.
+            }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                const int inset = 2; // A single inset value to control teh sizing of the inner rect.
+
+                using (Image offscreenImage = new Bitmap(this.Width, this.Height))
+                {
+                    using (Graphics offscreen = Graphics.FromImage(offscreenImage))
+                    {
+                        Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
+
+                        if (ProgressBarRenderer.IsSupported)
+                            ProgressBarRenderer.DrawHorizontalBar(offscreen, rect);
+
+                        rect.Inflate(new Size(-inset, -inset)); // Deflate inner rect.
+                        rect.Width = (int)(rect.Width * ((double)this.Value / this.Maximum));
+                        if (rect.Width == 0) rect.Width = 1; // Can't draw rec with width of 0.
+
+                        LinearGradientBrush brush = new LinearGradientBrush(rect, this.BackColor, this.ForeColor, LinearGradientMode.Vertical);
+                        offscreen.FillRectangle(brush, inset, inset, rect.Width, rect.Height);
+
+                        e.Graphics.DrawImage(offscreenImage, 0, 0);
+                    }
+                }
+            }
         }
 
         //** Form Init **//
@@ -571,6 +686,7 @@ namespace LBMissingGamesCheckerPlugin
             {
                 clbColumnSelection.SetItemChecked(i, true);
             }
+            ApplyTheme(this);
         }
     }
 }
