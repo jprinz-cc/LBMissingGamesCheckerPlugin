@@ -13,7 +13,7 @@ namespace LBMissingGamesCheckerPlugin
         public string MenuItemTitle => "Missing Games Checker";
 
         public System.Drawing.Image IconImage
-        { get { return Properties.Resources.mgc; } }
+        { get { return Properties.Resources.mgc_logo; } }
 
         public bool ShowInLaunchBox
         { get { return true; } }
