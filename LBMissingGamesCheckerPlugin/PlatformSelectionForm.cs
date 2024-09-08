@@ -165,23 +165,29 @@ namespace LBMissingGamesCheckerPlugin
 
             // Parse the metadata.xml to get all games for the selected platform
             var allGamesFromMetadata = await GetGamesFromMetadata(metadataFilePath, selectedPlatform, pbGridViewLoading); // Use await here
-            bool selectedPlatformFound = allGamesFromMetadata.ElementAt<MissingGame>(0).Title != "NoPlatformFound";
 
             // Check if "Released" filter is applied
             bool filterReleasedOnly = chkReleasedOnly.Checked;
 
-            // Find the missing games by comparing with ownedGames
-            missingGames = allGamesFromMetadata
+            if (allGamesFromMetadata.ElementAt<MissingGame>(0).LaunchBoxDbId != 0)
+            {
+                // Find the missing games by comparing with ownedGames
+                missingGames = allGamesFromMetadata
                 .Where(mdGame => !ownedGames.Any(owned => string.Equals(owned.Title, mdGame.Title, StringComparison.OrdinalIgnoreCase) ||
                     (owned.LaunchBoxDbId.HasValue && mdGame.LaunchBoxDbId.HasValue && owned.LaunchBoxDbId == mdGame.LaunchBoxDbId)))
                 .Where(mdGame => !filterReleasedOnly || mdGame.ReleaseType == "Released").ToList();
+            }
+            else
+            {
+                missingGames = allGamesFromMetadata;
+            }
 
-            PopulateGameList(ownedGames, missingGames, selectedPlatformFound);
+            PopulateGameList(ownedGames, missingGames);
         }
 
 
         // Populate the GridViews with the game lists
-        private void PopulateGameList(IList<IGame> ownedGames, IList<MissingGame> missingGames, bool selectedPlatformFound)
+        private void PopulateGameList(IList<IGame> ownedGames, IList<MissingGame> missingGames)
         {
             // Clear GridViews if populated
             if (ownedGamesGridView.RowCount > 0)
@@ -219,7 +225,7 @@ namespace LBMissingGamesCheckerPlugin
             ownedGamesGridView.DataSource = ownedGamesDisplayData;
 
             // Bind missingGames data to GridView
-            if (selectedPlatformFound)  // If the selectedPlatform returned games from the local db
+            if (missingGames.ElementAt<MissingGame>(0).LaunchBoxDbId != 0)  // If the selectedPlatform returned games from the local db
             {
                 List<GameDisplayData> missingGamesDisplayData = new List<GameDisplayData>();
                 foreach (var game in missingGames.OrderBy(game => game.Title))
@@ -227,15 +233,19 @@ namespace LBMissingGamesCheckerPlugin
                     missingGamesDisplayData.Add(new GameDisplayData(game));
                 }
                 missingGamesGridView.DataSource = missingGamesDisplayData;
+                missingGamesGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                missingGamesGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 156, 255);
             }
             else   // selectedPlatform was not found in the local db xml
             {
-                // Create a temporary DataTable to hold the message
+                // Procees metadata error and create a temporary DataTable to hold the message
                 DataTable messageTable = new DataTable();
-                messageTable.Columns.Add("Message", typeof(string));
-                messageTable.Rows.Add("The selected platform was not found in the LaunchBox DB");
+                messageTable.Columns.Add(missingGames.ElementAt<MissingGame>(0).Platform, typeof(string));
+                messageTable.Rows.Add(missingGames.ElementAt<MissingGame>(0).Title);
                 missingGamesGridView.DataSource = messageTable;
                 missingGamesGridView.Columns[0].Width = missingGamesGridView.Width - 20;
+                missingGamesGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black; 
+                missingGamesGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 191, 0);
             }
             
 
@@ -267,76 +277,105 @@ namespace LBMissingGamesCheckerPlugin
         private async Task<IList<MissingGame>> GetGamesFromMetadata(string metadataFilePath, IPlatform selectedPlatform, ProgressBar progressBar)
         {
             var games = new List<MissingGame>();
-            string searchPlatform;
+            string searchPlatform = selectedPlatform.ScrapeAs ?? selectedPlatform.Name;
+            bool platformFound = false; // New flag to track if platform is found
 
-            searchPlatform = selectedPlatform.ScrapeAs ?? selectedPlatform.Name;
-
-            // Open the file stream to track the number of bytes read
-            using (FileStream fs = new FileStream(metadataFilePath, FileMode.Open, FileAccess.Read))
+            try
             {
-                long totalBytes = fs.Length; // Total file size
-                long bytesRead = 0;
-                int lastProgress = 0; // To track the last progress value
 
-                XmlReaderSettings settings = new XmlReaderSettings
+                // Open the file stream to track the number of bytes read
+                using (FileStream fs = new FileStream(metadataFilePath, FileMode.Open, FileAccess.Read))
                 {
-                    Async = true
-                };
+                    long totalBytes = fs.Length; // Total file size
+                    long bytesRead = 0;
+                    int lastProgress = 0; // To track the last progress value
 
-                using (XmlReader reader = XmlReader.Create(fs, settings))
-                {
-                    progressBar.Minimum = 0;
-                    progressBar.Maximum = 100;
-                    progressBar.Value = 0;
-                    progressBar.Visible = true;
+                    XmlReaderSettings settings = new XmlReaderSettings { Async = true };
 
-                    while (await reader.ReadAsync())
+                    using (XmlReader reader = XmlReader.Create(fs, settings))
                     {
-                        if (reader.NodeType == XmlNodeType.Element && reader.Name == "Game")
-                        {
-                            var gameElement = XNode.ReadFrom(reader) as XElement;
+                        progressBar.Minimum = 0;
+                        progressBar.Maximum = 100;
+                        progressBar.Value = 0;
+                        progressBar.Visible = true;
 
-                            if (string.Equals((string)gameElement.Element("Platform"), searchPlatform, StringComparison.OrdinalIgnoreCase))
+                        while (await reader.ReadAsync())
+                        {
+                            if (reader.NodeType == XmlNodeType.Element && reader.Name == "Game")
                             {
-                                var game = new MissingGame
+                                var gameElement = XNode.ReadFrom(reader) as XElement;
+
+                                if (string.Equals((string)gameElement.Element("Platform"), searchPlatform, StringComparison.OrdinalIgnoreCase))
                                 {
-                                    Platform = selectedPlatform.Name,
-                                    Title = (string)gameElement.Element("Name") ?? "",
-                                    LaunchBoxDbId = ParseInt((string)gameElement.Element("DatabaseID")),
-                                    Developer = (string)gameElement.Element("Developer") ?? "",
-                                    Publisher = (string)gameElement.Element("Publisher") ?? "",
-                                    ReleaseDate = ParseDate((string)gameElement.Element("ReleaseDate")),
-                                    CommunityStarRating = ParseFloat((string)gameElement.Element("CommunityRating")),
-                                    CommunityStarRatingTotalVotes = ParseInt((string)gameElement.Element("CommunityRatingCount")),
-                                    VideoUrl = (string)gameElement.Element("VideoURL") ?? "",
-                                    WikipediaUrl = (string)gameElement.Element("WikipediaURL") ?? "",
-                                    ReleaseType = (string)gameElement.Element("ReleaseType") ?? ""
-                                };
+                                    var game = new MissingGame
+                                    {
+                                        Platform = selectedPlatform.Name,
+                                        Title = (string)gameElement.Element("Name") ?? "",
+                                        LaunchBoxDbId = ParseInt((string)gameElement.Element("DatabaseID")),
+                                        Developer = (string)gameElement.Element("Developer") ?? "",
+                                        Publisher = (string)gameElement.Element("Publisher") ?? "",
+                                        ReleaseDate = ParseDate((string)gameElement.Element("ReleaseDate")),
+                                        CommunityStarRating = ParseFloat((string)gameElement.Element("CommunityRating")),
+                                        CommunityStarRatingTotalVotes = ParseInt((string)gameElement.Element("CommunityRatingCount")),
+                                        VideoUrl = (string)gameElement.Element("VideoURL") ?? "",
+                                        WikipediaUrl = (string)gameElement.Element("WikipediaURL") ?? "",
+                                        ReleaseType = (string)gameElement.Element("ReleaseType") ?? ""
+                                    };
 
-                                games.Add(game);
+                                    games.Add(game);
+                                }
                             }
-                        }
 
-                        // Progress Bar updating
-                        bytesRead = fs.Position;
-                        int progress = (int)((double)bytesRead / totalBytes * 100);
-                        if (progress > lastProgress)
-                        {
-                            lastProgress = progress;
-                            progressBar.Value = progress;
-                            progressBar.Refresh();
+                            // Progress Bar updating
+                            bytesRead = fs.Position;
+                            int progress = (int)((double)bytesRead / totalBytes * 100);
+                            if (progress > lastProgress)
+                            {
+                                lastProgress = progress;
+                                progressBar.Value = progress;
+                                progressBar.Refresh();
+                            }
                         }
                     }
                 }
-            }
 
-            // If no games were found for the platform, add "NoPlatformFound" entry
-            if (games.Count == 0)
+                // If no games were found for the platform, add "NoPlatformFound" entry
+                if (!platformFound)
+                {
+                    var sp = selectedPlatform.ScrapeAs != "" ? selectedPlatform.ScrapeAs : selectedPlatform.Name;
+                    games.Add(new MissingGame
+                    {
+                        Platform = "NoPlatformFound",
+                        Title = $"The selected platform '{sp}' was not found in the LaunchBox DB.",
+                        LaunchBoxDbId = 0
+                    });
+                }
+            }
+            catch (FileNotFoundException)
             {
                 games.Add(new MissingGame
                 {
-                    Platform = searchPlatform,
-                    Title = "NoPlatformFound"
+                    Platform = "FileNotFound",
+                    Title = "The metadata file was not found.",
+                    LaunchBoxDbId = 0
+                });
+            }
+            catch (XmlException)
+            {
+                games.Add(new MissingGame
+                {
+                    Platform = "XmlException",
+                    Title = "There was an error reading the XML file.",
+                    LaunchBoxDbId = 0
+                });
+            }
+            catch (Exception ex)
+            {
+                games.Add(new MissingGame
+                {
+                    Platform = "Exception",
+                    Title = $"An unexpected error occurred: {ex.Message}",
+                    LaunchBoxDbId = 0
                 });
             }
 
@@ -353,8 +392,7 @@ namespace LBMissingGamesCheckerPlugin
                     // Format LaunchBoxDbId column as a clickable link
                     if (row.Cells["LaunchBoxDbId"].Value != null)
                     {
-                        int lbid;
-                        if (int.TryParse(row.Cells["LaunchBoxDbId"].Value.ToString(), out lbid))
+                        if (int.TryParse(row.Cells["LaunchBoxDbId"].Value.ToString(), out int lbid))
                         {
                             row.Cells["LaunchBoxDbId"].Value = $"LaunchBoxDB #{lbid}";
                             row.Cells["LaunchBoxDbId"].Style.ForeColor = Color.FromArgb(255, 191, 0);
@@ -576,13 +614,17 @@ namespace LBMissingGamesCheckerPlugin
         // missingGridView column click handlers
         private void MissingGamesGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            string columnName = missingGamesGridView.Columns[e.ColumnIndex].DataPropertyName;
-            ToggleSortOrder(columnName);
+            if (missingGamesGridView.ColumnCount != 1)
+            {
+                string columnName = missingGamesGridView.Columns[e.ColumnIndex].DataPropertyName;
+                ToggleSortOrder(columnName);
 
-            missingGamesGridView.DataSource = SortGames((List<GameDisplayData>)missingGamesGridView.DataSource, columnName);
+                missingGamesGridView.DataSource = SortGames((List<GameDisplayData>)missingGamesGridView.DataSource, columnName);
 
-            // Reapply formatting and ToolTipText properties
-            FormatGridViewCells(missingGamesGridView);
+                // Reapply formatting and ToolTipText properties
+                FormatGridViewCells(missingGamesGridView);
+            }
+            
         }
 
         // GridView cell click handler
