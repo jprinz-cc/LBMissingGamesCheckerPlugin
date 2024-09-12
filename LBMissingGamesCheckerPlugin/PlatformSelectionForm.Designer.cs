@@ -54,15 +54,17 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnClose = new System.Windows.Forms.Button();
             this.llbPoweredBy = new System.Windows.Forms.LinkLabel();
-            this.pbMGCLogo = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblLoadingMetadata = new System.Windows.Forms.Label();
             this.lblApplicationPath = new System.Windows.Forms.Label();
+            this.pbMGCLogo = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbMGCSpinner = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ownedGamesGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.missingGamesGridView)).BeginInit();
             this.gbOptional.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMGCLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMGCSpinner)).BeginInit();
             this.SuspendLayout();
             // 
             // platformDropdown
@@ -338,30 +340,6 @@
             this.llbPoweredBy.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.llbPoweredBy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PoweredBy_LinkClicked);
             // 
-            // pbMGCLogo
-            // 
-            this.pbMGCLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pbMGCLogo.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_logo;
-            this.pbMGCLogo.Location = new System.Drawing.Point(16, 11);
-            this.pbMGCLogo.Name = "pbMGCLogo";
-            this.pbMGCLogo.Size = new System.Drawing.Size(73, 59);
-            this.pbMGCLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbMGCLogo.TabIndex = 14;
-            this.pbMGCLogo.TabStop = false;
-            this.pbMGCLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_header;
-            this.pictureBox1.Location = new System.Drawing.Point(361, -1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(471, 97);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
-            // 
             // lblLoadingMetadata
             // 
             this.lblLoadingMetadata.AutoSize = true;
@@ -387,6 +365,41 @@
             this.lblApplicationPath.Text = "current path text";
             this.lblApplicationPath.Visible = false;
             // 
+            // pbMGCLogo
+            // 
+            this.pbMGCLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pbMGCLogo.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_logo;
+            this.pbMGCLogo.Location = new System.Drawing.Point(16, 11);
+            this.pbMGCLogo.Name = "pbMGCLogo";
+            this.pbMGCLogo.Size = new System.Drawing.Size(73, 59);
+            this.pbMGCLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMGCLogo.TabIndex = 14;
+            this.pbMGCLogo.TabStop = false;
+            this.pbMGCLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_header;
+            this.pictureBox1.Location = new System.Drawing.Point(361, -1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(471, 97);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
+            // 
+            // pbMGCSpinner
+            // 
+            this.pbMGCSpinner.BackColor = System.Drawing.Color.Transparent;
+            this.pbMGCSpinner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbMGCSpinner.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_spinner;
+            this.pbMGCSpinner.Location = new System.Drawing.Point(409, 285);
+            this.pbMGCSpinner.Name = "pbMGCSpinner";
+            this.pbMGCSpinner.Size = new System.Drawing.Size(320, 176);
+            this.pbMGCSpinner.TabIndex = 19;
+            this.pbMGCSpinner.TabStop = false;
+            // 
             // PlatformSelectionForm
             // 
             this.AccessibleDescription = "A LaunchBox plugin designed to help users identify missing games in their collect" +
@@ -396,6 +409,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(956, 477);
             this.ControlBox = false;
+            this.Controls.Add(this.pbMGCSpinner);
             this.Controls.Add(this.lblApplicationPath);
             this.Controls.Add(this.lblLoadingMetadata);
             this.Controls.Add(this.llbPoweredBy);
@@ -427,6 +441,7 @@
             this.gbOptional.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMGCLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMGCSpinner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -457,5 +472,6 @@
         private System.Windows.Forms.LinkLabel llbPoweredBy;
         private System.Windows.Forms.Label lblLoadingMetadata;
         private System.Windows.Forms.Label lblApplicationPath;
+        private System.Windows.Forms.PictureBox pbMGCSpinner;
     }
 }

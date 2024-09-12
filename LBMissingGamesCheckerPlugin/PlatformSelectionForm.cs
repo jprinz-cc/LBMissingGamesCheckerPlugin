@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -13,21 +14,34 @@ using System.Xml;
 using System.Xml.Linq;
 using Unbroken.LaunchBox.Plugins;
 using Unbroken.LaunchBox.Plugins.Data;
+using Unbroken.LaunchBox.Plugins.RetroAchievements;
 
 namespace LBMissingGamesCheckerPlugin
 {
     public partial class PlatformSelectionForm : Form
     {
-        // Holds the currently selected platform
-        public IPlatform SelectedPlatform { get; private set; }
 
-        // Class to hold the missing game data
+        //** App Classes **//
+        // Class to hold platforms from xml
+        public class XMLPlatform
+        {
+            public string Name { get; set; }
+            public string Category { get; set; }
+            public string Developer { get; set; }
+            public string Manufacturer { get; set; }
+            public DateTime? ReleaseDate { get; set; }
+        }
+
+        // Class to hold the missing game (xml) data
         public class MissingGame
         {
             public int? LaunchBoxDbId { get; set; }
             public string Title { get; set; }
             public string Developer { get; set; }
             public string Publisher { get; set; }
+            public string Region { get; set; } = string.Empty;
+            public string Genres { get; set; }
+            public int? MaxPlayers { get; set; }
             public DateTime? ReleaseDate { get; set; }
             public float? CommunityStarRating { get; set; }
             public string Platform { get; set; }
@@ -35,7 +49,44 @@ namespace LBMissingGamesCheckerPlugin
             public string VideoUrl { get; set; }
             public string ReleaseType { get; set; }
             public string WikipediaUrl { get; set; }
+            public List<GameAlternateName> AlternateNames { get; set; } = new List<GameAlternateName>();
+
+            // Constructor to initialize properties from MissingGame
+            public MissingGame(string title, int? lbdbId, string developer, string publisher, string region, DateTime? releaseDate, float? starRating, int? starVotes, string platform,
+                string releaseType, string genres, int? maxPlayers, string vidUrl, string wikiUrl)
+            {
+                Title = title;
+                LaunchBoxDbId = lbdbId;
+                Developer = developer ?? string.Empty;
+                Publisher = publisher ?? string.Empty;
+                Region = region ?? string.Empty;
+                ReleaseDate = releaseDate;
+                CommunityStarRating = starRating;
+                CommunityStarRatingTotalVotes = starVotes;
+                Platform = platform ?? string.Empty;
+                ReleaseType = releaseType ?? string.Empty;
+                Genres = genres ?? string.Empty;
+                MaxPlayers = maxPlayers;
+                VideoUrl = vidUrl ?? string.Empty;
+                WikipediaUrl = wikiUrl ?? string.Empty;
+            }
         }
+
+        // Class to hold alternative/region data for missing games
+        public class GameAlternateName
+        {
+            public string Name { get; set; }
+            public int GameId { get; set; }
+            public string Region { get; set; }
+
+            public GameAlternateName( int databaseID, string alternateName, string region)
+            {
+                GameId = databaseID;
+                Name = alternateName ?? string.Empty;
+                Region = region ?? string.Empty;
+            }
+        }
+
 
         // Class to hold game data to display
         public class GameDisplayData
@@ -44,6 +95,9 @@ namespace LBMissingGamesCheckerPlugin
             public string Developer { get; set; }
             public string Publisher { get; set; }
             public string ReleaseDate { get; set; }
+            public string Region { get; set; } = string.Empty;
+            public string Genres { get; set; }
+            public string MaxPlayers { get; set; }
             public string CommunityStarRating { get; set; }
             public string CommunityStarRatingTotalVotes { get; set; }
             public string Platform { get; set; }
@@ -51,21 +105,48 @@ namespace LBMissingGamesCheckerPlugin
             public string LaunchBoxDbId { get; set; }
             public string VideoUrl { get; set; }
             public string WikipediaUrl { get; set; }
+            public List<string> AlternateNamesDisplay { get; private set; } = new List<string>();
 
             // Constructor to initialize properties from MissingGame
-            public GameDisplayData(MissingGame game)
+            public GameDisplayData(MissingGame game, List<string> alternateNames)
             {
-                Title = game.Title ?? "";
-                Developer = game.Developer ?? "";
-                Publisher = game.Publisher ?? "";
-                ReleaseDate = game.ReleaseDate?.ToShortDateString() ?? "";
-                CommunityStarRating = game.CommunityStarRating != 0 ? game.CommunityStarRating.ToString() : (string)null;
-                CommunityStarRatingTotalVotes = game.CommunityStarRatingTotalVotes != 0 ? game.CommunityStarRatingTotalVotes.ToString() : (string)null;
-                Platform = game.Platform ?? "";
-                ReleaseType = game.ReleaseType ?? "";
-                LaunchBoxDbId = game.LaunchBoxDbId != 0 ? game.LaunchBoxDbId.ToString() : (string)null;
-                VideoUrl = game.VideoUrl ?? "";
-                WikipediaUrl = game.WikipediaUrl ?? "";
+                Title = game.Title ?? string.Empty;
+                LaunchBoxDbId = game.LaunchBoxDbId != 0 ? game.LaunchBoxDbId.ToString() : string.Empty;
+                Developer = game.Developer ?? string.Empty;
+                Publisher = game.Publisher ?? string.Empty;
+                ReleaseDate = game.ReleaseDate?.ToShortDateString() ?? string.Empty;
+                Region = game.Region ?? string.Empty;
+                Genres = game.Genres ?? string.Empty;
+                MaxPlayers = game.MaxPlayers.ToString() ?? string.Empty;
+                CommunityStarRating = game.CommunityStarRating != 0 ? game.CommunityStarRating.ToString() : string.Empty;
+                CommunityStarRatingTotalVotes = game.CommunityStarRatingTotalVotes != 0 ? game.CommunityStarRatingTotalVotes.ToString() : string.Empty;
+                Platform = game.Platform ?? string.Empty;
+                ReleaseType = game.ReleaseType ?? string.Empty;
+                VideoUrl = game.VideoUrl ?? string.Empty;
+                WikipediaUrl = game.WikipediaUrl ?? string.Empty;
+
+                // Populate alternate names list
+                PopulateAlternateNamesDisplay(game);
+            }
+
+            // Method to format and display alternate names with regions
+            private void PopulateAlternateNamesDisplay(MissingGame game)  // TODO: Don't accept MissingGame, accept
+            {
+                foreach (var alternateName in game.AlternateNames)
+                {
+                    string formattedName = $"{alternateName.Name}";
+                    if (!string.IsNullOrEmpty(alternateName.Region))
+                    {
+                        formattedName += $" ({alternateName.Region})";
+                    }
+                    AlternateNamesDisplay.Add(formattedName);
+                }
+            }
+
+            // Public method to return a formatted string of alternate names for display
+            public string GetAlternateNamesDisplay()
+            {
+                return AlternateNamesDisplay.Any() ? string.Join(", ", AlternateNamesDisplay) : "N/A";
             }
         }
 
@@ -109,9 +190,17 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+        //** App Properties **//
+        // Holds the currently selected platform
+        public IPlatform SelectedPlatform { get; private set; }
+
         // Propertie to hold the location of the Metadata.xml file
         private string metadataFilePath = string.Empty;
         private readonly string metadataFile = "metadata.xml";
+
+        // Lists to hold XML game/platform data
+        List<XMLPlatform> xmlPlatforms = new List<XMLPlatform>();
+        List<MissingGame> xmlGames = new List<MissingGame>();
 
         // Lists to hold sorted games
         private IList<IGame> ownedGames;
@@ -191,20 +280,10 @@ namespace LBMissingGamesCheckerPlugin
             List<GameDisplayData> ownedGamesDisplayData = new List<GameDisplayData>();
             foreach (var game in ownedGames.OrderBy(game => game.Title))
             {
-                ownedGamesDisplayData.Add(new GameDisplayData(new MissingGame
-                {
-                    Title = game.Title,
-                    Developer = game.Developer ?? null,
-                    Publisher = game.Publisher ?? null,
-                    Platform = game.Platform ?? null,
-                    ReleaseDate = game.ReleaseDate ?? null,
-                    CommunityStarRating = (float?)game.CommunityStarRating ?? null,
-                    CommunityStarRatingTotalVotes = (int?)game.CommunityStarRatingTotalVotes ?? null,
-                    LaunchBoxDbId = (int?)game.LaunchBoxDbId ?? null,
-                    VideoUrl = game.VideoUrl ?? null,
-                    WikipediaUrl = game.WikipediaUrl ?? null,
-                    ReleaseType = game.ReleaseType ?? null
-                }));
+                ownedGamesDisplayData.Add(new GameDisplayData(new MissingGame(game.Title, game.LaunchBoxDbId, game.Developer,
+                    game.Publisher, game.Region, game.ReleaseDate, (float?)game.CommunityStarRating,
+                    (int?)game.CommunityStarRatingTotalVotes, game.Platform, game.ReleaseType, game.GenresString,
+                    game.MaxPlayers, game.VideoUrl, game.WikipediaUrl)));
             }
             ownedGamesGridView.DataSource = ownedGamesDisplayData;
 
@@ -214,7 +293,7 @@ namespace LBMissingGamesCheckerPlugin
                 List<GameDisplayData> missingGamesDisplayData = new List<GameDisplayData>();
                 foreach (var game in missingGames.OrderBy(game => game.Title))
                 {
-                    missingGamesDisplayData.Add(new GameDisplayData(game));
+                    missingGamesDisplayData.Add(new GameDisplayData(game, game.AlternateNames));
                 }
                 missingGamesGridView.DataSource = missingGamesDisplayData;
                 missingGamesGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -310,20 +389,13 @@ namespace LBMissingGamesCheckerPlugin
                                 if (string.Equals(platformInXml, searchPlatform, StringComparison.OrdinalIgnoreCase))
                                 {
                                     platformFound = true;
-                                    var game = new MissingGame
-                                    {
-                                        Platform = selectedPlatform.Name,
-                                        Title = (string)gameElement.Element("Name") ?? "",
-                                        LaunchBoxDbId = ParseInt((string)gameElement.Element("DatabaseID")),
-                                        Developer = (string)gameElement.Element("Developer") ?? "",
-                                        Publisher = (string)gameElement.Element("Publisher") ?? "",
-                                        ReleaseDate = ParseDate((string)gameElement.Element("ReleaseDate")),
-                                        CommunityStarRating = ParseFloat((string)gameElement.Element("CommunityRating")),
-                                        CommunityStarRatingTotalVotes = ParseInt((string)gameElement.Element("CommunityRatingCount")),
-                                        VideoUrl = (string)gameElement.Element("VideoURL") ?? "",
-                                        WikipediaUrl = (string)gameElement.Element("WikipediaURL") ?? "",
-                                        ReleaseType = (string)gameElement.Element("ReleaseType") ?? ""
-                                    };
+
+                                    var game = new MissingGame((string)gameElement.Element("Name"), ParseInt((string)gameElement.Element("DatabaseID")),
+                                        (string)gameElement.Element("Developer"), (string)gameElement.Element("Publisher"), 
+                                        string.Empty, ParseDate((string)gameElement.Element("ReleaseDate")), ParseFloat((string)gameElement.Element("CommunityRating")), 
+                                        ParseInt((string)gameElement.Element("CommunityRatingCount")), selectedPlatform.Name, (string)gameElement.Element("ReleaseType"),
+                                        (string)gameElement.Element("Genres"), ParseInt((string)gameElement.Element("MaxPlayers")),
+                                        (string)gameElement.Element("WikipediaURL"), (string)gameElement.Element("ReleaseType"));
 
                                     games.Add(game);
                                 }
@@ -346,63 +418,45 @@ namespace LBMissingGamesCheckerPlugin
                 if (!platformFound)
                 {
                     // Add final "NoPlatformFound" message row
-                    games.Add(new MissingGame
-                    {
-                        Platform = "NoPlatformFound",
-                        Title = $"The selected platform '{searchPlatform}' was not found in the LaunchBox DB.",
-                        LaunchBoxDbId = 0
-                    });
+                    games.Add(new MissingGame($"The selected platform '{searchPlatform}' was not found in the LaunchBox DB.", 0,
+                        string.Empty, string.Empty, string.Empty, null, null, null, "NoPlatformFound", string.Empty, string.Empty,
+                        null, string.Empty, string.Empty));
+     
                     if(!string.IsNullOrWhiteSpace(selectedPlatform.ScrapeAs))
-                    games.Add(new MissingGame
-                    {
-                        Platform = "ScrapeAs",
-                        Title = $"The selected platform ScrapeAs: '{selectedPlatform.ScrapeAs}'.",
-                        LaunchBoxDbId = 0
-                    });
-                    games.Add(new MissingGame
-                    {
-                        Platform = "=====================",
-                        Title = "=====================",
-                        LaunchBoxDbId = 0
-                    });
+                        games.Add(new MissingGame($"The selected platform ScrapeAs: '{selectedPlatform.ScrapeAs}'.", 0,
+                        string.Empty, string.Empty, string.Empty, null, null, null, "ScrapeAs", string.Empty, string.Empty,
+                        null, string.Empty, string.Empty));
+
+                    games.Add(new MissingGame("=====================", 0,
+                        string.Empty, string.Empty, string.Empty, null, null, null, "=====================", string.Empty, string.Empty,
+                        null, string.Empty, string.Empty));
+
                     foreach (var platform in foundPlatforms)
                     {
-                        games.Add(new MissingGame
-                        {
-                            Platform = "Platform Found",
-                            Title = $"Platform: {platform}",
-                            LaunchBoxDbId = 0
-                        });
+                        games.Add(new MissingGame($"Platform: {platform}", 0,
+                        string.Empty, string.Empty, string.Empty, null, null, null, "Platform Found", string.Empty, string.Empty,
+                        null, string.Empty, string.Empty));
                     }
 
                 }
             }
             catch (FileNotFoundException)
             {
-                games.Add(new MissingGame
-                {
-                    Platform = "FileNotFound",
-                    Title = "The metadata file was not found.",
-                    LaunchBoxDbId = 0
-                });
+                games.Add(new MissingGame("The metadata file was not found.", 0,
+                        string.Empty, string.Empty, string.Empty, null, null, null, "FileNotFound", string.Empty, string.Empty,
+                        null, string.Empty, string.Empty));
             }
             catch (XmlException)
             {
-                games.Add(new MissingGame
-                {
-                    Platform = "XmlException",
-                    Title = "There was an error reading the XML file.",
-                    LaunchBoxDbId = 0
-                });
+                games.Add(new MissingGame("There was an error reading the XML file.", 0,
+                        string.Empty, string.Empty, string.Empty, null, null, null, "XmlException", string.Empty, string.Empty,
+                        null, string.Empty, string.Empty));
             }
             catch (Exception ex)
             {
-                games.Add(new MissingGame
-                {
-                    Platform = "Exception",
-                    Title = $"An unexpected error occurred: {ex.Message}",
-                    LaunchBoxDbId = 0
-                });
+                games.Add(new MissingGame($"An unexpected error occurred: {ex.Message}", 0,
+                        string.Empty, string.Empty, string.Empty, null, null, null, "Exception", string.Empty, string.Empty,
+                        null, string.Empty, string.Empty));
             }
             return games;
         }
@@ -628,6 +682,10 @@ namespace LBMissingGamesCheckerPlugin
                 lblLoadingMetadata.Text = metadataFile + " not found";
                 lblApplicationPath.Text = "Directory: " + Directory.GetCurrentDirectory();
                 lblApplicationPath.Visible = true;
+            }
+            finally
+            {
+                pbMGCSpinner.Visible = false;
             }
         }
 
