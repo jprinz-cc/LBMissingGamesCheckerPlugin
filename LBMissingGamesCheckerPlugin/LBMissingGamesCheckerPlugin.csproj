@@ -86,8 +86,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\pngwing.com.png" />
+    <None Include="Resources\checkmark-128.png" />
     <Content Include="Resources\mgc-header.png" />
     <Content Include="Resources\mgc-logo.png" />
+    <None Include="Resources\x-mark-128.png" />
     <None Include="Resources\mgc_spinner.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
