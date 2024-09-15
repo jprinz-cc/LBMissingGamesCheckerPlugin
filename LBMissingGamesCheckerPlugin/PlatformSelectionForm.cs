@@ -304,18 +304,12 @@ namespace LBMissingGamesCheckerPlugin
 
         // Properties to toggle sort order in the GridViews
         private string lastSortedColumn = string.Empty;
-        private bool ascending = true;
-
-        // Properties for the progressBar
-        //public ProgressBarEx progressBar;
-        
+        private bool ascending = true;        
 
         //** Form Init and Main Methods **//
         public PlatformSelectionForm(IList<IPlatform> platforms)
         {
             InitializeComponent();
-            //InitializeProgressBarEx();
-            //progressBar = pbMetadataLoading;
 
             // Populate dropdown with user platforms
             foreach (var platform in platforms)
@@ -326,21 +320,6 @@ namespace LBMissingGamesCheckerPlugin
 
         }
 
-        //private void InitializeProgressBarEx()
-        //{
-        //    ProgressBarEx pbMetadataLoading = new ProgressBarEx
-        //    {
-        //        Location = new System.Drawing.Point(21, 439),
-        //        Size = new System.Drawing.Size(215, 23),
-        //        MarqueeAnimationSpeed = 50,
-        //        Visible = false
-        //    };
-        //    this.Controls.Add(pbMetadataLoading);
-        //}
-
-        // Based on the selected platform,
-        // collect all Owned Games from the users collection
-        // and all games from the LaunchBox Metadata.xml file
         private void GetAllPlatformGames(IPlatform selectedPlatform)
         {
             StartProgressBar();
@@ -480,7 +459,6 @@ namespace LBMissingGamesCheckerPlugin
                 missingGamesGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             }
             
-
             // Populate the clbColumnSelection with the GridViews columns
             if (clbColumnSelection.Items == null || clbColumnSelection.Items.Count <= 0)
             {
@@ -507,24 +485,6 @@ namespace LBMissingGamesCheckerPlugin
 
 
         //** Helper Methods **//
-        // Setup the progressBar
-        private void StartProgressBar()
-        {
-            // Set the progress bar style to Marquee for continuous movement
-            pbMetadataLoading.Visible = true;
-            pbMetadataLoading.Style = ProgressBarStyle.Marquee;
-            pbMetadataLoading.Refresh();
-        }
-
-        // Method to stop the progress bar and hide it when processing is complete
-        private void StopProgressBar()
-        {
-            pbMetadataLoading.Visible = false;
-            pbMetadataLoading.Style = ProgressBarStyle.Blocks;
-        }
-
-
-
         // Process the directories to find the metadata.xml file
         private void FindMetadataFile()
         {
@@ -574,6 +534,7 @@ namespace LBMissingGamesCheckerPlugin
             if (fileFound)
             {
                 metadataFilePath = files[0];
+                DebugTxt("metadataFilePath: " + metadataFilePath);
             }
             else
             {
@@ -581,14 +542,17 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
-
-
         // Get the platform games from the metadata.xml file
         private async void GetGamesFromMetadata()
         {
+            bool xmlReadCompleted = false;
+            // Debugging
+            int gameCount = 0;
+            int GameAltNames = 0;
+            int processedGames = 0;
+
             try
             {
-                // Open the file stream to track the number of bytes read
                 using (FileStream fs = new FileStream(metadataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, FileOptions.Asynchronous))
                 {
                     XmlReaderSettings settings = new XmlReaderSettings { Async = true };
@@ -600,57 +564,54 @@ namespace LBMissingGamesCheckerPlugin
                             reader.MoveToContent();
 
                             if (reader.NodeType == XmlNodeType.Element && reader.Name == "LaunchBox")
-                            // TODO: Add else if "LaunchBox" is not the root element
                             {
-                                // Process <Platform> and <Game> elements
-                                if (reader.Name == "Platform")
+                                while (await reader.ReadAsync())
                                 {
-                                    var xmlElement = XNode.ReadFrom(reader) as XElement;
-                                    var platform = new XmlPlatform(
-                                        (string)xmlElement.Element("Name"),
-                                        (string)xmlElement.Element("Category"),
-                                        (string)xmlElement.Element("Developer"),
-                                        (string)xmlElement.Element("Manufacturer"),
-                                        (DateTime)xmlElement.Element("ReleaseDate")
-                                    );
-                                    xmlPlatforms.Add(platform);
-                                }
-                                else if (reader.Name == "Game")
-                                {
-                                    var xmlElement = XNode.ReadFrom(reader) as XElement;
-                                    var game = new XmlGame(
-                                        (string)xmlElement.Element("Name"),
-                                        ParseInt((string)xmlElement.Element("DatabaseID")),
-                                        (string)xmlElement.Element("Developer"),
-                                        (string)xmlElement.Element("Publisher"),
-                                        string.Empty,
-                                        ParseDate((string)xmlElement.Element("ReleaseDate")),
-                                        ParseFloat((string)xmlElement.Element("CommunityRating")),
-                                        ParseInt((string)xmlElement.Element("CommunityRatingCount")),
-                                        (string)xmlElement.Element("Platform"),
-                                        (string)xmlElement.Element("ReleaseType"),
-                                        (string)xmlElement.Element("Genres"),
-                                        ParseInt((string)xmlElement.Element("MaxPlayers")),
-                                        (string)xmlElement.Element("WikipediaURL"),
-                                        (string)xmlElement.Element("ReleaseType"),
-                                        new List<IAlternateName>()
-                                    );
-                                    xmlGames.Add(game);
-                                }
-                                else if (reader.Name == "GameAlternateName")
-                                {
-                                    var xmlElement = XNode.ReadFrom(reader) as XElement;
-                                    var altName = new XmlGameAlternateName(
-                                        (string)xmlElement.Element("DatabaseID"),
-                                        (string)xmlElement.Element("AlternateName"),
-                                        (string)xmlElement.Element("Region")
-                                    );
-                                    xmlGameAltNames.Add(altName);
+                                    if (reader.NodeType == XmlNodeType.Element)
+                                    {
+                                        if (reader.Name == "Game")
+                                        {
+                                            var xmlElement = XNode.ReadFrom(reader) as XElement;
+                                            var game = new XmlGame(
+                                                (string)xmlElement.Element("Name"),
+                                                ParseInt((string)xmlElement.Element("DatabaseID")),
+                                                (string)xmlElement.Element("Developer"),
+                                                (string)xmlElement.Element("Publisher"),
+                                                string.Empty,
+                                                ParseDate((string)xmlElement.Element("ReleaseDate")),
+                                                ParseFloat((string)xmlElement.Element("CommunityRating")),
+                                                ParseInt((string)xmlElement.Element("CommunityRatingCount")),
+                                                (string)xmlElement.Element("Platform"),
+                                                (string)xmlElement.Element("ReleaseType"),
+                                                (string)xmlElement.Element("Genres"),
+                                                ParseInt((string)xmlElement.Element("MaxPlayers")),
+                                                (string)xmlElement.Element("WikipediaURL"),
+                                                (string)xmlElement.Element("ReleaseType"),
+                                                new List<IAlternateName>()
+                                            );
+                                            xmlGames.Add(game);
+                                            gameCount++;
+                                        }
+                                        else if (reader.Name == "GameAlternateName")
+                                        {
+                                            var xmlElement = XNode.ReadFrom(reader) as XElement;
+                                            var altName = new XmlGameAlternateName(
+                                                (string)xmlElement.Element("DatabaseID"),
+                                                (string)xmlElement.Element("AlternateName"),
+                                                (string)xmlElement.Element("Region")
+                                            );
+                                            xmlGameAltNames.Add(altName);
+                                            GameAltNames++;
+                                        }
+                                    }
                                 }
                             }
                         }
+                        xmlReadCompleted = true;
                     }
+                    xmlReadCompleted = true;
                 }
+                xmlReadCompleted = true;
             }
             catch (Exception ex)
             {
@@ -660,36 +621,54 @@ namespace LBMissingGamesCheckerPlugin
                 UpdateStatus("error", "An unexpected error occurred");
                 StopProgressBar();
             }
-            // Debugging
-            lblApplicationPath.Text = xmlGames.Count.ToString();
-            foreach (var game in xmlGames)
+            finally
             {
-                // Ensure LaunchBoxDbId is valid before performing matching
-                if (game.LaunchBoxDbId.HasValue)
+                DebugTxt("xmlReadCompleted: " + xmlReadCompleted);
+                DebugTxt("xmlGames.Count: " + xmlGames.Count.ToString());
+                DebugTxt("gameCount: " + gameCount.ToString());
+                DebugTxt("GameAltNames: " + GameAltNames.ToString());
+
+                if (xmlReadCompleted)
                 {
-                    var matchingAltNames = xmlGameAltNames
-                        .Where(altName => altName.GameId == game.LaunchBoxDbId.ToString())
-                        .ToList();
-
-                    game.AlternateNames.AddRange(matchingAltNames);
-
-                    foreach (var altName in matchingAltNames)
+                    DebugTxt("Started processing games");
+                    foreach (var game in xmlGames)
                     {
-                        if (!string.IsNullOrWhiteSpace(altName.Region) && !game.Region.Contains(altName.Region))
+                        if (game.LaunchBoxDbId.HasValue)
                         {
-                            if (string.IsNullOrEmpty(game.Region))
+                            var matchingAltNames = xmlGameAltNames
+                                .Where(altName => altName.GameId == game.LaunchBoxDbId.ToString())
+                                .ToList();
+
+                            game.AlternateNames.AddRange(matchingAltNames);
+
+                            foreach (var altName in matchingAltNames)
                             {
-                                game.Region = altName.Region;
+                                if (!string.IsNullOrWhiteSpace(altName.Region) && !game.Region.Contains(altName.Region))
+                                {
+                                    if (string.IsNullOrEmpty(game.Region))
+                                    {
+                                        game.Region = altName.Region;
+                                    }
+                                    else
+                                    {
+                                        game.Region += $", {altName.Region}";
+                                    }
+                                }
                             }
-                            else
-                            {
-                                game.Region += $", {altName.Region}";
-                            }
+                            processedGames++;
                         }
+                        DebugTxt("processingGame: " + processedGames, false);
                     }
+                    UpdateStatus("success");
+                    confirmButton.Enabled = true;
                 }
+                else
+                {
+                    UpdateStatus("error");
+                }
+                DebugTxt("\r\nEnded processing games");
+                DebugTxt("processedGames: " + processedGames.ToString());
             }
-            UpdateStatus("success");
         }
 
         // Method to update status
@@ -770,7 +749,6 @@ namespace LBMissingGamesCheckerPlugin
                         // Add column header text as an item in the CheckedListBox
                         clbColumnSelection.Items.Add(column.HeaderText, column.Visible);
                     }
-
                 }
             }
         }
@@ -912,6 +890,36 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+        // Setup the progressBar
+        private void StartProgressBar()
+        {
+            // Set the progress bar style to Marquee for continuous movement
+            pbMetadataLoading.Visible = true;
+            pbMetadataLoading.Style = ProgressBarStyle.Marquee;
+            pbMetadataLoading.Refresh();
+        }
+
+        // Method to stop the progress bar and hide it when processing is complete
+        private void StopProgressBar()
+        {
+            pbMetadataLoading.Visible = false;
+            pbMetadataLoading.Style = ProgressBarStyle.Blocks;
+            pbMetadataLoading.Refresh();
+        }
+
+        // Add text to debug textbox
+        private void DebugTxt(string txt, bool multiLine = true)
+        {
+            if (multiLine)
+            {
+                tbDebug.AppendText(txt + "\r\n");
+            }
+            else 
+            {
+                tbDebug.AppendText(txt);
+            }
+        }
+
 
         //** Event Handlers **//
         private async void PlatformSelectionForm_Shown(object sender, EventArgs e)
@@ -920,33 +928,25 @@ namespace LBMissingGamesCheckerPlugin
             {
                 StartProgressBar();
                 await Task.Delay(4000);
-                lblLoadingMetadata.Text = "Preparing for Metadata File...";
-                UpdateStatus("processing", "Preparing for Metadata File...");
+                UpdateStatus("processing", "Preparing for Metadata...");
                 await Task.Delay(4000);
-                lblLoadingMetadata.Text = "Searching for Metadata...";
                 UpdateStatus("processing", "Searching for Metadata...");
                 // Find the Metadata.xml file in the current directory structure
                 await Task.Run(() => FindMetadataFile());
-                lblLoadingMetadata.Text = "Metadata Found!";
                 UpdateStatus("success", "Metadata Found!");
                 StopProgressBar();
                 await Task.Delay(3500);
                 StartProgressBar();
                 // Process the metadata.xml
-                lblLoadingMetadata.Text = "Processing Metadata...";
                 UpdateStatus("processing", "Processing Metadata...");
                 await Task.Run(() => GetGamesFromMetadata());
             }
             catch 
             {
-                lblLoadingMetadata.Text = metadataFile + " not found";
-                lblApplicationPath.Text = "Directory: " + Directory.GetCurrentDirectory();
-                lblApplicationPath.Visible = true;
+                tbDebug.AppendText("metadataFilePath: " + metadataFilePath + "\r\n");
+                lblDebug.Text = "Directory: " + Directory.GetCurrentDirectory();
+                lblDebug.Visible = true;
                 UpdateStatus("error", metadataFile + " not found");
-            }
-            finally
-            {
-                StopProgressBar();
             }
 
         }
@@ -981,7 +981,6 @@ namespace LBMissingGamesCheckerPlugin
         // missingGridView column click handlers
         private void MissingGamesGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
             if (missingGamesGridView.Columns.Count != 2)
             {
                 string columnName = missingGamesGridView.Columns[e.ColumnIndex].DataPropertyName;
@@ -1129,13 +1128,6 @@ namespace LBMissingGamesCheckerPlugin
                     clb.BackColor = Color.FromArgb(54, 57, 63);
                     clb.ForeColor = Color.White;
                 }
-                //else if (ctrl is ProgressBar pb)
-                //{
-                //    pb.BackColor = Color.FromArgb(54, 57, 63);
-                //    pb.ForeColor = Color.White;
-                //    pb.Style = ProgressBarStyle.Continuous;
-                //    pb.ForeColor = Color.FromArgb(44, 156, 255);
-                //}
                 else if (ctrl is DataGridView dgv)
                 {
                     dgv.BackgroundColor = Color.FromArgb(54, 57, 63);
@@ -1152,8 +1144,7 @@ namespace LBMissingGamesCheckerPlugin
         //** Form Init **//
         private void PlatformSelectionForm_Load(object sender, EventArgs e)
         {
-            ApplyTheme(this);
-  
+            ApplyTheme(this);  
         }
 
     }
