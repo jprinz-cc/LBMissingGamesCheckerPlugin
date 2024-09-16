@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -28,24 +29,25 @@ namespace LBMissingGamesCheckerPlugin
         public class XmlPlatform
         {
             public string Name { get; set; }
-            public string Category { get; set; }
-            public string Developer { get; set; }
-            public string Manufacturer { get; set; }
-            public DateTime? ReleaseDate { get; set; }
+            //public string Category { get; set; }
+            //public string Developer { get; set; }
+            //public string Manufacturer { get; set; }
+            //public DateTime? ReleaseDate { get; set; }
 
             // Constructor to initialize properties from XmlPlatform
             public XmlPlatform(
-                string name,
-                string category,
-                string developer,
-                string manufacturer,
-                DateTime? releaseDate)
+                string name
+                //string category,
+                //string developer,
+                //string manufacturer,
+                //DateTime? releaseDate
+                )
             {
                 Name = name;
-                Category = category;
-                Developer = developer;
-                Manufacturer = manufacturer;
-                ReleaseDate = releaseDate ?? null;
+                //Category = category;
+                //Developer = developer;
+                //Manufacturer = manufacturer;
+                //ReleaseDate = releaseDate ?? null;
             }
         }
 
@@ -187,7 +189,7 @@ namespace LBMissingGamesCheckerPlugin
         {
             private Timer marqueeTimer;
             private int marqueePosition = 0;
-            private const int marqueeSpeed = 10; // Speed of the marquee animation
+            private const int marqueeSpeed = 20; // Speed of the marquee animation
             private const int marqueeSegmentWidth = 75; // Width of the marquee segment
 
             public ProgressBarEx()
@@ -199,7 +201,7 @@ namespace LBMissingGamesCheckerPlugin
             private void InitializeMarquee()
             {
                 marqueeTimer = new Timer();
-                marqueeTimer.Interval = 30; // Adjust the interval for smoother/faster animation
+                marqueeTimer.Interval = 50; // Adjust the interval for smoother/faster animation
                 marqueeTimer.Tick += (s, e) =>
                 {
                     // Increment the position and wrap around when it exceeds the width
@@ -310,7 +312,8 @@ namespace LBMissingGamesCheckerPlugin
         public PlatformSelectionForm(IList<IPlatform> platforms)
         {
             InitializeComponent();
-
+            ssPlatformDropdownMsg.Visible = false;
+            DebugTxt(false);
             // Populate dropdown with user platforms
             foreach (var platform in platforms)
             {
@@ -322,58 +325,110 @@ namespace LBMissingGamesCheckerPlugin
 
         private void GetAllPlatformGames(IPlatform selectedPlatform)
         {
-            StartProgressBar();
+            if (selectedPlatform == null)
+            {
+                DebugTxt("selectedPlatform is null.");
+                return;
+            }
+
+            DebugTxt("Starting GetAllPlatformGames...");
             // Clear lists of populated data
             ownedGames = new List<IGame>();
             missingGames = new List<XmlGame>();
 
-
+            DebugTxt("Starting GetAllGames...");
             // Get a list of the games in your collection for the selected platform
             ownedGames = selectedPlatform.GetAllGames(true, true);
-
-            // Convert owned games to a HashSet for fast lookups
-            var ownedGameIds = new HashSet<int>(ownedGames.Where(g => g.LaunchBoxDbId.HasValue).Select(g => g.LaunchBoxDbId.Value));
+            if(ownedGames != null)
+            {
+                DebugTxt($"ownedGames Count: {ownedGames.Count}");
+            }
+            else
+            {
+                DebugTxt("ownedGames is null");
+                return;
+            }
 
             // Check if "Released" filter is applied
             bool filterReleasedOnly = chkReleasedOnly.Checked;
+            DebugTxt($"Filer by Released: {filterReleasedOnly}");
+            if (filterReleasedOnly)
+            {
+                DebugTxt("Filtering ownedGames");
+                ownedGames = ownedGames.Where(og => og.LaunchBoxDbId.HasValue)
+                .Where(og => !filterReleasedOnly || og.ReleaseType == "Released") // Check release type
+                .ToList();
+            }
+
+            DebugTxt($"ownedGames.Count: {ownedGames.Count} FirstIdVal: {ownedGames[0].LaunchBoxDbId}");
+            // Convert owned games to a HashSet for fast lookups
+            DebugTxt("Creating HashSet...");
+            HashSet<int> ownedGameIds = null;
+            try
+            {
+                ownedGameIds = new HashSet<int>(ownedGames.Select(og => og.LaunchBoxDbId.Value));
+                DebugTxt($"ownedGameIds HashSet complete: {ownedGameIds.Count}");
+            }
+            catch (Exception ex)
+            {
+                DebugTxt($"Error creating HashSet: {ex.Message}");
+                DebugTxt($"ownedGames.Count: {ownedGames.Count} FirstIdVal: {ownedGames[0].LaunchBoxDbId}");
+                return;
+            }
+
+
+            if (xmlPlatforms == null)
+            {
+                DebugTxt("xmlPlatforms is null.");
+                return;
+            }
 
             var platformFound = false;
             foreach (var platform in xmlPlatforms)
             {
                 if (platform.Name == selectedPlatform.Name) { platformFound = true; break; }
             }
-
+            DebugTxt($"Platform Found: {platformFound}");
             if (platformFound)
             {
+                if (xmlGames == null)
+                {
+                    DebugTxt("xmlGames is null.");
+                    return;
+                }
+                DebugTxt($"Processing Missing Games. xmlGames: {xmlGames.Count}");
                 missingGames = xmlGames.Where(xmlGame => xmlGame.Platform == selectedPlatform.Name) // Ensure platform matches selected platform
                 .Where(xmlGame => xmlGame.LaunchBoxDbId.HasValue && !ownedGameIds.Contains(xmlGame.LaunchBoxDbId.Value)) // Check if game is missing
                 .Where(xmlGame => !filterReleasedOnly || xmlGame.ReleaseType == "Released") // Check release type
                 .ToList();
+                DebugTxt($"Processing Missing Games completed: {missingGames.Count}");
             }
             else
             {
                 //Add final "NoPlatformFound" message row
-                    xmlGames.Add(new XmlGame($"The selected platform '{selectedPlatform.Name}' was not found in the LaunchBox DB.", 0,
-                        string.Empty, string.Empty, string.Empty, null, null, null, "NoPlatformFound", string.Empty, string.Empty,
-                        null, string.Empty, string.Empty, null));
+                DebugTxt("Adding error to missingGames List");
+                missingGames.Add(new XmlGame($"The selected platform '{selectedPlatform.Name}' was not found in the LaunchBox DB.", 0,
+                    string.Empty, string.Empty, string.Empty, null, null, null, "NoPlatformFound", string.Empty, string.Empty,
+                    null, string.Empty, string.Empty, null));
 
                 if (!string.IsNullOrWhiteSpace(selectedPlatform.ScrapeAs))
-                    xmlGames.Add(new XmlGame($"The selected platform ScrapeAs: '{selectedPlatform.ScrapeAs}'.", 0,
+                    missingGames.Add(new XmlGame($"The selected platform ScrapeAs: '{selectedPlatform.ScrapeAs}'.", 0,
                     string.Empty, string.Empty, string.Empty, null, null, null, "ScrapeAs", string.Empty, string.Empty,
                     null, string.Empty, string.Empty, null));
 
-                xmlGames.Add(new XmlGame("=====================", 0,
+                missingGames.Add(new XmlGame("=====================", 0,
                     string.Empty, string.Empty, string.Empty, null, null, null, "=====================", string.Empty, string.Empty,
                     null, string.Empty, string.Empty, null));
 
                 foreach (var platform in xmlPlatforms)
                 {
-                    xmlGames.Add(new XmlGame($"Platform: {platform}", 0,
+                    missingGames.Add(new XmlGame($"Platform: {platform}", 0,
                     string.Empty, string.Empty, string.Empty, null, null, null, "Platform Found", string.Empty, string.Empty,
                     null, string.Empty, string.Empty, null));
                 }
             }
-
+            DebugTxt("Populating Game Lists!");
+            DebugTxt($"ownedGames: {ownedGames.Count} - missingGames: {missingGames.Count}");
             PopulateGameList(ownedGames, missingGames);
         }
 
@@ -381,106 +436,132 @@ namespace LBMissingGamesCheckerPlugin
         // Populate the GridViews with the game lists
         private void PopulateGameList(IList<IGame> ownedGames, IList<XmlGame> missingGames)
         {
-            // Clear GridViews if populated
-            if (ownedGamesGridView.RowCount > 0)
+            DebugTxt("Clearing GridViews...");
+            // Suspend layout to prevent unnecessary redraws
+            ownedGamesGridView.SuspendLayout();
+            missingGamesGridView.SuspendLayout();
+
+            try
             {
+                // Clear GridViews if populated
                 ownedGamesGridView.DataSource = null;
-            }
-            if (missingGamesGridView.RowCount > 0)
-            {
                 missingGamesGridView.DataSource = null;
-            }
 
-            // Set GridView Counters
-            lblOwnedGamesCount.Text = ownedGames.Count > 0 ? ownedGames.Count.ToString() : "0";
-            lblMissingGamesCount.Text = missingGames.Count > 0 ? missingGames.Count.ToString() : "0";
+                // Set GridView Counters
+                lblOwnedGamesCount.Text = ownedGames.Count > 0 ? ownedGames.Count.ToString() : "0";
+                lblMissingGamesCount.Text = missingGames.Count > 0 ? missingGames.Count.ToString() : "0";
+                DebugTxt($"ownedGames.Count: {ownedGames.Count}");
+                DebugTxt($"missingGames.Count: {missingGames.Count}");
 
-            // Bind ownedGames data to GridView
-            List<GameDisplayData> ownedGamesDisplayData = new List<GameDisplayData>();
-            foreach (var game in ownedGames.OrderBy(game => game.Title))
-            {
-                List<IAlternateName> altNameList = new List<IAlternateName>();
-                var altGameNames = game.GetAllAlternateNames();
-                if (altGameNames != null)
+                // Bind ownedGames data to GridView
+                DebugTxt("Loading ownedGamesGridView...");
+                List<GameDisplayData> ownedGamesDisplayData = new List<GameDisplayData>();
+                foreach (var game in ownedGames.OrderBy(game => game.Title))
                 {
-                    foreach (var altName in altGameNames)
+                    List<IAlternateName> altNameList = new List<IAlternateName>();
+                    var altGameNames = game.GetAllAlternateNames();
+                    if (altGameNames != null)
                     {
-                        altNameList.Add(altName);
+                        foreach (var altName in altGameNames)
+                        {
+                            altNameList.Add(altName);
+                        }
                     }
+                    ownedGamesDisplayData.Add(new GameDisplayData(new XmlGame(
+                        game.Title,
+                        game.LaunchBoxDbId,
+                        game.Developer,
+                        game.Publisher,
+                        game.Region,
+                        game.ReleaseDate,
+                        (float?)game.CommunityStarRating,
+                        (int?)game.CommunityStarRatingTotalVotes,
+                        game.Platform,
+                        game.ReleaseType,
+                        game.GenresString,
+                        game.MaxPlayers,
+                        game.VideoUrl,
+                        game.WikipediaUrl,
+                        altNameList)));
                 }
-                
-                ownedGamesDisplayData.Add(new GameDisplayData(new XmlGame(
-                    game.Title, 
-                    game.LaunchBoxDbId, 
-                    game.Developer,
-                    game.Publisher, 
-                    game.Region, 
-                    game.ReleaseDate, 
-                    (float?)game.CommunityStarRating,
-                    (int?)game.CommunityStarRatingTotalVotes, 
-                    game.Platform, 
-                    game.ReleaseType, 
-                    game.GenresString,
-                    game.MaxPlayers, 
-                    game.VideoUrl, 
-                    game.WikipediaUrl,
-                    altNameList)));
-            }
-            ownedGamesGridView.DataSource = ownedGamesDisplayData;
+                ownedGamesGridView.DataSource = ownedGamesDisplayData;
+                DebugTxt("ownedGamesGridView loaded!");
 
-            // Bind missingGames data to GridView
-            if (missingGames.ElementAt<XmlGame>(0).LaunchBoxDbId != 0)  // If the selectedPlatform returned games from the local db
-            {
-                List<GameDisplayData> missingGamesDisplayData = new List<GameDisplayData>();
-                foreach (var game in missingGames.OrderBy(game => game.Title))
+                // Bind missingGames data to GridView
+                if (missingGames.Any())
                 {
-                    missingGamesDisplayData.Add(new GameDisplayData(game));
+                    DebugTxt($"missingGames first LBID: {missingGames.First().LaunchBoxDbId}");
                 }
-                missingGamesGridView.DataSource = missingGamesDisplayData;
-                missingGamesGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-                missingGamesGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 156, 255);
-            }
-            else   // selectedPlatform was not found in the local db xml
-            {
-                // Procees metadata error and create a temporary DataTable to hold the message
-                DataTable messageTable = new DataTable();
-                messageTable.Columns.Add("Error", typeof(string));
-                messageTable.Columns.Add("Message", typeof(string));
-
-                foreach (var game in missingGames)
+                else
                 {
-                    messageTable.Rows.Add(game.Platform, game.Title);
+                    DebugTxt("First missingGames is null");
                 }
 
-                missingGamesGridView.DataSource = messageTable;
-                missingGamesGridView.AutoResizeColumns();
-                missingGamesGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
-                missingGamesGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 191, 0);
-                missingGamesGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+                if (missingGames.Any() && missingGames.First().LaunchBoxDbId != null && missingGames.First().LaunchBoxDbId != 0)  // If the selectedPlatform returned games from the local db
+                {
+                    DebugTxt("Loading missingGamesGridView...");
+                    List<GameDisplayData> missingGamesDisplayData = new List<GameDisplayData>();
+                    foreach (var game in missingGames.OrderBy(game => game.Title))
+                    {
+                        missingGamesDisplayData.Add(new GameDisplayData(game));
+                    }
+                    missingGamesGridView.DataSource = missingGamesDisplayData;
+                    missingGamesGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                    missingGamesGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 156, 255);
+                    DebugTxt("Loading missingGamesGridView completed!");
+                }
+                else   // selectedPlatform was not found in the local db xml
+                {
+                    // Procees metadata error and create a temporary DataTable to hold the message
+                    DebugTxt($"Processing Missing Games error: {missingGames.Count}");
+                    DataTable messageTable = new DataTable();
+                    messageTable.Columns.Add("Error", typeof(string));
+                    messageTable.Columns.Add("Message", typeof(string));
+
+                    foreach (var game in missingGames)
+                    {
+                        messageTable.Rows.Add(game.Platform, game.Title);
+                    }
+
+                    missingGamesGridView.DataSource = messageTable;
+                    missingGamesGridView.AutoResizeColumns();
+                    missingGamesGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+                    missingGamesGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 191, 0);
+                    missingGamesGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+                }
+                DebugTxt("Loading missingGamesGridView completed!");
+
+                // Populate the clbColumnSelection with the GridViews columns
+                if (clbColumnSelection.Items == null || clbColumnSelection.Items.Count <= 0)
+                {
+                    DebugTxt($"Populating clbColumnSelection: {clbColumnSelection.Items.Count}");
+                    PopulateColumnSelection();
+                }
+                DebugTxt("Formatting GridViews...");
+                // Format clickable cells in the GridViews
+                FormatGridViewCells(ownedGamesGridView);
+                FormatGridViewCells(missingGamesGridView);
+                DebugTxt("Formatting GridViews completed!");
+
+                // Apply column visibility based on clbColumnSelection's check states
+                DebugTxt($"Apply column visibility: {clbColumnSelection.Items.Count}");
+                for (int i = 0; i < clbColumnSelection.Items.Count; i++)
+                {
+                    var columnName = clbColumnSelection.Items[i].ToString();
+                    var checkState = clbColumnSelection.GetItemCheckState(i);
+                    DGVColumnToggler(columnName, checkState);
+                }
+
+                // Turn off Progress Bar as DataGridViews are processed
+                btnMissingCSV.Enabled = true;
+                btnOwnedCSV.Enabled = true;
+                DebugTxt("GridViews Processed!");
             }
-            
-            // Populate the clbColumnSelection with the GridViews columns
-            if (clbColumnSelection.Items == null || clbColumnSelection.Items.Count <= 0)
+            finally
             {
-                PopulateColumnSelection();
+                ownedGamesGridView.ResumeLayout();
+                missingGamesGridView.ResumeLayout();
             }            
-
-            // Format clickable cells in the GridViews
-            FormatGridViewCells(ownedGamesGridView);
-            FormatGridViewCells(missingGamesGridView);
-
-            // Apply column visibility based on clbColumnSelection's check states
-            for (int i = 0; i < clbColumnSelection.Items.Count; i++)
-            {
-                var columnName = clbColumnSelection.Items[i].ToString();
-                var checkState = clbColumnSelection.GetItemCheckState(i);
-                DGVColumnToggler(columnName, checkState); 
-            }
-
-            // Turn off Progress Bar as DataGridViews are processed
-            btnMissingCSV.Enabled = true;
-            btnOwnedCSV.Enabled = true;
-            StopProgressBar();
         }
 
 
@@ -534,10 +615,12 @@ namespace LBMissingGamesCheckerPlugin
             if (fileFound)
             {
                 metadataFilePath = files[0];
-                DebugTxt("metadataFilePath: " + metadataFilePath);
+                DebugTxt($"metadataFilePath: {metadataFilePath}");
             }
             else
             {
+                DebugTxt($"metadata File Not Found! Path: {metadataFilePath}");
+                DebugTxt(true);
                 throw new Exception("Metadata file not found.");
             }
         }
@@ -548,8 +631,9 @@ namespace LBMissingGamesCheckerPlugin
             bool xmlReadCompleted = false;
             // Debugging
             int gameCount = 0;
-            int GameAltNames = 0;
-            int processedGames = 0;
+            int platformCount = 0;
+            int GameAltNamesCount = 0;
+            int processedGamesCounter = 0;
 
             try
             {
@@ -569,7 +653,21 @@ namespace LBMissingGamesCheckerPlugin
                                 {
                                     if (reader.NodeType == XmlNodeType.Element)
                                     {
-                                        if (reader.Name == "Game")
+                                        if (reader.Name == "Platform")
+                                        {
+                                            // Process the Platforms in the xml and add to xmlPlatforms
+                                            var xmlElement = XNode.ReadFrom(reader) as XElement;
+                                            if (xmlElement.Element("Name") != null && !xmlElement.Element("Name").IsEmpty)
+                                            {
+                                                var platform = new XmlPlatform(
+                                                    (string)xmlElement.Element("Name")
+                                                );
+                                                xmlPlatforms.Add(platform);
+                                                platformCount++;
+                                            }
+                                            
+                                        }
+                                        else if (reader.Name == "Game")
                                         {
                                             var xmlElement = XNode.ReadFrom(reader) as XElement;
                                             var game = new XmlGame(
@@ -601,7 +699,7 @@ namespace LBMissingGamesCheckerPlugin
                                                 (string)xmlElement.Element("Region")
                                             );
                                             xmlGameAltNames.Add(altName);
-                                            GameAltNames++;
+                                            GameAltNamesCount++;
                                         }
                                     }
                                 }
@@ -623,73 +721,99 @@ namespace LBMissingGamesCheckerPlugin
             }
             finally
             {
-                DebugTxt("xmlReadCompleted: " + xmlReadCompleted);
-                DebugTxt("xmlGames.Count: " + xmlGames.Count.ToString());
-                DebugTxt("gameCount: " + gameCount.ToString());
-                DebugTxt("GameAltNames: " + GameAltNames.ToString());
+                DebugTxt($"xmlReadCompleted: {xmlReadCompleted}");
+                DebugTxt($"xmlGames.Count:  {xmlGames.Count}");
+                DebugTxt($"gameCount: {gameCount}");
+                DebugTxt($"platformCount:  {platformCount}");                
+                DebugTxt($"GameAltNamesCount:  {GameAltNamesCount}");
 
                 if (xmlReadCompleted)
                 {
                     DebugTxt("Started processing games");
+                    // Create a dictionary for faster lookup of alternate names by GameId
+                    var altNamesDict = xmlGameAltNames
+                        .Where(altName => !string.IsNullOrEmpty(altName.GameId))
+                        .GroupBy(altName => altName.GameId)
+                        .ToDictionary(g => g.Key, g => g.ToList());
+
                     foreach (var game in xmlGames)
                     {
                         if (game.LaunchBoxDbId.HasValue)
                         {
-                            var matchingAltNames = xmlGameAltNames
-                                .Where(altName => altName.GameId == game.LaunchBoxDbId.ToString())
-                                .ToList();
-
-                            game.AlternateNames.AddRange(matchingAltNames);
-
-                            foreach (var altName in matchingAltNames)
+                            // Check if we have alternate names for this game using the dictionary
+                            if (altNamesDict.TryGetValue(game.LaunchBoxDbId.ToString(), out var matchingAltNames))
                             {
-                                if (!string.IsNullOrWhiteSpace(altName.Region) && !game.Region.Contains(altName.Region))
+                                // Add matching alternate names to the game
+                                game.AlternateNames.AddRange(matchingAltNames);
+
+                                // Use StringBuilder for building the region string
+                                var regionBuilder = new StringBuilder(game.Region);
+
+                                foreach (var altName in matchingAltNames)
                                 {
-                                    if (string.IsNullOrEmpty(game.Region))
+                                    if (!string.IsNullOrWhiteSpace(altName.Region) && !regionBuilder.ToString().Contains(altName.Region))
                                     {
-                                        game.Region = altName.Region;
-                                    }
-                                    else
-                                    {
-                                        game.Region += $", {altName.Region}";
+                                        if (regionBuilder.Length > 0)
+                                        {
+                                            regionBuilder.Append(", ");
+                                        }
+                                        regionBuilder.Append(altName.Region);
                                     }
                                 }
+
+                                game.Region = regionBuilder.ToString();
                             }
-                            processedGames++;
+
+                            processedGamesCounter++;
                         }
-                        DebugTxt("processingGame: " + processedGames, false);
                     }
+
                     UpdateStatus("success");
+                    StopProgressBar();
                     confirmButton.Enabled = true;
                 }
                 else
                 {
                     UpdateStatus("error");
+                    DebugTxt(true);
                 }
-                DebugTxt("\r\nEnded processing games");
-                DebugTxt("processedGames: " + processedGames.ToString());
+
+                DebugTxt("Ended processing games");
+                DebugTxt($"processedGames: {processedGamesCounter}");
             }
         }
 
         // Method to update status
-        private void UpdateStatus(string status, [Optional] string message)
+        private void UpdateStatus(string status, string message = null)
         {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action<string, string>(UpdateStatus), new object[] { status, message });
+                return;
+            }
+
             switch (status)
             {
                 case "processing":
-                    tsslIcon.Image = Properties.Resources.warning; 
+                    tsslIcon.Image = Properties.Resources.warning;
                     tsslText.Text = message ?? "Updating Metadata";
+                    tsslText.ForeColor = Color.Black;
+                    tsslText.BackColor = Color.FromArgb(255, 191, 0);
                     break;
                 case "success":
-                    tsslIcon.Image = Properties.Resources.success; 
+                    tsslIcon.Image = Properties.Resources.success;
                     tsslText.Text = message ?? "Metadata Loaded";
+                    tsslText.ForeColor = Color.FromArgb(255, 191, 0);
+                    tsslText.BackColor = Color.Transparent;
                     break;
                 case "error":
-                    tsslIcon.Image = Properties.Resources.error; 
-                    tsslText.Text = message ?? "Metadata Error";
+                    tsslIcon.Image = Properties.Resources.error;
+                    tsslText.ForeColor = Color.Black;
+                    tsslText.BackColor = Color.FromArgb(255, 191, 0);
                     break;
             }
         }
+
 
         // Add clickable elements to the GridViews
         private void FormatGridViewCells(DataGridView gridView)
@@ -908,18 +1032,30 @@ namespace LBMissingGamesCheckerPlugin
         }
 
         // Add text to debug textbox
-        private void DebugTxt(string txt, bool multiLine = true)
+        private void DebugTxt(string txt)
         {
-            if (multiLine)
+            if (tbDebug.InvokeRequired)
             {
-                tbDebug.AppendText(txt + "\r\n");
+                tbDebug.BeginInvoke(new Action<string>(DebugTxt), new object[] { txt });
+                return;
             }
-            else 
-            {
-                tbDebug.AppendText(txt);
-            }
+            StringBuilder sb = new StringBuilder(tbDebug.Text);
+            sb.AppendLine(txt);
+            tbDebug.Text = sb.ToString();
         }
 
+        // Debug overload to toggle visibily of the debug textbox
+        private void DebugTxt(bool visible)
+        {
+            if (visible)
+            {
+                pDebugLog.Visible = true;
+            }
+            else
+            {
+                pDebugLog.Visible = false;
+            }
+        }
 
         //** Event Handlers **//
         private async void PlatformSelectionForm_Shown(object sender, EventArgs e)
@@ -943,28 +1079,38 @@ namespace LBMissingGamesCheckerPlugin
             }
             catch 
             {
-                tbDebug.AppendText("metadataFilePath: " + metadataFilePath + "\r\n");
-                lblDebug.Text = "Directory: " + Directory.GetCurrentDirectory();
-                lblDebug.Visible = true;
-                UpdateStatus("error", metadataFile + " not found");
+                DebugTxt($"metadataFilePath: {metadataFilePath}");
+                DebugTxt($"Directory: {Directory.GetCurrentDirectory()}");
+                DebugTxt(true);
+                UpdateStatus("error", $"{metadataFile} not found");
             }
 
         }
 
         // Confirm button handler for dropdown platform selection
-        private void ConfirmButton_Click(object sender, EventArgs e)
+        private async void ConfirmButton_Click(object sender, EventArgs e)
         {
             if (platformDropdown.SelectedItem != null && platformDropdown.SelectedIndex > 0)
             {
+                DebugTxt($"Dropdown Item: {platformDropdown.SelectedItem}");
                 SelectedPlatform = PluginHelper.DataManager.GetPlatformByName(platformDropdown.SelectedItem.ToString());
-                if (SelectedPlatform == null) return;
-                GetAllPlatformGames(SelectedPlatform);
+                if (SelectedPlatform == null)
+                {
+                    tsslPlatformDropdownMsg.Text = $"Error with Platform: {platformDropdown.SelectedItem}";
+                    ssPlatformDropdownMsg.Visible = true;
+                    return;
+                }
+                ssPlatformDropdownMsg.Visible = false;
+                DebugTxt($"SelectedPlatform found: {SelectedPlatform.Name}");
+
+                await Task.Run(() => GetAllPlatformGames(SelectedPlatform)); // Run asynchronously
             }
             else
             {
-                MessageBox.Show("Please select a platform.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ssPlatformDropdownMsg.Visible = true;
             }
         }
+
 
         // ownedGridView column click handlers
         private void OwnedGamesGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -1002,32 +1148,41 @@ namespace LBMissingGamesCheckerPlugin
             var cell = gridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
             var columnName = gridView.Columns[e.ColumnIndex].Name;
 
-            if (columnName == "LaunchBoxDbId" && cell.Value != null)
+            try
             {
-                var lbid = gridView.Rows[e.RowIndex].Cells["LaunchBoxDbId"].Value.ToString().Split('#').LastOrDefault();
-                if (int.TryParse(lbid, out int dbId))
+                if (columnName == "LaunchBoxDbId" && cell.Value != null)
                 {
-                    string url = $"https://gamesdb.launchbox-app.com/games/dbid/{dbId}";
-                    OpenUrl(url);
+                    var lbid = cell.Value.ToString().Split('#').LastOrDefault();
+                    if (int.TryParse(lbid, out int dbId))
+                    {
+                        string url = $"https://gamesdb.launchbox-app.com/games/dbid/{dbId}";
+                        OpenUrl(url);
+                    }
+                }
+                else if (columnName == "WikipediaUrl" && cell.Value != null)
+                {
+                    string url = cell.Value.ToString();
+                    if (!string.IsNullOrWhiteSpace(url))
+                    {
+                        OpenUrl(url);
+                    }
+                }
+                else if (columnName == "VideoUrl" && cell.Value != null)
+                {
+                    string url = cell.Value.ToString();
+                    if (!string.IsNullOrWhiteSpace(url))
+                    {
+                        OpenUrl(url);
+                    }
                 }
             }
-            else if (columnName == "WikipediaUrl" && cell.ToolTipText != null) 
+            catch (Exception ex)
             {
-                string url = gridView.Rows[e.RowIndex].Cells["WikipediaUrl"].Value.ToString();
-                if (!string.IsNullOrWhiteSpace(url))
-                {
-                    OpenUrl(url);
-                }
-            }
-            else if (columnName == "VideoUrl" && cell.ToolTipText != null)
-            {
-                string url = gridView.Rows[e.RowIndex].Cells["VideoUrl"].Value.ToString();
-                if (!string.IsNullOrWhiteSpace(url))
-                {
-                    OpenUrl(url);
-                }
+                DebugTxt($"An error occurred while processing the cell click: {ex.Message}");
+                MessageBox.Show($"An error occurred while processing the cell click: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         // Toggle column visibility based on the CheckedListBox 
         private void CheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -1080,6 +1235,24 @@ namespace LBMissingGamesCheckerPlugin
         private void FormClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void CloseDebug_Click(object sender, EventArgs e)
+        {
+            pDebugLog.Visible = false;
+        }
+
+        // Debug textbox visibility
+        private void DebugBtn_Click(object sender, EventArgs e)
+        {
+            if (pDebugLog.Visible)
+            {
+                DebugTxt(false);
+            }
+            else
+            {
+                DebugTxt(true);
+            }
         }
 
         //** Form Themes **//
@@ -1146,6 +1319,5 @@ namespace LBMissingGamesCheckerPlugin
         {
             ApplyTheme(this);  
         }
-
     }
 }
