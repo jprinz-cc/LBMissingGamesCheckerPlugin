@@ -7,10 +7,10 @@ namespace LBMissingGamesCheckerPlugin
 {
     public class MissingGamesChecker : ISystemMenuItemPlugin
     {
-        public string Caption => "Missing Games Checker";
+        public string Caption => "Missing Games Checker (v1.1.2)";
         public string Description => "Check which games you have and don't have for a selected platform.";
-        public string Version => "1.0";
-        public string MenuItemTitle => "Missing Games Checker";
+        public string Version => "1.1.2";
+        public string MenuItemTitle => "Missing Games Checker (v1.1.2)";
 
         public System.Drawing.Image IconImage
         { get { return Properties.Resources.mgc_logo; } }
