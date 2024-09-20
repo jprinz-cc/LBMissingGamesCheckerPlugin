@@ -80,12 +80,15 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\PlatformSelectionForm.GameDisplayData.datasource" />
+    <None Include="Properties\DataSources\PlatformSelectionForm.GameDisplayData.NoPlatformErrorData.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\mgc_spinner.gif" />
     <None Include="Resources\output-onlinepngtools %282%29.png" />
     <None Include="Resources\output-onlinepngtools.png" />
     <None Include="Resources\pngwing.com.png" />
@@ -93,7 +96,6 @@
     <Content Include="Resources\mgc-header.png" />
     <Content Include="Resources\mgc-logo.png" />
     <None Include="Resources\x-mark-128.png" />
-    <None Include="Resources\mgc_spinner.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

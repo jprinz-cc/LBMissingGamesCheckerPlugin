@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -16,8 +17,7 @@ using System.Xml;
 using System.Xml.Linq;
 using Unbroken.LaunchBox.Plugins;
 using Unbroken.LaunchBox.Plugins.Data;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static LBMissingGamesCheckerPlugin.PlatformSelectionForm.GameDisplayData;
 
 namespace LBMissingGamesCheckerPlugin
 {
@@ -145,6 +145,20 @@ namespace LBMissingGamesCheckerPlugin
                 LaunchBoxDbId = game.LaunchBoxDbId != 0 ? game.LaunchBoxDbId.ToString() : string.Empty;
                 VideoUrl = game.VideoUrl ?? string.Empty;
                 WikipediaUrl = game.WikipediaUrl ?? string.Empty;
+            }
+
+            public class NoPlatformErrorData
+            {
+                public string Title { get; set; }
+                public string Platform { get; set; }
+                public string LaunchBoxDbId { get; set; }
+
+                public NoPlatformErrorData(string title, string platform, int? launchBoxDbId)
+                {
+                    Title = title;
+                    Platform = platform;
+                    LaunchBoxDbId = launchBoxDbId.ToString();
+                }
             }
 
             // Return all Alternate Names to the AlternateNames propery as a string
@@ -300,14 +314,22 @@ namespace LBMissingGamesCheckerPlugin
         private ConcurrentBag<IGame> ownedGames = new ConcurrentBag<IGame>();
         private ConcurrentBag<XmlGame> missingGames = new ConcurrentBag<XmlGame>();
 
-        // Declare GridViews
+        private BindingList<GameDisplayData> ownedGamesDisplayData = new BindingList<GameDisplayData>();
+        private BindingList<GameDisplayData> missingGamesDisplayData = new BindingList<GameDisplayData>();
+        private BindingList<NoPlatformErrorData> noPlatformErrorDisplayData = new BindingList<NoPlatformErrorData>();
 
-        // Declare DataSources
-        
+        public BindingList<GameDisplayData> OwnedGamesDisplayData => ownedGamesDisplayData;
+        public BindingList<GameDisplayData> MissingGamesDisplayData => missingGamesDisplayData;
+        public BindingList<NoPlatformErrorData> NoPlatformErrorDisplayData => noPlatformErrorDisplayData;
+
+        //private List<GameDisplayData> OwnedGamesGridViewData = new List<GameDisplayData>();
+        //private List<GameDisplayData> missingGamesDisplayData = new List<GameDisplayData>();
+        //private List<NoPlatformErrorData> noPlatformErrorDisplayData = new List<NoPlatformErrorData>();
 
         // Declare BindingSources
         private readonly BindingSource ownedGamesBindingSource = new BindingSource();
         private readonly BindingSource missingGamesBindingSource = new BindingSource();
+        private readonly BindingSource noPlatformBindingSource = new BindingSource();
 
         // Properties to toggle sort order in the GridViews
         private string lastSortedColumn = string.Empty;
@@ -319,9 +341,11 @@ namespace LBMissingGamesCheckerPlugin
         {
             InitializeComponent();
 
-            // Hide debug/error messaging
+            noPlatformGridView.Visible = false;
             ssPlatformDropdownMsg.Visible = false;
             DebugTxt(false);
+            pbSpinner.Visible = true;
+            pbSpinner.BringToFront();
 
             // Populate dropdown with user platforms
             foreach (var platform in platforms)
@@ -332,6 +356,8 @@ namespace LBMissingGamesCheckerPlugin
 
             // Populate column selection checkboxes
             PopulateColumnSelection();
+            // Hide debug/error messaging
+                      
         }
 
         // Form Load //
@@ -369,8 +395,8 @@ namespace LBMissingGamesCheckerPlugin
         {
             if (platformDropdown.SelectedItem != null && platformDropdown.SelectedIndex > 0)
             {
-                ownedGamesGridView.Columns.Clear();
-                missingGamesGridView.Columns.Clear();
+                //ownedGamesGridView.Columns.Clear();
+                //missingGamesGridView.Columns.Clear();
 
                 // Then proceed to add the columns and bind data
                 await _semaphore.WaitAsync();
@@ -402,22 +428,42 @@ namespace LBMissingGamesCheckerPlugin
 
         private void OwnedGamesGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == ownedGamesGridView.Columns["LaunchBoxDbId"].Index && e.Value != null)
-            {
-                var cell = (DataGridViewButtonCell)ownedGamesGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.Value = $"LaunchBoxDB #{e.Value}";
-                cell.Tag = $"https://gamesdb.launchbox-app.com/games/dbid/{e.Value.ToString().Trim()}";
-            }
-            else if (e.ColumnIndex == ownedGamesGridView.Columns["VideoUrl"].Index && e.Value != null)
-            {
-                var cell = (DataGridViewButtonCell)ownedGamesGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.Tag = e.Value.ToString();
-            }
-            else if (e.ColumnIndex == ownedGamesGridView.Columns["WikipediaUrl"].Index && e.Value != null)
-            {
-                var cell = (DataGridViewButtonCell)ownedGamesGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.Tag = e.Value.ToString();
-            }
+            //if (e.ColumnIndex == ownedGamesGridView.Columns["LaunchBoxDbId"].Index && e.Value != null)
+            //{
+            //    var cell = (DataGridViewButtonCell)ownedGamesGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    cell.Value = $"LaunchBoxDB #{e.Value}";
+            //    cell.Tag = $"https://gamesdb.launchbox-app.com/games/dbid/{e.Value.ToString().Trim()}";
+            //}
+            //else if (e.ColumnIndex == ownedGamesGridView.Columns["VideoUrl"].Index && e.Value != null)
+            //{
+            //    var cell = (DataGridViewButtonCell)ownedGamesGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    cell.Tag = e.Value.ToString();
+            //}
+            //else if (e.ColumnIndex == ownedGamesGridView.Columns["WikipediaUrl"].Index && e.Value != null)
+            //{
+            //    var cell = (DataGridViewButtonCell)ownedGamesGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    cell.Tag = e.Value.ToString();
+            //}
+        }
+
+        private void MissingGamesGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            //if (e.ColumnIndex == missingGamesGridView.Columns["LaunchBoxDbId"].Index && e.Value != null)
+            //{
+            //    var cell = (DataGridViewButtonCell)missingGamesGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    cell.Value = $"LaunchBoxDB #{e.Value}";
+            //    cell.Tag = $"https://gamesdb.launchbox-app.com/games/dbid/{e.Value.ToString().Trim()}";
+            //}
+            //else if (e.ColumnIndex == missingGamesGridView.Columns["VideoUrl"].Index && e.Value != null)
+            //{
+            //    var cell = (DataGridViewButtonCell)missingGamesGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    cell.Tag = e.Value.ToString();
+            //}
+            //else if (e.ColumnIndex == missingGamesGridView.Columns["WikipediaUrl"].Index && e.Value != null)
+            //{
+            //    var cell = (DataGridViewButtonCell)missingGamesGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    cell.Tag = e.Value.ToString();
+            //}
         }
 
 
@@ -434,9 +480,11 @@ namespace LBMissingGamesCheckerPlugin
 
             if (ownedGamesGridView.DataSource is BindingSource bindingSource)
             {
-                var list = bindingSource.List.Cast<GameDisplayData>().ToList();
-                ownedGamesBindingSource.DataSource = SortGames(list, columnName);
-                ownedGamesGridView.DataSource = ownedGamesBindingSource;
+                if (bindingSource.DataSource is BindingList<GameDisplayData> list)
+                {
+                    ownedGamesBindingSource.DataSource = SortGames(list, columnName);
+                    ownedGamesGridView.DataSource = ownedGamesBindingSource;
+                }
             }
             // Reapply formatting and ToolTipText properties
             //FormatGridViewCells(ownedGamesGridView);
@@ -455,9 +503,11 @@ namespace LBMissingGamesCheckerPlugin
 
             if (missingGamesGridView.DataSource is BindingSource bindingSource)
             {
-                var list = bindingSource.List.Cast<GameDisplayData>().ToList();
-                missingGamesBindingSource.DataSource = SortGames(list, columnName);
-                missingGamesGridView.DataSource = missingGamesBindingSource;
+                if (bindingSource.DataSource is BindingList<GameDisplayData> list)
+                {
+                    missingGamesBindingSource.DataSource = SortGames(list, columnName);
+                    missingGamesGridView.DataSource = missingGamesBindingSource;
+                }
             }
             // Reapply formatting and ToolTipText properties
             //FormatGridViewCells(missingGamesGridView);
@@ -702,10 +752,10 @@ namespace LBMissingGamesCheckerPlugin
                 await Task.Run(() => {
                     ownedGames = new ConcurrentBag<IGame>(ownedGames.Where(og => og.LaunchBoxDbId.HasValue && og.ReleaseType == "Released"));
                 });
+                DebugTxt($"ownedGames after filter: {ownedGames.Count}");
                 DebugTxt("Filtering ownedGames completed!");
             }
-
-            DebugTxt($"ownedGames.Count: {ownedGames.Count} FirstIdVal: {ownedGames.FirstOrDefault()?.LaunchBoxDbId}");
+            
 
             // Convert owned games to a HashSet for fast lookups
             DebugTxt("Creating HashSet...");
@@ -718,7 +768,6 @@ namespace LBMissingGamesCheckerPlugin
                 catch (Exception ex)
                 {
                     DebugTxt($"Error creating HashSet: {ex.Message}");
-                    DebugTxt($"ownedGames.Count: {ownedGames.Count} FirstIdVal: {ownedGames.FirstOrDefault()?.LaunchBoxDbId}");
                     return;
                 }
             });
@@ -735,16 +784,11 @@ namespace LBMissingGamesCheckerPlugin
             DebugTxt($"Platform Found: {platformFound}");
             if (platformFound)
             {
-                if (xmlGames == null)
-                {
-                    DebugTxt("xmlGames is null.");
-                    return;
-                }
-
                 DebugTxt($"Processing Missing Games. xmlGames: {xmlGames.Count}");
                 try
                 {
                     await Task.Run(() => {
+                        //var missingGames = xmlGames.Except(ownedGames).ToList();  // Could simplify the comparison, but xmlGames needs to be an IGame, or make ownedGames XmlGame...???
                         var filteredGames = xmlGames.Where(xmlGame => xmlGame.Platform == selectedPlatform.Name) // Ensure platform matches selected platform
                             .Where(xmlGame => xmlGame.LaunchBoxDbId.HasValue && !ownedGameIds.Contains(xmlGame.LaunchBoxDbId.Value)) // Check if game is missing
                             .Where(xmlGame => !filterReleasedOnly || xmlGame.ReleaseType == "Released") // Check release type
@@ -755,6 +799,7 @@ namespace LBMissingGamesCheckerPlugin
                             })
                             .ToList();
                         missingGames = new ConcurrentBag<XmlGame>(filteredGames);
+                        DebugTxt($"ownedGames: {ownedGames.Count} - missingGames: {missingGames.Count}");
                     });
                 }
                 catch (Exception ex)
@@ -762,15 +807,15 @@ namespace LBMissingGamesCheckerPlugin
                     DebugTxt($"Exception processing Missing Games: {ex.Message}");
                 }               
                 DebugTxt($"Processing Missing Games completed!");
-                DebugTxt($"ownedGames: {ownedGames.Count} - missingGames: {missingGames.Count}");
             }
             else
             {
                 // Add final "NoPlatformFound" message row
-                DebugTxt("Adding error to missingGames List...");
                 try
                 {
+                    DebugTxt("Adding error to missingGames List...");
                     await Task.Run(() => ProcessNoPlatformErrorList(selectedPlatform, xmlPlatforms));
+                    DebugTxt($"Adding error to missingGames List completed!");
                 }
                 catch (Exception ex)
                 {
@@ -783,7 +828,7 @@ namespace LBMissingGamesCheckerPlugin
         }
 
         // Populate the GridViews with the game lists
-        private async void PopulateGameList(ConcurrentBag<IGame> ownedGames, ConcurrentBag<XmlGame> missingGames)
+        private void PopulateGameList(ConcurrentBag<IGame> ownedGames, ConcurrentBag<XmlGame> missingGames)
         {
             // Suspend layout to prevent unnecessary redraws
             DebugTxt("Suspending ownedGamesGridView...");
@@ -792,227 +837,152 @@ namespace LBMissingGamesCheckerPlugin
             DebugTxt("Suspending missingGamesGridView...");
             missingGamesGridView.SuspendLayout();
 
+            DebugTxt("Suspending noPlatformGridView...");
+            noPlatformGridView.SuspendLayout();
 
             try
-            {                
-                // Clear GridViews BindingSource
-                if (missingGamesGridView.DataSource != null)
-                {
-                    DebugTxt("null missingGames DataSource...");
-                    missingGamesGridView.DataSource = null;
+            {
 
-                    DebugTxt("Clear missingGames BindingSource...");
-                    missingGamesBindingSource.Clear();
-                }
-                if (ownedGamesGridView.DataSource != null)
-                {
-                    DebugTxt("null ownedGames DataSource...");
-                    ownedGamesGridView.DataSource = null;
-
-                    DebugTxt("Clear ownedGames BindingSource...");
-                    ownedGamesBindingSource.Clear();                    
-                }
-
-                // Loading data to GridView
                 DebugTxt("Loading ownedGamesDisplayData...");
-                var ownedGamesDisplayData = new List<GameDisplayData>();
-                try
-                {
-                    ownedGamesDisplayData = await Task.Run(() =>
-                    {
-                        return ownedGames.OrderBy(game => game.Title)
-                            .Select(game =>
-                            {
-                                var altNameList = game.GetAllAlternateNames()?.ToList() ?? new List<IAlternateName>();
-                                return new GameDisplayData(new XmlGame(
-                                    game.Title,
-                                    game.Developer,
-                                    game.Publisher,
-                                    game.Region,
-                                    game.ReleaseDate,
-                                    (float?)game.CommunityStarRating,
-                                    (int?)game.CommunityStarRatingTotalVotes,
-                                    game.Platform,
-                                    game.ReleaseType,
-                                    game.GenresString,
-                                    altNameList,
-                                    game.MaxPlayers,
-                                    game.LaunchBoxDbId,
-                                    game.VideoUrl,
-                                    game.WikipediaUrl
-                                    ));
-                            }).ToList();
-                    });
-                    DebugTxt("ownedGamesDisplayData loaded!");
-                } catch
-                {
-                    ownedGamesDisplayData = await Task.Run(() =>
-                    {
-                        return ownedGames.OrderBy(game => game.Title)
-                            .Select(game =>
-                            {
-                                var altNameList = game.GetAllAlternateNames()?.ToList() ?? new List<IAlternateName>();
-                                return new GameDisplayData(new XmlGame(
-                                    game.Title,
-                                    game.Developer,
-                                    game.Publisher,
-                                    game.Region,
-                                    game.ReleaseDate,
-                                    (float?)game.CommunityStarRating,
-                                    (int?)game.CommunityStarRatingTotalVotes,
-                                    game.Platform,
-                                    game.ReleaseType,
-                                    game.GenresString,
-                                    altNameList,
-                                    game.MaxPlayers,
-                                    game.LaunchBoxDbId,
-                                    game.VideoUrl,
-                                    game.WikipediaUrl
-                                    ));
-                            }).ToList();
-                    });
-                }
-                
+                var ownedGamesList = ownedGames.OrderBy(game => game.Title)
+                    .Select(game => new GameDisplayData(new XmlGame(
+                        game.Title, game.Developer, game.Publisher, game.Region, game.ReleaseDate,
+                        (float?)game.CommunityStarRating, (int?)game.CommunityStarRatingTotalVotes,
+                        game.Platform, game.ReleaseType, game.GenresString, game.GetAllAlternateNames()?.ToList() ?? new List<IAlternateName>(),
+                        game.MaxPlayers, game.LaunchBoxDbId, game.VideoUrl, game.WikipediaUrl
+                    ))).ToList();
+                ownedGamesDisplayData = new BindingList<GameDisplayData>(ownedGamesList);
+                DebugTxt("ownedGamesDisplayData loaded!");
 
-                // Bind missingGames data to GridView
-                if (missingGames.Any())
-                {
-                    DebugTxt($"missingGames first LBID: {missingGames.First().LaunchBoxDbId}");
-                }
-                else
-                {
-                    DebugTxt("First missingGames is null");
-                }
 
-                DebugTxt("Loading missingGamesDisplayData...");
-                var missingGamesDisplayData = new List<GameDisplayData>();
-                var noPlatformErrorDisplay = new List<(string Title, string Platform, int? LaunchBoxDbId)>();
-
+                // Bind missingGames data to GridView                
                 if (missingGames.Any() && missingGames.First().LaunchBoxDbId != null && missingGames.First().LaunchBoxDbId != 0)  // If the selectedPlatform returned games from the local db
                 {
-                    missingGamesDisplayData = await Task.Run(() =>
-                    {
-                        return missingGames.OrderBy(game => game.Title)
-                            .Select(game => new GameDisplayData(game))
-                            .ToList();
-                    });
-                    DebugTxt("Loading missingGamesDisplayData completed!");                    
+                    DebugTxt("Loading missingGamesDisplayData...");
+                    DebugTxt($"missingGames first LBID: {missingGames.First().LaunchBoxDbId}");
+                    var missingGamesList = missingGames.OrderBy(game => game.Title)
+                        .Select(game => new GameDisplayData(game)).ToList();
+                    missingGamesDisplayData = new BindingList<GameDisplayData>(missingGamesList);
+                    noPlatformErrorDisplayData.Clear();
+                    DebugTxt("Loading missingGamesDisplayData completed!");
                 }
                 else if (missingGames.Any() && missingGames.First().LaunchBoxDbId == 0)  // If the selectedPlatform was not found in the LaunchBoxDb
                 {
-                    noPlatformErrorDisplay = await Task.Run(() =>
-                    {
-                        return missingGames.Select(game => (game.Title, game.Platform, game.LaunchBoxDbId)).ToList();
-                    });                 
-                    DebugTxt("Loading missingGames Error completed!");
+                    DebugTxt("Loading noPlatformErrorDisplayData...");
+                    var errorList = missingGames.Reverse().Select(item => new NoPlatformErrorData(
+                                item.Title,
+                                item.Platform,
+                                item.LaunchBoxDbId
+                            )).ToList();
+                    noPlatformErrorDisplayData = new BindingList<NoPlatformErrorData>(errorList);
+                    missingGamesDisplayData.Clear();
+                    DebugTxt("Loading noPlatformErrorDisplayData completed!");
                 }
                 else
                 {
                     DebugTxt("Loading missingGamesDisplayData did NOT complete!");
                     return;
                 }
-                DebugTxt("Loading missingGamesDisplayData completed!");
+                DebugTxt("Loading DisplayData completed!");
 
                 // Update UI bindings synchronously on the UI thread
                 Invoke(new Action(() =>
                 {
-                    // Create ButtonColumns
-                    DataGridViewButtonColumn launchBoxDbIdColumn = new DataGridViewButtonColumn
-                    {
-                        Name = "LaunchBoxDbId",
-                        HeaderText = "LaunchBoxDbId",
-                        Text = "LaunchBoxDB",
-                        UseColumnTextForButtonValue = false
-                    };
-
-                    DataGridViewButtonColumn videoUrlColumn = new DataGridViewButtonColumn
-                    {
-                        Name = "VideoUrl",
-                        HeaderText = "VideoUrl",
-                        Text = "YouTube",
-                        UseColumnTextForButtonValue = true
-                    };
-
-                    DataGridViewButtonColumn wikipediaUrlColumn = new DataGridViewButtonColumn
-                    {
-                        Name = "WikipediaUrl",
-                        HeaderText = "WikipediaUrl",
-                        Text = "Wiki",
-                        UseColumnTextForButtonValue = true
-                    };
-
-                    // Add ButtonColumns to the GridView
-                    ownedGamesGridView.Columns.Add(launchBoxDbIdColumn);
-                    ownedGamesGridView.Columns.Add(videoUrlColumn);
-                    ownedGamesGridView.Columns.Add(wikipediaUrlColumn);
-
+                    DebugTxt("Clearing/Binding ownedGamesBindingSource...");
+                    ownedGamesBindingSource.Clear();
+                    DebugTxt($"Binding ownedGamesBindingSource with {ownedGamesDisplayData.Count} ownedGamesDisplayData elements...");
                     ownedGamesBindingSource.DataSource = ownedGamesDisplayData;
                     ownedGamesGridView.DataSource = ownedGamesBindingSource;
+                    DebugTxt("Binding ownedGamesBindingSource completed!");
 
-                    if (missingGamesDisplayData.Any())
+                    DebugTxt("Clearing BindingSources...");
+                    missingGamesBindingSource.Clear();
+                    noPlatformBindingSource.Clear();
+                    DebugTxt("Clearing BindingSources completed!");
+
+                    DebugTxt("Starting missingGames or noPlatform binding...");
+                    try
                     {
-                        missingGamesGridView.Columns.Clear();
-                        
-                        missingGamesBindingSource.DataSource = missingGamesDisplayData;
-                        missingGamesGridView.DataSource = missingGamesBindingSource;
-                        missingGamesGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 156, 255);
-                        missingGamesGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-                    }
-                    else if (noPlatformErrorDisplay.Any())
-                    {
-                        missingGamesGridView.Columns.Clear();
-                        // Add columns to the DataGridView
-                        missingGamesGridView.Columns.Add(new DataGridViewTextBoxColumn { Name = "Title", HeaderText = "Error" });
-                        missingGamesGridView.Columns.Add(new DataGridViewTextBoxColumn { Name = "Platform", HeaderText = "Message" });
-                        missingGamesGridView.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
-                        var errorData = noPlatformErrorDisplay.Select(errLine => new { Error = errLine.Title, Message = errLine.Platform }).ToList();
-                        // Add rows to the DataGridView
-                        foreach (var (Title, Platform, LaunchBoxDbId) in noPlatformErrorDisplay.AsEnumerable().Reverse())
+                        if (missingGamesDisplayData.Any() && missingGamesDisplayData.First().LaunchBoxDbId != null && missingGamesDisplayData.First().LaunchBoxDbId != "0")
                         {
-                            missingGamesGridView.Rows.Add(Title, Platform);
-                        }
-                        missingGamesGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
-                        missingGamesGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 191, 0);
-                        missingGamesGridView.AutoResizeColumns();
-                    }                    
-                    
+                            DebugTxt($"Binding missingGamesBindingSource with {missingGamesDisplayData.Count} missingGamesDisplayData elements...");
+                            missingGamesGridView.Visible = true;
+                            noPlatformGridView.Visible = false;
+                            missingGamesBindingSource.DataSource = missingGamesDisplayData;
+                            missingGamesGridView.DataSource = missingGamesBindingSource;
+                            missingGamesGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 156, 255);
+                            missingGamesGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
+                            DebugTxt("Binding missingGamesBindingSource completed!");
+                        }
+                        else if (noPlatformErrorDisplayData.Any() && noPlatformErrorDisplayData.First().LaunchBoxDbId != null && noPlatformErrorDisplayData.First().LaunchBoxDbId == "0")
+                        {
+                            DebugTxt($"Binding noPlatformBindingSource with {noPlatformErrorDisplayData.Count} noPlatformErrorDisplayData elements...");
+                            noPlatformGridView.Visible = true;
+                            missingGamesGridView.Visible = false;
+                            noPlatformBindingSource.DataSource = noPlatformErrorDisplayData;
+                            noPlatformGridView.DataSource = noPlatformBindingSource;
+                            noPlatformGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+                            noPlatformGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(255, 191, 0);
+                            noPlatformGridView.AutoResizeColumns();
+
+                            DebugTxt("Binding noPlatformBindingSource completed!");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        DebugTxt($"An error occurred binding: {ex}");
+                    }
+                    
                     
                     // Set GridView Counters
                     DebugTxt("Setting GridViewCounters...");
                     lblOwnedGamesCount.Text = ownedGames.Count > 0 ? ownedGames.Count.ToString() : "0";
-                    lblMissingGamesCount.Text = missingGames.Count > 0 && missingGames.First().LaunchBoxDbId != 0 ? missingGames.Count.ToString() : "0";
+                    lblMissingGamesCount.Text = missingGames.Any() && missingGames.Count > 0 ? missingGames.Count.ToString() : "0";
                     DebugTxt($"ownedGames.Count: {ownedGames.Count}");
                     DebugTxt($"missingGames.Count: {missingGames.Count}");
-                }));
-
-                // Add clickable columns
-                Invoke(new Action(() =>
-                {
-                    //DebugTxt("Adding clickable columns...");
-                    //AddClickableColumns(ownedGamesGridView);
-                    if (missingGamesDisplayData.Any())
-                    {
-                        //AddClickableColumns(missingGamesGridView);
-                    }                    
-
-                    DebugTxt("Recalculate the maximum width...");
-                    // Recalculate the maximum width after populating the gridviews
-                    int maxWidth = CalculateMaxWidth();
-                    if (this.Width > maxWidth)
-                    {
-                        this.Width = maxWidth;
-                    }
 
                     // Apply column visibility based on clbColumnSelection's check states
-                    DebugTxt($"Apply column visibility: {clbColumnSelection.Items.Count}");
+                    DebugTxt($"Apply column visibility to {clbColumnSelection.Items.Count} columns.");
                     UpdateColumnVisibility();
-                }));                                
 
-                // DataGridViews are processed
-                btnMissingCSV.Enabled = true;
-                btnOwnedCSV.Enabled = true;
-                DebugTxt("GridViews Processed!");
+                    // DataGridViews are processed
+                    btnMissingCSV.Enabled = true;
+                    btnOwnedCSV.Enabled = true;
+                    DebugTxt("GridViews Processed!");
+                }));
+
+                //// Add clickable columns
+                //Invoke(new Action(() =>
+                //{
+                //    //DebugTxt("Adding clickable columns...");
+                //    //AddClickableColumns(ownedGamesGridView);
+                //    if (missingGamesDisplayData.Any())
+                //    {
+                //        //AddClickableColumns(missingGamesGridView);
+                //    }                    
+
+                //    DebugTxt("Recalculate the maximum width...");
+                //    // Recalculate the maximum width after populating the gridviews
+                //    int maxWidth = CalculateMaxWidth();
+                //    if (this.Width > maxWidth)
+                //    {
+                //        this.Width = maxWidth;
+                //    }
+
+                //    // Apply column visibility based on clbColumnSelection's check states
+                //    DebugTxt($"Apply column visibility: {clbColumnSelection.Items.Count}");
+                //    UpdateColumnVisibility();
+                //}));                                
+
+                //// DataGridViews are processed
+                //btnMissingCSV.Enabled = true;
+                //btnOwnedCSV.Enabled = true;
+                //DebugTxt("GridViews Processed!");
+            }
+            catch(Exception ex)
+            {
+                DebugTxt($"An exception happened processing the GridViews: {ex.Message}");
             }
             finally
             {
@@ -1021,6 +991,9 @@ namespace LBMissingGamesCheckerPlugin
 
                 DebugTxt("Resuming missingGamesGridView...");
                 missingGamesGridView.ResumeLayout();
+
+                DebugTxt("Resuming noPlatformGridView...");
+                noPlatformGridView.ResumeLayout();
 
                 DebugTxt("Resuming GridViews completed!");
             }
@@ -1040,55 +1013,68 @@ namespace LBMissingGamesCheckerPlugin
                 string currentFolder = AppDomain.CurrentDomain.BaseDirectory;
                 string launchboxRootFolder = currentFolder.Replace("\\Core", ""); // Remove the "\Core" part
                 metadataFilePath = Path.Combine(launchboxRootFolder, "Metadata", "metadata.xml");
-                if (File.Exists(metadataFilePath)) fileFound = true;
-                DebugTxt("Metadata Found!");
-            }
-            catch 
-            {
-                DebugTxt("Searching for Metadata...");
-                // Directories to exclude
-                var excludedDirectories = new List<string>
+                DebugTxt($"Looking for Metadata at {metadataFilePath}...");
+                fileFound = await Task.Run(() => 
                 {
-                    "Games",
-                    "Images",
-                    "Videos",
-                    "eXo",
-                    "Content",
-                    "Emulators",
-                    "Manuals",
-                    "LBThemes",
-                    "Music",
-                    "PauseThemes",
-                    "StartupThemes",
-                    "Themes",
-                    "ThirdParty",
-                    "Plugins"
-                };
-
-                // Get all directories except the excluded ones (case-insensitive)
-                List<string> allDirectories = new List<string>();
-                await Task.Run(() => {
-                    allDirectories = Directory.GetDirectories(Directory.GetCurrentDirectory(), "*", SearchOption.AllDirectories)
-                    .Where(dir => !excludedDirectories.Any(excludedDir => dir.IndexOf(excludedDir, StringComparison.OrdinalIgnoreCase) >= 0)) // Case-insensitive comparison
-                    .ToList();
+                    return File.Exists(metadataFilePath);
                 });
-
-                await Task.Run(() => {
-                    foreach (var dir in allDirectories)
+                if (fileFound)
+                {
+                    DebugTxt($"Metadata found at {metadataFilePath}!");
+                }
+                else
+                {
+                    DebugTxt($"Metadata not found at {metadataFilePath}...");
+                    metadataFilePath = string.Empty;
+                    DebugTxt("Searching for Metadata...");
+                    // Directories to exclude
+                    var excludedDirectories = new List<string>
                     {
-                        // Get all files from the current directory in a case-insensitive manner
-                        files.AddRange(Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly)
-                            .Where(f => Path.GetFileName(f).Equals(metadataFile, StringComparison.OrdinalIgnoreCase))
-                        );
+                        "Games",
+                        "Images",
+                        "Videos",
+                        "eXo",
+                        "Content",
+                        "Emulators",
+                        "Manuals",
+                        "LBThemes",
+                        "Music",
+                        "PauseThemes",
+                        "StartupThemes",
+                        "Themes",
+                        "ThirdParty",
+                        "Plugins"
+                    };
 
-                        // Break if we found the metadata file
-                        if (files.Count > 0)
+                    // Get all directories except the excluded ones (case-insensitive)
+                    List<string> allDirectories = new List<string>();
+                    await Task.Run(() => {
+                        allDirectories = Directory.GetDirectories(Directory.GetCurrentDirectory(), "*", SearchOption.AllDirectories)
+                        .Where(dir => !excludedDirectories.Any(excludedDir => dir.IndexOf(excludedDir, StringComparison.OrdinalIgnoreCase) >= 0)) // Case-insensitive comparison
+                        .ToList();
+                    });
+
+                    await Task.Run(() => {
+                        foreach (var dir in allDirectories)
                         {
-                            fileFound = true;
-                            break;
+                            // Get all files from the current directory in a case-insensitive manner
+                            files.AddRange(Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly)
+                                .Where(f => Path.GetFileName(f).Equals(metadataFile, StringComparison.OrdinalIgnoreCase))
+                            );
+
+                            // Break if we found the metadata file
+                            if (files.Count > 0)
+                            {
+                                fileFound = true;
+                                break;
+                            }
                         }
-                    }
-                });
+                    });
+                }                
+            }
+            catch (Exception ex)
+            {
+                DebugTxt($"An Exception occured: {ex.Message}");
             }
             
 
@@ -1112,7 +1098,7 @@ namespace LBMissingGamesCheckerPlugin
             {
                 DebugTxt($"metadata File Not Found! Path: {metadataFilePath}");
                 DebugTxt(true);
-                throw new Exception("Metadata file not found.");
+                // throw new Exception("Metadata file not found.");
             }
         }
 
@@ -1175,8 +1161,8 @@ namespace LBMissingGamesCheckerPlugin
                                                 new List<IAlternateName>(),
                                                 ParseInt((string)xmlElement.Element("MaxPlayers")),
                                                 ParseInt((string)xmlElement.Element("DatabaseID")),
-                                                (string)xmlElement.Element("WikipediaURL"),
-                                                (string)xmlElement.Element("ReleaseType")
+                                                (string)xmlElement.Element("VideoURL"),
+                                                (string)xmlElement.Element("WikipediaURL")
                                             );
                                             xmlGames.Add(game);
                                             gameCount++;
@@ -1259,7 +1245,12 @@ namespace LBMissingGamesCheckerPlugin
                     }
                     UpdateStatus("success");
                     StopProgressBar();
-                    confirmButton.Enabled = true;
+                    Invoke(new Action(() =>
+                    {
+                        pbSpinner.Visible = false;
+                        confirmButton.Enabled = true;
+                    }));
+                        
                 }
                 else
                 {
@@ -1268,6 +1259,11 @@ namespace LBMissingGamesCheckerPlugin
                 }
                 DebugTxt("Ended processing games");
                 DebugTxt($"processedGames: {processedGamesCounter}");
+                StopProgressBar();
+                Invoke(new Action(() =>
+                {
+                    pbSpinner.Visible = false;
+                }));
             }
         }
         #endregion
@@ -1387,7 +1383,8 @@ namespace LBMissingGamesCheckerPlugin
                     "=====================", string.Empty, string.Empty, null, null, 0, string.Empty, string.Empty));
             }
 
-            foreach (var platform in xmlPlatforms)
+            var sortedPlatforms = xmlPlatforms.OrderBy(platform => platform.Name).ToList();
+            foreach (var platform in sortedPlatforms)
             {
                 noPlatformErrorList.Add(new XmlGame("Platform Found: ", string.Empty, string.Empty, string.Empty, null, null, null,
                     $"Platform: {platform.Name}", string.Empty, string.Empty, null, null, 0, string.Empty, string.Empty));
@@ -1399,11 +1396,13 @@ namespace LBMissingGamesCheckerPlugin
         }
 
         // GridView sort method
-        private List<GameDisplayData> SortGames(List<GameDisplayData> games, string columnName)
+        private BindingList<GameDisplayData> SortGames(BindingList<GameDisplayData> games, string columnName)
         {
-            return ascending
+            var sortedList = ascending
                 ? games.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList()
-                : games.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+                : games.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();                     
+
+            return new BindingList<GameDisplayData>(sortedList);
         }
 
 
@@ -1437,7 +1436,7 @@ namespace LBMissingGamesCheckerPlugin
 
             int mgTotalWidth = 0;
             // Calculate the total width of all visible columns in missingGamesGridView
-            if (missingGamesGridView.Columns.Count > 0)
+            if (missingGamesGridView != null && missingGamesGridView.Columns.Count > 0)
             {
                 foreach (DataGridViewColumn column in missingGamesGridView.Columns)
                 {
@@ -1446,7 +1445,18 @@ namespace LBMissingGamesCheckerPlugin
                         mgTotalWidth += column.Width;
                     }
                 }
+            } 
+            else if(noPlatformGridView != null && noPlatformGridView.Columns.Count > 0)
+            {
+                foreach (DataGridViewColumn column in noPlatformGridView.Columns)
+                {
+                    if (column.Visible)
+                    {
+                        mgTotalWidth += column.Width;
+                    }
+                }
             }
+
 
             var maxWidth = ogTotalWidth > mgTotalWidth ? ogTotalWidth : mgTotalWidth;
             // Add some padding or margin if needed
@@ -1520,14 +1530,17 @@ namespace LBMissingGamesCheckerPlugin
                     column.Visible = clbColumnSelection.GetItemChecked(itemIndex);
                 }
             }
-            foreach (DataGridViewColumn column in missingGamesGridView.Columns)
+            if (missingGamesGridView.DataSource != null && missingGamesGridView.Columns.Count > 0)
             {
-                var itemIndex = clbColumnSelection.Items.IndexOf(column.Name);
-                if (itemIndex >= 0)
+                foreach (DataGridViewColumn column in missingGamesGridView.Columns)
                 {
-                    column.Visible = clbColumnSelection.GetItemChecked(itemIndex);
+                    var itemIndex = clbColumnSelection.Items.IndexOf(column.Name);
+                    if (itemIndex >= 0)
+                    {
+                        column.Visible = clbColumnSelection.GetItemChecked(itemIndex);
+                    }
                 }
-            }
+            }            
         }
 
         // Column sort toggle method
@@ -1707,6 +1720,7 @@ namespace LBMissingGamesCheckerPlugin
             }
             if (visible)
             {
+                pDebugLog.BringToFront();
                 pDebugLog.Visible = true;
             }
             else
