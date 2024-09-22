@@ -61,50 +61,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.platformDropdown = new System.Windows.Forms.ComboBox();
             this.confirmButton = new System.Windows.Forms.Button();
             this.ownedGamesGridView = new System.Windows.Forms.DataGridView();
-            this.TitleOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeveloperOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PublisherOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegionOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReleaseDateOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CommunityStarRatingOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CommunityStarRatingTotalVotesOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PlatformOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReleaseTypeOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenresOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AlternateNamesOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxPlayersOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LaunchBoxDbIdOwned = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.VideoUrlOwned = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.WikipediaUrlOwned = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ownedGamesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.missingGamesGridView = new System.Windows.Forms.DataGridView();
-            this.TitleMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeveloperMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PublisherMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegionMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReleaseDateMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CommunityStarRatingMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CommunityStarRatingTotalVotesMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PlatformMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReleaseTypeMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenresMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AlternateNamesMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxPlayersMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LaunchBoxDbIdMissing = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.VideoUrlMissing = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.WikipediaUrlMissing = new System.Windows.Forms.DataGridViewButtonColumn();
             this.missingGamesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblDropdown = new System.Windows.Forms.Label();
             this.lblOwnedGamesGridView = new System.Windows.Forms.Label();
@@ -144,6 +114,36 @@
             this.noPlatformBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pbSpinner = new System.Windows.Forms.PictureBox();
             this.lblCongrats = new System.Windows.Forms.Label();
+            this.TitleOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeveloperOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PublisherOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegionOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReleaseDateOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommunityStarRatingOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommunityStarRatingTotalVotesOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PlatformOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReleaseTypeOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GenresOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AlternateNamesOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxPlayersOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LaunchBoxDbIdOwned = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.VideoUrlOwned = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.WikipediaUrlOwned = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.TitleMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeveloperMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PublisherMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegionMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReleaseDateMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommunityStarRatingMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommunityStarRatingTotalVotesMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PlatformMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReleaseTypeMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GenresMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AlternateNamesMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxPlayersMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LaunchBoxDbIdMissing = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.VideoUrlMissing = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.WikipediaUrlMissing = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ownedGamesGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ownedGamesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.missingGamesGridView)).BeginInit();
@@ -194,13 +194,13 @@
             this.ownedGamesGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ownedGamesGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.ownedGamesGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ownedGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ownedGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ownedGamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ownedGamesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TitleOwned,
@@ -219,14 +219,14 @@
             this.VideoUrlOwned,
             this.WikipediaUrlOwned});
             this.ownedGamesGridView.DataSource = this.ownedGamesBindingSource;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.ownedGamesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ownedGamesGridView.EnableHeadersVisualStyles = false;
             this.ownedGamesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
@@ -234,131 +234,17 @@
             this.ownedGamesGridView.Name = "ownedGamesGridView";
             this.ownedGamesGridView.ReadOnly = true;
             this.ownedGamesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.ownedGamesGridView.RowHeadersWidth = 51;
             this.ownedGamesGridView.ShowEditingIcon = false;
             this.ownedGamesGridView.Size = new System.Drawing.Size(698, 150);
             this.ownedGamesGridView.TabIndex = 2;
             this.ownedGamesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
-            this.ownedGamesGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.OwnedGamesGridView_CellFormatting);
-            this.ownedGamesGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.OwnedGamesGridView_ColumnHeaderMouseClick);
-            // 
-            // TitleOwned
-            // 
-            this.TitleOwned.DataPropertyName = "Title";
-            this.TitleOwned.HeaderText = "Title";
-            this.TitleOwned.Name = "TitleOwned";
-            this.TitleOwned.ReadOnly = true;
-            // 
-            // DeveloperOwned
-            // 
-            this.DeveloperOwned.DataPropertyName = "Developer";
-            this.DeveloperOwned.HeaderText = "Developer";
-            this.DeveloperOwned.Name = "DeveloperOwned";
-            this.DeveloperOwned.ReadOnly = true;
-            // 
-            // PublisherOwned
-            // 
-            this.PublisherOwned.DataPropertyName = "Publisher";
-            this.PublisherOwned.HeaderText = "Publisher";
-            this.PublisherOwned.Name = "PublisherOwned";
-            this.PublisherOwned.ReadOnly = true;
-            // 
-            // RegionOwned
-            // 
-            this.RegionOwned.DataPropertyName = "Region";
-            this.RegionOwned.HeaderText = "Region";
-            this.RegionOwned.Name = "RegionOwned";
-            this.RegionOwned.ReadOnly = true;
-            // 
-            // ReleaseDateOwned
-            // 
-            this.ReleaseDateOwned.DataPropertyName = "ReleaseDate";
-            this.ReleaseDateOwned.HeaderText = "ReleaseDate";
-            this.ReleaseDateOwned.Name = "ReleaseDateOwned";
-            this.ReleaseDateOwned.ReadOnly = true;
-            // 
-            // CommunityStarRatingOwned
-            // 
-            this.CommunityStarRatingOwned.DataPropertyName = "CommunityStarRating";
-            this.CommunityStarRatingOwned.HeaderText = "CommunityStarRating";
-            this.CommunityStarRatingOwned.Name = "CommunityStarRatingOwned";
-            this.CommunityStarRatingOwned.ReadOnly = true;
-            // 
-            // CommunityStarRatingTotalVotesOwned
-            // 
-            this.CommunityStarRatingTotalVotesOwned.DataPropertyName = "CommunityStarRatingTotalVotes";
-            this.CommunityStarRatingTotalVotesOwned.HeaderText = "CommunityStarRatingTotalVotes";
-            this.CommunityStarRatingTotalVotesOwned.Name = "CommunityStarRatingTotalVotesOwned";
-            this.CommunityStarRatingTotalVotesOwned.ReadOnly = true;
-            // 
-            // PlatformOwned
-            // 
-            this.PlatformOwned.DataPropertyName = "Platform";
-            this.PlatformOwned.HeaderText = "Platform";
-            this.PlatformOwned.Name = "PlatformOwned";
-            this.PlatformOwned.ReadOnly = true;
-            // 
-            // ReleaseTypeOwned
-            // 
-            this.ReleaseTypeOwned.DataPropertyName = "ReleaseType";
-            this.ReleaseTypeOwned.HeaderText = "ReleaseType";
-            this.ReleaseTypeOwned.Name = "ReleaseTypeOwned";
-            this.ReleaseTypeOwned.ReadOnly = true;
-            // 
-            // GenresOwned
-            // 
-            this.GenresOwned.DataPropertyName = "Genres";
-            this.GenresOwned.HeaderText = "Genres";
-            this.GenresOwned.Name = "GenresOwned";
-            this.GenresOwned.ReadOnly = true;
-            // 
-            // AlternateNamesOwned
-            // 
-            this.AlternateNamesOwned.DataPropertyName = "AlternateNames";
-            this.AlternateNamesOwned.HeaderText = "AlternateNames";
-            this.AlternateNamesOwned.Name = "AlternateNamesOwned";
-            this.AlternateNamesOwned.ReadOnly = true;
-            // 
-            // MaxPlayersOwned
-            // 
-            this.MaxPlayersOwned.DataPropertyName = "MaxPlayers";
-            this.MaxPlayersOwned.HeaderText = "MaxPlayers";
-            this.MaxPlayersOwned.Name = "MaxPlayersOwned";
-            this.MaxPlayersOwned.ReadOnly = true;
-            // 
-            // LaunchBoxDbIdOwned
-            // 
-            this.LaunchBoxDbIdOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.LaunchBoxDbIdOwned.DataPropertyName = "LaunchBoxDbId";
-            this.LaunchBoxDbIdOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.LaunchBoxDbIdOwned.HeaderText = "LaunchBoxDbId";
-            this.LaunchBoxDbIdOwned.Name = "LaunchBoxDbIdOwned";
-            this.LaunchBoxDbIdOwned.ReadOnly = true;
-            this.LaunchBoxDbIdOwned.Text = "LaunchBoxDB #";
-            this.LaunchBoxDbIdOwned.Width = 90;
-            // 
-            // VideoUrlOwned
-            // 
-            this.VideoUrlOwned.DataPropertyName = "VideoUrl";
-            this.VideoUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.VideoUrlOwned.HeaderText = "VideoUrl";
-            this.VideoUrlOwned.Name = "VideoUrlOwned";
-            this.VideoUrlOwned.ReadOnly = true;
-            this.VideoUrlOwned.Text = "YouTube";
-            // 
-            // WikipediaUrlOwned
-            // 
-            this.WikipediaUrlOwned.DataPropertyName = "WikipediaUrl";
-            this.WikipediaUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.WikipediaUrlOwned.HeaderText = "WikipediaUrl";
-            this.WikipediaUrlOwned.Name = "WikipediaUrlOwned";
-            this.WikipediaUrlOwned.ReadOnly = true;
-            this.WikipediaUrlOwned.Text = "Wiki";
+            this.ownedGamesGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_ColumnHeaderMouseClick);
             // 
             // missingGamesGridView
             // 
@@ -370,12 +256,12 @@
             this.missingGamesGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.missingGamesGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.missingGamesGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.missingGamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.missingGamesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TitleMissing,
@@ -394,14 +280,14 @@
             this.VideoUrlMissing,
             this.WikipediaUrlMissing});
             this.missingGamesGridView.DataSource = this.missingGamesBindingSource;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle5;
             this.missingGamesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.missingGamesGridView.EnableHeadersVisualStyles = false;
             this.missingGamesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
@@ -409,126 +295,16 @@
             this.missingGamesGridView.Name = "missingGamesGridView";
             this.missingGamesGridView.ReadOnly = true;
             this.missingGamesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.missingGamesGridView.RowHeadersWidth = 51;
             this.missingGamesGridView.Size = new System.Drawing.Size(698, 188);
             this.missingGamesGridView.TabIndex = 3;
-            this.missingGamesGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.MissingGamesGridView_ColumnHeaderMouseClick);
-            // 
-            // TitleMissing
-            // 
-            this.TitleMissing.DataPropertyName = "Title";
-            this.TitleMissing.HeaderText = "Title";
-            this.TitleMissing.Name = "TitleMissing";
-            this.TitleMissing.ReadOnly = true;
-            // 
-            // DeveloperMissing
-            // 
-            this.DeveloperMissing.DataPropertyName = "Developer";
-            this.DeveloperMissing.HeaderText = "Developer";
-            this.DeveloperMissing.Name = "DeveloperMissing";
-            this.DeveloperMissing.ReadOnly = true;
-            // 
-            // PublisherMissing
-            // 
-            this.PublisherMissing.DataPropertyName = "Publisher";
-            this.PublisherMissing.HeaderText = "Publisher";
-            this.PublisherMissing.Name = "PublisherMissing";
-            this.PublisherMissing.ReadOnly = true;
-            // 
-            // RegionMissing
-            // 
-            this.RegionMissing.DataPropertyName = "Region";
-            this.RegionMissing.HeaderText = "Region";
-            this.RegionMissing.Name = "RegionMissing";
-            this.RegionMissing.ReadOnly = true;
-            // 
-            // ReleaseDateMissing
-            // 
-            this.ReleaseDateMissing.DataPropertyName = "ReleaseDate";
-            this.ReleaseDateMissing.HeaderText = "ReleaseDate";
-            this.ReleaseDateMissing.Name = "ReleaseDateMissing";
-            this.ReleaseDateMissing.ReadOnly = true;
-            // 
-            // CommunityStarRatingMissing
-            // 
-            this.CommunityStarRatingMissing.DataPropertyName = "CommunityStarRating";
-            this.CommunityStarRatingMissing.HeaderText = "CommunityStarRating";
-            this.CommunityStarRatingMissing.Name = "CommunityStarRatingMissing";
-            this.CommunityStarRatingMissing.ReadOnly = true;
-            // 
-            // CommunityStarRatingTotalVotesMissing
-            // 
-            this.CommunityStarRatingTotalVotesMissing.DataPropertyName = "CommunityStarRatingTotalVotes";
-            this.CommunityStarRatingTotalVotesMissing.HeaderText = "CommunityStarRatingTotalVotes";
-            this.CommunityStarRatingTotalVotesMissing.Name = "CommunityStarRatingTotalVotesMissing";
-            this.CommunityStarRatingTotalVotesMissing.ReadOnly = true;
-            // 
-            // PlatformMissing
-            // 
-            this.PlatformMissing.DataPropertyName = "Platform";
-            this.PlatformMissing.HeaderText = "Platform";
-            this.PlatformMissing.Name = "PlatformMissing";
-            this.PlatformMissing.ReadOnly = true;
-            // 
-            // ReleaseTypeMissing
-            // 
-            this.ReleaseTypeMissing.DataPropertyName = "ReleaseType";
-            this.ReleaseTypeMissing.HeaderText = "ReleaseType";
-            this.ReleaseTypeMissing.Name = "ReleaseTypeMissing";
-            this.ReleaseTypeMissing.ReadOnly = true;
-            // 
-            // GenresMissing
-            // 
-            this.GenresMissing.DataPropertyName = "Genres";
-            this.GenresMissing.HeaderText = "Genres";
-            this.GenresMissing.Name = "GenresMissing";
-            this.GenresMissing.ReadOnly = true;
-            // 
-            // AlternateNamesMissing
-            // 
-            this.AlternateNamesMissing.DataPropertyName = "AlternateNames";
-            this.AlternateNamesMissing.HeaderText = "AlternateNames";
-            this.AlternateNamesMissing.Name = "AlternateNamesMissing";
-            this.AlternateNamesMissing.ReadOnly = true;
-            // 
-            // MaxPlayersMissing
-            // 
-            this.MaxPlayersMissing.DataPropertyName = "MaxPlayers";
-            this.MaxPlayersMissing.HeaderText = "MaxPlayers";
-            this.MaxPlayersMissing.Name = "MaxPlayersMissing";
-            this.MaxPlayersMissing.ReadOnly = true;
-            // 
-            // LaunchBoxDbIdMissing
-            // 
-            this.LaunchBoxDbIdMissing.DataPropertyName = "LaunchBoxDbId";
-            this.LaunchBoxDbIdMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.LaunchBoxDbIdMissing.HeaderText = "LaunchBoxDbId";
-            this.LaunchBoxDbIdMissing.Name = "LaunchBoxDbIdMissing";
-            this.LaunchBoxDbIdMissing.ReadOnly = true;
-            this.LaunchBoxDbIdMissing.Text = "LaunchBoxDB #";
-            // 
-            // VideoUrlMissing
-            // 
-            this.VideoUrlMissing.DataPropertyName = "VideoUrl";
-            this.VideoUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.VideoUrlMissing.HeaderText = "VideoUrl";
-            this.VideoUrlMissing.Name = "VideoUrlMissing";
-            this.VideoUrlMissing.ReadOnly = true;
-            this.VideoUrlMissing.Text = "YouTube";
-            // 
-            // WikipediaUrlMissing
-            // 
-            this.WikipediaUrlMissing.DataPropertyName = "WikipediaUrl";
-            this.WikipediaUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.WikipediaUrlMissing.HeaderText = "WikipediaUrl";
-            this.WikipediaUrlMissing.Name = "WikipediaUrlMissing";
-            this.WikipediaUrlMissing.ReadOnly = true;
-            this.WikipediaUrlMissing.Text = "Wiki";
+            this.missingGamesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
+            this.missingGamesGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_ColumnHeaderMouseClick);
             // 
             // lblDropdown
             // 
@@ -917,27 +693,27 @@
             this.noPlatformGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.noPlatformGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.noPlatformGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.noPlatformGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.noPlatformGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.errorNoPlatform,
             this.msgNoPlatform,
             this.errorLBDbId});
             this.noPlatformGridView.DataSource = this.noPlatformBindingSource;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle8;
             this.noPlatformGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.noPlatformGridView.EnableHeadersVisualStyles = false;
             this.noPlatformGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
@@ -945,11 +721,11 @@
             this.noPlatformGridView.Name = "noPlatformGridView";
             this.noPlatformGridView.ReadOnly = true;
             this.noPlatformGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.noPlatformGridView.RowHeadersWidth = 51;
             this.noPlatformGridView.Size = new System.Drawing.Size(698, 188);
             this.noPlatformGridView.TabIndex = 25;
@@ -1006,6 +782,232 @@
             this.lblCongrats.Size = new System.Drawing.Size(281, 21);
             this.lblCongrats.TabIndex = 27;
             this.lblCongrats.Text = "Congrats! Your collection is complete!";
+            // 
+            // TitleOwned
+            // 
+            this.TitleOwned.DataPropertyName = "Title";
+            this.TitleOwned.HeaderText = "Title";
+            this.TitleOwned.Name = "TitleOwned";
+            this.TitleOwned.ReadOnly = true;
+            // 
+            // DeveloperOwned
+            // 
+            this.DeveloperOwned.DataPropertyName = "Developer";
+            this.DeveloperOwned.HeaderText = "Developer";
+            this.DeveloperOwned.Name = "DeveloperOwned";
+            this.DeveloperOwned.ReadOnly = true;
+            // 
+            // PublisherOwned
+            // 
+            this.PublisherOwned.DataPropertyName = "Publisher";
+            this.PublisherOwned.HeaderText = "Publisher";
+            this.PublisherOwned.Name = "PublisherOwned";
+            this.PublisherOwned.ReadOnly = true;
+            // 
+            // RegionOwned
+            // 
+            this.RegionOwned.DataPropertyName = "Region";
+            this.RegionOwned.HeaderText = "Region";
+            this.RegionOwned.Name = "RegionOwned";
+            this.RegionOwned.ReadOnly = true;
+            // 
+            // ReleaseDateOwned
+            // 
+            this.ReleaseDateOwned.DataPropertyName = "ReleaseDate";
+            this.ReleaseDateOwned.HeaderText = "ReleaseDate";
+            this.ReleaseDateOwned.Name = "ReleaseDateOwned";
+            this.ReleaseDateOwned.ReadOnly = true;
+            // 
+            // CommunityStarRatingOwned
+            // 
+            this.CommunityStarRatingOwned.DataPropertyName = "CommunityStarRating";
+            this.CommunityStarRatingOwned.HeaderText = "CommunityStarRating";
+            this.CommunityStarRatingOwned.Name = "CommunityStarRatingOwned";
+            this.CommunityStarRatingOwned.ReadOnly = true;
+            // 
+            // CommunityStarRatingTotalVotesOwned
+            // 
+            this.CommunityStarRatingTotalVotesOwned.DataPropertyName = "CommunityStarRatingTotalVotes";
+            this.CommunityStarRatingTotalVotesOwned.HeaderText = "CommunityStarRatingTotalVotes";
+            this.CommunityStarRatingTotalVotesOwned.Name = "CommunityStarRatingTotalVotesOwned";
+            this.CommunityStarRatingTotalVotesOwned.ReadOnly = true;
+            // 
+            // PlatformOwned
+            // 
+            this.PlatformOwned.DataPropertyName = "Platform";
+            this.PlatformOwned.HeaderText = "Platform";
+            this.PlatformOwned.Name = "PlatformOwned";
+            this.PlatformOwned.ReadOnly = true;
+            // 
+            // ReleaseTypeOwned
+            // 
+            this.ReleaseTypeOwned.DataPropertyName = "ReleaseType";
+            this.ReleaseTypeOwned.HeaderText = "ReleaseType";
+            this.ReleaseTypeOwned.Name = "ReleaseTypeOwned";
+            this.ReleaseTypeOwned.ReadOnly = true;
+            // 
+            // GenresOwned
+            // 
+            this.GenresOwned.DataPropertyName = "Genres";
+            this.GenresOwned.HeaderText = "Genres";
+            this.GenresOwned.Name = "GenresOwned";
+            this.GenresOwned.ReadOnly = true;
+            // 
+            // AlternateNamesOwned
+            // 
+            this.AlternateNamesOwned.DataPropertyName = "AlternateNames";
+            this.AlternateNamesOwned.HeaderText = "AlternateNames";
+            this.AlternateNamesOwned.Name = "AlternateNamesOwned";
+            this.AlternateNamesOwned.ReadOnly = true;
+            // 
+            // MaxPlayersOwned
+            // 
+            this.MaxPlayersOwned.DataPropertyName = "MaxPlayers";
+            this.MaxPlayersOwned.HeaderText = "MaxPlayers";
+            this.MaxPlayersOwned.Name = "MaxPlayersOwned";
+            this.MaxPlayersOwned.ReadOnly = true;
+            // 
+            // LaunchBoxDbIdOwned
+            // 
+            this.LaunchBoxDbIdOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.LaunchBoxDbIdOwned.DataPropertyName = "LaunchBoxDbId";
+            this.LaunchBoxDbIdOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.LaunchBoxDbIdOwned.HeaderText = "LaunchBoxDbId";
+            this.LaunchBoxDbIdOwned.Name = "LaunchBoxDbIdOwned";
+            this.LaunchBoxDbIdOwned.ReadOnly = true;
+            this.LaunchBoxDbIdOwned.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.LaunchBoxDbIdOwned.Text = "LaunchBoxDB #";
+            this.LaunchBoxDbIdOwned.Width = 109;
+            // 
+            // VideoUrlOwned
+            // 
+            this.VideoUrlOwned.DataPropertyName = "VideoUrl";
+            this.VideoUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.VideoUrlOwned.HeaderText = "VideoUrl";
+            this.VideoUrlOwned.Name = "VideoUrlOwned";
+            this.VideoUrlOwned.ReadOnly = true;
+            this.VideoUrlOwned.Text = "YouTube";
+            // 
+            // WikipediaUrlOwned
+            // 
+            this.WikipediaUrlOwned.DataPropertyName = "WikipediaUrl";
+            this.WikipediaUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.WikipediaUrlOwned.HeaderText = "WikipediaUrl";
+            this.WikipediaUrlOwned.Name = "WikipediaUrlOwned";
+            this.WikipediaUrlOwned.ReadOnly = true;
+            this.WikipediaUrlOwned.Text = "Wiki";
+            // 
+            // TitleMissing
+            // 
+            this.TitleMissing.DataPropertyName = "Title";
+            this.TitleMissing.HeaderText = "Title";
+            this.TitleMissing.Name = "TitleMissing";
+            this.TitleMissing.ReadOnly = true;
+            // 
+            // DeveloperMissing
+            // 
+            this.DeveloperMissing.DataPropertyName = "Developer";
+            this.DeveloperMissing.HeaderText = "Developer";
+            this.DeveloperMissing.Name = "DeveloperMissing";
+            this.DeveloperMissing.ReadOnly = true;
+            // 
+            // PublisherMissing
+            // 
+            this.PublisherMissing.DataPropertyName = "Publisher";
+            this.PublisherMissing.HeaderText = "Publisher";
+            this.PublisherMissing.Name = "PublisherMissing";
+            this.PublisherMissing.ReadOnly = true;
+            // 
+            // RegionMissing
+            // 
+            this.RegionMissing.DataPropertyName = "Region";
+            this.RegionMissing.HeaderText = "Region";
+            this.RegionMissing.Name = "RegionMissing";
+            this.RegionMissing.ReadOnly = true;
+            // 
+            // ReleaseDateMissing
+            // 
+            this.ReleaseDateMissing.DataPropertyName = "ReleaseDate";
+            this.ReleaseDateMissing.HeaderText = "ReleaseDate";
+            this.ReleaseDateMissing.Name = "ReleaseDateMissing";
+            this.ReleaseDateMissing.ReadOnly = true;
+            // 
+            // CommunityStarRatingMissing
+            // 
+            this.CommunityStarRatingMissing.DataPropertyName = "CommunityStarRating";
+            this.CommunityStarRatingMissing.HeaderText = "CommunityStarRating";
+            this.CommunityStarRatingMissing.Name = "CommunityStarRatingMissing";
+            this.CommunityStarRatingMissing.ReadOnly = true;
+            // 
+            // CommunityStarRatingTotalVotesMissing
+            // 
+            this.CommunityStarRatingTotalVotesMissing.DataPropertyName = "CommunityStarRatingTotalVotes";
+            this.CommunityStarRatingTotalVotesMissing.HeaderText = "CommunityStarRatingTotalVotes";
+            this.CommunityStarRatingTotalVotesMissing.Name = "CommunityStarRatingTotalVotesMissing";
+            this.CommunityStarRatingTotalVotesMissing.ReadOnly = true;
+            // 
+            // PlatformMissing
+            // 
+            this.PlatformMissing.DataPropertyName = "Platform";
+            this.PlatformMissing.HeaderText = "Platform";
+            this.PlatformMissing.Name = "PlatformMissing";
+            this.PlatformMissing.ReadOnly = true;
+            // 
+            // ReleaseTypeMissing
+            // 
+            this.ReleaseTypeMissing.DataPropertyName = "ReleaseType";
+            this.ReleaseTypeMissing.HeaderText = "ReleaseType";
+            this.ReleaseTypeMissing.Name = "ReleaseTypeMissing";
+            this.ReleaseTypeMissing.ReadOnly = true;
+            // 
+            // GenresMissing
+            // 
+            this.GenresMissing.DataPropertyName = "Genres";
+            this.GenresMissing.HeaderText = "Genres";
+            this.GenresMissing.Name = "GenresMissing";
+            this.GenresMissing.ReadOnly = true;
+            // 
+            // AlternateNamesMissing
+            // 
+            this.AlternateNamesMissing.DataPropertyName = "AlternateNames";
+            this.AlternateNamesMissing.HeaderText = "AlternateNames";
+            this.AlternateNamesMissing.Name = "AlternateNamesMissing";
+            this.AlternateNamesMissing.ReadOnly = true;
+            // 
+            // MaxPlayersMissing
+            // 
+            this.MaxPlayersMissing.DataPropertyName = "MaxPlayers";
+            this.MaxPlayersMissing.HeaderText = "MaxPlayers";
+            this.MaxPlayersMissing.Name = "MaxPlayersMissing";
+            this.MaxPlayersMissing.ReadOnly = true;
+            // 
+            // LaunchBoxDbIdMissing
+            // 
+            this.LaunchBoxDbIdMissing.DataPropertyName = "LaunchBoxDbId";
+            this.LaunchBoxDbIdMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.LaunchBoxDbIdMissing.HeaderText = "LaunchBoxDbId";
+            this.LaunchBoxDbIdMissing.Name = "LaunchBoxDbIdMissing";
+            this.LaunchBoxDbIdMissing.ReadOnly = true;
+            this.LaunchBoxDbIdMissing.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.LaunchBoxDbIdMissing.Text = "LaunchBoxDB #";
+            // 
+            // VideoUrlMissing
+            // 
+            this.VideoUrlMissing.DataPropertyName = "VideoUrl";
+            this.VideoUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.VideoUrlMissing.HeaderText = "VideoUrl";
+            this.VideoUrlMissing.Name = "VideoUrlMissing";
+            this.VideoUrlMissing.ReadOnly = true;
+            this.VideoUrlMissing.Text = "YouTube";
+            // 
+            // WikipediaUrlMissing
+            // 
+            this.WikipediaUrlMissing.DataPropertyName = "WikipediaUrl";
+            this.WikipediaUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.WikipediaUrlMissing.HeaderText = "WikipediaUrl";
+            this.WikipediaUrlMissing.Name = "WikipediaUrlMissing";
+            this.WikipediaUrlMissing.ReadOnly = true;
+            this.WikipediaUrlMissing.Text = "Wiki";
             // 
             // PlatformSelectionForm
             // 
@@ -1110,6 +1112,14 @@
         private System.Windows.Forms.Button btnCopyToClipboard;
         private System.Windows.Forms.Button btnClearDebugLog;
         private System.Windows.Forms.DataGridView noPlatformGridView;
+        private System.Windows.Forms.PictureBox pbSpinner;
+        private System.Windows.Forms.BindingSource ownedGamesBindingSource;
+        private System.Windows.Forms.BindingSource missingGamesBindingSource;
+        private System.Windows.Forms.BindingSource noPlatformBindingSource;
+        private System.Windows.Forms.Label lblCongrats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn errorNoPlatform;
+        private System.Windows.Forms.DataGridViewTextBoxColumn msgNoPlatform;
+        private System.Windows.Forms.DataGridViewTextBoxColumn errorLBDbId;
         private System.Windows.Forms.DataGridViewTextBoxColumn TitleOwned;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeveloperOwned;
         private System.Windows.Forms.DataGridViewTextBoxColumn PublisherOwned;
@@ -1125,9 +1135,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn LaunchBoxDbIdOwned;
         private System.Windows.Forms.DataGridViewButtonColumn VideoUrlOwned;
         private System.Windows.Forms.DataGridViewButtonColumn WikipediaUrlOwned;
-        private System.Windows.Forms.DataGridViewTextBoxColumn errorNoPlatform;
-        private System.Windows.Forms.DataGridViewTextBoxColumn msgNoPlatform;
-        private System.Windows.Forms.DataGridViewTextBoxColumn errorLBDbId;
         private System.Windows.Forms.DataGridViewTextBoxColumn TitleMissing;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeveloperMissing;
         private System.Windows.Forms.DataGridViewTextBoxColumn PublisherMissing;
@@ -1143,10 +1150,5 @@
         private System.Windows.Forms.DataGridViewButtonColumn LaunchBoxDbIdMissing;
         private System.Windows.Forms.DataGridViewButtonColumn VideoUrlMissing;
         private System.Windows.Forms.DataGridViewButtonColumn WikipediaUrlMissing;
-        private System.Windows.Forms.PictureBox pbSpinner;
-        private System.Windows.Forms.BindingSource ownedGamesBindingSource;
-        private System.Windows.Forms.BindingSource missingGamesBindingSource;
-        private System.Windows.Forms.BindingSource noPlatformBindingSource;
-        private System.Windows.Forms.Label lblCongrats;
     }
 }
