@@ -324,8 +324,11 @@ namespace LBMissingGamesCheckerPlugin
         public BindingList<NoPlatformErrorData> NoPlatformErrorDisplayData => noPlatformErrorDisplayData;
 
         // Properties to toggle sort order in the GridViews
-        private string lastSortedColumn = string.Empty;
-        private bool ascending = true;
+        private string lastSortedColumnOwnedGames = string.Empty;
+        private string lastSortedColumnMissingGames = string.Empty;
+        private bool ascendingOwnedGames = true;
+        private bool ascendingMissingGames = true;
+
         #endregion
 
         #region FormInit
@@ -428,127 +431,7 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
-        // GridView Cell Formatting
-        private void GridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (this.InvokeRequired)
-            {
-                this.BeginInvoke(new Action<object, DataGridViewCellFormattingEventArgs>(GridView_CellFormatting), new object[] { sender, e });
-                return;
-            }
-            if (!(sender is DataGridView gridView)) return;
-            gridView.SuspendLayout();
-
-            if (!(gridView.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewButtonCell cell)) return;
-
-            if (e.ColumnIndex == gridView.Columns["LaunchBoxDbIdOwned"].Index || e.ColumnIndex == gridView.Columns["LaunchBoxDbIdMissing"].Index)
-            {
-                if (e.Value != null)
-                {
-                    cell.Value = $"LaunchBoxDB #{e.Value}";
-                    cell.Tag = $"https://gamesdb.launchbox-app.com/games/dbid/{e.Value.ToString().Trim()}";
-                }
-                else
-                {
-                    cell.Value = string.Empty;
-                    cell.Tag = null;
-                    cell.Style.ForeColor = Color.Empty; // Make it look disabled
-                    cell.Style.BackColor = Color.Empty;
-                }
-            }
-            else if (e.ColumnIndex == gridView.Columns["VideoUrlOwned"].Index || e.ColumnIndex == gridView.Columns["VideoUrlMissing"].Index)
-            {
-                if (e.Value != null)
-                {
-                    cell.Value = "YouTube";
-                    cell.Tag = e.Value.ToString().Trim();
-                }
-                else
-                {
-                    cell.Value = string.Empty;
-                    cell.Tag = null;
-                    cell.Style.ForeColor = Color.Empty; // Make it look disabled
-                    cell.Style.BackColor = Color.Empty;
-                }
-            }
-            else if (e.ColumnIndex == gridView.Columns["WikipediaUrlOwned"].Index || e.ColumnIndex == gridView.Columns["WikipediaUrlMissing"].Index)
-            {
-                if (e.Value != null)
-                {
-                    cell.Value = "Wiki";
-                    cell.Tag = e.Value.ToString().Trim();
-                }
-                else
-                {
-                    cell.Value = string.Empty;
-                    cell.Tag = null;
-                    cell.Style.ForeColor = Color.Empty; // Make it look disabled
-                    cell.Style.BackColor = Color.Empty;
-                }
-            }
-            gridView.ResumeLayout();
-        }
-
-        public void FormatCells(DataGridView gridView)
-        {
-            DebugTxt("Collection GridView Columns...");
-            var launchBoxDbIdIndex = gridView.Columns.Cast<DataGridViewColumn>()
-                                                .FirstOrDefault(c => c.HeaderText == "LaunchBoxDbId")?.Index ?? -1;
-            var videoUrlIndex = gridView.Columns.Cast<DataGridViewColumn>()
-                                                .FirstOrDefault(c => c.HeaderText == "VideoUrl")?.Index ?? -1;
-            var wikipediaUrlIndex = gridView.Columns.Cast<DataGridViewColumn>()
-                                                    .FirstOrDefault(c => c.HeaderText == "WikipediaUrl")?.Index ?? -1;
-
-            DebugTxt("Formatting GridView Columns...");
-            foreach (DataGridViewRow row in gridView.Rows)
-            {
-                if (launchBoxDbIdIndex != -1)
-                {
-                    DataGridViewButtonCell cell = row.Cells[launchBoxDbIdIndex] as DataGridViewButtonCell;
-                    if (cell != null && !string.IsNullOrWhiteSpace(cell.Value?.ToString()))
-                    {
-                        cell.Tag = $"https://gamesdb.launchbox-app.com/games/dbid/{cell.Value.ToString().Trim()}";
-                        cell.Value = $"LaunchBoxDB #{cell.Value}";
-                    }
-                    else
-                    {
-                        cell.Tag = string.Empty;
-                        cell.Value = string.Empty;
-                    }
-                }
-                if (videoUrlIndex != -1)
-                {
-                    DataGridViewButtonCell cell = row.Cells[videoUrlIndex] as DataGridViewButtonCell;
-                    if (cell != null && !string.IsNullOrWhiteSpace(cell.Value?.ToString()))
-                    {
-                        cell.Tag = cell.Value.ToString().Trim();
-                        cell.Value = "YouTube";
-                    }
-                    else
-                    {
-                        cell.Tag = string.Empty;
-                        cell.Value = string.Empty;
-                    }
-                }
-
-                if (wikipediaUrlIndex != -1)
-                {
-                    DataGridViewButtonCell cell = row.Cells[wikipediaUrlIndex] as DataGridViewButtonCell;
-                    if (cell != null && !string.IsNullOrWhiteSpace(cell.Value?.ToString()))
-                    {
-                        cell.Tag = cell.Value.ToString().Trim();
-                        cell.Value = "Wiki";
-                    }
-                    else if (cell != null && cell.Value == null || cell.Value.ToString() == string.Empty)
-                    {
-                        cell.Tag = string.Empty;
-                        cell.Value = string.Empty;
-                    }
-                }
-            }
-            DebugTxt("Formatting GridView Columns completed!");
-        }
-
+        
         // GridView column click handlers
         private void GridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -560,46 +443,24 @@ namespace LBMissingGamesCheckerPlugin
             if (!(sender is DataGridView gridView)) return;
             // Check if the column is a button column
             // Store the Tag properties for button columns before sorting
-            DebugTxt("Start of Tag saving...");
+            DebugTxt("-> Starting column sort. Checking if column is YT or wiki");
             gridView.SuspendLayout();
-            foreach (DataGridViewColumn column in gridView.Columns)
-            {
-                if (column is DataGridViewButtonColumn)
-                {
-                    DebugTxt("Button Column found!");
-                    // For each button column, iterate through each row
-                    DataGridViewRow iDRow = new DataGridViewRow();
-                    foreach (DataGridViewRow row in gridView.Rows)
-                    {
-                        // Check if the cell value is not null or whitespace
-                        if (!string.IsNullOrWhiteSpace(row.Cells[column.Index].Value?.ToString()))
-                        {
-                            int lBDBID = 0;
-                            
-                            if (column.HeaderText == "LaunchBoxDbId")
-                            {
-                                lBDBID = column.Index;
-                                iDRow = row;
-                                string cellText = row.Cells[column.Index].Value.ToString();
-                                // Custom logic for launchBoxDbIdIndex
-                                if (!cellText.Equals("YouTube") && !cellText.Equals("Wiki"))
-                                {
-                                    // Extract the numbers after the #
-                                    string[] parts = cellText.Split('#');
-                                    if (parts.Length > 1)
-                                    {
-                                        row.Cells[column.Index].Value = parts[1].Trim();
-                                    }
-                                }
-                            }
-                            // Copy the Tag property to the cell text
-                            row.Tag = row.Cells[column.Index]?.Value ?? string.Empty;
-                        }
-                    }
-                }
-            }
-            DebugTxt("Tag saving completed!");
-            // Perform the sorting using your SortGames method
+            string columnName = gridView.Columns[e.ColumnIndex].HeaderText;
+            if (columnName == "VideoUrl" || columnName == "WikipediaUrl") return;
+          
+            string gridViewName = gridView.Name;
+
+            // Format button columns to move url from Tag to Value
+            DebugTxt("Start of format cells...");
+            FormatCells(gridView);
+            DebugTxt("Format cells completed!");
+
+            // Toggle sort order
+            DebugTxt("Start of sort toggle...");
+            ToggleSortOrder(columnName, gridViewName);
+            DebugTxt("Sort toggle completed!");
+
+            // Perform the sorting using SortGames method
             DebugTxt("Start of Column Sorting...");
             if (gridView.DataSource is BindingSource bindingSource && bindingSource.DataSource is BindingList<GameDisplayData> bindingList)
             {
@@ -608,6 +469,12 @@ namespace LBMissingGamesCheckerPlugin
                 bindingSource.DataSource = new BindingList<GameDisplayData>(sortedList);
 
             }
+            DebugTxt("Column Sorting completed!");
+
+            // Format button columns to move url from Value to Tag
+            DebugTxt("Start of format cells...");
+            FormatCells(gridView);
+            DebugTxt("Format cells completed!");
             gridView.Refresh();
             gridView.ResumeLayout();
             
@@ -785,7 +652,7 @@ namespace LBMissingGamesCheckerPlugin
         #region MainMethods
         private async void GetAllPlatformGames(IPlatform selectedPlatform, bool platformFound, string platformToCheck)
         {
-            // Disable form btns
+            // Disable form btns and reset for new load
             Invoke(new Action(() =>
             { 
                 confirmButton.Enabled = false;
@@ -838,10 +705,20 @@ namespace LBMissingGamesCheckerPlugin
                 {
                     DebugTxt($"ownedGamesList Count: {ownedGamesList.Count()}");
                     await Task.Run(() => {
-                        foreach (var game in ownedGamesList)
+                        try
                         {
-                            ownedGames.Add(game);
+                            foreach (var game in ownedGamesList)
+                            {
+                                if (game.LaunchBoxDbId != null && !string.IsNullOrEmpty(game.LaunchBoxDbId?.ToString()))
+                                {
+                                    ownedGames.Add(game);
+                                }
+                            }
                         }
+                        catch (Exception ex) 
+                        {
+                            DebugTxt($"Exception processing Missing Games: {ex.Message}");
+                        }                        
                     });
                 }
                 DebugTxt($"ownedGames Count: {ownedGames.Count}");
@@ -986,7 +863,7 @@ namespace LBMissingGamesCheckerPlugin
                 DebugTxt("Loading ownedGamesDisplayData...");
                 var ownedGamesList = ownedGames.OrderBy(game => game.Title)
                     .Select(game => new GameDisplayData(new XmlGame(
-                        game.Title, game.Developer, game.Publisher, game.Region, game.ReleaseDate,
+                        game.Title, game.Developer, game.Publisher, game.Region, (DateTime?)game.ReleaseDate,
                         (float?)game.CommunityStarRating, (int?)game.CommunityStarRatingTotalVotes,
                         game.Platform, game.ReleaseType, game.GenresString, game.GetAllAlternateNames(),
                         game.MaxPlayers, game.LaunchBoxDbId, game.VideoUrl, game.WikipediaUrl
@@ -1437,91 +1314,132 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
-        // GridView sort method
-        private void DataGridView_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
-        {
-            if (this.InvokeRequired)
-            {
-                this.BeginInvoke(new Action<object, DataGridViewSortCompareEventArgs>(DataGridView_SortCompare), new object[] { sender, e });
-                return;
-            }
-            if (!(sender is DataGridView gridView)) return;
-            // Check if the column is a button column
-            // Store the Tag properties for button columns before sorting
-            foreach (DataGridViewColumn column in gridView.Columns)
-            {
-                if (column is DataGridViewButtonColumn)
-                {
-                    // For each button column, iterate through each row
-                    foreach (DataGridViewRow row in gridView.Rows)
-                    {
-                        // Check if the cell value is not null or whitespace
-                        if (!string.IsNullOrWhiteSpace(row.Cells[column.Index].Value?.ToString()))
-                        {
-                            if (column.HeaderText == "LaunchBoxDbId")
-                            {
-                                string cellText = row.Cells[column.Index].Value.ToString();
-                                // Custom logic for launchBoxDbIdIndex
-                                if (!cellText.Equals("YouTube") && !cellText.Equals("Wiki"))
-                                {
-                                    // Extract the numbers after the #
-                                    string[] parts = cellText.Split('#');
-                                    if (parts.Length > 1)
-                                    {
-                                        row.Cells[column.Index].Value = parts[1].Trim();
-                                    }
-                                }
-                            }
-                            // Copy the Tag property to the cell text
-                            row.Tag = row.Cells[column.Index].Value;
-                        }
-                    }
-                }
-            }
-
-            // Perform the sorting
-            e.SortResult = string.Compare(e.CellValue1.ToString(), e.CellValue2.ToString());
-            e.Handled = true;
-
-            // Restore the Tag properties for button columns after sorting
-            foreach (DataGridViewColumn column in gridView.Columns)
-            {
-                if (column is DataGridViewButtonColumn)
-                {
-                    foreach (DataGridViewRow row in gridView.Rows)
-                    {
-                        // Use the UpdateCell method to update the cell
-                        UpdateCell(row, column.Index, "https://gamesdb.launchbox-app.com/games/dbid/", "LaunchBoxDB #");
-                        UpdateCell(row, column.Index, "", "YouTube");
-                        UpdateCell(row, column.Index, "", "Wiki");
-                    }
-                }
-            }
-        }
-
+        // GridView column sort method
         private BindingList<GameDisplayData> SortGames(BindingList<GameDisplayData> games, string columnName, DataGridView dgv)
         {
+            DebugTxt("Determining which gridview to sort...");
+            var ascending = dgv.Name.Equals("ownedGamesGridView") ? ascendingOwnedGames : ascendingMissingGames;
             DebugTxt("Sorting list...");
             var sortedList = ascending
                 ? games.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList()
                 : games.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
             DebugTxt("Sorting list completed!");
-            var launchBoxDbIdIndex = dgv.Columns.Cast<DataGridViewColumn>()
+            return new BindingList<GameDisplayData>(sortedList);
+        }
+
+        public void FormatCells(DataGridView gridView)
+        {
+            DebugTxt("Starting formatting of GridView ButtonColumns...");
+            var launchBoxDbIdIndex = gridView.Columns.Cast<DataGridViewColumn>()
                                                 .FirstOrDefault(c => c.HeaderText == "LaunchBoxDbId")?.Index ?? -1;
-            var videoUrlIndex = dgv.Columns.Cast<DataGridViewColumn>()
+            var videoUrlIndex = gridView.Columns.Cast<DataGridViewColumn>()
                                                 .FirstOrDefault(c => c.HeaderText == "VideoUrl")?.Index ?? -1;
-            var wikipediaUrlIndex = dgv.Columns.Cast<DataGridViewColumn>()
+            var wikipediaUrlIndex = gridView.Columns.Cast<DataGridViewColumn>()
                                                     .FirstOrDefault(c => c.HeaderText == "WikipediaUrl")?.Index ?? -1;
 
-            DebugTxt("Updating cells...");
-            foreach (DataGridViewRow row in dgv.Rows)
+            DebugTxt("Formatting GridView Columns...");
+            try
             {
-                UpdateCell(row, launchBoxDbIdIndex, "https://gamesdb.launchbox-app.com/games/dbid/", "LaunchBoxDB #");
-                UpdateCell(row, videoUrlIndex, "", "YouTube");
-                UpdateCell(row, wikipediaUrlIndex, "", "Wiki");
+                foreach (DataGridViewRow row in gridView.Rows)
+                {
+                    if (launchBoxDbIdIndex != -1)
+                    {
+                        DataGridViewButtonCell cell = row.Cells[launchBoxDbIdIndex] as DataGridViewButtonCell;
+                        if (cell != null && !string.IsNullOrWhiteSpace(cell.Value?.ToString()))
+                        {
+                            if (cell.Value.ToString().Trim().Contains("LaunchBoxDB #"))
+                            {
+                                string[] parts = cell.Value.ToString().Split('#');
+                                if (parts.Length > 1)
+                                {
+                                    cell.Value = parts[1].Trim();
+                                    cell.Tag = string.Empty;
+                                }
+                            }
+                            else
+                            {
+                                cell.Tag = $"https://gamesdb.launchbox-app.com/games/dbid/{cell.Value.ToString().Trim()}";
+                                cell.Value = $"LaunchBoxDB #{cell.Value}";
+                            }
+                        }
+                    }
+                    if (videoUrlIndex != -1)
+                    {
+                        DataGridViewButtonCell cell = row.Cells[videoUrlIndex] as DataGridViewButtonCell;
+                        if (cell != null && !string.IsNullOrWhiteSpace(cell.Value?.ToString()))
+                        {
+                            if (cell.Value.ToString().Trim().StartsWith("YouTube"))
+                            {
+                                cell.Value = cell.Tag?.ToString().Trim() ?? string.Empty;
+                                cell.Tag = string.Empty;
+                                cell.ToolTipText = string.Empty;
+                            }
+                            else
+                            {
+                                cell.Tag = cell.Value.ToString().Trim();
+                                cell.Value = "YouTube";
+                                cell.ToolTipText = cell.Tag.ToString();
+                            }
+                        }
+                    }
+
+                    if (wikipediaUrlIndex != -1)
+                    {
+                        DataGridViewButtonCell cell = row.Cells[wikipediaUrlIndex] as DataGridViewButtonCell;
+                        if (cell != null && !string.IsNullOrWhiteSpace(cell.Value?.ToString()))
+                        {
+                            if (cell.Value.ToString().Trim().StartsWith("Wiki"))
+                            {
+                                cell.Value = cell.Tag?.ToString().Trim() ?? string.Empty;
+                                cell.Tag = string.Empty;
+                                cell.ToolTipText = string.Empty;
+                            }
+                            else
+                            {
+                                cell.Tag = cell.Value.ToString().Trim();
+                                cell.Value = "Wiki";
+                                cell.ToolTipText = cell.Tag.ToString();
+                            }
+                        }
+                    }
+                }
             }
-            DebugTxt("Updating cells completed!");
-            return new BindingList<GameDisplayData>(sortedList);
+            catch(Exception ex) 
+            {
+                DebugTxt($"An Exception occured: {ex.Message}");
+            }
+
+            
+            DebugTxt("Formatting GridView Columns completed!");
+        }
+
+        // Column sort toggle method
+        private void ToggleSortOrder(string columnName, string gridViewName)
+        {
+            if (gridViewName == "ownedGamesGridView")
+            {
+                if (lastSortedColumnOwnedGames == columnName)
+                {
+                    ascendingOwnedGames = !ascendingOwnedGames;
+                }
+                else
+                {
+                    ascendingOwnedGames = true;
+                    lastSortedColumnOwnedGames = columnName;
+                }
+            }
+            else if (gridViewName == "missingGamesGridView")
+            {
+                if (lastSortedColumnMissingGames == columnName)
+                {
+                    ascendingMissingGames = !ascendingMissingGames;
+                }
+                else
+                {
+                    ascendingMissingGames = true;
+                    lastSortedColumnMissingGames = columnName;
+                }
+            }
         }
 
         private void UpdateCell(DataGridViewRow row, int columnIndex, string tagPrefix, string valuePrefix)
@@ -1610,20 +1528,6 @@ namespace LBMissingGamesCheckerPlugin
             {
                 ownedGamesGridView.ResumeLayout();
                 missingGamesGridView.ResumeLayout();
-            }
-        }
-
-        // Column sort toggle method
-        private void ToggleSortOrder(string columnName)
-        {
-            if (lastSortedColumn == columnName)
-            {
-                ascending = !ascending;
-            }
-            else
-            {
-                ascending = true;
-                lastSortedColumn = columnName;
             }
         }
 

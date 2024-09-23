@@ -168,17 +168,19 @@
             this.platformDropdown.FormattingEnabled = true;
             this.platformDropdown.Items.AddRange(new object[] {
             "Select a Platform"});
-            this.platformDropdown.Location = new System.Drawing.Point(16, 60);
+            this.platformDropdown.Location = new System.Drawing.Point(21, 74);
+            this.platformDropdown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.platformDropdown.Name = "platformDropdown";
-            this.platformDropdown.Size = new System.Drawing.Size(220, 21);
+            this.platformDropdown.Size = new System.Drawing.Size(292, 24);
             this.platformDropdown.TabIndex = 0;
             // 
             // confirmButton
             // 
             this.confirmButton.Enabled = false;
-            this.confirmButton.Location = new System.Drawing.Point(124, 87);
+            this.confirmButton.Location = new System.Drawing.Point(165, 107);
+            this.confirmButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(112, 23);
+            this.confirmButton.Size = new System.Drawing.Size(149, 28);
             this.confirmButton.TabIndex = 1;
             this.confirmButton.Text = "Confirm Selection";
             this.confirmButton.UseVisualStyleBackColor = true;
@@ -230,7 +232,8 @@
             this.ownedGamesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ownedGamesGridView.EnableHeadersVisualStyles = false;
             this.ownedGamesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            this.ownedGamesGridView.Location = new System.Drawing.Point(247, 91);
+            this.ownedGamesGridView.Location = new System.Drawing.Point(329, 112);
+            this.ownedGamesGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ownedGamesGridView.Name = "ownedGamesGridView";
             this.ownedGamesGridView.ReadOnly = true;
             this.ownedGamesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
@@ -241,7 +244,7 @@
             this.ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.ownedGamesGridView.RowHeadersWidth = 51;
             this.ownedGamesGridView.ShowEditingIcon = false;
-            this.ownedGamesGridView.Size = new System.Drawing.Size(698, 150);
+            this.ownedGamesGridView.Size = new System.Drawing.Size(931, 185);
             this.ownedGamesGridView.TabIndex = 2;
             this.ownedGamesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.ownedGamesGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_ColumnHeaderMouseClick);
@@ -291,7 +294,8 @@
             this.missingGamesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.missingGamesGridView.EnableHeadersVisualStyles = false;
             this.missingGamesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            this.missingGamesGridView.Location = new System.Drawing.Point(247, 279);
+            this.missingGamesGridView.Location = new System.Drawing.Point(329, 343);
+            this.missingGamesGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.missingGamesGridView.Name = "missingGamesGridView";
             this.missingGamesGridView.ReadOnly = true;
             this.missingGamesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
@@ -301,7 +305,7 @@
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.missingGamesGridView.RowHeadersWidth = 51;
-            this.missingGamesGridView.Size = new System.Drawing.Size(698, 188);
+            this.missingGamesGridView.Size = new System.Drawing.Size(931, 231);
             this.missingGamesGridView.TabIndex = 3;
             this.missingGamesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.missingGamesGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_ColumnHeaderMouseClick);
@@ -312,9 +316,10 @@
             this.lblDropdown.BackColor = System.Drawing.Color.Transparent;
             this.lblDropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDropdown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblDropdown.Location = new System.Drawing.Point(12, 37);
+            this.lblDropdown.Location = new System.Drawing.Point(16, 46);
+            this.lblDropdown.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDropdown.Name = "lblDropdown";
-            this.lblDropdown.Size = new System.Drawing.Size(193, 20);
+            this.lblDropdown.Size = new System.Drawing.Size(235, 25);
             this.lblDropdown.TabIndex = 4;
             this.lblDropdown.Text = "Select a platform to check";
             // 
@@ -324,9 +329,10 @@
             this.lblOwnedGamesGridView.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnedGamesGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOwnedGamesGridView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblOwnedGamesGridView.Location = new System.Drawing.Point(244, 73);
+            this.lblOwnedGamesGridView.Location = new System.Drawing.Point(325, 90);
+            this.lblOwnedGamesGridView.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOwnedGamesGridView.Name = "lblOwnedGamesGridView";
-            this.lblOwnedGamesGridView.Size = new System.Drawing.Size(149, 15);
+            this.lblOwnedGamesGridView.Size = new System.Drawing.Size(183, 18);
             this.lblOwnedGamesGridView.TabIndex = 5;
             this.lblOwnedGamesGridView.Text = "Owned Games List Count:";
             // 
@@ -336,9 +342,10 @@
             this.lblMissingGamesGridView.BackColor = System.Drawing.Color.Transparent;
             this.lblMissingGamesGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMissingGamesGridView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblMissingGamesGridView.Location = new System.Drawing.Point(244, 261);
+            this.lblMissingGamesGridView.Location = new System.Drawing.Point(325, 321);
+            this.lblMissingGamesGridView.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMissingGamesGridView.Name = "lblMissingGamesGridView";
-            this.lblMissingGamesGridView.Size = new System.Drawing.Size(153, 15);
+            this.lblMissingGamesGridView.Size = new System.Drawing.Size(187, 18);
             this.lblMissingGamesGridView.TabIndex = 6;
             this.lblMissingGamesGridView.Text = "Missing Games List Count:";
             // 
@@ -348,9 +355,10 @@
             this.lblOwnedGamesCount.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnedGamesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOwnedGamesCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblOwnedGamesCount.Location = new System.Drawing.Point(399, 73);
+            this.lblOwnedGamesCount.Location = new System.Drawing.Point(532, 90);
+            this.lblOwnedGamesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOwnedGamesCount.Name = "lblOwnedGamesCount";
-            this.lblOwnedGamesCount.Size = new System.Drawing.Size(14, 15);
+            this.lblOwnedGamesCount.Size = new System.Drawing.Size(16, 18);
             this.lblOwnedGamesCount.TabIndex = 7;
             this.lblOwnedGamesCount.Text = "0";
             // 
@@ -360,9 +368,10 @@
             this.lblMissingGamesCount.BackColor = System.Drawing.Color.Transparent;
             this.lblMissingGamesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMissingGamesCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblMissingGamesCount.Location = new System.Drawing.Point(403, 261);
+            this.lblMissingGamesCount.Location = new System.Drawing.Point(537, 321);
+            this.lblMissingGamesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMissingGamesCount.Name = "lblMissingGamesCount";
-            this.lblMissingGamesCount.Size = new System.Drawing.Size(14, 15);
+            this.lblMissingGamesCount.Size = new System.Drawing.Size(16, 18);
             this.lblMissingGamesCount.TabIndex = 8;
             this.lblMissingGamesCount.Text = "0";
             // 
@@ -370,9 +379,10 @@
             // 
             this.btnOwnedCSV.Enabled = false;
             this.btnOwnedCSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOwnedCSV.Location = new System.Drawing.Point(851, 66);
+            this.btnOwnedCSV.Location = new System.Drawing.Point(1135, 81);
+            this.btnOwnedCSV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOwnedCSV.Name = "btnOwnedCSV";
-            this.btnOwnedCSV.Size = new System.Drawing.Size(85, 20);
+            this.btnOwnedCSV.Size = new System.Drawing.Size(113, 25);
             this.btnOwnedCSV.TabIndex = 9;
             this.btnOwnedCSV.Text = "Export to CSV";
             this.btnOwnedCSV.UseVisualStyleBackColor = true;
@@ -382,9 +392,10 @@
             // 
             this.btnMissingCSV.Enabled = false;
             this.btnMissingCSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMissingCSV.Location = new System.Drawing.Point(851, 254);
+            this.btnMissingCSV.Location = new System.Drawing.Point(1135, 313);
+            this.btnMissingCSV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMissingCSV.Name = "btnMissingCSV";
-            this.btnMissingCSV.Size = new System.Drawing.Size(85, 20);
+            this.btnMissingCSV.Size = new System.Drawing.Size(113, 25);
             this.btnMissingCSV.TabIndex = 10;
             this.btnMissingCSV.Text = "Export to CSV";
             this.btnMissingCSV.UseVisualStyleBackColor = true;
@@ -396,10 +407,11 @@
             this.gbOptional.Controls.Add(this.lblColumnSelection);
             this.gbOptional.Controls.Add(this.chkReleasedOnly);
             this.gbOptional.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.gbOptional.Location = new System.Drawing.Point(21, 116);
-            this.gbOptional.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.gbOptional.Location = new System.Drawing.Point(28, 143);
+            this.gbOptional.Margin = new System.Windows.Forms.Padding(4, 4, 4, 0);
             this.gbOptional.Name = "gbOptional";
-            this.gbOptional.Size = new System.Drawing.Size(204, 279);
+            this.gbOptional.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbOptional.Size = new System.Drawing.Size(272, 343);
             this.gbOptional.TabIndex = 11;
             this.gbOptional.TabStop = false;
             this.gbOptional.Text = "Optional Items";
@@ -409,10 +421,10 @@
             this.clbColumnSelection.CheckOnClick = true;
             this.clbColumnSelection.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.clbColumnSelection.FormattingEnabled = true;
-            this.clbColumnSelection.Location = new System.Drawing.Point(3, 62);
-            this.clbColumnSelection.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
+            this.clbColumnSelection.Location = new System.Drawing.Point(4, 80);
+            this.clbColumnSelection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 2);
             this.clbColumnSelection.Name = "clbColumnSelection";
-            this.clbColumnSelection.Size = new System.Drawing.Size(198, 214);
+            this.clbColumnSelection.Size = new System.Drawing.Size(264, 259);
             this.clbColumnSelection.TabIndex = 1;
             this.clbColumnSelection.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CheckedListBox_ItemCheck);
             // 
@@ -420,9 +432,10 @@
             // 
             this.lblColumnSelection.AutoSize = true;
             this.lblColumnSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.lblColumnSelection.Location = new System.Drawing.Point(6, 47);
+            this.lblColumnSelection.Location = new System.Drawing.Point(8, 58);
+            this.lblColumnSelection.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnSelection.Name = "lblColumnSelection";
-            this.lblColumnSelection.Size = new System.Drawing.Size(89, 13);
+            this.lblColumnSelection.Size = new System.Drawing.Size(111, 16);
             this.lblColumnSelection.TabIndex = 2;
             this.lblColumnSelection.Text = "Column Selection";
             // 
@@ -430,9 +443,10 @@
             // 
             this.chkReleasedOnly.AutoSize = true;
             this.chkReleasedOnly.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.chkReleasedOnly.Location = new System.Drawing.Point(10, 21);
+            this.chkReleasedOnly.Location = new System.Drawing.Point(13, 26);
+            this.chkReleasedOnly.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkReleasedOnly.Name = "chkReleasedOnly";
-            this.chkReleasedOnly.Size = new System.Drawing.Size(166, 17);
+            this.chkReleasedOnly.Size = new System.Drawing.Size(210, 20);
             this.chkReleasedOnly.TabIndex = 0;
             this.chkReleasedOnly.Text = "Only include Released games";
             this.chkReleasedOnly.UseVisualStyleBackColor = true;
@@ -446,10 +460,10 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.btnClose.Location = new System.Drawing.Point(848, 11);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClose.Location = new System.Drawing.Point(1131, 14);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(97, 29);
+            this.btnClose.Size = new System.Drawing.Size(129, 36);
             this.btnClose.TabIndex = 13;
             this.btnClose.Text = "Close MGC";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -465,9 +479,10 @@
             this.llbPoweredBy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.llbPoweredBy.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
             this.llbPoweredBy.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.llbPoweredBy.Location = new System.Drawing.Point(18, 460);
+            this.llbPoweredBy.Location = new System.Drawing.Point(24, 566);
+            this.llbPoweredBy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.llbPoweredBy.Name = "llbPoweredBy";
-            this.llbPoweredBy.Size = new System.Drawing.Size(162, 13);
+            this.llbPoweredBy.Size = new System.Drawing.Size(183, 15);
             this.llbPoweredBy.TabIndex = 16;
             this.llbPoweredBy.TabStop = true;
             this.llbPoweredBy.Text = "MGC Powered by AgentJohnnyP";
@@ -484,9 +499,10 @@
             this.ssMetadataStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslIcon,
             this.tsslText});
-            this.ssMetadataStatus.Location = new System.Drawing.Point(21, 402);
+            this.ssMetadataStatus.Location = new System.Drawing.Point(28, 495);
             this.ssMetadataStatus.Name = "ssMetadataStatus";
-            this.ssMetadataStatus.Size = new System.Drawing.Size(205, 26);
+            this.ssMetadataStatus.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.ssMetadataStatus.Size = new System.Drawing.Size(273, 32);
             this.ssMetadataStatus.SizingGrip = false;
             this.ssMetadataStatus.TabIndex = 19;
             // 
@@ -495,7 +511,7 @@
             this.tsslIcon.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.warning;
             this.tsslIcon.Name = "tsslIcon";
             this.tsslIcon.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
-            this.tsslIcon.Size = new System.Drawing.Size(25, 21);
+            this.tsslIcon.Size = new System.Drawing.Size(25, 26);
             // 
             // tsslText
             // 
@@ -504,17 +520,18 @@
             this.tsslText.ForeColor = System.Drawing.Color.Black;
             this.tsslText.Name = "tsslText";
             this.tsslText.Padding = new System.Windows.Forms.Padding(10, 0, 0, 5);
-            this.tsslText.Size = new System.Drawing.Size(151, 21);
+            this.tsslText.Size = new System.Drawing.Size(182, 26);
             this.tsslText.Text = "Preparing Environment....";
             // 
             // pbMetadataLoading
             // 
             this.pbMetadataLoading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.pbMetadataLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
-            this.pbMetadataLoading.Location = new System.Drawing.Point(21, 432);
+            this.pbMetadataLoading.Location = new System.Drawing.Point(28, 532);
+            this.pbMetadataLoading.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbMetadataLoading.MarqueeAnimationSpeed = 50;
             this.pbMetadataLoading.Name = "pbMetadataLoading";
-            this.pbMetadataLoading.Size = new System.Drawing.Size(215, 21);
+            this.pbMetadataLoading.Size = new System.Drawing.Size(287, 26);
             this.pbMetadataLoading.TabIndex = 20;
             this.pbMetadataLoading.Visible = false;
             // 
@@ -522,14 +539,14 @@
             // 
             this.tbDebug.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.tbDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.tbDebug.Location = new System.Drawing.Point(2, 43);
-            this.tbDebug.Margin = new System.Windows.Forms.Padding(2);
+            this.tbDebug.Location = new System.Drawing.Point(3, 53);
+            this.tbDebug.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDebug.MaxLength = 15000;
             this.tbDebug.Multiline = true;
             this.tbDebug.Name = "tbDebug";
             this.tbDebug.ReadOnly = true;
             this.tbDebug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDebug.Size = new System.Drawing.Size(534, 183);
+            this.tbDebug.Size = new System.Drawing.Size(711, 224);
             this.tbDebug.TabIndex = 21;
             this.tbDebug.Text = "Debug Log";
             // 
@@ -544,7 +561,8 @@
             this.tsslPlatformDropdownMsg});
             this.ssPlatformDropdownMsg.Location = new System.Drawing.Point(0, 0);
             this.ssPlatformDropdownMsg.Name = "ssPlatformDropdownMsg";
-            this.ssPlatformDropdownMsg.Size = new System.Drawing.Size(220, 26);
+            this.ssPlatformDropdownMsg.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.ssPlatformDropdownMsg.Size = new System.Drawing.Size(293, 32);
             this.ssPlatformDropdownMsg.SizingGrip = false;
             this.ssPlatformDropdownMsg.TabIndex = 23;
             // 
@@ -553,7 +571,7 @@
             this.toolStripStatusLabel1.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.warning;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(25, 21);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(25, 26);
             // 
             // tsslPlatformDropdownMsg
             // 
@@ -561,7 +579,7 @@
             this.tsslPlatformDropdownMsg.ForeColor = System.Drawing.Color.Black;
             this.tsslPlatformDropdownMsg.Name = "tsslPlatformDropdownMsg";
             this.tsslPlatformDropdownMsg.Padding = new System.Windows.Forms.Padding(10, 0, 0, 5);
-            this.tsslPlatformDropdownMsg.Size = new System.Drawing.Size(166, 21);
+            this.tsslPlatformDropdownMsg.Size = new System.Drawing.Size(205, 26);
             this.tsslPlatformDropdownMsg.Text = "Please select a platform!";
             // 
             // pDebugLog
@@ -574,9 +592,10 @@
             this.pDebugLog.Controls.Add(this.btnCloseDebug);
             this.pDebugLog.Controls.Add(this.pictureBox2);
             this.pDebugLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.pDebugLog.Location = new System.Drawing.Point(320, 172);
+            this.pDebugLog.Location = new System.Drawing.Point(427, 212);
+            this.pDebugLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pDebugLog.Name = "pDebugLog";
-            this.pDebugLog.Size = new System.Drawing.Size(543, 232);
+            this.pDebugLog.Size = new System.Drawing.Size(723, 285);
             this.pDebugLog.TabIndex = 24;
             // 
             // btnClearDebugLog
@@ -585,9 +604,10 @@
             this.btnClearDebugLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnClearDebugLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearDebugLog.ForeColor = System.Drawing.Color.Black;
-            this.btnClearDebugLog.Location = new System.Drawing.Point(309, 10);
+            this.btnClearDebugLog.Location = new System.Drawing.Point(412, 12);
+            this.btnClearDebugLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnClearDebugLog.Name = "btnClearDebugLog";
-            this.btnClearDebugLog.Size = new System.Drawing.Size(81, 21);
+            this.btnClearDebugLog.Size = new System.Drawing.Size(108, 26);
             this.btnClearDebugLog.TabIndex = 26;
             this.btnClearDebugLog.Text = "Clear Debug Log";
             this.btnClearDebugLog.UseVisualStyleBackColor = false;
@@ -599,9 +619,10 @@
             this.btnCopyToClipboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCopyToClipboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCopyToClipboard.ForeColor = System.Drawing.Color.Black;
-            this.btnCopyToClipboard.Location = new System.Drawing.Point(207, 10);
+            this.btnCopyToClipboard.Location = new System.Drawing.Point(276, 12);
+            this.btnCopyToClipboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCopyToClipboard.Name = "btnCopyToClipboard";
-            this.btnCopyToClipboard.Size = new System.Drawing.Size(89, 21);
+            this.btnCopyToClipboard.Size = new System.Drawing.Size(119, 26);
             this.btnCopyToClipboard.TabIndex = 25;
             this.btnCopyToClipboard.Text = "Copy To Clipboard";
             this.btnCopyToClipboard.UseVisualStyleBackColor = false;
@@ -611,9 +632,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(49, 7);
+            this.label1.Location = new System.Drawing.Point(65, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 24);
+            this.label1.Size = new System.Drawing.Size(193, 29);
             this.label1.TabIndex = 24;
             this.label1.Text = "MGC Debug Log";
             // 
@@ -626,10 +648,10 @@
             this.btnCloseDebug.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseDebug.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.btnCloseDebug.Location = new System.Drawing.Point(422, 4);
-            this.btnCloseDebug.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCloseDebug.Location = new System.Drawing.Point(563, 5);
+            this.btnCloseDebug.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCloseDebug.Name = "btnCloseDebug";
-            this.btnCloseDebug.Size = new System.Drawing.Size(114, 28);
+            this.btnCloseDebug.Size = new System.Drawing.Size(152, 34);
             this.btnCloseDebug.TabIndex = 23;
             this.btnCloseDebug.Text = "Close Debug Log";
             this.btnCloseDebug.UseVisualStyleBackColor = false;
@@ -640,9 +662,10 @@
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.BackgroundImage = global::LBMissingGamesCheckerPlugin.Properties.Resources.debug;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(5, 5);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(39, 36);
+            this.pictureBox2.Size = new System.Drawing.Size(52, 44);
             this.pictureBox2.TabIndex = 22;
             this.pictureBox2.TabStop = false;
             // 
@@ -652,9 +675,10 @@
             this.pbDebugBtn.BackgroundImage = global::LBMissingGamesCheckerPlugin.Properties.Resources.debug;
             this.pbDebugBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbDebugBtn.Cursor = System.Windows.Forms.Cursors.Help;
-            this.pbDebugBtn.Location = new System.Drawing.Point(216, 458);
+            this.pbDebugBtn.Location = new System.Drawing.Point(288, 564);
+            this.pbDebugBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbDebugBtn.Name = "pbDebugBtn";
-            this.pbDebugBtn.Size = new System.Drawing.Size(20, 20);
+            this.pbDebugBtn.Size = new System.Drawing.Size(27, 25);
             this.pbDebugBtn.TabIndex = 24;
             this.pbDebugBtn.TabStop = false;
             this.pbDebugBtn.Click += new System.EventHandler(this.DebugBtn_Click);
@@ -663,9 +687,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_header;
-            this.pictureBox1.Location = new System.Drawing.Point(361, -1);
+            this.pictureBox1.Location = new System.Drawing.Point(481, -1);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(471, 97);
+            this.pictureBox1.Size = new System.Drawing.Size(628, 119);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
@@ -675,9 +700,10 @@
             // 
             this.pbMGCLogo.BackColor = System.Drawing.Color.Transparent;
             this.pbMGCLogo.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_logo;
-            this.pbMGCLogo.Location = new System.Drawing.Point(282, 11);
+            this.pbMGCLogo.Location = new System.Drawing.Point(376, 14);
+            this.pbMGCLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbMGCLogo.Name = "pbMGCLogo";
-            this.pbMGCLogo.Size = new System.Drawing.Size(73, 59);
+            this.pbMGCLogo.Size = new System.Drawing.Size(97, 73);
             this.pbMGCLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbMGCLogo.TabIndex = 14;
             this.pbMGCLogo.TabStop = false;
@@ -717,7 +743,8 @@
             this.noPlatformGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.noPlatformGridView.EnableHeadersVisualStyles = false;
             this.noPlatformGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            this.noPlatformGridView.Location = new System.Drawing.Point(247, 279);
+            this.noPlatformGridView.Location = new System.Drawing.Point(329, 343);
+            this.noPlatformGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.noPlatformGridView.Name = "noPlatformGridView";
             this.noPlatformGridView.ReadOnly = true;
             this.noPlatformGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
@@ -727,7 +754,7 @@
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.noPlatformGridView.RowHeadersWidth = 51;
-            this.noPlatformGridView.Size = new System.Drawing.Size(698, 188);
+            this.noPlatformGridView.Size = new System.Drawing.Size(931, 231);
             this.noPlatformGridView.TabIndex = 25;
             // 
             // errorNoPlatform
@@ -735,38 +762,43 @@
             this.errorNoPlatform.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.errorNoPlatform.DataPropertyName = "Title";
             this.errorNoPlatform.HeaderText = "Error";
+            this.errorNoPlatform.MinimumWidth = 6;
             this.errorNoPlatform.Name = "errorNoPlatform";
             this.errorNoPlatform.ReadOnly = true;
             this.errorNoPlatform.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.errorNoPlatform.Width = 35;
+            this.errorNoPlatform.Width = 46;
             // 
             // msgNoPlatform
             // 
             this.msgNoPlatform.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.msgNoPlatform.DataPropertyName = "Platform";
             this.msgNoPlatform.HeaderText = "Message";
+            this.msgNoPlatform.MinimumWidth = 6;
             this.msgNoPlatform.Name = "msgNoPlatform";
             this.msgNoPlatform.ReadOnly = true;
             this.msgNoPlatform.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.msgNoPlatform.Width = 56;
+            this.msgNoPlatform.Width = 71;
             // 
             // errorLBDbId
             // 
             this.errorLBDbId.DataPropertyName = "LaunchBoxDbId";
             this.errorLBDbId.HeaderText = "LaunchBoxDbId";
+            this.errorLBDbId.MinimumWidth = 6;
             this.errorLBDbId.Name = "errorLBDbId";
             this.errorLBDbId.ReadOnly = true;
             this.errorLBDbId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.errorLBDbId.Visible = false;
+            this.errorLBDbId.Width = 125;
             // 
             // pbSpinner
             // 
             this.pbSpinner.BackColor = System.Drawing.Color.Transparent;
             this.pbSpinner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbSpinner.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_spinner;
-            this.pbSpinner.Location = new System.Drawing.Point(460, 310);
+            this.pbSpinner.Location = new System.Drawing.Point(613, 382);
+            this.pbSpinner.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbSpinner.Name = "pbSpinner";
-            this.pbSpinner.Size = new System.Drawing.Size(240, 131);
+            this.pbSpinner.Size = new System.Drawing.Size(320, 161);
             this.pbSpinner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbSpinner.TabIndex = 26;
             this.pbSpinner.TabStop = false;
@@ -776,10 +808,11 @@
             this.lblCongrats.AutoSize = true;
             this.lblCongrats.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.lblCongrats.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCongrats.Location = new System.Drawing.Point(444, 253);
+            this.lblCongrats.Location = new System.Drawing.Point(592, 311);
+            this.lblCongrats.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCongrats.Name = "lblCongrats";
             this.lblCongrats.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.lblCongrats.Size = new System.Drawing.Size(281, 21);
+            this.lblCongrats.Size = new System.Drawing.Size(331, 24);
             this.lblCongrats.TabIndex = 27;
             this.lblCongrats.Text = "Congrats! Your collection is complete!";
             // 
@@ -787,237 +820,301 @@
             // 
             this.TitleOwned.DataPropertyName = "Title";
             this.TitleOwned.HeaderText = "Title";
+            this.TitleOwned.MinimumWidth = 6;
             this.TitleOwned.Name = "TitleOwned";
             this.TitleOwned.ReadOnly = true;
+            this.TitleOwned.Width = 125;
             // 
             // DeveloperOwned
             // 
             this.DeveloperOwned.DataPropertyName = "Developer";
             this.DeveloperOwned.HeaderText = "Developer";
+            this.DeveloperOwned.MinimumWidth = 6;
             this.DeveloperOwned.Name = "DeveloperOwned";
             this.DeveloperOwned.ReadOnly = true;
+            this.DeveloperOwned.Width = 125;
             // 
             // PublisherOwned
             // 
             this.PublisherOwned.DataPropertyName = "Publisher";
             this.PublisherOwned.HeaderText = "Publisher";
+            this.PublisherOwned.MinimumWidth = 6;
             this.PublisherOwned.Name = "PublisherOwned";
             this.PublisherOwned.ReadOnly = true;
+            this.PublisherOwned.Width = 125;
             // 
             // RegionOwned
             // 
             this.RegionOwned.DataPropertyName = "Region";
             this.RegionOwned.HeaderText = "Region";
+            this.RegionOwned.MinimumWidth = 6;
             this.RegionOwned.Name = "RegionOwned";
             this.RegionOwned.ReadOnly = true;
+            this.RegionOwned.Width = 125;
             // 
             // ReleaseDateOwned
             // 
             this.ReleaseDateOwned.DataPropertyName = "ReleaseDate";
             this.ReleaseDateOwned.HeaderText = "ReleaseDate";
+            this.ReleaseDateOwned.MinimumWidth = 6;
             this.ReleaseDateOwned.Name = "ReleaseDateOwned";
             this.ReleaseDateOwned.ReadOnly = true;
+            this.ReleaseDateOwned.Width = 125;
             // 
             // CommunityStarRatingOwned
             // 
             this.CommunityStarRatingOwned.DataPropertyName = "CommunityStarRating";
             this.CommunityStarRatingOwned.HeaderText = "CommunityStarRating";
+            this.CommunityStarRatingOwned.MinimumWidth = 6;
             this.CommunityStarRatingOwned.Name = "CommunityStarRatingOwned";
             this.CommunityStarRatingOwned.ReadOnly = true;
+            this.CommunityStarRatingOwned.Width = 125;
             // 
             // CommunityStarRatingTotalVotesOwned
             // 
             this.CommunityStarRatingTotalVotesOwned.DataPropertyName = "CommunityStarRatingTotalVotes";
             this.CommunityStarRatingTotalVotesOwned.HeaderText = "CommunityStarRatingTotalVotes";
+            this.CommunityStarRatingTotalVotesOwned.MinimumWidth = 6;
             this.CommunityStarRatingTotalVotesOwned.Name = "CommunityStarRatingTotalVotesOwned";
             this.CommunityStarRatingTotalVotesOwned.ReadOnly = true;
+            this.CommunityStarRatingTotalVotesOwned.Width = 125;
             // 
             // PlatformOwned
             // 
             this.PlatformOwned.DataPropertyName = "Platform";
             this.PlatformOwned.HeaderText = "Platform";
+            this.PlatformOwned.MinimumWidth = 6;
             this.PlatformOwned.Name = "PlatformOwned";
             this.PlatformOwned.ReadOnly = true;
+            this.PlatformOwned.Width = 125;
             // 
             // ReleaseTypeOwned
             // 
             this.ReleaseTypeOwned.DataPropertyName = "ReleaseType";
             this.ReleaseTypeOwned.HeaderText = "ReleaseType";
+            this.ReleaseTypeOwned.MinimumWidth = 6;
             this.ReleaseTypeOwned.Name = "ReleaseTypeOwned";
             this.ReleaseTypeOwned.ReadOnly = true;
+            this.ReleaseTypeOwned.Width = 125;
             // 
             // GenresOwned
             // 
             this.GenresOwned.DataPropertyName = "Genres";
             this.GenresOwned.HeaderText = "Genres";
+            this.GenresOwned.MinimumWidth = 6;
             this.GenresOwned.Name = "GenresOwned";
             this.GenresOwned.ReadOnly = true;
+            this.GenresOwned.Width = 125;
             // 
             // AlternateNamesOwned
             // 
             this.AlternateNamesOwned.DataPropertyName = "AlternateNames";
             this.AlternateNamesOwned.HeaderText = "AlternateNames";
+            this.AlternateNamesOwned.MinimumWidth = 6;
             this.AlternateNamesOwned.Name = "AlternateNamesOwned";
             this.AlternateNamesOwned.ReadOnly = true;
+            this.AlternateNamesOwned.Width = 125;
             // 
             // MaxPlayersOwned
             // 
             this.MaxPlayersOwned.DataPropertyName = "MaxPlayers";
             this.MaxPlayersOwned.HeaderText = "MaxPlayers";
+            this.MaxPlayersOwned.MinimumWidth = 6;
             this.MaxPlayersOwned.Name = "MaxPlayersOwned";
             this.MaxPlayersOwned.ReadOnly = true;
+            this.MaxPlayersOwned.Width = 125;
             // 
             // LaunchBoxDbIdOwned
             // 
-            this.LaunchBoxDbIdOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.LaunchBoxDbIdOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.LaunchBoxDbIdOwned.DataPropertyName = "LaunchBoxDbId";
             this.LaunchBoxDbIdOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.LaunchBoxDbIdOwned.HeaderText = "LaunchBoxDbId";
+            this.LaunchBoxDbIdOwned.MinimumWidth = 6;
             this.LaunchBoxDbIdOwned.Name = "LaunchBoxDbIdOwned";
             this.LaunchBoxDbIdOwned.ReadOnly = true;
             this.LaunchBoxDbIdOwned.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.LaunchBoxDbIdOwned.Text = "LaunchBoxDB #";
-            this.LaunchBoxDbIdOwned.Width = 109;
+            this.LaunchBoxDbIdOwned.Width = 136;
             // 
             // VideoUrlOwned
             // 
+            this.VideoUrlOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.VideoUrlOwned.DataPropertyName = "VideoUrl";
             this.VideoUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.VideoUrlOwned.HeaderText = "VideoUrl";
+            this.VideoUrlOwned.MinimumWidth = 6;
             this.VideoUrlOwned.Name = "VideoUrlOwned";
             this.VideoUrlOwned.ReadOnly = true;
             this.VideoUrlOwned.Text = "YouTube";
+            this.VideoUrlOwned.Width = 68;
             // 
             // WikipediaUrlOwned
             // 
+            this.WikipediaUrlOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.WikipediaUrlOwned.DataPropertyName = "WikipediaUrl";
             this.WikipediaUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.WikipediaUrlOwned.HeaderText = "WikipediaUrl";
+            this.WikipediaUrlOwned.MinimumWidth = 6;
             this.WikipediaUrlOwned.Name = "WikipediaUrlOwned";
             this.WikipediaUrlOwned.ReadOnly = true;
             this.WikipediaUrlOwned.Text = "Wiki";
+            this.WikipediaUrlOwned.Width = 93;
             // 
             // TitleMissing
             // 
             this.TitleMissing.DataPropertyName = "Title";
             this.TitleMissing.HeaderText = "Title";
+            this.TitleMissing.MinimumWidth = 6;
             this.TitleMissing.Name = "TitleMissing";
             this.TitleMissing.ReadOnly = true;
+            this.TitleMissing.Width = 125;
             // 
             // DeveloperMissing
             // 
             this.DeveloperMissing.DataPropertyName = "Developer";
             this.DeveloperMissing.HeaderText = "Developer";
+            this.DeveloperMissing.MinimumWidth = 6;
             this.DeveloperMissing.Name = "DeveloperMissing";
             this.DeveloperMissing.ReadOnly = true;
+            this.DeveloperMissing.Width = 125;
             // 
             // PublisherMissing
             // 
             this.PublisherMissing.DataPropertyName = "Publisher";
             this.PublisherMissing.HeaderText = "Publisher";
+            this.PublisherMissing.MinimumWidth = 6;
             this.PublisherMissing.Name = "PublisherMissing";
             this.PublisherMissing.ReadOnly = true;
+            this.PublisherMissing.Width = 125;
             // 
             // RegionMissing
             // 
             this.RegionMissing.DataPropertyName = "Region";
             this.RegionMissing.HeaderText = "Region";
+            this.RegionMissing.MinimumWidth = 6;
             this.RegionMissing.Name = "RegionMissing";
             this.RegionMissing.ReadOnly = true;
+            this.RegionMissing.Width = 125;
             // 
             // ReleaseDateMissing
             // 
             this.ReleaseDateMissing.DataPropertyName = "ReleaseDate";
             this.ReleaseDateMissing.HeaderText = "ReleaseDate";
+            this.ReleaseDateMissing.MinimumWidth = 6;
             this.ReleaseDateMissing.Name = "ReleaseDateMissing";
             this.ReleaseDateMissing.ReadOnly = true;
+            this.ReleaseDateMissing.Width = 125;
             // 
             // CommunityStarRatingMissing
             // 
             this.CommunityStarRatingMissing.DataPropertyName = "CommunityStarRating";
             this.CommunityStarRatingMissing.HeaderText = "CommunityStarRating";
+            this.CommunityStarRatingMissing.MinimumWidth = 6;
             this.CommunityStarRatingMissing.Name = "CommunityStarRatingMissing";
             this.CommunityStarRatingMissing.ReadOnly = true;
+            this.CommunityStarRatingMissing.Width = 125;
             // 
             // CommunityStarRatingTotalVotesMissing
             // 
             this.CommunityStarRatingTotalVotesMissing.DataPropertyName = "CommunityStarRatingTotalVotes";
             this.CommunityStarRatingTotalVotesMissing.HeaderText = "CommunityStarRatingTotalVotes";
+            this.CommunityStarRatingTotalVotesMissing.MinimumWidth = 6;
             this.CommunityStarRatingTotalVotesMissing.Name = "CommunityStarRatingTotalVotesMissing";
             this.CommunityStarRatingTotalVotesMissing.ReadOnly = true;
+            this.CommunityStarRatingTotalVotesMissing.Width = 125;
             // 
             // PlatformMissing
             // 
             this.PlatformMissing.DataPropertyName = "Platform";
             this.PlatformMissing.HeaderText = "Platform";
+            this.PlatformMissing.MinimumWidth = 6;
             this.PlatformMissing.Name = "PlatformMissing";
             this.PlatformMissing.ReadOnly = true;
+            this.PlatformMissing.Width = 125;
             // 
             // ReleaseTypeMissing
             // 
             this.ReleaseTypeMissing.DataPropertyName = "ReleaseType";
             this.ReleaseTypeMissing.HeaderText = "ReleaseType";
+            this.ReleaseTypeMissing.MinimumWidth = 6;
             this.ReleaseTypeMissing.Name = "ReleaseTypeMissing";
             this.ReleaseTypeMissing.ReadOnly = true;
+            this.ReleaseTypeMissing.Width = 125;
             // 
             // GenresMissing
             // 
             this.GenresMissing.DataPropertyName = "Genres";
             this.GenresMissing.HeaderText = "Genres";
+            this.GenresMissing.MinimumWidth = 6;
             this.GenresMissing.Name = "GenresMissing";
             this.GenresMissing.ReadOnly = true;
+            this.GenresMissing.Width = 125;
             // 
             // AlternateNamesMissing
             // 
             this.AlternateNamesMissing.DataPropertyName = "AlternateNames";
             this.AlternateNamesMissing.HeaderText = "AlternateNames";
+            this.AlternateNamesMissing.MinimumWidth = 6;
             this.AlternateNamesMissing.Name = "AlternateNamesMissing";
             this.AlternateNamesMissing.ReadOnly = true;
+            this.AlternateNamesMissing.Width = 125;
             // 
             // MaxPlayersMissing
             // 
             this.MaxPlayersMissing.DataPropertyName = "MaxPlayers";
             this.MaxPlayersMissing.HeaderText = "MaxPlayers";
+            this.MaxPlayersMissing.MinimumWidth = 6;
             this.MaxPlayersMissing.Name = "MaxPlayersMissing";
             this.MaxPlayersMissing.ReadOnly = true;
+            this.MaxPlayersMissing.Width = 125;
             // 
             // LaunchBoxDbIdMissing
             // 
+            this.LaunchBoxDbIdMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.LaunchBoxDbIdMissing.DataPropertyName = "LaunchBoxDbId";
             this.LaunchBoxDbIdMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.LaunchBoxDbIdMissing.HeaderText = "LaunchBoxDbId";
+            this.LaunchBoxDbIdMissing.MinimumWidth = 6;
             this.LaunchBoxDbIdMissing.Name = "LaunchBoxDbIdMissing";
             this.LaunchBoxDbIdMissing.ReadOnly = true;
             this.LaunchBoxDbIdMissing.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.LaunchBoxDbIdMissing.Text = "LaunchBoxDB #";
+            this.LaunchBoxDbIdMissing.Width = 136;
             // 
             // VideoUrlMissing
             // 
+            this.VideoUrlMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.VideoUrlMissing.DataPropertyName = "VideoUrl";
             this.VideoUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.VideoUrlMissing.HeaderText = "VideoUrl";
+            this.VideoUrlMissing.MinimumWidth = 6;
             this.VideoUrlMissing.Name = "VideoUrlMissing";
             this.VideoUrlMissing.ReadOnly = true;
             this.VideoUrlMissing.Text = "YouTube";
+            this.VideoUrlMissing.Width = 68;
             // 
             // WikipediaUrlMissing
             // 
+            this.WikipediaUrlMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.WikipediaUrlMissing.DataPropertyName = "WikipediaUrl";
             this.WikipediaUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.WikipediaUrlMissing.HeaderText = "WikipediaUrl";
+            this.WikipediaUrlMissing.MinimumWidth = 6;
             this.WikipediaUrlMissing.Name = "WikipediaUrlMissing";
             this.WikipediaUrlMissing.ReadOnly = true;
             this.WikipediaUrlMissing.Text = "Wiki";
+            this.WikipediaUrlMissing.Width = 93;
             // 
             // PlatformSelectionForm
             // 
             this.AccessibleDescription = "A LaunchBox plugin designed to help users identify missing games in their collect" +
     "ion based on platform metadata.";
             this.AccessibleName = "Missing Games Checker";
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ClientSize = new System.Drawing.Size(956, 479);
+            this.ClientSize = new System.Drawing.Size(1275, 590);
             this.ControlBox = false;
             this.Controls.Add(this.pbSpinner);
             this.Controls.Add(this.pDebugLog);
@@ -1044,7 +1141,8 @@
             this.Controls.Add(this.pbMGCLogo);
             this.Controls.Add(this.lblCongrats);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(956, 479);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1275, 590);
             this.Name = "PlatformSelectionForm";
             this.Text = "Missing Games Checker";
             this.Load += new System.EventHandler(this.PlatformSelectionForm_Load);
