@@ -10,9 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -108,7 +106,6 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
-
         // Class to hold game data to display
         public class GameDisplayData
         {
@@ -186,9 +183,9 @@ namespace LBMissingGamesCheckerPlugin
 
 
         // Color Progress Bar Class
-        public class ProgressBarEx : System.Windows.Forms.ProgressBar
+        public class ProgressBarEx : ProgressBar
         {
-            private System.Windows.Forms.Timer marqueeTimer;
+            private Timer marqueeTimer;
             private int marqueePosition = 0;
             private const int marqueeSpeed = 20; // Speed of the marquee animation
             private const int marqueeSegmentWidth = 75; // Width of the marquee segment
@@ -202,7 +199,7 @@ namespace LBMissingGamesCheckerPlugin
 
             private void InitializeMarquee()
             {
-                marqueeTimer = new System.Windows.Forms.Timer
+                marqueeTimer = new Timer
                 {
                     Interval = 50 // Adjust the interval for smoother/faster animation
                 };
@@ -328,7 +325,6 @@ namespace LBMissingGamesCheckerPlugin
         private string lastSortedColumnMissingGames = string.Empty;
         private bool ascendingOwnedGames = true;
         private bool ascendingMissingGames = true;
-
         #endregion
 
         #region FormInit
@@ -340,10 +336,6 @@ namespace LBMissingGamesCheckerPlugin
             ownedGamesGridView.DataSource = ownedGamesBindingSource;
             missingGamesGridView.DataSource = missingGamesBindingSource;
             noPlatformGridView.DataSource = noPlatformBindingSource;
-
-            //ownedGamesGridView.SortCompare += DataGridView_SortCompare;
-            //missingGamesGridView.SortCompare += DataGridView_SortCompare;
-
 
             // Set elements visibility on load
             noPlatformGridView.Visible = false;
@@ -361,13 +353,14 @@ namespace LBMissingGamesCheckerPlugin
             platformDropdown.SelectedIndex = 0;
 
             // Populate column selection checkboxes
-            PopulateColumnSelection();
-                      
+            PopulateColumnSelection();                      
         }
 
         // Form Load //
         private void PlatformSelectionForm_Load(object sender, EventArgs e)
         {
+            EnableDoubleBuffering(ownedGamesGridView);
+            EnableDoubleBuffering(missingGamesGridView);
             ApplyTheme(this);
         }
         #endregion
@@ -394,8 +387,16 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+        private void EnableDoubleBuffering(DataGridView dgv)
+        {
+            typeof(DataGridView).InvokeMember("DoubleBuffered",
+                BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
+                null,
+                dgv,
+                new object[] { true });
+        }
+
         // Confirm button handler for dropdown platform selection
-        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             if (platformDropdown.SelectedItem != null && platformDropdown.SelectedIndex > 0)
@@ -428,7 +429,6 @@ namespace LBMissingGamesCheckerPlugin
                 finally
                 {
                     confirmButton.Enabled = true;
-                    //_semaphore.Release();
                 }
             }
             else
@@ -437,7 +437,6 @@ namespace LBMissingGamesCheckerPlugin
                 ssPlatformDropdownMsg.Visible = true;
             }
         }
-
         
         // GridView column click handlers
         private async void GridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -456,11 +455,6 @@ namespace LBMissingGamesCheckerPlugin
             if (columnName == "VideoUrl" || columnName == "WikipediaUrl") return;
           
             string gridViewName = gridView.Name;
-
-            // Format button columns to move url from Tag to Value
-            DebugTxt("Start of format cells...");
-            //var FormatCellsCompleted = await FormatCells(gridView);
-            //DebugTxt($"Formatting cells completed! {FormatCellsCompleted}");
 
             // Toggle sort order
             DebugTxt("Start of sort toggle...");
@@ -481,14 +475,8 @@ namespace LBMissingGamesCheckerPlugin
             }
             DebugTxt("Column Sorting completed!");
 
-            // Format button columns to move url from Value to Tag
-            DebugTxt("Start of format cells...");
-            //FormatCellsCompleted = await FormatCells(gridView);
-            //DebugTxt($"Formatting cells completed! {FormatCellsCompleted}");
-            DebugTxt("Format cells completed!");
             gridView.Refresh();
-            gridView.ResumeLayout();
-            
+            gridView.ResumeLayout();            
         }
 
         // GridView cell formatting
@@ -501,6 +489,7 @@ namespace LBMissingGamesCheckerPlugin
             }
             if (!(sender is DataGridView gridView)) return;
             DataGridViewCell currentCell = gridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
             if (gridView.Columns[e.ColumnIndex].HeaderText == "LaunchBoxDbId")
             {
                 if (e.Value != null)
@@ -513,7 +502,12 @@ namespace LBMissingGamesCheckerPlugin
                         {
                             currentCell.Tag = $"https://gamesdb.launchbox-app.com/games/dbid/{stringValue.Trim()}";
                             e.Value = $"LaunchBoxDB #{stringValue}";
-                            currentCell.ToolTipText = e.Value.ToString();
+                            currentCell.ToolTipText = e.Value.ToString();                            
+                            e.FormattingApplied = true;
+                        }
+                        else
+                        {
+                            e.CellStyle.BackColor = Color.FromArgb(54, 57, 63);
                             e.FormattingApplied = true;
                         }
                     }
@@ -539,6 +533,11 @@ namespace LBMissingGamesCheckerPlugin
                             e.Value = "YouTube";
                             e.FormattingApplied = true;
                         }
+                        else
+                        {
+                            e.CellStyle.BackColor = Color.FromArgb(54, 57, 63);
+                            e.FormattingApplied = true;
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -562,6 +561,11 @@ namespace LBMissingGamesCheckerPlugin
                             e.Value = "Wiki";
                             e.FormattingApplied = true;
                         }
+                        else
+                        {
+                            e.CellStyle.BackColor = Color.FromArgb(54, 57, 63);
+                            e.FormattingApplied = true;
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -571,7 +575,45 @@ namespace LBMissingGamesCheckerPlugin
 
                 }
             }
+        }       
+
+        private void GridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action<object, DataGridViewCellEventArgs>(GridView_CellMouseEnter), new object[] { sender, e });
+                return;
+            }
+            if (!(sender is DataGridView gridView)) return;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && gridView.Columns[e.ColumnIndex] is DataGridViewTextBoxColumn)
+            {
+                DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)gridView.Rows?[e.RowIndex].Cells?[e.ColumnIndex];
+                if (!string.IsNullOrEmpty(cell.Value.ToString()))
+                {
+                    cell.Style.ForeColor = Color.FromArgb(255, 191, 0);
+                }
+            }
         }
+
+        private void GridView_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action<object, DataGridViewCellEventArgs>(GridView_CellMouseEnter), new object[] { sender, e });
+                return;
+            }
+            if (!(sender is DataGridView gridView)) return;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && gridView.Columns[e.ColumnIndex] is DataGridViewTextBoxColumn)
+            {
+                DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)gridView.Rows?[e.RowIndex].Cells?[e.ColumnIndex];
+                if (!string.IsNullOrEmpty(cell.Value.ToString()))
+                {
+                    cell.Style.ForeColor = Color.White;
+                }
+            }
+        }    
 
         // GridView cell click handler
         private void GridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -778,8 +820,7 @@ namespace LBMissingGamesCheckerPlugin
                 return;
             }
             try
-            {
-                
+            {                
                 DebugTxt($"Filter by Released: {filterReleasedOnly}");
 
                 // Clear lists of populated data
@@ -826,8 +867,6 @@ namespace LBMissingGamesCheckerPlugin
                     });
                     DebugTxt($"ownedGames Count: {ownedGamesCount}");
                 }
-                
-
 
                 if (filterReleasedOnly)
                 {
@@ -837,7 +876,6 @@ namespace LBMissingGamesCheckerPlugin
                     });
                     DebugTxt("Filtering ownedGames completed!");
                 }
-
 
                 // Convert owned games to a HashSet for fast lookups
                 DebugTxt("Creating HashSet...");
@@ -980,7 +1018,6 @@ namespace LBMissingGamesCheckerPlugin
                 DebugTxt("Clearing data containers completed!");
             }
 
-
             try
             {
                 DebugTxt("Loading ownedGamesDisplayData...");
@@ -1062,8 +1099,6 @@ namespace LBMissingGamesCheckerPlugin
                         return;
                     }
                     DebugTxt("Loading DisplayData completed!");
-                    //DebugTxt($"First Missing Game LBID: {missingGamesDisplayData.FirstOrDefault()?.LaunchBoxDbId}");
-                    //DebugTxt($"First No Platform Error LBID: {noPlatformErrorDisplayData.FirstOrDefault()?.LaunchBoxDbId}");
                 }
                 catch(Exception ex)
                 {
@@ -1090,16 +1125,6 @@ namespace LBMissingGamesCheckerPlugin
                         btnOwnedCSV.Enabled = true;
                     }
                     DebugTxt("Binding ownedGamesBindingSource completed!");
-
-                    DebugTxt("Formatting ownedGamesGridView...");
-                    //var FormatCellsCompleted = await FormatCells(ownedGamesGridView);
-                    //DebugTxt($"Formatting ownedGamesGridView completed! {FormatCellsCompleted}");
-                    //var FormatCellsCompleted = await Task.Run(() =>
-                    //{
-                    //    FormatCells(ownedGamesGridView);
-                    //});
-
-
                 }
                 catch (Exception ex)
                 {
@@ -1128,9 +1153,7 @@ namespace LBMissingGamesCheckerPlugin
                             noPlatformGridView.Visible = false;
                             missingGamesBindingSource.DataSource = missingGamesDisplayData;
                         }
-                        DebugTxt("Formatting missingGamesGridView...");
-                        //var FormatCellsCompleted = await FormatCells(missingGamesGridView);
-                        //DebugTxt($"Formatting missingGamesGridView completed! {FormatCellsCompleted}");
+
                         if (this.InvokeRequired)
                         {
                             this.Invoke(new Action(() =>
@@ -1346,8 +1369,7 @@ namespace LBMissingGamesCheckerPlugin
             catch (Exception ex)
             {
                 DebugTxt($"An Exception occured: {ex.Message}");
-            }
-            
+            }            
 
             // If metadata.xml found, add to metadataFilePath, else throw to the try and display error
             if (fileFound)
@@ -1574,72 +1596,43 @@ namespace LBMissingGamesCheckerPlugin
         }
 
         // GridView column sort method
-        private void GridView_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
-        {
-            if (this.InvokeRequired)
-            {
-                this.BeginInvoke(new Action<object, DataGridViewSortCompareEventArgs>(GridView_SortCompare), new object[] { sender, e });
-                return;
-            }
-            if (!(sender is DataGridView gridView)) return;
-            gridView.SuspendLayout();
-            try
-            {
-                if (gridView != null && e.Column.HeaderText == "LaunchBoxDbId")
-                {
-                    e.SortResult = System.String.Compare(
-                        e.CellValue1.ToString().Split('#')[1], e.CellValue2.ToString().Split('#')[1]);
-                }
-                else if (gridView != null)
-                {
-                    e.SortResult = System.String.Compare(
-                        e.CellValue1.ToString(), e.CellValue2.ToString());
-                }
-                e.Handled = true;
-            }
-            catch (Exception ex) 
-            { 
-                LogException(ex);
-            }
-            finally
-            {
-                gridView.ResumeLayout();
-            }
-        }
-
         private BindingList<GameDisplayData> SortGames(BindingList<GameDisplayData> games, string columnName, DataGridView dgv)
         {
             DebugTxt("Determining which gridview to sort...");
             var ascending = dgv.Name.Equals("ownedGamesGridView") ? ascendingOwnedGames : ascendingMissingGames;
             DebugTxt("Sorting list...");
             List<GameDisplayData> sortedList;
-            if (columnName == "LaunchBoxDbId")
+            if (columnName == "LaunchBoxDbId" || columnName == "MaxPlayers" || columnName == "CommunityStarRatingTotalVotes")
             {
-                // Special case for LaunchBoxDbId to sort by numeric value
+                // Special case for numeric columns to sort by numeric value
                 sortedList = ascending
-                    ? games.OrderBy(x => ExtractNumericValue(x.LaunchBoxDbId)).ToList()
-                    : games.OrderByDescending(x => ExtractNumericValue(x.LaunchBoxDbId)).ToList();
+                    ? games.OrderBy(x => int.TryParse(x.GetType().GetProperty(columnName).GetValue(x, null)?.ToString(), out int num) ? num : int.MaxValue).ToList()
+                    : games.OrderByDescending(x => int.TryParse(x.GetType().GetProperty(columnName).GetValue(x, null)?.ToString(), out int num) ? num : int.MinValue).ToList();
+            }
+            else if (columnName == "ReleaseDate")
+            {
+                // Special case for ReleaseDate to sort by date value
+                sortedList = ascending
+                    ? games.OrderBy(x => DateTime.TryParse(x.ReleaseDate, out DateTime date) ? date : DateTime.MaxValue).ToList()
+                    : games.OrderByDescending(x => DateTime.TryParse(x.ReleaseDate, out DateTime date) ? date : DateTime.MinValue).ToList();
+            }
+            else if (columnName == "CommunityStarRating")
+            {
+                // Special case for CommunityStarRating to sort by float value
+                sortedList = ascending
+                    ? games.OrderBy(x => float.TryParse(x.CommunityStarRating, out float num) ? num : float.MaxValue).ToList()
+                    : games.OrderByDescending(x => float.TryParse(x.CommunityStarRating, out float num) ? num : float.MinValue).ToList();
             }
             else
             {
                 // General case for other columns
+                var propertyInfo = typeof(GameDisplayData).GetProperty(columnName);
                 sortedList = ascending
-                    ? games.OrderBy(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList()
-                    : games.OrderByDescending(x => x.GetType().GetProperty(columnName).GetValue(x, null)).ToList();
+                    ? games.OrderBy(x => propertyInfo.GetValue(x, null)).ToList()
+                    : games.OrderByDescending(x => propertyInfo.GetValue(x, null)).ToList();
             }
             DebugTxt("Sorting list completed!");
             return new BindingList<GameDisplayData>(sortedList);
-        }
-
-        private int ExtractNumericValue(string launchBoxDbId)
-        {
-            // Assuming the format is "LaunchBoxId #1234"
-            var parts = launchBoxDbId.Split('#');
-            if (parts.Length > 1 && int.TryParse(parts[1], out int numericValue))
-            {
-                return numericValue;
-            }
-            return 0; // Default value if parsing fails
         }
 
         // Column sort toggle method
@@ -2003,7 +1996,5 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
         #endregion
-
-        
     }
 }

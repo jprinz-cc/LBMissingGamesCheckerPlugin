@@ -62,14 +62,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.platformDropdown = new System.Windows.Forms.ComboBox();
             this.confirmButton = new System.Windows.Forms.Button();
             this.ownedGamesGridView = new System.Windows.Forms.DataGridView();
@@ -222,33 +228,36 @@
             this.VideoUrlOwned,
             this.WikipediaUrlOwned});
             this.ownedGamesGridView.DataSource = this.ownedGamesBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle5;
             this.ownedGamesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ownedGamesGridView.EnableHeadersVisualStyles = false;
             this.ownedGamesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
             this.ownedGamesGridView.Location = new System.Drawing.Point(329, 112);
             this.ownedGamesGridView.Margin = new System.Windows.Forms.Padding(4);
             this.ownedGamesGridView.Name = "ownedGamesGridView";
+            this.ownedGamesGridView.ReadOnly = true;
             this.ownedGamesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.ownedGamesGridView.RowHeadersWidth = 51;
             this.ownedGamesGridView.ShowEditingIcon = false;
             this.ownedGamesGridView.Size = new System.Drawing.Size(931, 185);
             this.ownedGamesGridView.TabIndex = 2;
             this.ownedGamesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.ownedGamesGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridView_CellFormatting);
-            this.ownedGamesGridView.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.GridView_SortCompare);
+            this.ownedGamesGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellMouseEnter);
+            this.ownedGamesGridView.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellMouseLeave);
+            this.ownedGamesGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_ColumnHeaderMouseClick);
             // 
             // TitleOwned
             // 
@@ -362,10 +371,19 @@
             // 
             this.LaunchBoxDbIdOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.LaunchBoxDbIdOwned.DataPropertyName = "LaunchBoxDbId";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.LaunchBoxDbIdOwned.DefaultCellStyle = dataGridViewCellStyle2;
             this.LaunchBoxDbIdOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.LaunchBoxDbIdOwned.HeaderText = "LaunchBoxDbId";
             this.LaunchBoxDbIdOwned.MinimumWidth = 6;
             this.LaunchBoxDbIdOwned.Name = "LaunchBoxDbIdOwned";
+            this.LaunchBoxDbIdOwned.ReadOnly = true;
             this.LaunchBoxDbIdOwned.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.LaunchBoxDbIdOwned.Text = "";
             this.LaunchBoxDbIdOwned.Width = 136;
@@ -374,10 +392,19 @@
             // 
             this.VideoUrlOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.VideoUrlOwned.DataPropertyName = "VideoUrl";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.VideoUrlOwned.DefaultCellStyle = dataGridViewCellStyle3;
             this.VideoUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.VideoUrlOwned.HeaderText = "VideoUrl";
             this.VideoUrlOwned.MinimumWidth = 6;
             this.VideoUrlOwned.Name = "VideoUrlOwned";
+            this.VideoUrlOwned.ReadOnly = true;
             this.VideoUrlOwned.Text = "";
             this.VideoUrlOwned.Width = 68;
             // 
@@ -385,10 +412,19 @@
             // 
             this.WikipediaUrlOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.WikipediaUrlOwned.DataPropertyName = "WikipediaUrl";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.WikipediaUrlOwned.DefaultCellStyle = dataGridViewCellStyle4;
             this.WikipediaUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.WikipediaUrlOwned.HeaderText = "WikipediaUrl";
             this.WikipediaUrlOwned.MinimumWidth = 6;
             this.WikipediaUrlOwned.Name = "WikipediaUrlOwned";
+            this.WikipediaUrlOwned.ReadOnly = true;
             this.WikipediaUrlOwned.Text = "";
             this.WikipediaUrlOwned.Width = 93;
             // 
@@ -402,12 +438,12 @@
             this.missingGamesGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.missingGamesGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.missingGamesGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.missingGamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.missingGamesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TitleMissing,
@@ -426,14 +462,14 @@
             this.VideoUrlMissing,
             this.WikipediaUrlMissing});
             this.missingGamesGridView.DataSource = this.missingGamesBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle11;
             this.missingGamesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.missingGamesGridView.EnableHeadersVisualStyles = false;
             this.missingGamesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
@@ -442,17 +478,19 @@
             this.missingGamesGridView.Name = "missingGamesGridView";
             this.missingGamesGridView.ReadOnly = true;
             this.missingGamesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.missingGamesGridView.RowHeadersWidth = 51;
             this.missingGamesGridView.Size = new System.Drawing.Size(931, 231);
             this.missingGamesGridView.TabIndex = 3;
             this.missingGamesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.missingGamesGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridView_CellFormatting);
-            this.missingGamesGridView.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.GridView_SortCompare);
+            this.missingGamesGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellMouseEnter);
+            this.missingGamesGridView.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellMouseLeave);
+            this.missingGamesGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_ColumnHeaderMouseClick);
             // 
             // TitleMissing
             // 
@@ -566,6 +604,13 @@
             // 
             this.LaunchBoxDbIdMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.LaunchBoxDbIdMissing.DataPropertyName = "LaunchBoxDbId";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.LaunchBoxDbIdMissing.DefaultCellStyle = dataGridViewCellStyle8;
             this.LaunchBoxDbIdMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.LaunchBoxDbIdMissing.HeaderText = "LaunchBoxDbId";
             this.LaunchBoxDbIdMissing.MinimumWidth = 6;
@@ -579,6 +624,13 @@
             // 
             this.VideoUrlMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.VideoUrlMissing.DataPropertyName = "VideoUrl";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.VideoUrlMissing.DefaultCellStyle = dataGridViewCellStyle9;
             this.VideoUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.VideoUrlMissing.HeaderText = "VideoUrl";
             this.VideoUrlMissing.MinimumWidth = 6;
@@ -591,6 +643,13 @@
             // 
             this.WikipediaUrlMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.WikipediaUrlMissing.DataPropertyName = "WikipediaUrl";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.WikipediaUrlMissing.DefaultCellStyle = dataGridViewCellStyle10;
             this.WikipediaUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.WikipediaUrlMissing.HeaderText = "WikipediaUrl";
             this.WikipediaUrlMissing.MinimumWidth = 6;
@@ -696,11 +755,11 @@
             this.gbOptional.Controls.Add(this.lblColumnSelection);
             this.gbOptional.Controls.Add(this.chkReleasedOnly);
             this.gbOptional.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.gbOptional.Location = new System.Drawing.Point(28, 143);
+            this.gbOptional.Location = new System.Drawing.Point(28, 147);
             this.gbOptional.Margin = new System.Windows.Forms.Padding(4, 4, 4, 0);
             this.gbOptional.Name = "gbOptional";
             this.gbOptional.Padding = new System.Windows.Forms.Padding(4);
-            this.gbOptional.Size = new System.Drawing.Size(272, 343);
+            this.gbOptional.Size = new System.Drawing.Size(272, 336);
             this.gbOptional.TabIndex = 11;
             this.gbOptional.TabStop = false;
             this.gbOptional.Text = "Optional Items";
@@ -710,8 +769,8 @@
             this.clbColumnSelection.CheckOnClick = true;
             this.clbColumnSelection.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.clbColumnSelection.FormattingEnabled = true;
-            this.clbColumnSelection.Location = new System.Drawing.Point(4, 80);
-            this.clbColumnSelection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 2);
+            this.clbColumnSelection.Location = new System.Drawing.Point(4, 73);
+            this.clbColumnSelection.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
             this.clbColumnSelection.Name = "clbColumnSelection";
             this.clbColumnSelection.Size = new System.Drawing.Size(264, 259);
             this.clbColumnSelection.TabIndex = 1;
@@ -721,7 +780,7 @@
             // 
             this.lblColumnSelection.AutoSize = true;
             this.lblColumnSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.lblColumnSelection.Location = new System.Drawing.Point(8, 58);
+            this.lblColumnSelection.Location = new System.Drawing.Point(8, 62);
             this.lblColumnSelection.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnSelection.Name = "lblColumnSelection";
             this.lblColumnSelection.Size = new System.Drawing.Size(111, 16);
@@ -1008,27 +1067,27 @@
             this.noPlatformGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.noPlatformGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.noPlatformGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.noPlatformGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.noPlatformGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.errorNoPlatform,
             this.msgNoPlatform,
             this.errorLBDbId});
             this.noPlatformGridView.DataSource = this.noPlatformBindingSource;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle14;
             this.noPlatformGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.noPlatformGridView.EnableHeadersVisualStyles = false;
             this.noPlatformGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
@@ -1037,11 +1096,11 @@
             this.noPlatformGridView.Name = "noPlatformGridView";
             this.noPlatformGridView.ReadOnly = true;
             this.noPlatformGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.noPlatformGridView.RowHeadersWidth = 51;
             this.noPlatformGridView.Size = new System.Drawing.Size(931, 231);
             this.noPlatformGridView.TabIndex = 25;
@@ -1084,10 +1143,10 @@
             this.pbSpinner.BackColor = System.Drawing.Color.Transparent;
             this.pbSpinner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbSpinner.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_spinner;
-            this.pbSpinner.Location = new System.Drawing.Point(613, 382);
+            this.pbSpinner.Location = new System.Drawing.Point(593, 363);
             this.pbSpinner.Margin = new System.Windows.Forms.Padding(4);
             this.pbSpinner.Name = "pbSpinner";
-            this.pbSpinner.Size = new System.Drawing.Size(320, 161);
+            this.pbSpinner.Size = new System.Drawing.Size(403, 191);
             this.pbSpinner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbSpinner.TabIndex = 26;
             this.pbSpinner.TabStop = false;
@@ -1143,6 +1202,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1275, 590);
             this.Name = "PlatformSelectionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Missing Games Checker";
             this.Load += new System.EventHandler(this.PlatformSelectionForm_Load);
             this.Shown += new System.EventHandler(this.PlatformSelectionForm_Shown);
@@ -1217,21 +1277,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn errorNoPlatform;
         private System.Windows.Forms.DataGridViewTextBoxColumn msgNoPlatform;
         private System.Windows.Forms.DataGridViewTextBoxColumn errorLBDbId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TitleMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DeveloperMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PublisherMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RegionMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReleaseDateMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CommunityStarRatingMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CommunityStarRatingTotalVotesMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PlatformMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReleaseTypeMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GenresMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AlternateNamesMissing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxPlayersMissing;
-        private System.Windows.Forms.DataGridViewButtonColumn LaunchBoxDbIdMissing;
-        private System.Windows.Forms.DataGridViewButtonColumn VideoUrlMissing;
-        private System.Windows.Forms.DataGridViewButtonColumn WikipediaUrlMissing;
         private System.Windows.Forms.DataGridViewTextBoxColumn TitleOwned;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeveloperOwned;
         private System.Windows.Forms.DataGridViewTextBoxColumn PublisherOwned;
@@ -1247,5 +1292,20 @@
         private System.Windows.Forms.DataGridViewButtonColumn LaunchBoxDbIdOwned;
         private System.Windows.Forms.DataGridViewButtonColumn VideoUrlOwned;
         private System.Windows.Forms.DataGridViewButtonColumn WikipediaUrlOwned;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TitleMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeveloperMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PublisherMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RegionMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReleaseDateMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommunityStarRatingMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommunityStarRatingTotalVotesMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PlatformMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReleaseTypeMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GenresMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AlternateNamesMissing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxPlayersMissing;
+        private System.Windows.Forms.DataGridViewButtonColumn LaunchBoxDbIdMissing;
+        private System.Windows.Forms.DataGridViewButtonColumn VideoUrlMissing;
+        private System.Windows.Forms.DataGridViewButtonColumn WikipediaUrlMissing;
     }
 }
