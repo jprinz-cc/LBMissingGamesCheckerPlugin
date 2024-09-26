@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -185,7 +186,7 @@ namespace LBMissingGamesCheckerPlugin
         // Color Progress Bar Class
         public class ProgressBarEx : ProgressBar
         {
-            private Timer marqueeTimer;
+            private System.Windows.Forms.Timer marqueeTimer;
             private int marqueePosition = 0;
             private const int marqueeSpeed = 20; // Speed of the marquee animation
             private const int marqueeSegmentWidth = 75; // Width of the marquee segment
@@ -199,7 +200,7 @@ namespace LBMissingGamesCheckerPlugin
 
             private void InitializeMarquee()
             {
-                marqueeTimer = new Timer
+                marqueeTimer = new System.Windows.Forms.Timer
                 {
                     Interval = 50 // Adjust the interval for smoother/faster animation
                 };
@@ -325,6 +326,8 @@ namespace LBMissingGamesCheckerPlugin
         private string lastSortedColumnMissingGames = string.Empty;
         private bool ascendingOwnedGames = true;
         private bool ascendingMissingGames = true;
+
+        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
         #endregion
 
         #region FormInit
@@ -332,18 +335,22 @@ namespace LBMissingGamesCheckerPlugin
         {
             InitializeComponent();
 
+            Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
+
             // Bind BindingSources to GridViews
             ownedGamesGridView.DataSource = ownedGamesBindingSource;
             missingGamesGridView.DataSource = missingGamesBindingSource;
             noPlatformGridView.DataSource = noPlatformBindingSource;
 
             // Set elements visibility on load
+            lblScrapeAs.Visible = false;
             noPlatformGridView.Visible = false;
             ssPlatformDropdownMsg.Visible = false;
             DebugTxt(false);
             pbSpinner.Visible = true;
             pbSpinner.BringToFront();
             lblCongrats.Visible = false;
+            pbCongrats.Visible = false;
 
             // Populate dropdown with user platforms
             foreach (var platform in platforms)
@@ -416,6 +423,16 @@ namespace LBMissingGamesCheckerPlugin
                     // Validate ScrapeAs value
                     var isScrapeAs = string.IsNullOrEmpty(SelectedPlatform.ScrapeAs) ? "NullOrEmpty" : SelectedPlatform.ScrapeAs;
                     DebugTxt($"Selected Platform ScrapeAs: {isScrapeAs}");
+                    if (isScrapeAs != "NullOrEmpty")
+                    {
+                        lblScrapeAs.Text = $"Searching As: {isScrapeAs}";
+                        lblScrapeAs.Visible = true;
+                    }
+                    else
+                    {
+                        lblScrapeAs.Text = $"Searching As: ";
+                        lblScrapeAs.Visible = false;
+                    }
                     var platformToCheck = string.IsNullOrEmpty(SelectedPlatform.ScrapeAs) ? SelectedPlatform.Name : SelectedPlatform.ScrapeAs;
                     var platformFound = xmlPlatforms.Any(platform => platform.Name == platformToCheck);
                     DebugTxt($"Platform Found: {platformFound}");
@@ -779,6 +796,11 @@ namespace LBMissingGamesCheckerPlugin
                 sb.AppendLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); // Add the current date/time
                 tbDebug.Text = sb.ToString();
             }
+        }
+
+        private void OnApplicationExit(object sender, EventArgs e)
+        {
+            _cancellationTokenSource.Cancel();
         }
         #endregion
 
@@ -1162,6 +1184,7 @@ namespace LBMissingGamesCheckerPlugin
                                 btnMissingCSV.Enabled = true;
                                 DebugTxt($"missingGames.Count: {missingGamesDisplayData.Count}");
                                 lblCongrats.Visible = false;
+                                pbCongrats.Visible = false;
                             }));
                         }
                         else
@@ -1170,6 +1193,7 @@ namespace LBMissingGamesCheckerPlugin
                             btnMissingCSV.Enabled = true;
                             DebugTxt($"missingGames.Count: {missingGamesDisplayData.Count}");
                             lblCongrats.Visible = false;
+                            pbCongrats.Visible = false;
                         }                        
                         DebugTxt("Binding missingGamesBindingSource completed!");
                     }
@@ -1185,6 +1209,7 @@ namespace LBMissingGamesCheckerPlugin
                                 noPlatformBindingSource.DataSource = noPlatformErrorDisplayData;
                                 lblMissingGamesCount.Text = "0";
                                 lblCongrats.Visible = false;
+                                pbCongrats.Visible = false;
                             }));
                         }
                         else
@@ -1195,6 +1220,7 @@ namespace LBMissingGamesCheckerPlugin
                             noPlatformBindingSource.DataSource = noPlatformErrorDisplayData;
                             lblMissingGamesCount.Text = "0";
                             lblCongrats.Visible = false;
+                            pbCongrats.Visible = false;
                         }
                         DebugTxt("Binding noPlatformBindingSource completed!");
                     }
@@ -1208,6 +1234,8 @@ namespace LBMissingGamesCheckerPlugin
                                 missingGamesGridView.Visible = true;
                                 noPlatformGridView.Visible = false;
                                 lblCongrats.Visible = true;
+                                pbCongrats.Visible = true;
+                                pbCongrats.BringToFront();
                             }));
                         }
                         else
@@ -1216,6 +1244,8 @@ namespace LBMissingGamesCheckerPlugin
                             missingGamesGridView.Visible = true;
                             noPlatformGridView.Visible = false;
                             lblCongrats.Visible = true;
+                            pbCongrats.Visible = true;
+                            pbCongrats.BringToFront();
                         }                        
                     }
                     else if (missingGamesDisplayData == null && NoPlatformErrorDisplayData == null || missingGamesDisplayData != null && !missingGamesDisplayData.Any() && ownedGamesDisplayData != null && !ownedGamesDisplayData.Any())
@@ -1227,6 +1257,7 @@ namespace LBMissingGamesCheckerPlugin
                                 DebugTxt("Neither missingGames/noPlatform binding occured!");
                                 DebugTxt(true);
                                 lblCongrats.Visible = false;
+                                pbCongrats.Visible = false;
                             }));
                         }
                         else
@@ -1234,6 +1265,7 @@ namespace LBMissingGamesCheckerPlugin
                             DebugTxt("Neither missingGames/noPlatform binding occured!");
                             DebugTxt(true);
                             lblCongrats.Visible = false;
+                            pbCongrats.Visible = false;
                         }                        
                     }
                 }
@@ -1297,9 +1329,62 @@ namespace LBMissingGamesCheckerPlugin
         private async void FindMetadataFile()
         {
             // Flag to track if the file was found
-            bool fileFound = false; 
+            var fileFound = false;
             // Get files from allowed directories
             var files = new List<string>();
+
+            try
+            {
+                fileFound = await Task.Run(() => ProcessingAppDirectories(_cancellationTokenSource.Token, files));
+            }
+            catch (OperationCanceledException)
+            {
+                _cancellationTokenSource.Cancel();
+            }                      
+
+            // If metadata.xml found, add to metadataFilePath, else throw to the try and display error
+            if (fileFound)
+            {
+                metadataFilePath = files.Any() ? files[0] : metadataFilePath;
+                DebugTxt($"metadataFilePath: {metadataFilePath}");
+                UpdateStatus("success", "Metadata Found!");
+                StopProgressBar();
+                await Task.Delay(3500);
+                StartProgressBar();
+                // Process the metadata.xml
+                UpdateStatus("processing", "Processing Metadata...");
+                try
+                {
+                    await Task.Run(() =>
+                    {
+                        GetGamesFromMetadata(_cancellationTokenSource.Token);
+                    });
+                }
+                catch (OperationCanceledException)
+                {
+                    _cancellationTokenSource.Cancel();
+                }                
+            }
+            else
+            {
+                DebugTxt($"metadata File Not Found! Path: {metadataFilePath}");
+                pbSpinner.Visible = false;
+                pbMetadataLoading.Visible = false;
+                UpdateStatus("error", "metadata File Not Found!");
+                DebugTxt(true);
+                // throw new Exception("Metadata file not found.");
+            }
+        }
+
+        private async Task<bool> ProcessingAppDirectories(CancellationToken token, List<string> files)
+        {
+            var fileFound = false;
+            // Check for cancellation
+            if (token.IsCancellationRequested)
+            {
+                token.ThrowIfCancellationRequested();
+                return false;
+            }
 
             try
             {
@@ -1308,13 +1393,14 @@ namespace LBMissingGamesCheckerPlugin
                 string launchboxRootFolder = currentFolder.Replace("\\Core", ""); // Remove the "\Core" part
                 metadataFilePath = Path.Combine(launchboxRootFolder, "Metadata", "metadata.xml");
                 DebugTxt($"Looking for Metadata at {metadataFilePath}...");
-                fileFound = await Task.Run(() => 
+                fileFound = await Task.Run(() =>
                 {
                     return File.Exists(metadataFilePath);
                 });
                 if (fileFound)
                 {
                     DebugTxt($"Metadata found at {metadataFilePath}!");
+                    return true;
                 }
                 else
                 {
@@ -1348,8 +1434,8 @@ namespace LBMissingGamesCheckerPlugin
                         .ToList();
                     });
 
-                    await Task.Run(() => {
-                        foreach (var dir in allDirectories)
+                    fileFound = await Task.Run(() => {
+                        foreach (string dir in allDirectories)
                         {
                             // Get all files from the current directory in a case-insensitive manner
                             files.AddRange(Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly)
@@ -1359,48 +1445,29 @@ namespace LBMissingGamesCheckerPlugin
                             // Break if we found the metadata file
                             if (files.Count > 0)
                             {
-                                fileFound = true;
-                                break;
+                                return true;
                             }
                         }
+                        return false;
                     });
-                }                
+                }
+                return true;
             }
             catch (Exception ex)
             {
                 DebugTxt($"An Exception occured: {ex.Message}");
-            }            
-
-            // If metadata.xml found, add to metadataFilePath, else throw to the try and display error
-            if (fileFound)
-            {
-                metadataFilePath = files.Any() ? files[0] : metadataFilePath;
-                DebugTxt($"metadataFilePath: {metadataFilePath}");
-                UpdateStatus("success", "Metadata Found!");
-                StopProgressBar();
-                await Task.Delay(3500);
-                StartProgressBar();
-                // Process the metadata.xml
-                UpdateStatus("processing", "Processing Metadata...");
-                await Task.Run(() =>
-                {
-                    GetGamesFromMetadata();
-                });
-            }
-            else
-            {
-                DebugTxt($"metadata File Not Found! Path: {metadataFilePath}");
-                pbSpinner.Visible = false;
-                pbMetadataLoading.Visible = false;
-                UpdateStatus("error", "metadata File Not Found!");
-                DebugTxt(true);
-                // throw new Exception("Metadata file not found.");
+                return false;
             }
         }
 
         // Get the platform games from the metadata.xml file
-        private async void GetGamesFromMetadata()
+        private async void GetGamesFromMetadata(CancellationToken token)
         {
+            // Check for cancellation
+            if (token.IsCancellationRequested)
+            {
+                token.ThrowIfCancellationRequested();
+            }
             bool xmlReadCompleted = false;
             // Debugging
             int gameCount = 0;
@@ -1996,5 +2063,10 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
         #endregion
+
+        private void PlatformSelectionForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _cancellationTokenSource.Cancel();
+        }
     }
 }
