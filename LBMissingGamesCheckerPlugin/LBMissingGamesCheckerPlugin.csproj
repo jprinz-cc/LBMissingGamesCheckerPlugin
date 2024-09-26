@@ -86,14 +86,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Tango_style_Wikipedia_Icon.svg.png" />
+    <None Include="Resources\wiki.png" />
     <None Include="Resources\youtube.png" />
     <None Include="Resources\mgc_spinner.gif" />
-    <None Include="Resources\output-onlinepngtools %282%29.png" />
-    <None Include="Resources\output-onlinepngtools.png" />
-    <None Include="Resources\pngwing.com.png" />
+    <None Include="Resources\bug.png" />
+    <None Include="Resources\alert.png" />
     <None Include="Resources\checkmark-128.png" />
-    <None Include="Resources\handle.png" />
     <Content Include="Resources\mgc-header.png" />
     <Content Include="Resources\mgc-logo.png" />
     <None Include="Resources\x-mark-128.png" />
