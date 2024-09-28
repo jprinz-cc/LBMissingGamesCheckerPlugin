@@ -93,6 +93,8 @@
     <None Include="Resources\alert.png" />
     <None Include="Resources\checkmark-128.png" />
     <None Include="Resources\congrats.gif" />
+    <None Include="Resources\filterWhite.png" />
+    <None Include="Resources\filter.png" />
     <Content Include="Resources\mgc-header.png" />
     <Content Include="Resources\mgc-logo.png" />
     <None Include="Resources\x-mark-128.png" />

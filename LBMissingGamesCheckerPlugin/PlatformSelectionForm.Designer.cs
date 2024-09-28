@@ -61,22 +61,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle97 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle98 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle99 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle100 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlatformSelectionForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
             this.platformDropdown = new System.Windows.Forms.ComboBox();
             this.confirmButton = new System.Windows.Forms.Button();
             this.ownedGamesGridView = new System.Windows.Forms.DataGridView();
@@ -141,18 +141,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCloseDebug = new System.Windows.Forms.Button();
             this.pbDebugHeader = new System.Windows.Forms.PictureBox();
-            this.pbDebugBtn = new System.Windows.Forms.PictureBox();
-            this.pbMGCHeader = new System.Windows.Forms.PictureBox();
-            this.pbMGCLogo = new System.Windows.Forms.PictureBox();
             this.noPlatformGridView = new System.Windows.Forms.DataGridView();
             this.errorNoPlatform = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msgNoPlatform = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorLBDbId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noPlatformBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pbSpinner = new System.Windows.Forms.PictureBox();
             this.lblCongrats = new System.Windows.Forms.Label();
             this.lblScrapeAs = new System.Windows.Forms.Label();
+            this.gbFilterOptions = new System.Windows.Forms.GroupBox();
+            this.pbCloseFilter = new System.Windows.Forms.PictureBox();
+            this.btnFilterReset = new System.Windows.Forms.Button();
+            this.clbFilterOptions = new System.Windows.Forms.CheckedListBox();
+            this.btnApplyFilters = new System.Windows.Forms.Button();
             this.pbCongrats = new System.Windows.Forms.PictureBox();
+            this.pbSpinner = new System.Windows.Forms.PictureBox();
+            this.pbDebugBtn = new System.Windows.Forms.PictureBox();
+            this.pbMGCHeader = new System.Windows.Forms.PictureBox();
+            this.pbMGCLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ownedGamesGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ownedGamesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.missingGamesGridView)).BeginInit();
@@ -162,13 +167,15 @@
             this.ssPlatformDropdownMsg.SuspendLayout();
             this.pDebugLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbDebugHeader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noPlatformGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noPlatformBindingSource)).BeginInit();
+            this.gbFilterOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCloseFilter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCongrats)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSpinner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDebugBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMGCHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMGCLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noPlatformGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noPlatformBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSpinner)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCongrats)).BeginInit();
             this.SuspendLayout();
             // 
             // platformDropdown
@@ -178,19 +185,17 @@
             this.platformDropdown.FormattingEnabled = true;
             this.platformDropdown.Items.AddRange(new object[] {
             "Select a Platform"});
-            this.platformDropdown.Location = new System.Drawing.Point(21, 74);
-            this.platformDropdown.Margin = new System.Windows.Forms.Padding(4);
+            this.platformDropdown.Location = new System.Drawing.Point(16, 60);
             this.platformDropdown.Name = "platformDropdown";
-            this.platformDropdown.Size = new System.Drawing.Size(292, 24);
+            this.platformDropdown.Size = new System.Drawing.Size(220, 21);
             this.platformDropdown.TabIndex = 0;
             // 
             // confirmButton
             // 
             this.confirmButton.Enabled = false;
-            this.confirmButton.Location = new System.Drawing.Point(175, 107);
-            this.confirmButton.Margin = new System.Windows.Forms.Padding(4);
+            this.confirmButton.Location = new System.Drawing.Point(131, 87);
             this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(139, 28);
+            this.confirmButton.Size = new System.Drawing.Size(104, 23);
             this.confirmButton.TabIndex = 1;
             this.confirmButton.Text = "Confirm Selection";
             this.confirmButton.UseVisualStyleBackColor = true;
@@ -207,13 +212,13 @@
             this.ownedGamesGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ownedGamesGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.ownedGamesGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle46.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle46.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ownedGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle91.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle91.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle91.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle91.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle91.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ownedGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle91;
             this.ownedGamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ownedGamesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TitleOwned,
@@ -232,30 +237,29 @@
             this.VideoUrlOwned,
             this.WikipediaUrlOwned});
             this.ownedGamesGridView.DataSource = this.ownedGamesBindingSource;
-            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle50.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle50.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle50.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle50.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle50;
+            dataGridViewCellStyle95.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle95.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle95.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle95.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle95.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle95.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle95.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle95;
             this.ownedGamesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ownedGamesGridView.EnableHeadersVisualStyles = false;
             this.ownedGamesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            this.ownedGamesGridView.Location = new System.Drawing.Point(329, 112);
-            this.ownedGamesGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.ownedGamesGridView.Location = new System.Drawing.Point(247, 91);
             this.ownedGamesGridView.Name = "ownedGamesGridView";
             this.ownedGamesGridView.ReadOnly = true;
             this.ownedGamesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle51.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle51.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle51.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle51;
+            dataGridViewCellStyle96.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle96.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle96.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle96.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle96;
             this.ownedGamesGridView.RowHeadersWidth = 51;
             this.ownedGamesGridView.ShowEditingIcon = false;
-            this.ownedGamesGridView.Size = new System.Drawing.Size(931, 185);
+            this.ownedGamesGridView.Size = new System.Drawing.Size(698, 150);
             this.ownedGamesGridView.TabIndex = 2;
             this.ownedGamesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.ownedGamesGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridView_CellFormatting);
@@ -315,7 +319,7 @@
             this.CommunityStarRatingOwned.MinimumWidth = 6;
             this.CommunityStarRatingOwned.Name = "CommunityStarRatingOwned";
             this.CommunityStarRatingOwned.ReadOnly = true;
-            this.CommunityStarRatingOwned.Width = 125;
+            this.CommunityStarRatingOwned.Width = 145;
             // 
             // CommunityStarRatingTotalVotesOwned
             // 
@@ -375,14 +379,14 @@
             // 
             this.LaunchBoxDbIdOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.LaunchBoxDbIdOwned.DataPropertyName = "LaunchBoxDbId";
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle47.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle47.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle47.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.LaunchBoxDbIdOwned.DefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle92.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle92.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle92.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle92.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle92.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            dataGridViewCellStyle92.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle92.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.LaunchBoxDbIdOwned.DefaultCellStyle = dataGridViewCellStyle92;
             this.LaunchBoxDbIdOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.LaunchBoxDbIdOwned.HeaderText = "LaunchBoxDbId";
             this.LaunchBoxDbIdOwned.MinimumWidth = 6;
@@ -390,47 +394,47 @@
             this.LaunchBoxDbIdOwned.ReadOnly = true;
             this.LaunchBoxDbIdOwned.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.LaunchBoxDbIdOwned.Text = "";
-            this.LaunchBoxDbIdOwned.Width = 136;
+            this.LaunchBoxDbIdOwned.Width = 109;
             // 
             // VideoUrlOwned
             // 
             this.VideoUrlOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.VideoUrlOwned.DataPropertyName = "VideoUrl";
-            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle48.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle48.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle48.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle48.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.VideoUrlOwned.DefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle93.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle93.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle93.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle93.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle93.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            dataGridViewCellStyle93.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle93.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.VideoUrlOwned.DefaultCellStyle = dataGridViewCellStyle93;
             this.VideoUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.VideoUrlOwned.HeaderText = "VideoUrl";
             this.VideoUrlOwned.MinimumWidth = 6;
             this.VideoUrlOwned.Name = "VideoUrlOwned";
             this.VideoUrlOwned.ReadOnly = true;
             this.VideoUrlOwned.Text = "";
-            this.VideoUrlOwned.Width = 68;
+            this.VideoUrlOwned.Width = 53;
             // 
             // WikipediaUrlOwned
             // 
             this.WikipediaUrlOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.WikipediaUrlOwned.DataPropertyName = "WikipediaUrl";
-            dataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle49.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle49.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle49.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle49.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            dataGridViewCellStyle49.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle49.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.WikipediaUrlOwned.DefaultCellStyle = dataGridViewCellStyle49;
+            dataGridViewCellStyle94.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle94.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle94.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle94.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle94.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            dataGridViewCellStyle94.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle94.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.WikipediaUrlOwned.DefaultCellStyle = dataGridViewCellStyle94;
             this.WikipediaUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.WikipediaUrlOwned.HeaderText = "WikipediaUrl";
             this.WikipediaUrlOwned.MinimumWidth = 6;
             this.WikipediaUrlOwned.Name = "WikipediaUrlOwned";
             this.WikipediaUrlOwned.ReadOnly = true;
             this.WikipediaUrlOwned.Text = "";
-            this.WikipediaUrlOwned.Width = 93;
+            this.WikipediaUrlOwned.Width = 73;
             // 
             // missingGamesGridView
             // 
@@ -442,12 +446,12 @@
             this.missingGamesGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.missingGamesGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.missingGamesGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle52.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle52.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle52.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle52.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle52;
+            dataGridViewCellStyle97.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle97.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle97.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle97.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle97.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle97;
             this.missingGamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.missingGamesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TitleMissing,
@@ -466,29 +470,28 @@
             this.VideoUrlMissing,
             this.WikipediaUrlMissing});
             this.missingGamesGridView.DataSource = this.missingGamesBindingSource;
-            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle56.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle56.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle56.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle56.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle56;
+            dataGridViewCellStyle101.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle101.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle101.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle101.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle101.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle101.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle101.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle101;
             this.missingGamesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.missingGamesGridView.EnableHeadersVisualStyles = false;
             this.missingGamesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            this.missingGamesGridView.Location = new System.Drawing.Point(329, 343);
-            this.missingGamesGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.missingGamesGridView.Location = new System.Drawing.Point(247, 279);
             this.missingGamesGridView.Name = "missingGamesGridView";
             this.missingGamesGridView.ReadOnly = true;
             this.missingGamesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle57.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle57.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle57.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle57;
+            dataGridViewCellStyle102.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle102.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle102.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle102.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle102;
             this.missingGamesGridView.RowHeadersWidth = 51;
-            this.missingGamesGridView.Size = new System.Drawing.Size(931, 231);
+            this.missingGamesGridView.Size = new System.Drawing.Size(698, 188);
             this.missingGamesGridView.TabIndex = 3;
             this.missingGamesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             this.missingGamesGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridView_CellFormatting);
@@ -548,7 +551,7 @@
             this.CommunityStarRatingMissing.MinimumWidth = 6;
             this.CommunityStarRatingMissing.Name = "CommunityStarRatingMissing";
             this.CommunityStarRatingMissing.ReadOnly = true;
-            this.CommunityStarRatingMissing.Width = 125;
+            this.CommunityStarRatingMissing.Width = 145;
             // 
             // CommunityStarRatingTotalVotesMissing
             // 
@@ -608,13 +611,13 @@
             // 
             this.LaunchBoxDbIdMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.LaunchBoxDbIdMissing.DataPropertyName = "LaunchBoxDbId";
-            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle53.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle53.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle53.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle53.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.LaunchBoxDbIdMissing.DefaultCellStyle = dataGridViewCellStyle53;
+            dataGridViewCellStyle98.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle98.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle98.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle98.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle98.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle98.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.LaunchBoxDbIdMissing.DefaultCellStyle = dataGridViewCellStyle98;
             this.LaunchBoxDbIdMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.LaunchBoxDbIdMissing.HeaderText = "LaunchBoxDbId";
             this.LaunchBoxDbIdMissing.MinimumWidth = 6;
@@ -622,45 +625,45 @@
             this.LaunchBoxDbIdMissing.ReadOnly = true;
             this.LaunchBoxDbIdMissing.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.LaunchBoxDbIdMissing.Text = "";
-            this.LaunchBoxDbIdMissing.Width = 136;
+            this.LaunchBoxDbIdMissing.Width = 109;
             // 
             // VideoUrlMissing
             // 
             this.VideoUrlMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.VideoUrlMissing.DataPropertyName = "VideoUrl";
-            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle54.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle54.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle54.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle54.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle54.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.VideoUrlMissing.DefaultCellStyle = dataGridViewCellStyle54;
+            dataGridViewCellStyle99.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle99.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle99.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle99.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle99.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle99.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.VideoUrlMissing.DefaultCellStyle = dataGridViewCellStyle99;
             this.VideoUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.VideoUrlMissing.HeaderText = "VideoUrl";
             this.VideoUrlMissing.MinimumWidth = 6;
             this.VideoUrlMissing.Name = "VideoUrlMissing";
             this.VideoUrlMissing.ReadOnly = true;
             this.VideoUrlMissing.Text = "";
-            this.VideoUrlMissing.Width = 68;
+            this.VideoUrlMissing.Width = 53;
             // 
             // WikipediaUrlMissing
             // 
             this.WikipediaUrlMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.WikipediaUrlMissing.DataPropertyName = "WikipediaUrl";
-            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle55.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle55.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle55.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle55.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle55.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.WikipediaUrlMissing.DefaultCellStyle = dataGridViewCellStyle55;
+            dataGridViewCellStyle100.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle100.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle100.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle100.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle100.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle100.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.WikipediaUrlMissing.DefaultCellStyle = dataGridViewCellStyle100;
             this.WikipediaUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.WikipediaUrlMissing.HeaderText = "WikipediaUrl";
             this.WikipediaUrlMissing.MinimumWidth = 6;
             this.WikipediaUrlMissing.Name = "WikipediaUrlMissing";
             this.WikipediaUrlMissing.ReadOnly = true;
             this.WikipediaUrlMissing.Text = "";
-            this.WikipediaUrlMissing.Width = 93;
+            this.WikipediaUrlMissing.Width = 73;
             // 
             // lblDropdown
             // 
@@ -668,10 +671,9 @@
             this.lblDropdown.BackColor = System.Drawing.Color.Transparent;
             this.lblDropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDropdown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblDropdown.Location = new System.Drawing.Point(16, 46);
-            this.lblDropdown.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDropdown.Location = new System.Drawing.Point(12, 37);
             this.lblDropdown.Name = "lblDropdown";
-            this.lblDropdown.Size = new System.Drawing.Size(235, 25);
+            this.lblDropdown.Size = new System.Drawing.Size(193, 20);
             this.lblDropdown.TabIndex = 4;
             this.lblDropdown.Text = "Select a platform to check";
             // 
@@ -681,10 +683,9 @@
             this.lblOwnedGamesGridView.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnedGamesGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOwnedGamesGridView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblOwnedGamesGridView.Location = new System.Drawing.Point(325, 90);
-            this.lblOwnedGamesGridView.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOwnedGamesGridView.Location = new System.Drawing.Point(244, 73);
             this.lblOwnedGamesGridView.Name = "lblOwnedGamesGridView";
-            this.lblOwnedGamesGridView.Size = new System.Drawing.Size(183, 18);
+            this.lblOwnedGamesGridView.Size = new System.Drawing.Size(149, 15);
             this.lblOwnedGamesGridView.TabIndex = 5;
             this.lblOwnedGamesGridView.Text = "Owned Games List Count:";
             // 
@@ -694,10 +695,9 @@
             this.lblMissingGamesGridView.BackColor = System.Drawing.Color.Transparent;
             this.lblMissingGamesGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMissingGamesGridView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblMissingGamesGridView.Location = new System.Drawing.Point(325, 321);
-            this.lblMissingGamesGridView.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMissingGamesGridView.Location = new System.Drawing.Point(244, 261);
             this.lblMissingGamesGridView.Name = "lblMissingGamesGridView";
-            this.lblMissingGamesGridView.Size = new System.Drawing.Size(187, 18);
+            this.lblMissingGamesGridView.Size = new System.Drawing.Size(153, 15);
             this.lblMissingGamesGridView.TabIndex = 6;
             this.lblMissingGamesGridView.Text = "Missing Games List Count:";
             // 
@@ -707,10 +707,9 @@
             this.lblOwnedGamesCount.BackColor = System.Drawing.Color.Transparent;
             this.lblOwnedGamesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOwnedGamesCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblOwnedGamesCount.Location = new System.Drawing.Point(532, 90);
-            this.lblOwnedGamesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOwnedGamesCount.Location = new System.Drawing.Point(399, 73);
             this.lblOwnedGamesCount.Name = "lblOwnedGamesCount";
-            this.lblOwnedGamesCount.Size = new System.Drawing.Size(16, 18);
+            this.lblOwnedGamesCount.Size = new System.Drawing.Size(14, 15);
             this.lblOwnedGamesCount.TabIndex = 7;
             this.lblOwnedGamesCount.Text = "0";
             // 
@@ -720,10 +719,9 @@
             this.lblMissingGamesCount.BackColor = System.Drawing.Color.Transparent;
             this.lblMissingGamesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMissingGamesCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblMissingGamesCount.Location = new System.Drawing.Point(537, 321);
-            this.lblMissingGamesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMissingGamesCount.Location = new System.Drawing.Point(403, 261);
             this.lblMissingGamesCount.Name = "lblMissingGamesCount";
-            this.lblMissingGamesCount.Size = new System.Drawing.Size(16, 18);
+            this.lblMissingGamesCount.Size = new System.Drawing.Size(14, 15);
             this.lblMissingGamesCount.TabIndex = 8;
             this.lblMissingGamesCount.Text = "0";
             // 
@@ -731,10 +729,9 @@
             // 
             this.btnOwnedCSV.Enabled = false;
             this.btnOwnedCSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOwnedCSV.Location = new System.Drawing.Point(1135, 81);
-            this.btnOwnedCSV.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOwnedCSV.Location = new System.Drawing.Point(851, 66);
             this.btnOwnedCSV.Name = "btnOwnedCSV";
-            this.btnOwnedCSV.Size = new System.Drawing.Size(113, 25);
+            this.btnOwnedCSV.Size = new System.Drawing.Size(85, 20);
             this.btnOwnedCSV.TabIndex = 9;
             this.btnOwnedCSV.Text = "Export to CSV";
             this.btnOwnedCSV.UseVisualStyleBackColor = true;
@@ -744,10 +741,9 @@
             // 
             this.btnMissingCSV.Enabled = false;
             this.btnMissingCSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMissingCSV.Location = new System.Drawing.Point(1135, 313);
-            this.btnMissingCSV.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMissingCSV.Location = new System.Drawing.Point(851, 254);
             this.btnMissingCSV.Name = "btnMissingCSV";
-            this.btnMissingCSV.Size = new System.Drawing.Size(113, 25);
+            this.btnMissingCSV.Size = new System.Drawing.Size(85, 20);
             this.btnMissingCSV.TabIndex = 10;
             this.btnMissingCSV.Text = "Export to CSV";
             this.btnMissingCSV.UseVisualStyleBackColor = true;
@@ -759,11 +755,10 @@
             this.gbOptional.Controls.Add(this.lblColumnSelection);
             this.gbOptional.Controls.Add(this.chkReleasedOnly);
             this.gbOptional.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.gbOptional.Location = new System.Drawing.Point(28, 159);
-            this.gbOptional.Margin = new System.Windows.Forms.Padding(4, 4, 4, 0);
+            this.gbOptional.Location = new System.Drawing.Point(21, 129);
+            this.gbOptional.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.gbOptional.Name = "gbOptional";
-            this.gbOptional.Padding = new System.Windows.Forms.Padding(4);
-            this.gbOptional.Size = new System.Drawing.Size(272, 336);
+            this.gbOptional.Size = new System.Drawing.Size(204, 273);
             this.gbOptional.TabIndex = 11;
             this.gbOptional.TabStop = false;
             this.gbOptional.Text = "Optional Items";
@@ -773,10 +768,10 @@
             this.clbColumnSelection.CheckOnClick = true;
             this.clbColumnSelection.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.clbColumnSelection.FormattingEnabled = true;
-            this.clbColumnSelection.Location = new System.Drawing.Point(4, 73);
-            this.clbColumnSelection.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
+            this.clbColumnSelection.Location = new System.Drawing.Point(3, 71);
+            this.clbColumnSelection.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.clbColumnSelection.Name = "clbColumnSelection";
-            this.clbColumnSelection.Size = new System.Drawing.Size(264, 259);
+            this.clbColumnSelection.Size = new System.Drawing.Size(198, 199);
             this.clbColumnSelection.TabIndex = 1;
             this.clbColumnSelection.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CheckedListBox_ItemCheck);
             // 
@@ -784,10 +779,9 @@
             // 
             this.lblColumnSelection.AutoSize = true;
             this.lblColumnSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.lblColumnSelection.Location = new System.Drawing.Point(8, 62);
-            this.lblColumnSelection.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnSelection.Location = new System.Drawing.Point(6, 50);
             this.lblColumnSelection.Name = "lblColumnSelection";
-            this.lblColumnSelection.Size = new System.Drawing.Size(111, 16);
+            this.lblColumnSelection.Size = new System.Drawing.Size(89, 13);
             this.lblColumnSelection.TabIndex = 2;
             this.lblColumnSelection.Text = "Column Selection";
             // 
@@ -795,10 +789,9 @@
             // 
             this.chkReleasedOnly.AutoSize = true;
             this.chkReleasedOnly.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.chkReleasedOnly.Location = new System.Drawing.Point(13, 26);
-            this.chkReleasedOnly.Margin = new System.Windows.Forms.Padding(4);
+            this.chkReleasedOnly.Location = new System.Drawing.Point(10, 21);
             this.chkReleasedOnly.Name = "chkReleasedOnly";
-            this.chkReleasedOnly.Size = new System.Drawing.Size(210, 20);
+            this.chkReleasedOnly.Size = new System.Drawing.Size(166, 17);
             this.chkReleasedOnly.TabIndex = 0;
             this.chkReleasedOnly.Text = "Only include Released games";
             this.chkReleasedOnly.UseVisualStyleBackColor = true;
@@ -812,10 +805,10 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.btnClose.Location = new System.Drawing.Point(1131, 14);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClose.Location = new System.Drawing.Point(848, 11);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(129, 36);
+            this.btnClose.Size = new System.Drawing.Size(97, 29);
             this.btnClose.TabIndex = 13;
             this.btnClose.Text = "Close MGC";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -831,10 +824,9 @@
             this.llbPoweredBy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.llbPoweredBy.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
             this.llbPoweredBy.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.llbPoweredBy.Location = new System.Drawing.Point(24, 566);
-            this.llbPoweredBy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.llbPoweredBy.Location = new System.Drawing.Point(18, 460);
             this.llbPoweredBy.Name = "llbPoweredBy";
-            this.llbPoweredBy.Size = new System.Drawing.Size(183, 15);
+            this.llbPoweredBy.Size = new System.Drawing.Size(162, 13);
             this.llbPoweredBy.TabIndex = 16;
             this.llbPoweredBy.TabStop = true;
             this.llbPoweredBy.Text = "MGC Powered by AgentJohnnyP";
@@ -851,10 +843,9 @@
             this.ssMetadataStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslIcon,
             this.tsslText});
-            this.ssMetadataStatus.Location = new System.Drawing.Point(28, 495);
+            this.ssMetadataStatus.Location = new System.Drawing.Point(21, 402);
             this.ssMetadataStatus.Name = "ssMetadataStatus";
-            this.ssMetadataStatus.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.ssMetadataStatus.Size = new System.Drawing.Size(273, 32);
+            this.ssMetadataStatus.Size = new System.Drawing.Size(205, 26);
             this.ssMetadataStatus.SizingGrip = false;
             this.ssMetadataStatus.TabIndex = 19;
             // 
@@ -863,7 +854,7 @@
             this.tsslIcon.Image = ((System.Drawing.Image)(resources.GetObject("tsslIcon.Image")));
             this.tsslIcon.Name = "tsslIcon";
             this.tsslIcon.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
-            this.tsslIcon.Size = new System.Drawing.Size(25, 26);
+            this.tsslIcon.Size = new System.Drawing.Size(25, 21);
             // 
             // tsslText
             // 
@@ -872,18 +863,17 @@
             this.tsslText.ForeColor = System.Drawing.Color.Black;
             this.tsslText.Name = "tsslText";
             this.tsslText.Padding = new System.Windows.Forms.Padding(10, 0, 0, 5);
-            this.tsslText.Size = new System.Drawing.Size(182, 26);
+            this.tsslText.Size = new System.Drawing.Size(151, 21);
             this.tsslText.Text = "Preparing Environment....";
             // 
             // pbMetadataLoading
             // 
             this.pbMetadataLoading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.pbMetadataLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
-            this.pbMetadataLoading.Location = new System.Drawing.Point(28, 532);
-            this.pbMetadataLoading.Margin = new System.Windows.Forms.Padding(4);
+            this.pbMetadataLoading.Location = new System.Drawing.Point(21, 432);
             this.pbMetadataLoading.MarqueeAnimationSpeed = 50;
             this.pbMetadataLoading.Name = "pbMetadataLoading";
-            this.pbMetadataLoading.Size = new System.Drawing.Size(287, 26);
+            this.pbMetadataLoading.Size = new System.Drawing.Size(215, 21);
             this.pbMetadataLoading.TabIndex = 20;
             this.pbMetadataLoading.Visible = false;
             // 
@@ -891,14 +881,14 @@
             // 
             this.tbDebug.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.tbDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.tbDebug.Location = new System.Drawing.Point(3, 53);
-            this.tbDebug.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbDebug.Location = new System.Drawing.Point(2, 43);
+            this.tbDebug.Margin = new System.Windows.Forms.Padding(2);
             this.tbDebug.MaxLength = 15000;
             this.tbDebug.Multiline = true;
             this.tbDebug.Name = "tbDebug";
             this.tbDebug.ReadOnly = true;
             this.tbDebug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDebug.Size = new System.Drawing.Size(711, 224);
+            this.tbDebug.Size = new System.Drawing.Size(534, 183);
             this.tbDebug.TabIndex = 21;
             this.tbDebug.Text = "Debug Log";
             // 
@@ -913,8 +903,7 @@
             this.tsslPlatformDropdownMsg});
             this.ssPlatformDropdownMsg.Location = new System.Drawing.Point(0, 0);
             this.ssPlatformDropdownMsg.Name = "ssPlatformDropdownMsg";
-            this.ssPlatformDropdownMsg.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.ssPlatformDropdownMsg.Size = new System.Drawing.Size(293, 32);
+            this.ssPlatformDropdownMsg.Size = new System.Drawing.Size(220, 26);
             this.ssPlatformDropdownMsg.SizingGrip = false;
             this.ssPlatformDropdownMsg.TabIndex = 23;
             // 
@@ -923,7 +912,7 @@
             this.toolStripStatusLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel1.Image")));
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(25, 26);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(25, 21);
             // 
             // tsslPlatformDropdownMsg
             // 
@@ -931,7 +920,7 @@
             this.tsslPlatformDropdownMsg.ForeColor = System.Drawing.Color.Black;
             this.tsslPlatformDropdownMsg.Name = "tsslPlatformDropdownMsg";
             this.tsslPlatformDropdownMsg.Padding = new System.Windows.Forms.Padding(10, 0, 0, 5);
-            this.tsslPlatformDropdownMsg.Size = new System.Drawing.Size(205, 26);
+            this.tsslPlatformDropdownMsg.Size = new System.Drawing.Size(166, 21);
             this.tsslPlatformDropdownMsg.Text = "Please select a platform!";
             // 
             // pDebugLog
@@ -944,10 +933,9 @@
             this.pDebugLog.Controls.Add(this.btnCloseDebug);
             this.pDebugLog.Controls.Add(this.pbDebugHeader);
             this.pDebugLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.pDebugLog.Location = new System.Drawing.Point(433, 212);
-            this.pDebugLog.Margin = new System.Windows.Forms.Padding(4);
+            this.pDebugLog.Location = new System.Drawing.Point(325, 172);
             this.pDebugLog.Name = "pDebugLog";
-            this.pDebugLog.Size = new System.Drawing.Size(723, 285);
+            this.pDebugLog.Size = new System.Drawing.Size(543, 232);
             this.pDebugLog.TabIndex = 24;
             // 
             // btnClearDebugLog
@@ -956,10 +944,9 @@
             this.btnClearDebugLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnClearDebugLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearDebugLog.ForeColor = System.Drawing.Color.Black;
-            this.btnClearDebugLog.Location = new System.Drawing.Point(412, 12);
-            this.btnClearDebugLog.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClearDebugLog.Location = new System.Drawing.Point(309, 10);
             this.btnClearDebugLog.Name = "btnClearDebugLog";
-            this.btnClearDebugLog.Size = new System.Drawing.Size(108, 26);
+            this.btnClearDebugLog.Size = new System.Drawing.Size(81, 21);
             this.btnClearDebugLog.TabIndex = 26;
             this.btnClearDebugLog.Text = "Clear Debug Log";
             this.btnClearDebugLog.UseVisualStyleBackColor = false;
@@ -971,10 +958,9 @@
             this.btnCopyToClipboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCopyToClipboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCopyToClipboard.ForeColor = System.Drawing.Color.Black;
-            this.btnCopyToClipboard.Location = new System.Drawing.Point(276, 12);
-            this.btnCopyToClipboard.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCopyToClipboard.Location = new System.Drawing.Point(207, 10);
             this.btnCopyToClipboard.Name = "btnCopyToClipboard";
-            this.btnCopyToClipboard.Size = new System.Drawing.Size(119, 26);
+            this.btnCopyToClipboard.Size = new System.Drawing.Size(89, 21);
             this.btnCopyToClipboard.TabIndex = 25;
             this.btnCopyToClipboard.Text = "Copy To Clipboard";
             this.btnCopyToClipboard.UseVisualStyleBackColor = false;
@@ -984,10 +970,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(65, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(49, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(193, 29);
+            this.label1.Size = new System.Drawing.Size(152, 24);
             this.label1.TabIndex = 24;
             this.label1.Text = "MGC Debug Log";
             // 
@@ -1000,10 +985,10 @@
             this.btnCloseDebug.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseDebug.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.btnCloseDebug.Location = new System.Drawing.Point(563, 5);
-            this.btnCloseDebug.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCloseDebug.Location = new System.Drawing.Point(422, 4);
+            this.btnCloseDebug.Margin = new System.Windows.Forms.Padding(2);
             this.btnCloseDebug.Name = "btnCloseDebug";
-            this.btnCloseDebug.Size = new System.Drawing.Size(152, 34);
+            this.btnCloseDebug.Size = new System.Drawing.Size(114, 28);
             this.btnCloseDebug.TabIndex = 23;
             this.btnCloseDebug.Text = "Close Debug Log";
             this.btnCloseDebug.UseVisualStyleBackColor = false;
@@ -1014,52 +999,11 @@
             this.pbDebugHeader.BackColor = System.Drawing.Color.Transparent;
             this.pbDebugHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbDebugHeader.BackgroundImage")));
             this.pbDebugHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbDebugHeader.Location = new System.Drawing.Point(5, 5);
-            this.pbDebugHeader.Margin = new System.Windows.Forms.Padding(4);
+            this.pbDebugHeader.Location = new System.Drawing.Point(4, 4);
             this.pbDebugHeader.Name = "pbDebugHeader";
-            this.pbDebugHeader.Size = new System.Drawing.Size(52, 44);
+            this.pbDebugHeader.Size = new System.Drawing.Size(39, 36);
             this.pbDebugHeader.TabIndex = 22;
             this.pbDebugHeader.TabStop = false;
-            // 
-            // pbDebugBtn
-            // 
-            this.pbDebugBtn.BackColor = System.Drawing.Color.Transparent;
-            this.pbDebugBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbDebugBtn.BackgroundImage")));
-            this.pbDebugBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbDebugBtn.Cursor = System.Windows.Forms.Cursors.Help;
-            this.pbDebugBtn.Location = new System.Drawing.Point(288, 564);
-            this.pbDebugBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.pbDebugBtn.Name = "pbDebugBtn";
-            this.pbDebugBtn.Size = new System.Drawing.Size(27, 25);
-            this.pbDebugBtn.TabIndex = 24;
-            this.pbDebugBtn.TabStop = false;
-            this.pbDebugBtn.Click += new System.EventHandler(this.DebugBtn_Click);
-            // 
-            // pbMGCHeader
-            // 
-            this.pbMGCHeader.BackColor = System.Drawing.Color.Transparent;
-            this.pbMGCHeader.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_header;
-            this.pbMGCHeader.Location = new System.Drawing.Point(481, -1);
-            this.pbMGCHeader.Margin = new System.Windows.Forms.Padding(4);
-            this.pbMGCHeader.Name = "pbMGCHeader";
-            this.pbMGCHeader.Size = new System.Drawing.Size(628, 119);
-            this.pbMGCHeader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbMGCHeader.TabIndex = 15;
-            this.pbMGCHeader.TabStop = false;
-            this.pbMGCHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
-            // 
-            // pbMGCLogo
-            // 
-            this.pbMGCLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pbMGCLogo.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_logo;
-            this.pbMGCLogo.Location = new System.Drawing.Point(376, 14);
-            this.pbMGCLogo.Margin = new System.Windows.Forms.Padding(4);
-            this.pbMGCLogo.Name = "pbMGCLogo";
-            this.pbMGCLogo.Size = new System.Drawing.Size(97, 73);
-            this.pbMGCLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbMGCLogo.TabIndex = 14;
-            this.pbMGCLogo.TabStop = false;
-            this.pbMGCLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
             // 
             // noPlatformGridView
             // 
@@ -1071,42 +1015,41 @@
             this.noPlatformGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.noPlatformGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.noPlatformGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle58.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle58.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle58.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle58.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle58;
+            dataGridViewCellStyle103.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle103.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle103.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle103.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle103.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle103.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle103;
             this.noPlatformGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.noPlatformGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.errorNoPlatform,
             this.msgNoPlatform,
             this.errorLBDbId});
             this.noPlatformGridView.DataSource = this.noPlatformBindingSource;
-            dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle59.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle59.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle59.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle59.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle59.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle59.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle59;
+            dataGridViewCellStyle104.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle104.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle104.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle104.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle104.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle104.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle104.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle104;
             this.noPlatformGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.noPlatformGridView.EnableHeadersVisualStyles = false;
             this.noPlatformGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            this.noPlatformGridView.Location = new System.Drawing.Point(329, 343);
-            this.noPlatformGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.noPlatformGridView.Location = new System.Drawing.Point(247, 279);
             this.noPlatformGridView.Name = "noPlatformGridView";
             this.noPlatformGridView.ReadOnly = true;
             this.noPlatformGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle60.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle60.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle60.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle60.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle60;
+            dataGridViewCellStyle105.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle105.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            dataGridViewCellStyle105.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle105.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle105;
             this.noPlatformGridView.RowHeadersWidth = 51;
-            this.noPlatformGridView.Size = new System.Drawing.Size(931, 231);
+            this.noPlatformGridView.Size = new System.Drawing.Size(698, 188);
             this.noPlatformGridView.TabIndex = 25;
             // 
             // errorNoPlatform
@@ -1118,7 +1061,7 @@
             this.errorNoPlatform.Name = "errorNoPlatform";
             this.errorNoPlatform.ReadOnly = true;
             this.errorNoPlatform.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.errorNoPlatform.Width = 46;
+            this.errorNoPlatform.Width = 35;
             // 
             // msgNoPlatform
             // 
@@ -1129,7 +1072,7 @@
             this.msgNoPlatform.Name = "msgNoPlatform";
             this.msgNoPlatform.ReadOnly = true;
             this.msgNoPlatform.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.msgNoPlatform.Width = 71;
+            this.msgNoPlatform.Width = 56;
             // 
             // errorLBDbId
             // 
@@ -1142,29 +1085,15 @@
             this.errorLBDbId.Visible = false;
             this.errorLBDbId.Width = 125;
             // 
-            // pbSpinner
-            // 
-            this.pbSpinner.BackColor = System.Drawing.Color.Transparent;
-            this.pbSpinner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbSpinner.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_spinner;
-            this.pbSpinner.Location = new System.Drawing.Point(593, 363);
-            this.pbSpinner.Margin = new System.Windows.Forms.Padding(4);
-            this.pbSpinner.Name = "pbSpinner";
-            this.pbSpinner.Size = new System.Drawing.Size(403, 191);
-            this.pbSpinner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbSpinner.TabIndex = 26;
-            this.pbSpinner.TabStop = false;
-            // 
             // lblCongrats
             // 
             this.lblCongrats.AutoSize = true;
             this.lblCongrats.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
             this.lblCongrats.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCongrats.Location = new System.Drawing.Point(629, 311);
-            this.lblCongrats.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCongrats.Location = new System.Drawing.Point(472, 253);
             this.lblCongrats.Name = "lblCongrats";
             this.lblCongrats.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.lblCongrats.Size = new System.Drawing.Size(331, 24);
+            this.lblCongrats.Size = new System.Drawing.Size(281, 21);
             this.lblCongrats.TabIndex = 27;
             this.lblCongrats.Text = "Congrats! Your collection is complete!";
             // 
@@ -1173,32 +1102,151 @@
             this.lblScrapeAs.AutoSize = true;
             this.lblScrapeAs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScrapeAs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.lblScrapeAs.Location = new System.Drawing.Point(20, 26);
+            this.lblScrapeAs.Location = new System.Drawing.Point(15, 21);
+            this.lblScrapeAs.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblScrapeAs.Name = "lblScrapeAs";
-            this.lblScrapeAs.Size = new System.Drawing.Size(100, 17);
+            this.lblScrapeAs.Size = new System.Drawing.Size(76, 13);
             this.lblScrapeAs.TabIndex = 28;
             this.lblScrapeAs.Text = "Searching As: ";
+            // 
+            // gbFilterOptions
+            // 
+            this.gbFilterOptions.AutoSize = true;
+            this.gbFilterOptions.Controls.Add(this.pbCloseFilter);
+            this.gbFilterOptions.Controls.Add(this.btnFilterReset);
+            this.gbFilterOptions.Controls.Add(this.clbFilterOptions);
+            this.gbFilterOptions.Controls.Add(this.btnApplyFilters);
+            this.gbFilterOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
+            this.gbFilterOptions.Location = new System.Drawing.Point(231, 116);
+            this.gbFilterOptions.Name = "gbFilterOptions";
+            this.gbFilterOptions.Size = new System.Drawing.Size(148, 160);
+            this.gbFilterOptions.TabIndex = 29;
+            this.gbFilterOptions.TabStop = false;
+            this.gbFilterOptions.Text = "Filter";
+            // 
+            // pbCloseFilter
+            // 
+            this.pbCloseFilter.AccessibleDescription = "Close Filter Window";
+            this.pbCloseFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbCloseFilter.BackColor = System.Drawing.Color.Transparent;
+            this.pbCloseFilter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbCloseFilter.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.error;
+            this.pbCloseFilter.Location = new System.Drawing.Point(129, 10);
+            this.pbCloseFilter.Margin = new System.Windows.Forms.Padding(0);
+            this.pbCloseFilter.Name = "pbCloseFilter";
+            this.pbCloseFilter.Size = new System.Drawing.Size(13, 13);
+            this.pbCloseFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbCloseFilter.TabIndex = 3;
+            this.pbCloseFilter.TabStop = false;
+            this.pbCloseFilter.Click += new System.EventHandler(this.CloseFilter_Click);
+            // 
+            // btnFilterReset
+            // 
+            this.btnFilterReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFilterReset.ForeColor = System.Drawing.Color.Black;
+            this.btnFilterReset.Location = new System.Drawing.Point(59, 17);
+            this.btnFilterReset.Name = "btnFilterReset";
+            this.btnFilterReset.Size = new System.Drawing.Size(47, 21);
+            this.btnFilterReset.TabIndex = 2;
+            this.btnFilterReset.Text = "Reset";
+            this.btnFilterReset.UseVisualStyleBackColor = true;
+            this.btnFilterReset.Click += new System.EventHandler(this.FilterReset_Click);
+            // 
+            // clbFilterOptions
+            // 
+            this.clbFilterOptions.CheckOnClick = true;
+            this.clbFilterOptions.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.clbFilterOptions.FormattingEnabled = true;
+            this.clbFilterOptions.Location = new System.Drawing.Point(3, 33);
+            this.clbFilterOptions.Name = "clbFilterOptions";
+            this.clbFilterOptions.Size = new System.Drawing.Size(142, 124);
+            this.clbFilterOptions.Sorted = true;
+            this.clbFilterOptions.TabIndex = 1;
+            this.clbFilterOptions.ThreeDCheckBoxes = true;
+            // 
+            // btnApplyFilters
+            // 
+            this.btnApplyFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApplyFilters.ForeColor = System.Drawing.Color.Black;
+            this.btnApplyFilters.Location = new System.Drawing.Point(6, 17);
+            this.btnApplyFilters.Name = "btnApplyFilters";
+            this.btnApplyFilters.Size = new System.Drawing.Size(47, 21);
+            this.btnApplyFilters.TabIndex = 0;
+            this.btnApplyFilters.Text = "Apply";
+            this.btnApplyFilters.UseVisualStyleBackColor = true;
+            this.btnApplyFilters.Click += new System.EventHandler(this.ApplyFilters_Click);
             // 
             // pbCongrats
             // 
             this.pbCongrats.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.congrats;
-            this.pbCongrats.Location = new System.Drawing.Point(566, 366);
+            this.pbCongrats.Location = new System.Drawing.Point(424, 297);
+            this.pbCongrats.Margin = new System.Windows.Forms.Padding(2);
             this.pbCongrats.Name = "pbCongrats";
-            this.pbCongrats.Size = new System.Drawing.Size(457, 185);
+            this.pbCongrats.Size = new System.Drawing.Size(343, 150);
             this.pbCongrats.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbCongrats.TabIndex = 3;
             this.pbCongrats.TabStop = false;
+            // 
+            // pbSpinner
+            // 
+            this.pbSpinner.BackColor = System.Drawing.Color.Transparent;
+            this.pbSpinner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbSpinner.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_spinner;
+            this.pbSpinner.Location = new System.Drawing.Point(445, 297);
+            this.pbSpinner.Name = "pbSpinner";
+            this.pbSpinner.Size = new System.Drawing.Size(302, 153);
+            this.pbSpinner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbSpinner.TabIndex = 26;
+            this.pbSpinner.TabStop = false;
+            // 
+            // pbDebugBtn
+            // 
+            this.pbDebugBtn.BackColor = System.Drawing.Color.Transparent;
+            this.pbDebugBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbDebugBtn.BackgroundImage")));
+            this.pbDebugBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbDebugBtn.Cursor = System.Windows.Forms.Cursors.Help;
+            this.pbDebugBtn.Location = new System.Drawing.Point(216, 458);
+            this.pbDebugBtn.Name = "pbDebugBtn";
+            this.pbDebugBtn.Size = new System.Drawing.Size(20, 20);
+            this.pbDebugBtn.TabIndex = 24;
+            this.pbDebugBtn.TabStop = false;
+            this.pbDebugBtn.Click += new System.EventHandler(this.DebugBtn_Click);
+            // 
+            // pbMGCHeader
+            // 
+            this.pbMGCHeader.BackColor = System.Drawing.Color.Transparent;
+            this.pbMGCHeader.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_header;
+            this.pbMGCHeader.Location = new System.Drawing.Point(361, -1);
+            this.pbMGCHeader.Name = "pbMGCHeader";
+            this.pbMGCHeader.Size = new System.Drawing.Size(471, 97);
+            this.pbMGCHeader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMGCHeader.TabIndex = 15;
+            this.pbMGCHeader.TabStop = false;
+            this.pbMGCHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
+            // 
+            // pbMGCLogo
+            // 
+            this.pbMGCLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pbMGCLogo.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_logo;
+            this.pbMGCLogo.Location = new System.Drawing.Point(282, 11);
+            this.pbMGCLogo.Name = "pbMGCLogo";
+            this.pbMGCLogo.Size = new System.Drawing.Size(73, 59);
+            this.pbMGCLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMGCLogo.TabIndex = 14;
+            this.pbMGCLogo.TabStop = false;
+            this.pbMGCLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
             // 
             // PlatformSelectionForm
             // 
             this.AccessibleDescription = "A LaunchBox plugin designed to help users identify missing games in their collect" +
     "ion based on platform metadata.";
             this.AccessibleName = "Missing Games Checker";
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ClientSize = new System.Drawing.Size(1275, 590);
+            this.ClientSize = new System.Drawing.Size(956, 479);
             this.ControlBox = false;
+            this.Controls.Add(this.gbFilterOptions);
             this.Controls.Add(this.pbCongrats);
             this.Controls.Add(this.pbSpinner);
             this.Controls.Add(this.lblScrapeAs);
@@ -1226,8 +1274,7 @@
             this.Controls.Add(this.pbMGCLogo);
             this.Controls.Add(this.lblCongrats);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1275, 590);
+            this.MinimumSize = new System.Drawing.Size(956, 479);
             this.Name = "PlatformSelectionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Missing Games Checker";
@@ -1248,13 +1295,15 @@
             this.pDebugLog.ResumeLayout(false);
             this.pDebugLog.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbDebugHeader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noPlatformGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noPlatformBindingSource)).EndInit();
+            this.gbFilterOptions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbCloseFilter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCongrats)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSpinner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDebugBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMGCHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMGCLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noPlatformGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noPlatformBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSpinner)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCongrats)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1306,6 +1355,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn errorNoPlatform;
         private System.Windows.Forms.DataGridViewTextBoxColumn msgNoPlatform;
         private System.Windows.Forms.DataGridViewTextBoxColumn errorLBDbId;
+        private System.Windows.Forms.Label lblScrapeAs;
+        private System.Windows.Forms.PictureBox pbCongrats;
+        private System.Windows.Forms.GroupBox gbFilterOptions;
+        private System.Windows.Forms.CheckedListBox clbFilterOptions;
+        private System.Windows.Forms.Button btnApplyFilters;
+        private System.Windows.Forms.Button btnFilterReset;
         private System.Windows.Forms.DataGridViewTextBoxColumn TitleOwned;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeveloperOwned;
         private System.Windows.Forms.DataGridViewTextBoxColumn PublisherOwned;
@@ -1336,7 +1391,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn LaunchBoxDbIdMissing;
         private System.Windows.Forms.DataGridViewButtonColumn VideoUrlMissing;
         private System.Windows.Forms.DataGridViewButtonColumn WikipediaUrlMissing;
-        private System.Windows.Forms.Label lblScrapeAs;
-        private System.Windows.Forms.PictureBox pbCongrats;
+        private System.Windows.Forms.PictureBox pbCloseFilter;
     }
 }
