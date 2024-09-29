@@ -8,7 +8,9 @@ Missing Games Checker (MGC) is a LaunchBox plugin designed to help users identif
 ![License](https://img.shields.io/github/license/jprinz-cc/LBMissingGamesCheckerPlugin)
 
 ---
-
+![announcing](https://github.com/user-attachments/assets/244300db-4430-4333-866d-3fd4568a0c40)  
+### v1.2 is out! NEW and IMPROVED! Enhanced for stabiliy and usabilty!
+---
 ## Instructions for Using the Missing Games Checker (MGC)
 ### Requirements
 This plugin requires the default folders for the assemblies (`.dll`) to be **LaunchBox\Core** and the metadata files (`Metadata.xml`) to be **LaunchBox\Metadata**.
@@ -28,10 +30,16 @@ This plugin requires the default folders for the assemblies (`.dll`) to be **Lau
 
 4. **Options**
    - Filter games by **Released** status if you only want to check released titles.
-   - Click on game titles for additional info, such as video URLs, Wikipedia links, and links to the [LaunchBox DB](https://gamesdb.launchbox-app.com/) website.
+   - Sort columns by clicking on the column header.
+   - Filter select columns by clicking on the filter icon in the column header.
+      - If the filtered column has mulitple values (ie. North America, Japan) the row will still show if any of the filters are not applied. All values need to be unchecked in the filter to hide the row.
+      - *Note: Filtering one column works well. Multiple column filtering may produce incorrect results. Export to CSV if you need to apply better filtering :)
+      - *Will enhance in a future release
+   - Window resizing (Right edge only)
+   - Click on links for additional info, such as video URLs, Wikipedia links, and links to the [LaunchBox DB](https://gamesdb.launchbox-app.com/) website.
 
 Missing Games Checker Screenshot:
-![MissingGameChecker](https://github.com/user-attachments/assets/30cc3edc-6e4d-4bed-bc72-3ca7291a2292)
+![MissingGameChecker](https://github.com/user-attachments/assets/6e3e9c5d-2d50-4671-8bea-09e73bad6e74)
 
 ---
 
