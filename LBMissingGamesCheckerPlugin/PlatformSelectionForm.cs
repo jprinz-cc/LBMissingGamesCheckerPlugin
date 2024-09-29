@@ -459,7 +459,7 @@ namespace LBMissingGamesCheckerPlugin
             PopulateColumnSelection();
         }
 
-        // Form Load //
+        // Form Load
         private void PlatformSelectionForm_Load(object sender, EventArgs e)
         {
             EnableDoubleBuffering(ownedGamesGridView);
@@ -528,7 +528,6 @@ namespace LBMissingGamesCheckerPlugin
         {
             if (platformDropdown.SelectedItem != null && platformDropdown.SelectedIndex > 0)
             {
-                //await _semaphore.WaitAsync();
                 confirmButton.Enabled = false;
                 gbFilterOptions.Visible = false;
                 columnCheckedItems?.Clear();
@@ -725,6 +724,20 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+        private void PlatformDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedPlatform = platformDropdown.SelectedItem.ToString().ToLower();
+
+            if (selectedPlatform.Contains("windows") || selectedPlatform.Contains("ms-dos"))
+            {
+                lblPlatformWarning.Visible = true;
+            }
+            else
+            {
+                lblPlatformWarning.Visible = false;
+            }
+        }
+
         private void GridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (this.InvokeRequired)
@@ -800,7 +813,6 @@ namespace LBMissingGamesCheckerPlugin
         }
 
         // Column filtering events
-        // Column filtering events
         private void ApplyFilters_Click(object sender, EventArgs e)
         {
             if (this.InvokeRequired)
@@ -814,9 +826,7 @@ namespace LBMissingGamesCheckerPlugin
             {
                 currentGridView.SuspendLayout();
 
-                var gameList = currentGridView.Name == "ownedGamesGridView" ? originalOwnedGameList : originalMissingGameList;
-                // Keep making these changes; make sure if need single,
-                // use currentGridView                                                                
+                var gameList = currentGridView.Name == "ownedGamesGridView" ? originalOwnedGameList : originalMissingGameList;                                                              
 
                 if (gameList == null)
                 {
@@ -1078,6 +1088,17 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+        private void PlatformSelectionForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _cancellationTokenSource.Cancel();
+        }
+
+        private void CloseFilter_Click(object sender, EventArgs e)
+        {
+            DebugTxt("Closing Filter Options Panel!");
+            gbFilterOptions.Visible = false;
+        }
+
         private void OnApplicationExit(object sender, EventArgs e)
         {
             _cancellationTokenSource.Cancel();
@@ -1232,7 +1253,6 @@ namespace LBMissingGamesCheckerPlugin
                 try
                 {
                     DebugTxt("Adding error to missingGames List...");
-                    //await Task.Run(() => ProcessNoPlatformErrorList(selectedPlatform, xmlPlatforms));
                     var noPlatformErrorList = new List<XmlGame>
                     {
                         new XmlGame("NoPlatformFound", string.Empty, string.Empty, string.Empty, null, null, null,
@@ -1748,7 +1768,6 @@ namespace LBMissingGamesCheckerPlugin
                 pbMetadataLoading.Visible = false;
                 UpdateStatus("error", "metadata File Not Found!");
                 DebugTxt(true);
-                // throw new Exception("Metadata file not found.");
             }
         }
 
@@ -2460,30 +2479,5 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
         #endregion
-
-        private void PlatformSelectionForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _cancellationTokenSource.Cancel();
-        }
-
-        private void CloseFilter_Click(object sender, EventArgs e)
-        {
-            DebugTxt("Closing Filter Options Panel!");
-            gbFilterOptions.Visible = false;
-        }
-
-        private void PlatformDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedPlatform = platformDropdown.SelectedItem.ToString().ToLower();
-
-            if (selectedPlatform.Contains("windows") || selectedPlatform.Contains("ms-dos"))
-            {
-                lblPlatformWarning.Visible = true;
-            }
-            else
-            {
-                lblPlatformWarning.Visible = false;
-            }
-        }
     }
 }

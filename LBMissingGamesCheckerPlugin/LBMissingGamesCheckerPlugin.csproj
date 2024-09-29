@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>mgc.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -95,6 +98,7 @@
     <None Include="Resources\congrats.gif" />
     <None Include="Resources\filterWhite.png" />
     <None Include="Resources\filter.png" />
+    <Content Include="mgc.ico" />
     <Content Include="Resources\mgc-header.png" />
     <Content Include="Resources\mgc-logo.png" />
     <None Include="Resources\x-mark-128.png" />
