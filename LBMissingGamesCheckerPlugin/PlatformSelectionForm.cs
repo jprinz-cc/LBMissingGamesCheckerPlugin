@@ -170,7 +170,7 @@ namespace LBMissingGamesCheckerPlugin
                     {
                         if (!string.IsNullOrWhiteSpace(item.Name) && resultAlt != string.Empty)
                         {
-                            resultAlt += ", " + item.Name;
+                            resultAlt += "; " + item.Name;
                         }
                         else if (!string.IsNullOrWhiteSpace(item.Name))
                         {
@@ -295,6 +295,7 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+
         public class DataGridViewFilterHeaderCell : DataGridViewColumnHeaderCell
         {
             private readonly Image filterIcon = Properties.Resources.filter;
@@ -302,7 +303,7 @@ namespace LBMissingGamesCheckerPlugin
             private readonly DataGridView missingGamesGridView;
             private readonly CheckedListBox clbFilterOptions;
             private readonly GroupBox gbFilterOptions;
-            private PlatformSelectionForm form;
+            private readonly PlatformSelectionForm form;
 
             public DataGridViewFilterHeaderCell(DataGridViewColumnHeaderCell oldHeaderCell, DataGridView ownedGamesGridView, DataGridView missingGamesGridView, CheckedListBox clbFilterOptions, GroupBox gbFilterOptions, PlatformSelectionForm form)
                 : base()
@@ -359,38 +360,20 @@ namespace LBMissingGamesCheckerPlugin
                 form.currentColumn = column;
 
                 // Add this to repopulate clbFilterOptions
-                if (form.columnCheckedItems.ContainsKey(form.currentColumn.HeaderText))
+                var key = (form.currentGridView.Name, form.currentColumn.HeaderText);
+                if (form.columnCheckedItems.ContainsKey(key))
                 {
-                    var checkedItems = form.columnCheckedItems[form.currentColumn.HeaderText];
+                    var checkedItems = form.columnCheckedItems[key];
                     foreach (var (item, isChecked) in checkedItems)
                     {
                         clbFilterOptions.Items.Add(item, isChecked);
                     }
                 }
-                else
-                {
-                    // Load unique values from the column into the CheckedListBox
-                    var uniqueValues = form.currentGridView.Rows.Cast<DataGridViewRow>()
-                        .Select(row => row.Cells[form.currentColumn.Index].Value?.ToString())
-                        .Distinct()
-                        .ToList();
-
-                    //uniqueValues = uniqueValues.Distinct().ToList();
-                    var checkedItems = new List<(string Item, bool IsChecked)>();
-                    foreach (var value in uniqueValues)
-                    {
-                        clbFilterOptions.Items.Add(value, true);
-                        checkedItems.Add((value, true));
-                    }
-                    form.columnCheckedItems[form.currentColumn.HeaderText] = checkedItems;
-                }
+                
                 gbFilterOptions.Location = new Point(clickPosition.X, clickPosition.Y);
                 gbFilterOptions.Visible = true;
             }
         }
-
-        
-
         #endregion
 
         #region AppProperties
@@ -425,23 +408,27 @@ namespace LBMissingGamesCheckerPlugin
         private bool ascendingMissingGames = true;
 
         // Properties for the filtering
-        private readonly Dictionary<string, List<(string Item, bool IsChecked)>> columnCheckedItems = new Dictionary<string, List<(string Item, bool IsChecked)>>();
+        private readonly Dictionary<(string GridViewName, string ColumnHeaderText), List<(string Item, bool IsChecked)>> columnCheckedItems = new Dictionary<(string, string), List<(string, bool)>>();
         private DataGridView currentGridView;
         private DataGridViewColumn currentColumn;
-        private BindingList<GameDisplayData> originalGameList;
+        private BindingList<GameDisplayData> originalOwnedGameList;
+        private BindingList<GameDisplayData> originalMissingGameList;
+        private List<GameDisplayData> filteredOwnedGameList = new List<GameDisplayData>();
+        private List<GameDisplayData> filteredMissingGameList = new List<GameDisplayData>();
 
         // Graceful exit token
-        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
         #endregion
 
         #region FormInit
         public PlatformSelectionForm(IList<IPlatform> platforms)
         {
             InitializeComponent();
+            this.Paint += new PaintEventHandler(this.PlatformSelectionForm_Paint);
+            this.Resize += new EventHandler(this.PlatformSelectionForm_Resize);
 
             Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
 
-            //Image icon = Properties.Resources.filter;
             AddFilterIcons();
 
             // Bind BindingSources to GridViews
@@ -477,10 +464,6 @@ namespace LBMissingGamesCheckerPlugin
             EnableDoubleBuffering(ownedGamesGridView);
             EnableDoubleBuffering(missingGamesGridView);
             ApplyTheme(this);
-
-            // Apply stored filters
-            //ApplyStoredFilters(ownedGamesGridView, ownedGamesBindingSource);
-            //ApplyStoredFilters(missingGamesGridView, missingGamesBindingSource);
         }
         #endregion
 
@@ -515,6 +498,30 @@ namespace LBMissingGamesCheckerPlugin
                 new object[] { true });
         }
 
+        private void PlatformSelectionForm_Paint(object sender, PaintEventArgs e)
+        {
+            DrawResizeHandle(e.Graphics);
+        }
+
+        private void PlatformSelectionForm_Resize(object sender, EventArgs e)
+        {
+            this.Invalidate(); // Invalidate the form to trigger a repaint
+        }
+
+        private void DrawResizeHandle(Graphics g)
+        {
+            int gripSize = 10;
+            int gripCount = 3;
+            int spacing = 4;
+            int startX = this.ClientSize.Width - gripSize - 2;
+            int startY = (this.ClientSize.Height / 2) - ((gripSize * gripCount + spacing * (gripCount - 1)) / 2) + 30;
+
+            for (int i = 0; i < gripCount; i++)
+            {
+                g.FillRectangle(Brushes.Gray, startX, startY + i * (gripSize + spacing), gripSize, gripSize);
+            }
+        }
+
         // Confirm button handler for dropdown platform selection
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
@@ -524,7 +531,8 @@ namespace LBMissingGamesCheckerPlugin
                 confirmButton.Enabled = false;
                 gbFilterOptions.Visible = false;
                 columnCheckedItems?.Clear();
-                originalGameList?.Clear();
+                originalOwnedGameList?.Clear();
+                originalMissingGameList?.Clear();
                 try
                 {
                     DebugTxt($"-> Starting GridView loading. Dropdown Item: {platformDropdown.SelectedItem}");
@@ -791,6 +799,7 @@ namespace LBMissingGamesCheckerPlugin
         }
 
         // Column filtering events
+        // Column filtering events
         private void ApplyFilters_Click(object sender, EventArgs e)
         {
             if (this.InvokeRequired)
@@ -799,36 +808,60 @@ namespace LBMissingGamesCheckerPlugin
                 return;
             }
 
-            //var selectedValues = clbFilterOptions.CheckedItems.Cast<string>().ToList();
-
             // Apply filtering logic
             if (currentGridView != null && currentColumn != null)
             {
                 currentGridView.SuspendLayout();
 
-                // Cast the DataSource to a BindingList<GameDisplayData>
-                //var dataSourceList = currentGridView.DataSource as BindingSource;
-                //var gameList = dataSourceList?.DataSource as BindingList<GameDisplayData>;
-                var gameList = originalGameList;
+                var gameList = currentGridView.Name == "ownedGamesGridView" ? originalOwnedGameList : originalMissingGameList;
+                // Keep making these changes; make sure if need single,
+                // use currentGridView                                                                
 
                 if (gameList == null)
                 {
-                    DebugTxt("Game list is null, unable to filter.");
+                    DebugTxt("Game lists are null, unable to filter.");
+                    gbFilterOptions.Visible = false;
                     return;
                 }
 
                 var filteredList = new List<GameDisplayData>();
+
 
                 foreach (var item in clbFilterOptions.CheckedItems)
                 {
                     string value = item.ToString();
                     if (currentColumn.HeaderText == "Genres")
                     {
-                        filteredList.AddRange(gameList.Where(game => game.Genres.Contains(value)).ToList());
+                        var values = value.Split(new[] { ';' }, StringSplitOptions.None).Select(v => v.Trim()).ToList();
+
+                        filteredList.AddRange(gameList.Where(game =>
+                        {
+                            var genres = game.Genres.Split(new[] { ';' }, StringSplitOptions.None).Select(g => g.Trim()).ToList();
+                            return values.Any(v => genres.Contains(v));
+                        }).ToList());
                     }
                     else if (currentColumn.HeaderText == "Region")
                     {
-                        filteredList.AddRange(gameList.Where(game => game.Region.Contains(value)).ToList());
+                        var values = value.Split(new[] { ',' }, StringSplitOptions.None).Select(v => v.Trim()).ToList();
+
+                        filteredList.AddRange(gameList.Where(game =>
+                        {
+                            var genres = game.Region.Split(new[] { ',' }, StringSplitOptions.None).Select(g => g.Trim()).ToList();
+                            return values.Any(v => genres.Contains(v));
+                        }).ToList());
+                    }
+                    else if (currentColumn.HeaderText == "CommunityStarRating")
+                    {
+                        filteredList.AddRange(gameList.Where(game =>
+                        {
+                            var rating = float.TryParse(game.CommunityStarRating, out float parsedRating) ? parsedRating : 0f;
+                            var bucket = value.Split('-');
+                            if (bucket.Length == 2 && float.TryParse(bucket[0], out float min) && float.TryParse(bucket[1], out float max))
+                            {
+                                return rating >= min && rating < max;
+                            }
+                            return false;
+                        }).ToList());
                     }
                     else
                     {
@@ -841,6 +874,9 @@ namespace LBMissingGamesCheckerPlugin
                         }).ToList());
                     }
                 }
+
+                // Remove duplicates from filteredList
+                filteredList = filteredList.Distinct().ToList();
 
                 // Apply the filtered list to the BindingSource
                 if (currentGridView.Name == "ownedGamesGridView")
@@ -857,7 +893,8 @@ namespace LBMissingGamesCheckerPlugin
                 // Update checked status in the columnCheckedItems dictionary against each item in the clbFilterOptions
                 if (currentColumn != null)
                 {
-                    var checkedItems = columnCheckedItems[currentColumn.HeaderText];
+                    var key = (currentGridView.Name, currentColumn.HeaderText);
+                    var checkedItems = columnCheckedItems[key];
                     for (int i = 0; i < clbFilterOptions.Items.Count; i++)
                     {
                         string item = clbFilterOptions.Items[i].ToString();
@@ -875,19 +912,39 @@ namespace LBMissingGamesCheckerPlugin
                 currentGridView.ResumeLayout();
 
                 gbFilterOptions.Visible = false;
-            }            
+            }
         }
-
-        
 
         private void FilterReset_Click(object sender, EventArgs e)
         {
-            //ownedGamesBindingSource.RemoveFilter();
-            gbFilterOptions.Visible = false;
-            for (int i = 0; i < clbFilterOptions.Items.Count; i++)
+            if (this.InvokeRequired)
             {
-                clbFilterOptions.SetItemChecked(i, true);
+                this.BeginInvoke(new Action<object, EventArgs>(FilterReset_Click), new object[] { sender, e });
+                return;
             }
+            currentGridView.SuspendLayout();
+
+            if (currentGridView.Name == "ownedGamesGridView")
+            {
+                ownedGamesBindingSource.DataSource = originalOwnedGameList;
+                lblOwnedGamesCount.Text = originalOwnedGameList.Count.ToString();
+                filteredOwnedGameList.Clear();
+            }
+            else if (currentGridView.Name == "missingGamesGridView")
+            {
+                lblMissingGamesCount.Text = originalMissingGameList.Count.ToString();
+                missingGamesBindingSource.DataSource = originalMissingGameList;
+                filteredMissingGameList.Clear();
+            }
+
+            var key = (currentGridView.Name, currentColumn.HeaderText);
+            for (int i = 0; i < columnCheckedItems[key].Count; i++)
+            {
+                columnCheckedItems[key][i] = (columnCheckedItems[key][i].Item, true);
+            }
+            currentGridView.Refresh();
+            currentGridView.ResumeLayout();
+            gbFilterOptions.Visible = false;
         }
 
         // Toggle column visibility based on the CheckedListBox 
@@ -1237,6 +1294,7 @@ namespace LBMissingGamesCheckerPlugin
                     ownedGamesBindingSource.Clear();
                     missingGamesBindingSource.Clear();
                     noPlatformBindingSource.Clear();
+                    filteredOwnedGameList.Clear();
                     DebugTxt("Clearing data containers completed!");
                 }));
             }
@@ -1259,6 +1317,7 @@ namespace LBMissingGamesCheckerPlugin
                 ownedGamesBindingSource.Clear();
                 missingGamesBindingSource.Clear();
                 noPlatformBindingSource.Clear();
+                filteredOwnedGameList.Clear();
                 DebugTxt("Clearing data containers completed!");
             }
 
@@ -1357,18 +1416,20 @@ namespace LBMissingGamesCheckerPlugin
                         {
                             DebugTxt($"Binding ownedGamesBindingSource with {ownedGamesDisplayData.Count} ownedGamesDisplayData elements...");
                             ownedGamesBindingSource.DataSource = ownedGamesDisplayData;
-                            originalGameList = ownedGamesDisplayData;
+                            originalOwnedGameList = ownedGamesDisplayData;
                             lblOwnedGamesCount.Text = ownedGamesDisplayData.Count > 0 ? ownedGamesDisplayData.Count.ToString() : "0";
                             btnOwnedCSV.Enabled = true;
+                            LoadFilterOptions(ownedGamesGridView);
                         }));
                     }
                     else
                     {
                         DebugTxt($"Binding ownedGamesBindingSource with {ownedGamesDisplayData.Count} ownedGamesDisplayData elements...");
                         ownedGamesBindingSource.DataSource = ownedGamesDisplayData;
-                        originalGameList = ownedGamesDisplayData;
+                        originalOwnedGameList = ownedGamesDisplayData;
                         lblOwnedGamesCount.Text = ownedGamesDisplayData.Count > 0 ? ownedGamesDisplayData.Count.ToString() : "0";
                         btnOwnedCSV.Enabled = true;
+                        LoadFilterOptions(ownedGamesGridView);
                     }
                     DebugTxt("Binding ownedGamesBindingSource completed!");
                 }
@@ -1390,6 +1451,8 @@ namespace LBMissingGamesCheckerPlugin
                                 missingGamesGridView.Visible = true;
                                 noPlatformGridView.Visible = false;
                                 missingGamesBindingSource.DataSource = missingGamesDisplayData;
+                                originalMissingGameList = missingGamesDisplayData;
+                                LoadFilterOptions(missingGamesGridView);
                             }));
                         }
                         else
@@ -1398,6 +1461,8 @@ namespace LBMissingGamesCheckerPlugin
                             missingGamesGridView.Visible = true;
                             noPlatformGridView.Visible = false;
                             missingGamesBindingSource.DataSource = missingGamesDisplayData;
+                            originalMissingGameList = missingGamesDisplayData;
+                            LoadFilterOptions(missingGamesGridView);
                         }
 
                         if (this.InvokeRequired)
@@ -1516,8 +1581,6 @@ namespace LBMissingGamesCheckerPlugin
                         DebugTxt($"Apply column visibility to {clbColumnSelection.Items.Count} columns.");
                         UpdateColumnVisibility();
 
-
-
                         DebugTxt("Resuming ownedGamesGridView...");
                         ownedGamesGridView.ResumeLayout();
 
@@ -1551,6 +1614,91 @@ namespace LBMissingGamesCheckerPlugin
                 DebugTxt("Resuming GridViews completed!");
             }
         }
+
+        private void LoadFilterOptions(DataGridView dgv)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action<DataGridView>(LoadFilterOptions), new object[] { dgv });
+                return;
+            }
+
+            var uniqueValues = new HashSet<string>();
+            var checkedItems = new List<(string Item, bool IsChecked)>();
+
+            // Find the matching column in the GridView
+            foreach (DataGridViewColumn column in dgv.Columns)
+            {
+                if (column.HeaderText == "Developer" || column.HeaderText == "Publisher" || column.HeaderText == "Region" ||
+                    column.HeaderText == "CommunityStarRating" || column.HeaderText == "Genres")
+                {
+                    if (column.HeaderText == "Region")
+                    {
+                        uniqueValues = dgv.Rows.Cast<DataGridViewRow>()
+                            .SelectMany(row => row.Cells[column.Index].Value?.ToString().Split(new[] { ',' }, StringSplitOptions.None))
+                            .Select(value => value.Trim())
+                            .ToHashSet();
+                    }
+                    else if (column.HeaderText == "Genres")
+                    {
+                        uniqueValues = dgv.Rows.Cast<DataGridViewRow>()
+                            .SelectMany(row => row.Cells[column.Index].Value?.ToString().Split(new[] { ';' }, StringSplitOptions.None))
+                            .Select(value => value.Trim())
+                            .ToHashSet();
+                    }
+                    else if (column.HeaderText == "CommunityStarRating")
+                    {
+                        var ratingBuckets = new Dictionary<string, (float Min, float Max)>
+                        {
+                            { "0-1", (0f, 1f) },
+                            { "1-2", (1f, 2f) },
+                            { "2-3", (2f, 3f) },
+                            { "3-4", (3f, 4f) },
+                            { "4-5", (4f, 5f) }
+                        };
+
+                        var ratings = dgv.Rows.Cast<DataGridViewRow>()
+                            .Select(row => row.Cells[column.Index].Value?.ToString())
+                            .Where(value => float.TryParse(value, out _))
+                            .Select(value => float.Parse(value))
+                            .ToList();
+                        if (uniqueValues != null && uniqueValues.Any()) uniqueValues.Clear();
+                        foreach (var bucket in ratingBuckets)
+                        {
+                            if (ratings.Any(rating => rating >= bucket.Value.Min && rating < bucket.Value.Max))
+                            {
+                                uniqueValues.Add(bucket.Key);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        uniqueValues = dgv.Rows.Cast<DataGridViewRow>()
+                            .Select(row => row.Cells[column.Index].Value?.ToString())
+                            .Select(value => value?.Trim())
+                            .ToHashSet();
+
+                        // Add empty value explicitly if it exists
+                        if (dgv.Rows.Cast<DataGridViewRow>().Any(row => string.IsNullOrEmpty(row.Cells[column.Index].Value?.ToString())))
+                        {
+                            uniqueValues.Add(string.Empty);
+                        }
+
+                    }
+
+                    //uniqueValues = uniqueValues.Distinct().ToList();
+                    checkedItems = new List<(string Item, bool IsChecked)>();
+                    foreach (var value in uniqueValues)
+                    {
+                        clbFilterOptions.Items.Add(value, true);
+                        checkedItems.Add((value, true));
+                    }
+                    var key = (dgv.Name, column.HeaderText);
+                    columnCheckedItems[key] = checkedItems;
+                }
+            }
+        }
+
 
         // Process the directories to find the metadata.xml file
         private async void FindMetadataFile()
@@ -2322,5 +2470,6 @@ namespace LBMissingGamesCheckerPlugin
             DebugTxt("Closing Filter Options Panel!");
             gbFilterOptions.Visible = false;
         }
+
     }
 }
