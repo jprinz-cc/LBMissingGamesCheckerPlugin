@@ -103,16 +103,6 @@ namespace LBMissingGamesCheckerPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap filterWhite {
-            get {
-                object obj = ResourceManager.GetObject("filterWhite", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap mgc_header {
             get {
                 object obj = ResourceManager.GetObject("mgc_header", resourceCulture);
@@ -156,26 +146,6 @@ namespace LBMissingGamesCheckerPlugin.Properties {
         internal static System.Drawing.Bitmap warning {
             get {
                 object obj = ResourceManager.GetObject("warning", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap wiki {
-            get {
-                object obj = ResourceManager.GetObject("wiki", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap youtube {
-            get {
-                object obj = ResourceManager.GetObject("youtube", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

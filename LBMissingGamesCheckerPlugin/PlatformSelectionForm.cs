@@ -438,6 +438,7 @@ namespace LBMissingGamesCheckerPlugin
 
             // Set elements visibility on load
             lblScrapeAs.Visible = false;
+            lblPlatformWarning.Visible = false;
             noPlatformGridView.Visible = false;
             ssPlatformDropdownMsg.Visible = false;
             gbFilterOptions.Visible = false;
@@ -2471,5 +2472,18 @@ namespace LBMissingGamesCheckerPlugin
             gbFilterOptions.Visible = false;
         }
 
+        private void PlatformDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedPlatform = platformDropdown.SelectedItem.ToString().ToLower();
+
+            if (selectedPlatform.Contains("windows") || selectedPlatform.Contains("ms-dos"))
+            {
+                lblPlatformWarning.Visible = true;
+            }
+            else
+            {
+                lblPlatformWarning.Visible = false;
+            }
+        }
     }
 }
