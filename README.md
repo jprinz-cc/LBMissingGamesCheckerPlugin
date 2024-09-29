@@ -32,7 +32,7 @@ This plugin requires the default folders for the assemblies (`.dll`) to be **Lau
    - Filter games by **Released** status if you only want to check released titles.
    - Sort columns by clicking on the column header.
    - Filter select columns by clicking on the filter icon in the column header.
-      - If the filtered column has mulitple values (ie. North America, Japan) the row will still show if any of the filters are not applied. All values need to be unchecked in the filter to hide the row.
+      - If the filtered column has multiple values (ie. North America, Japan) the row will still show if any of the filters are not applied. All values need to be unchecked in the filter to hide the row.
       - *Note: Filtering one column works well. Multiple column filtering may produce incorrect results. Export to CSV if you need to apply better filtering :)
       - *Will enhance in a future release
    - Window resizing (Right edge only)
