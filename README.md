@@ -13,11 +13,14 @@ Missing Games Checker (MGC) is a LaunchBox plugin designed to help users identif
 ---
 ## Instructions for Using the Missing Games Checker (MGC)
 ### Requirements
-This plugin requires the default folders for the assemblies (`.dll`) to be **LaunchBox\Core** and the metadata files (`Metadata.xml`) to be **LaunchBox\Metadata**.
+1. **LaunchBox
+2. **Games in LaunchBox
+3. **The `LBMissingGamesCheckerPlugin.dll` file
 
 ### Installation and Usage
 1. **Install the Plugin**
    - Download the latest release of the MGC plugin from this repository.
+   - Make sure LaunchBox is closed.
    - Place the `LBMissingGamesCheckerPlugin.dll` file into the **LaunchBox\Plugins** folder.
 
 2. **Access the Plugin**
