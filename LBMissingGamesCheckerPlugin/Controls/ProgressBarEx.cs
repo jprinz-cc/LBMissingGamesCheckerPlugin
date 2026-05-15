@@ -7,7 +7,7 @@ namespace LBMissingGamesCheckerPlugin.Controls
 {
     public class ProgressBarEx : ProgressBar
     {
-        private Timer marqueeTimer;
+        private System.Windows.Forms.Timer marqueeTimer;
         private int marqueePosition = 0;
         private const int marqueeSpeed = 20;
         private const int marqueeSegmentWidth = 75;
@@ -21,7 +21,7 @@ namespace LBMissingGamesCheckerPlugin.Controls
 
         private void InitializeMarquee()
         {
-            marqueeTimer = new Timer
+            marqueeTimer = new System.Windows.Forms.Timer
             {
                 Interval = 50
             };
