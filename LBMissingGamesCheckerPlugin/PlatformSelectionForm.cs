@@ -17,365 +17,13 @@ using System.Xml;
 using System.Xml.Linq;
 using Unbroken.LaunchBox.Plugins;
 using Unbroken.LaunchBox.Plugins.Data;
-using static LBMissingGamesCheckerPlugin.PlatformSelectionForm.GameDisplayData;
+using LBMissingGamesCheckerPlugin.Models;
+using LBMissingGamesCheckerPlugin.Controls;
 
 namespace LBMissingGamesCheckerPlugin
 {
     public partial class PlatformSelectionForm : Form
     {
-        #region FormClasses
-        // Class for platforms from xml
-        public class XmlPlatform
-        {
-            public string Name { get; set; }
-
-            // Constructor to initialize properties from XmlPlatform
-            public XmlPlatform(string name)
-            {
-                Name = name;
-            }
-        }
-
-        // Class for each game in the metadata.xml file
-        public class XmlGame
-        {
-            public string Title { get; set; }
-            public string Developer { get; set; }
-            public string Publisher { get; set; }
-            public string Region { get; set; }
-            public DateTime? ReleaseDate { get; set; }
-            public float? CommunityStarRating { get; set; }
-            public int? CommunityStarRatingTotalVotes { get; set; }
-            public string Platform { get; set; }
-            public string ReleaseType { get; set; }
-            public string Genres { get; set; }
-            public IAlternateName[] AlternateNames { get; set; } = new IAlternateName[0];
-            public int? MaxPlayers { get; set; }
-            public int? LaunchBoxDbId { get; set; }
-            public string VideoUrl { get; set; }
-            public string WikipediaUrl { get; set; }
-
-            // Constructor to initialize properties from MissingGame
-            public XmlGame(
-                string title,
-                string developer,
-                string publisher,
-                string region,
-                DateTime? releaseDate,
-                float? starRating,
-                int? starVotes,
-                string platform,
-                string releaseType,
-                string genres,
-                IAlternateName[] alternateNames,
-                int? maxPlayers,
-                int? lbdbId,
-                string vidUrl,
-                string wikiUrl
-                )
-            {
-                Title = title;
-                Developer = developer ?? string.Empty;
-                Publisher = publisher ?? string.Empty;
-                Region = region ?? string.Empty;
-                ReleaseDate = releaseDate;
-                CommunityStarRating = starRating;
-                CommunityStarRatingTotalVotes = starVotes;
-                Platform = platform ?? string.Empty;
-                ReleaseType = releaseType ?? string.Empty;
-                Genres = genres ?? string.Empty;
-                AlternateNames = alternateNames ?? new IAlternateName[0];
-                MaxPlayers = maxPlayers;
-                LaunchBoxDbId = lbdbId;
-                VideoUrl = vidUrl ?? string.Empty;
-                WikipediaUrl = wikiUrl ?? string.Empty;
-            }
-        }
-
-        // Class to hold alternative/region data for missing games
-        public class XmlGameAlternateName : IAlternateName
-        {
-            public string Name { get; set; }
-            public string GameId { get; set; }
-            public string Region { get; set; }
-
-            public XmlGameAlternateName(string databaseID, string alternateName, string region)
-            {
-                Name = alternateName ?? string.Empty;
-                GameId = databaseID;
-                Region = region ?? string.Empty;
-            }
-        }
-
-        // Class to hold game data to display
-        public class GameDisplayData
-        {
-            public string Title { get; set; }
-            public string Developer { get; set; }
-            public string Publisher { get; set; }
-            public string Region { get; set; }
-            public string ReleaseDate { get; set; }
-            public string CommunityStarRating { get; set; }
-            public string CommunityStarRatingTotalVotes { get; set; }
-            public string Platform { get; set; }
-            public string ReleaseType { get; set; }
-            public string Genres { get; set; }
-            public string AlternateNames { get; set; }
-            public string MaxPlayers { get; set; }
-            public string LaunchBoxDbId { get; set; }
-            public string VideoUrl { get; set; }
-            public string WikipediaUrl { get; set; }
-
-            // Constructor to initialize properties from MissingGame
-            public GameDisplayData(XmlGame game)
-            {
-                Title = game.Title ?? string.Empty;
-                Developer = game.Developer ?? string.Empty;
-                Publisher = game.Publisher ?? string.Empty;
-                Region = game.Region ?? string.Empty;
-                ReleaseDate = game.ReleaseDate?.ToShortDateString() ?? string.Empty;
-                CommunityStarRating = game.CommunityStarRating != 0 ? game.CommunityStarRating.ToString() : string.Empty;
-                CommunityStarRatingTotalVotes = game.CommunityStarRatingTotalVotes != 0 ? game.CommunityStarRatingTotalVotes.ToString() : string.Empty;
-                Platform = game.Platform ?? string.Empty;
-                ReleaseType = game.ReleaseType ?? string.Empty;
-                Genres = game.Genres ?? string.Empty;
-                AlternateNames = GetAltNames(game.AlternateNames) ?? string.Empty;
-                MaxPlayers = game.MaxPlayers.ToString() ?? string.Empty;
-                LaunchBoxDbId = game.LaunchBoxDbId != 0 ? game.LaunchBoxDbId.ToString() : string.Empty;
-                VideoUrl = game.VideoUrl ?? string.Empty;
-                WikipediaUrl = game.WikipediaUrl ?? string.Empty;
-            }
-
-            public class NoPlatformErrorData
-            {
-                public string Title { get; set; }
-                public string Platform { get; set; }
-                public string LaunchBoxDbId { get; set; }
-
-                public NoPlatformErrorData(string title, string platform, int? launchBoxDbId)
-                {
-                    Title = title;
-                    Platform = platform;
-                    LaunchBoxDbId = launchBoxDbId.ToString();
-                }
-            }
-
-            // Return all Alternate Names to the AlternateNames propery as a string
-            private string GetAltNames(IAlternateName[] altNames)
-            {
-                string resultAlt = string.Empty;
-                if (altNames != null && altNames.Length > 0)
-                {
-                    foreach (var item in altNames)
-                    {
-                        if (!string.IsNullOrWhiteSpace(item.Name) && resultAlt != string.Empty)
-                        {
-                            resultAlt += "; " + item.Name;
-                        }
-                        else if (!string.IsNullOrWhiteSpace(item.Name))
-                        {
-                            resultAlt += item.Name;
-                        }
-                    }
-                }
-                return resultAlt;
-            }
-        }
-
-
-        // Color Progress Bar Class
-        public class ProgressBarEx : ProgressBar
-        {
-            private System.Windows.Forms.Timer marqueeTimer;
-            private int marqueePosition = 0;
-            private const int marqueeSpeed = 20; // Speed of the marquee animation
-            private const int marqueeSegmentWidth = 75; // Width of the marquee segment
-            private bool disposed = false; // Flag to indicate if the object has been disposed
-
-            public ProgressBarEx()
-            {
-                this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
-                InitializeMarquee();
-            }
-
-            private void InitializeMarquee()
-            {
-                marqueeTimer = new System.Windows.Forms.Timer
-                {
-                    Interval = 50 // Adjust the interval for smoother/faster animation
-                };
-                marqueeTimer.Tick += (s, e) =>
-                {
-                    // Increment the position and wrap around when it exceeds the width
-                    marqueePosition += marqueeSpeed;
-                    if (marqueePosition > this.Width) marqueePosition = 0;
-                    this.Invalidate(); // Redraw the control to show animation
-                };
-            }
-
-            protected override void OnPaintBackground(PaintEventArgs pevent)
-            {
-                // Skip background painting to reduce flickering
-            }
-
-            protected override void OnPaint(PaintEventArgs e)
-            {
-                const int inset = 2; // A single inset value to control the sizing of the inner rect.
-
-                // Use double buffering to draw everything to an offscreen bitmap first
-                using (Bitmap offscreenBitmap = new Bitmap(this.Width, this.Height))
-                using (Graphics offscreen = Graphics.FromImage(offscreenBitmap))
-                {
-                    Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
-
-                    // Draw the progress bar background
-                    if (ProgressBarRenderer.IsSupported)
-                        ProgressBarRenderer.DrawHorizontalBar(offscreen, rect);
-
-                    rect.Inflate(new Size(-inset, -inset)); // Deflate inner rect.
-
-                    // Handle Marquee style separately
-                    if (this.Style == ProgressBarStyle.Marquee)
-                    {
-                        // Start the timer to handle marquee animation
-                        if (!marqueeTimer.Enabled)
-                        {
-                            marqueeTimer.Start();
-                        }
-
-                        // Draw the moving marquee segment
-                        Rectangle marqueeRect = new Rectangle(marqueePosition, inset, marqueeSegmentWidth, rect.Height);
-                        using (LinearGradientBrush brush = new LinearGradientBrush(marqueeRect, this.BackColor, this.ForeColor, LinearGradientMode.Vertical))
-                        {
-                            offscreen.FillRectangle(brush, marqueeRect);
-                        }
-                    }
-                    else
-                    {
-                        // Handle regular progress mode
-                        rect.Width = (int)(rect.Width * ((double)this.Value / this.Maximum));
-                        if (rect.Width == 0) rect.Width = 1;
-
-                        using (LinearGradientBrush brush = new LinearGradientBrush(rect, this.BackColor, this.ForeColor, LinearGradientMode.Vertical))
-                        {
-                            offscreen.FillRectangle(brush, inset, inset, rect.Width, rect.Height);
-                        }
-                    }
-
-                    // Draw the offscreen bitmap to the screen
-                    e.Graphics.DrawImage(offscreenBitmap, 0, 0);
-                }
-            }
-
-            protected override void OnVisibleChanged(EventArgs e)
-            {
-                base.OnVisibleChanged(e);
-                if (!this.Visible && marqueeTimer != null)
-                {
-                    // Stop the timer if the progress bar is not visible
-                    marqueeTimer.Stop();
-                }
-            }
-
-            protected override void Dispose(bool disposing)
-            {
-                if (disposed)
-                    return;
-
-                if (disposing)
-                {
-                    if (marqueeTimer != null)
-                    {
-                        marqueeTimer.Dispose();
-                        marqueeTimer = null;
-                    }
-                }
-                disposed = true;
-                base.Dispose(disposing);
-            }
-        }
-
-
-        public class DataGridViewFilterHeaderCell : DataGridViewColumnHeaderCell
-        {
-            private readonly Image filterIcon = Properties.Resources.filter;
-            private readonly DataGridView ownedGamesGridView;
-            private readonly DataGridView missingGamesGridView;
-            private readonly CheckedListBox clbFilterOptions;
-            private readonly GroupBox gbFilterOptions;
-            private readonly PlatformSelectionForm form;
-
-            public DataGridViewFilterHeaderCell(DataGridViewColumnHeaderCell oldHeaderCell, DataGridView ownedGamesGridView, DataGridView missingGamesGridView, CheckedListBox clbFilterOptions, GroupBox gbFilterOptions, PlatformSelectionForm form)
-                : base()
-            {
-                this.Value = oldHeaderCell.Value;
-                this.ownedGamesGridView = ownedGamesGridView;
-                this.missingGamesGridView = missingGamesGridView;
-                this.clbFilterOptions = clbFilterOptions;
-                this.gbFilterOptions = gbFilterOptions;
-                this.form = form;
-            }
-
-            protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates dataGridViewElementState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
-            {
-                base.Paint(graphics, clipBounds, cellBounds, rowIndex, dataGridViewElementState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
-
-                // Resize the filter icon to match the height of the column header cell
-                int iconHeight = cellBounds.Height - 4; // Adjust as needed for padding
-                int iconWidth = (filterIcon.Width * iconHeight) / filterIcon.Height; // Maintain aspect ratio
-                int iconX = cellBounds.Right - iconWidth - 5;
-                int iconY = cellBounds.Y + (cellBounds.Height - iconHeight) / 2;
-                graphics.DrawImage(filterIcon, new Rectangle(iconX, iconY, iconWidth, iconHeight));
-            }
-
-            protected override void OnMouseClick(DataGridViewCellMouseEventArgs e)
-            {
-                base.OnMouseClick(e);
-
-                // Check if the filter icon was clicked
-                if (e.X >= this.Size.Width - filterIcon.Width - 5)
-                {
-                    Point screenPosition = Cursor.Position;
-                    var gridView = this.DataGridView;
-                    Point clientPosition = gridView.PointToClient(screenPosition);
-                    clientPosition.X += (gbFilterOptions.Width - 20);
-                    clientPosition.Y = gridView.Location.Y + 20;
-                    // Show the filter options
-                    ShowFilterOptions(this.OwningColumn, clientPosition);
-                }
-            }
-
-            public bool IsIconClicked(int x)
-            {
-                int iconWidth = (filterIcon.Width * this.Size.Height) / filterIcon.Height;
-                int iconX = this.Size.Width - iconWidth - 5;
-                return x >= iconX && x <= iconX + iconWidth;
-            }
-
-            private void ShowFilterOptions(DataGridViewColumn column, Point clickPosition)
-            {
-                clbFilterOptions.Items.Clear();
-                // Update the current grid view and column
-                form.currentGridView = this.DataGridView;
-                form.currentColumn = column;
-
-                // Add this to repopulate clbFilterOptions
-                var key = (form.currentGridView.Name, form.currentColumn.HeaderText);
-                if (form.columnCheckedItems.ContainsKey(key))
-                {
-                    var checkedItems = form.columnCheckedItems[key];
-                    foreach (var (item, isChecked) in checkedItems)
-                    {
-                        clbFilterOptions.Items.Add(item, isChecked);
-                    }
-                }
-                
-                gbFilterOptions.Location = new Point(clickPosition.X, clickPosition.Y);
-                gbFilterOptions.Visible = true;
-            }
-        }
-        #endregion
-
         #region AppProperties
         // Holds the currently selected platform
         public IPlatform SelectedPlatform { get; private set; }
@@ -408,16 +56,16 @@ namespace LBMissingGamesCheckerPlugin
         private bool ascendingMissingGames = true;
 
         // Properties for the filtering
-        private readonly Dictionary<(string GridViewName, string ColumnHeaderText), List<(string Item, bool IsChecked)>> columnCheckedItems = new Dictionary<(string, string), List<(string, bool)>>();
-        private DataGridView currentGridView;
-        private DataGridViewColumn currentColumn;
-        private BindingList<GameDisplayData> originalOwnedGameList;
-        private BindingList<GameDisplayData> originalMissingGameList;
-        private List<GameDisplayData> filteredOwnedGameList = new List<GameDisplayData>();
-        private List<GameDisplayData> filteredMissingGameList = new List<GameDisplayData>();
+        public readonly Dictionary<(string GridViewName, string ColumnHeaderText), List<(string Item, bool IsChecked)>> ColumnCheckedItems = new Dictionary<(string, string), List<(string, bool)>>();
+        public DataGridView CurrentGridView;
+        public DataGridViewColumn CurrentColumn;
+        private BindingList<GameDisplayData> OriginalOwnedGameList;
+        private BindingList<GameDisplayData> OriginalMissingGameList;
+        private List<GameDisplayData> FilteredOwnedGameList = new List<GameDisplayData>();
+        private List<GameDisplayData> FilteredMissingGameList = new List<GameDisplayData>();
 
         // Graceful exit token
-        private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private readonly CancellationTokenSource _CancellationTokenSource = new CancellationTokenSource();
         #endregion
 
         #region FormInit
@@ -530,9 +178,9 @@ namespace LBMissingGamesCheckerPlugin
             {
                 confirmButton.Enabled = false;
                 gbFilterOptions.Visible = false;
-                columnCheckedItems?.Clear();
-                originalOwnedGameList?.Clear();
-                originalMissingGameList?.Clear();
+                ColumnCheckedItems?.Clear();
+                OriginalOwnedGameList?.Clear();
+                OriginalMissingGameList?.Clear();
                 try
                 {
                     DebugTxt($"-> Starting GridView loading. Dropdown Item: {platformDropdown.SelectedItem}");
@@ -822,11 +470,11 @@ namespace LBMissingGamesCheckerPlugin
             }
 
             // Apply filtering logic
-            if (currentGridView != null && currentColumn != null)
+            if (CurrentGridView != null && CurrentColumn != null)
             {
-                currentGridView.SuspendLayout();
+                CurrentGridView.SuspendLayout();
 
-                var gameList = currentGridView.Name == "ownedGamesGridView" ? originalOwnedGameList : originalMissingGameList;                                                              
+                var gameList = CurrentGridView.Name == "ownedGamesGridView" ? OriginalOwnedGameList : OriginalMissingGameList;                                                              
 
                 if (gameList == null)
                 {
@@ -841,7 +489,7 @@ namespace LBMissingGamesCheckerPlugin
                 foreach (var item in clbFilterOptions.CheckedItems)
                 {
                     string value = item.ToString();
-                    if (currentColumn.HeaderText == "Genres")
+                    if (CurrentColumn.HeaderText == "Genres")
                     {
                         var values = value.Split(new[] { ';' }, StringSplitOptions.None).Select(v => v.Trim()).ToList();
 
@@ -851,7 +499,7 @@ namespace LBMissingGamesCheckerPlugin
                             return values.Any(v => genres.Contains(v));
                         }).ToList());
                     }
-                    else if (currentColumn.HeaderText == "Region")
+                    else if (CurrentColumn.HeaderText == "Region")
                     {
                         var values = value.Split(new[] { ',' }, StringSplitOptions.None).Select(v => v.Trim()).ToList();
 
@@ -861,7 +509,7 @@ namespace LBMissingGamesCheckerPlugin
                             return values.Any(v => genres.Contains(v));
                         }).ToList());
                     }
-                    else if (currentColumn.HeaderText == "CommunityStarRating")
+                    else if (CurrentColumn.HeaderText == "CommunityStarRating")
                     {
                         filteredList.AddRange(gameList.Where(game =>
                         {
@@ -876,7 +524,7 @@ namespace LBMissingGamesCheckerPlugin
                     }
                     else
                     {
-                        var propertyName = currentColumn.DataPropertyName;
+                        var propertyName = CurrentColumn.DataPropertyName;
 
                         filteredList.AddRange(gameList.Where(game =>
                         {
@@ -890,22 +538,22 @@ namespace LBMissingGamesCheckerPlugin
                 filteredList = filteredList.Distinct().ToList();
 
                 // Apply the filtered list to the BindingSource
-                if (currentGridView.Name == "ownedGamesGridView")
+                if (CurrentGridView.Name == "ownedGamesGridView")
                 {
                     ownedGamesBindingSource.DataSource = new BindingList<GameDisplayData>(filteredList);
                     lblOwnedGamesCount.Text = filteredList.Count.ToString();
                 }
-                else if (currentGridView.Name == "missingGamesGridView")
+                else if (CurrentGridView.Name == "missingGamesGridView")
                 {
                     missingGamesBindingSource.DataSource = new BindingList<GameDisplayData>(filteredList);
                     lblMissingGamesCount.Text = filteredList.Count.ToString();
                 }
 
                 // Update checked status in the columnCheckedItems dictionary against each item in the clbFilterOptions
-                if (currentColumn != null)
+                if (CurrentColumn != null)
                 {
-                    var key = (currentGridView.Name, currentColumn.HeaderText);
-                    var checkedItems = columnCheckedItems[key];
+                    var key = (CurrentGridView.Name, CurrentColumn.HeaderText);
+                    var checkedItems = ColumnCheckedItems[key];
                     for (int i = 0; i < clbFilterOptions.Items.Count; i++)
                     {
                         string item = clbFilterOptions.Items[i].ToString();
@@ -919,8 +567,8 @@ namespace LBMissingGamesCheckerPlugin
                     }
                 }
 
-                currentGridView.Refresh();
-                currentGridView.ResumeLayout();
+                CurrentGridView.Refresh();
+                CurrentGridView.ResumeLayout();
 
                 gbFilterOptions.Visible = false;
             }
@@ -933,28 +581,28 @@ namespace LBMissingGamesCheckerPlugin
                 this.BeginInvoke(new Action<object, EventArgs>(FilterReset_Click), new object[] { sender, e });
                 return;
             }
-            currentGridView.SuspendLayout();
+            CurrentGridView.SuspendLayout();
 
-            if (currentGridView.Name == "ownedGamesGridView")
+            if (CurrentGridView.Name == "ownedGamesGridView")
             {
-                ownedGamesBindingSource.DataSource = originalOwnedGameList;
-                lblOwnedGamesCount.Text = originalOwnedGameList.Count.ToString();
-                filteredOwnedGameList.Clear();
+                ownedGamesBindingSource.DataSource = OriginalOwnedGameList;
+                lblOwnedGamesCount.Text = OriginalOwnedGameList.Count.ToString();
+                FilteredOwnedGameList.Clear();
             }
-            else if (currentGridView.Name == "missingGamesGridView")
+            else if (CurrentGridView.Name == "missingGamesGridView")
             {
-                lblMissingGamesCount.Text = originalMissingGameList.Count.ToString();
-                missingGamesBindingSource.DataSource = originalMissingGameList;
-                filteredMissingGameList.Clear();
+                lblMissingGamesCount.Text = OriginalMissingGameList.Count.ToString();
+                missingGamesBindingSource.DataSource = OriginalMissingGameList;
+                FilteredMissingGameList.Clear();
             }
 
-            var key = (currentGridView.Name, currentColumn.HeaderText);
-            for (int i = 0; i < columnCheckedItems[key].Count; i++)
+            var key = (CurrentGridView.Name, CurrentColumn.HeaderText);
+            for (int i = 0; i < ColumnCheckedItems[key].Count; i++)
             {
-                columnCheckedItems[key][i] = (columnCheckedItems[key][i].Item, true);
+                ColumnCheckedItems[key][i] = (ColumnCheckedItems[key][i].Item, true);
             }
-            currentGridView.Refresh();
-            currentGridView.ResumeLayout();
+            CurrentGridView.Refresh();
+            CurrentGridView.ResumeLayout();
             gbFilterOptions.Visible = false;
         }
 
@@ -1090,7 +738,7 @@ namespace LBMissingGamesCheckerPlugin
 
         private void PlatformSelectionForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _cancellationTokenSource.Cancel();
+            _CancellationTokenSource.Cancel();
         }
 
         private void CloseFilter_Click(object sender, EventArgs e)
@@ -1101,7 +749,7 @@ namespace LBMissingGamesCheckerPlugin
 
         private void OnApplicationExit(object sender, EventArgs e)
         {
-            _cancellationTokenSource.Cancel();
+            _CancellationTokenSource.Cancel();
         }
         #endregion
 
@@ -1315,7 +963,7 @@ namespace LBMissingGamesCheckerPlugin
                     ownedGamesBindingSource.Clear();
                     missingGamesBindingSource.Clear();
                     noPlatformBindingSource.Clear();
-                    filteredOwnedGameList.Clear();
+                    FilteredOwnedGameList.Clear();
                     DebugTxt("Clearing data containers completed!");
                 }));
             }
@@ -1338,7 +986,7 @@ namespace LBMissingGamesCheckerPlugin
                 ownedGamesBindingSource.Clear();
                 missingGamesBindingSource.Clear();
                 noPlatformBindingSource.Clear();
-                filteredOwnedGameList.Clear();
+                FilteredOwnedGameList.Clear();
                 DebugTxt("Clearing data containers completed!");
             }
 
@@ -1437,7 +1085,7 @@ namespace LBMissingGamesCheckerPlugin
                         {
                             DebugTxt($"Binding ownedGamesBindingSource with {ownedGamesDisplayData.Count} ownedGamesDisplayData elements...");
                             ownedGamesBindingSource.DataSource = ownedGamesDisplayData;
-                            originalOwnedGameList = ownedGamesDisplayData;
+                            OriginalOwnedGameList = ownedGamesDisplayData;
                             lblOwnedGamesCount.Text = ownedGamesDisplayData.Count > 0 ? ownedGamesDisplayData.Count.ToString() : "0";
                             btnOwnedCSV.Enabled = true;
                             LoadFilterOptions(ownedGamesGridView);
@@ -1447,7 +1095,7 @@ namespace LBMissingGamesCheckerPlugin
                     {
                         DebugTxt($"Binding ownedGamesBindingSource with {ownedGamesDisplayData.Count} ownedGamesDisplayData elements...");
                         ownedGamesBindingSource.DataSource = ownedGamesDisplayData;
-                        originalOwnedGameList = ownedGamesDisplayData;
+                        OriginalOwnedGameList = ownedGamesDisplayData;
                         lblOwnedGamesCount.Text = ownedGamesDisplayData.Count > 0 ? ownedGamesDisplayData.Count.ToString() : "0";
                         btnOwnedCSV.Enabled = true;
                         LoadFilterOptions(ownedGamesGridView);
@@ -1472,7 +1120,7 @@ namespace LBMissingGamesCheckerPlugin
                                 missingGamesGridView.Visible = true;
                                 noPlatformGridView.Visible = false;
                                 missingGamesBindingSource.DataSource = missingGamesDisplayData;
-                                originalMissingGameList = missingGamesDisplayData;
+                                OriginalMissingGameList = missingGamesDisplayData;
                                 LoadFilterOptions(missingGamesGridView);
                             }));
                         }
@@ -1482,7 +1130,7 @@ namespace LBMissingGamesCheckerPlugin
                             missingGamesGridView.Visible = true;
                             noPlatformGridView.Visible = false;
                             missingGamesBindingSource.DataSource = missingGamesDisplayData;
-                            originalMissingGameList = missingGamesDisplayData;
+                            OriginalMissingGameList = missingGamesDisplayData;
                             LoadFilterOptions(missingGamesGridView);
                         }
 
@@ -1715,7 +1363,7 @@ namespace LBMissingGamesCheckerPlugin
                         checkedItems.Add((value, true));
                     }
                     var key = (dgv.Name, column.HeaderText);
-                    columnCheckedItems[key] = checkedItems;
+                    ColumnCheckedItems[key] = checkedItems;
                 }
             }
         }
@@ -1731,11 +1379,11 @@ namespace LBMissingGamesCheckerPlugin
 
             try
             {
-                fileFound = await Task.Run(() => ProcessingAppDirectories(_cancellationTokenSource.Token, files));
+                fileFound = await Task.Run(() => ProcessingAppDirectories(_CancellationTokenSource.Token, files));
             }
             catch (OperationCanceledException)
             {
-                _cancellationTokenSource.Cancel();
+                _CancellationTokenSource.Cancel();
             }
 
             // If metadata.xml found, add to metadataFilePath, else throw to the try and display error
@@ -1753,12 +1401,12 @@ namespace LBMissingGamesCheckerPlugin
                 {
                     await Task.Run(() =>
                     {
-                        GetGamesFromMetadata(_cancellationTokenSource.Token);
+                        GetGamesFromMetadata(_CancellationTokenSource.Token);
                     });
                 }
                 catch (OperationCanceledException)
                 {
-                    _cancellationTokenSource.Cancel();
+                    _CancellationTokenSource.Cancel();
                 }
             }
             else

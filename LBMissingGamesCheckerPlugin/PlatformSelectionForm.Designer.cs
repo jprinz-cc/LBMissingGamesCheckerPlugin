@@ -100,7 +100,7 @@
             this.ssMetadataStatus = new System.Windows.Forms.StatusStrip();
             this.tsslIcon = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslText = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pbMetadataLoading = new LBMissingGamesCheckerPlugin.PlatformSelectionForm.ProgressBarEx();
+            this.pbMetadataLoading = new LBMissingGamesCheckerPlugin.Controls.ProgressBarEx();
             this.tbDebug = new System.Windows.Forms.TextBox();
             this.ssPlatformDropdownMsg = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -1355,7 +1355,7 @@
         private System.Windows.Forms.StatusStrip ssMetadataStatus;
         private System.Windows.Forms.ToolStripStatusLabel tsslIcon;
         private System.Windows.Forms.ToolStripStatusLabel tsslText;
-        private ProgressBarEx pbMetadataLoading;
+        private Controls.ProgressBarEx pbMetadataLoading;
         private System.Windows.Forms.TextBox tbDebug;
         private System.Windows.Forms.StatusStrip ssPlatformDropdownMsg;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;

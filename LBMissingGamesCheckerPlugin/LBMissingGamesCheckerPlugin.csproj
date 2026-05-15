@@ -52,7 +52,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DataGridViewFilterHeaderCell.cs" />
+    <Compile Include="Controls\ProgressBarEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MissingGamesChecker.cs" />
+    <Compile Include="Models\GameDisplayData.cs" />
+    <Compile Include="Models\NoPlatformErrorData.cs" />
+    <Compile Include="Models\XmlGame.cs" />
+    <Compile Include="Models\XmlGameAlternateName.cs" />
+    <Compile Include="Models\XmlPlatform.cs" />
     <Compile Include="PlatformSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +114,7 @@
     <None Include="Resources\x-mark-128.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\" />
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
