@@ -454,7 +454,7 @@ namespace LBMissingGamesCheckerPlugin
             {
                 CurrentGridView.SuspendLayout();
 
-                var gameList = CurrentGridView.Name == "ownedGamesGridView" ? OriginalOwnedGameList : OriginalMissingGameList;                                                              
+                var gameList = CurrentGridView.Name == "ownedGamesGridView" ? OriginalOwnedGameList : OriginalMissingGameList;
 
                 if (gameList == null)
                 {
@@ -616,6 +616,40 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
+        // Filter Select All handler
+        private void chkSelectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            bool checkState = chkSelectAll.Checked;
+
+            for (int i = 0; i < clbFilterOptions.Items.Count; i++)
+            {
+                clbFilterOptions.SetItemChecked(i, checkState);
+            }
+        }
+
+        public void UpdateSelectAllState()
+        {
+            // 1. Temporarily unplug the event so changing the checkbox doesn't trigger our loop
+            chkSelectAll.CheckedChanged -= chkSelectAll_CheckedChanged;
+
+            // 2. Loop through and check if even a single item is unchecked
+            bool allChecked = true;
+            for (int i = 0; i < clbFilterOptions.Items.Count; i++)
+            {
+                if (!clbFilterOptions.GetItemChecked(i))
+                {
+                    allChecked = false;
+                    break;
+                }
+            }
+
+            // 3. Set the master checkbox state (and ensure it doesn't check if the list is empty)
+            chkSelectAll.Checked = (clbFilterOptions.Items.Count > 0 && allChecked);
+
+            // 4. Plug the event back in
+            chkSelectAll.CheckedChanged += chkSelectAll_CheckedChanged;
+        }
+
         // Export to CSV handler for OwnedGames
         private void ExportOwnedGamesButton_Click(object sender, EventArgs e)
         {
@@ -770,7 +804,8 @@ namespace LBMissingGamesCheckerPlugin
 
                 if (ownedGamesList != null)
                 {
-                    await Task.Run(() => {
+                    await Task.Run(() =>
+                    {
                         foreach (var game in ownedGamesList)
                         {
                             if (game.LaunchBoxDbId.HasValue && game.LaunchBoxDbId != 0)
@@ -1364,13 +1399,15 @@ namespace LBMissingGamesCheckerPlugin
 
                     // Get all directories except the excluded ones (case-insensitive)
                     List<string> allDirectories = new List<string>();
-                    await Task.Run(() => {
+                    await Task.Run(() =>
+                    {
                         allDirectories = Directory.GetDirectories(Directory.GetCurrentDirectory(), "*", SearchOption.AllDirectories)
                         .Where(dir => !excludedDirectories.Any(excludedDir => dir.IndexOf(excludedDir, StringComparison.OrdinalIgnoreCase) >= 0)) // Case-insensitive comparison
                         .ToList();
                     });
 
-                    fileFound = await Task.Run(() => {
+                    fileFound = await Task.Run(() =>
+                    {
                         foreach (string dir in allDirectories)
                         {
                             // Get all files from the current directory in a case-insensitive manner
@@ -1787,7 +1824,8 @@ namespace LBMissingGamesCheckerPlugin
             if (e.Button == MouseButtons.Left)
             {
                 // Ensure the following code runs on the UI thread
-                this.Invoke((System.Windows.Forms.MethodInvoker)delegate {
+                this.Invoke((System.Windows.Forms.MethodInvoker)delegate
+                {
                     ReleaseCapture();
                     SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
                 });
@@ -2020,5 +2058,6 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
         #endregion
+
     }
 }

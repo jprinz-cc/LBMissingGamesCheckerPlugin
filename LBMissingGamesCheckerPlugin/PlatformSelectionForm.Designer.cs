@@ -60,1273 +60,1283 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlatformSelectionForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.platformDropdown = new System.Windows.Forms.ComboBox();
-            this.confirmButton = new System.Windows.Forms.Button();
-            this.ownedGamesGridView = new System.Windows.Forms.DataGridView();
-            this.ownedGamesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.missingGamesGridView = new System.Windows.Forms.DataGridView();
-            this.missingGamesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblDropdown = new System.Windows.Forms.Label();
-            this.lblOwnedGamesGridView = new System.Windows.Forms.Label();
-            this.lblMissingGamesGridView = new System.Windows.Forms.Label();
-            this.lblOwnedGamesCount = new System.Windows.Forms.Label();
-            this.lblMissingGamesCount = new System.Windows.Forms.Label();
-            this.btnOwnedCSV = new System.Windows.Forms.Button();
-            this.btnMissingCSV = new System.Windows.Forms.Button();
-            this.gbOptional = new System.Windows.Forms.GroupBox();
-            this.clbColumnSelection = new System.Windows.Forms.CheckedListBox();
-            this.lblColumnSelection = new System.Windows.Forms.Label();
-            this.chkReleasedOnly = new System.Windows.Forms.CheckBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnClose = new System.Windows.Forms.Button();
-            this.llbPoweredBy = new System.Windows.Forms.LinkLabel();
-            this.ssMetadataStatus = new System.Windows.Forms.StatusStrip();
-            this.tsslIcon = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslText = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pbMetadataLoading = new LBMissingGamesCheckerPlugin.Controls.ProgressBarEx();
-            this.tbDebug = new System.Windows.Forms.TextBox();
-            this.ssPlatformDropdownMsg = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslPlatformDropdownMsg = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pDebugLog = new System.Windows.Forms.Panel();
-            this.btnClearDebugLog = new System.Windows.Forms.Button();
-            this.btnCopyToClipboard = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnCloseDebug = new System.Windows.Forms.Button();
-            this.pbDebugHeader = new System.Windows.Forms.PictureBox();
-            this.noPlatformGridView = new System.Windows.Forms.DataGridView();
-            this.errorNoPlatform = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.msgNoPlatform = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.errorLBDbId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noPlatformBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblCongrats = new System.Windows.Forms.Label();
-            this.lblScrapeAs = new System.Windows.Forms.Label();
-            this.gbFilterOptions = new System.Windows.Forms.GroupBox();
-            this.pbCloseFilter = new System.Windows.Forms.PictureBox();
-            this.btnFilterReset = new System.Windows.Forms.Button();
-            this.clbFilterOptions = new System.Windows.Forms.CheckedListBox();
-            this.btnApplyFilters = new System.Windows.Forms.Button();
-            this.pbCongrats = new System.Windows.Forms.PictureBox();
-            this.pbSpinner = new System.Windows.Forms.PictureBox();
-            this.pbDebugBtn = new System.Windows.Forms.PictureBox();
-            this.pbMGCHeader = new System.Windows.Forms.PictureBox();
-            this.pbMGCLogo = new System.Windows.Forms.PictureBox();
-            this.lblPlatformWarning = new System.Windows.Forms.Label();
-            this.TitleMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeveloperMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PublisherMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegionMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReleaseDateMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CommunityStarRatingMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CommunityStarRatingTotalVotesMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PlatformMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReleaseTypeMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenresMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AlternateNamesMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxPlayersMissing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LaunchBoxDbIdMissing = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.VideoUrlMissing = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.WikipediaUrlMissing = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.TitleOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeveloperOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PublisherOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegionOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReleaseDateOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CommunityStarRatingOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CommunityStarRatingTotalVotesOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PlatformOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReleaseTypeOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenresOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AlternateNamesOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxPlayersOwned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LaunchBoxDbIdOwned = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.VideoUrlOwned = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.WikipediaUrlOwned = new System.Windows.Forms.DataGridViewButtonColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.ownedGamesGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ownedGamesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.missingGamesGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.missingGamesBindingSource)).BeginInit();
-            this.gbOptional.SuspendLayout();
-            this.ssMetadataStatus.SuspendLayout();
-            this.ssPlatformDropdownMsg.SuspendLayout();
-            this.pDebugLog.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDebugHeader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noPlatformGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noPlatformBindingSource)).BeginInit();
-            this.gbFilterOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCloseFilter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCongrats)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSpinner)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDebugBtn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMGCHeader)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMGCLogo)).BeginInit();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            platformDropdown = new ComboBox();
+            confirmButton = new Button();
+            ownedGamesGridView = new DataGridView();
+            TitleOwned = new DataGridViewTextBoxColumn();
+            DeveloperOwned = new DataGridViewTextBoxColumn();
+            PublisherOwned = new DataGridViewTextBoxColumn();
+            RegionOwned = new DataGridViewTextBoxColumn();
+            ReleaseDateOwned = new DataGridViewTextBoxColumn();
+            CommunityStarRatingOwned = new DataGridViewTextBoxColumn();
+            CommunityStarRatingTotalVotesOwned = new DataGridViewTextBoxColumn();
+            PlatformOwned = new DataGridViewTextBoxColumn();
+            ReleaseTypeOwned = new DataGridViewTextBoxColumn();
+            GenresOwned = new DataGridViewTextBoxColumn();
+            AlternateNamesOwned = new DataGridViewTextBoxColumn();
+            MaxPlayersOwned = new DataGridViewTextBoxColumn();
+            LaunchBoxDbIdOwned = new DataGridViewButtonColumn();
+            VideoUrlOwned = new DataGridViewButtonColumn();
+            WikipediaUrlOwned = new DataGridViewButtonColumn();
+            ownedGamesBindingSource = new BindingSource(components);
+            missingGamesGridView = new DataGridView();
+            TitleMissing = new DataGridViewTextBoxColumn();
+            DeveloperMissing = new DataGridViewTextBoxColumn();
+            PublisherMissing = new DataGridViewTextBoxColumn();
+            RegionMissing = new DataGridViewTextBoxColumn();
+            ReleaseDateMissing = new DataGridViewTextBoxColumn();
+            CommunityStarRatingMissing = new DataGridViewTextBoxColumn();
+            CommunityStarRatingTotalVotesMissing = new DataGridViewTextBoxColumn();
+            PlatformMissing = new DataGridViewTextBoxColumn();
+            ReleaseTypeMissing = new DataGridViewTextBoxColumn();
+            GenresMissing = new DataGridViewTextBoxColumn();
+            AlternateNamesMissing = new DataGridViewTextBoxColumn();
+            MaxPlayersMissing = new DataGridViewTextBoxColumn();
+            LaunchBoxDbIdMissing = new DataGridViewButtonColumn();
+            VideoUrlMissing = new DataGridViewButtonColumn();
+            WikipediaUrlMissing = new DataGridViewButtonColumn();
+            missingGamesBindingSource = new BindingSource(components);
+            lblDropdown = new Label();
+            lblOwnedGamesGridView = new Label();
+            lblMissingGamesGridView = new Label();
+            lblOwnedGamesCount = new Label();
+            lblMissingGamesCount = new Label();
+            btnOwnedCSV = new Button();
+            btnMissingCSV = new Button();
+            gbOptional = new GroupBox();
+            clbColumnSelection = new CheckedListBox();
+            lblColumnSelection = new Label();
+            chkReleasedOnly = new CheckBox();
+            timer1 = new System.Windows.Forms.Timer(components);
+            btnClose = new Button();
+            llbPoweredBy = new LinkLabel();
+            ssMetadataStatus = new StatusStrip();
+            tsslIcon = new ToolStripStatusLabel();
+            tsslText = new ToolStripStatusLabel();
+            pbMetadataLoading = new LBMissingGamesCheckerPlugin.Controls.ProgressBarEx();
+            tbDebug = new TextBox();
+            ssPlatformDropdownMsg = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            tsslPlatformDropdownMsg = new ToolStripStatusLabel();
+            pDebugLog = new Panel();
+            btnClearDebugLog = new Button();
+            btnCopyToClipboard = new Button();
+            label1 = new Label();
+            btnCloseDebug = new Button();
+            pbDebugHeader = new PictureBox();
+            noPlatformGridView = new DataGridView();
+            errorNoPlatform = new DataGridViewTextBoxColumn();
+            msgNoPlatform = new DataGridViewTextBoxColumn();
+            errorLBDbId = new DataGridViewTextBoxColumn();
+            noPlatformBindingSource = new BindingSource(components);
+            lblCongrats = new Label();
+            lblScrapeAs = new Label();
+            gbFilterOptions = new GroupBox();
+            chkSelectAll = new CheckBox();
+            pbCloseFilter = new PictureBox();
+            btnFilterReset = new Button();
+            clbFilterOptions = new CheckedListBox();
+            btnApplyFilters = new Button();
+            pbCongrats = new PictureBox();
+            pbSpinner = new PictureBox();
+            pbDebugBtn = new PictureBox();
+            pbMGCHeader = new PictureBox();
+            pbMGCLogo = new PictureBox();
+            lblPlatformWarning = new Label();
+            ((System.ComponentModel.ISupportInitialize)ownedGamesGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ownedGamesBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)missingGamesGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)missingGamesBindingSource).BeginInit();
+            gbOptional.SuspendLayout();
+            ssMetadataStatus.SuspendLayout();
+            ssPlatformDropdownMsg.SuspendLayout();
+            pDebugLog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbDebugHeader).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)noPlatformGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)noPlatformBindingSource).BeginInit();
+            gbFilterOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbCloseFilter).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCongrats).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbSpinner).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbDebugBtn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbMGCHeader).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbMGCLogo).BeginInit();
+            SuspendLayout();
             // 
             // platformDropdown
             // 
-            this.platformDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.platformDropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.platformDropdown.FormattingEnabled = true;
-            this.platformDropdown.Items.AddRange(new object[] {
-            "Select a Platform"});
-            this.platformDropdown.Location = new System.Drawing.Point(16, 60);
-            this.platformDropdown.Name = "platformDropdown";
-            this.platformDropdown.Size = new System.Drawing.Size(220, 21);
-            this.platformDropdown.TabIndex = 0;
-            this.platformDropdown.SelectedIndexChanged += new System.EventHandler(this.PlatformDropdown_SelectedIndexChanged);
+            platformDropdown.DropDownStyle = ComboBoxStyle.DropDownList;
+            platformDropdown.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            platformDropdown.FormattingEnabled = true;
+            platformDropdown.Items.AddRange(new object[] { "Select a Platform" });
+            platformDropdown.Location = new Point(19, 69);
+            platformDropdown.Margin = new Padding(4, 3, 4, 3);
+            platformDropdown.Name = "platformDropdown";
+            platformDropdown.Size = new Size(256, 21);
+            platformDropdown.TabIndex = 0;
+            platformDropdown.SelectedIndexChanged += PlatformDropdown_SelectedIndexChanged;
             // 
             // confirmButton
             // 
-            this.confirmButton.Enabled = false;
-            this.confirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmButton.Location = new System.Drawing.Point(160, 85);
-            this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(75, 23);
-            this.confirmButton.TabIndex = 1;
-            this.confirmButton.Text = "Check It!";
-            this.confirmButton.UseVisualStyleBackColor = true;
-            this.confirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
+            confirmButton.Enabled = false;
+            confirmButton.Font = new Font("Microsoft Sans Serif", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            confirmButton.Location = new Point(187, 98);
+            confirmButton.Margin = new Padding(4, 3, 4, 3);
+            confirmButton.Name = "confirmButton";
+            confirmButton.Size = new Size(88, 27);
+            confirmButton.TabIndex = 1;
+            confirmButton.Text = "Check It!";
+            confirmButton.UseVisualStyleBackColor = true;
+            confirmButton.Click += ConfirmButton_Click;
             // 
             // ownedGamesGridView
             // 
-            this.ownedGamesGridView.AllowUserToAddRows = false;
-            this.ownedGamesGridView.AllowUserToDeleteRows = false;
-            this.ownedGamesGridView.AllowUserToOrderColumns = true;
-            this.ownedGamesGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ownedGamesGridView.AutoGenerateColumns = false;
-            this.ownedGamesGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ownedGamesGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ownedGamesGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.ownedGamesGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ownedGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.ownedGamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ownedGamesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TitleOwned,
-            this.DeveloperOwned,
-            this.PublisherOwned,
-            this.RegionOwned,
-            this.ReleaseDateOwned,
-            this.CommunityStarRatingOwned,
-            this.CommunityStarRatingTotalVotesOwned,
-            this.PlatformOwned,
-            this.ReleaseTypeOwned,
-            this.GenresOwned,
-            this.AlternateNamesOwned,
-            this.MaxPlayersOwned,
-            this.LaunchBoxDbIdOwned,
-            this.VideoUrlOwned,
-            this.WikipediaUrlOwned});
-            this.ownedGamesGridView.DataSource = this.ownedGamesBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle5;
-            this.ownedGamesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.ownedGamesGridView.EnableHeadersVisualStyles = false;
-            this.ownedGamesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            this.ownedGamesGridView.Location = new System.Drawing.Point(247, 91);
-            this.ownedGamesGridView.Name = "ownedGamesGridView";
-            this.ownedGamesGridView.ReadOnly = true;
-            this.ownedGamesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.ownedGamesGridView.RowHeadersWidth = 51;
-            this.ownedGamesGridView.ShowEditingIcon = false;
-            this.ownedGamesGridView.Size = new System.Drawing.Size(698, 150);
-            this.ownedGamesGridView.TabIndex = 2;
-            this.ownedGamesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
-            this.ownedGamesGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridView_CellFormatting);
-            this.ownedGamesGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellMouseEnter);
-            this.ownedGamesGridView.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellMouseLeave);
-            this.ownedGamesGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_ColumnHeaderMouseClick);
-            // 
-            // missingGamesGridView
-            // 
-            this.missingGamesGridView.AllowUserToAddRows = false;
-            this.missingGamesGridView.AllowUserToDeleteRows = false;
-            this.missingGamesGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.missingGamesGridView.AutoGenerateColumns = false;
-            this.missingGamesGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.missingGamesGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.missingGamesGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.missingGamesGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.missingGamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.missingGamesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TitleMissing,
-            this.DeveloperMissing,
-            this.PublisherMissing,
-            this.RegionMissing,
-            this.ReleaseDateMissing,
-            this.CommunityStarRatingMissing,
-            this.CommunityStarRatingTotalVotesMissing,
-            this.PlatformMissing,
-            this.ReleaseTypeMissing,
-            this.GenresMissing,
-            this.AlternateNamesMissing,
-            this.MaxPlayersMissing,
-            this.LaunchBoxDbIdMissing,
-            this.VideoUrlMissing,
-            this.WikipediaUrlMissing});
-            this.missingGamesGridView.DataSource = this.missingGamesBindingSource;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle11;
-            this.missingGamesGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.missingGamesGridView.EnableHeadersVisualStyles = false;
-            this.missingGamesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            this.missingGamesGridView.Location = new System.Drawing.Point(247, 279);
-            this.missingGamesGridView.Name = "missingGamesGridView";
-            this.missingGamesGridView.ReadOnly = true;
-            this.missingGamesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.missingGamesGridView.RowHeadersWidth = 51;
-            this.missingGamesGridView.Size = new System.Drawing.Size(698, 188);
-            this.missingGamesGridView.TabIndex = 3;
-            this.missingGamesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
-            this.missingGamesGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridView_CellFormatting);
-            this.missingGamesGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellMouseEnter);
-            this.missingGamesGridView.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellMouseLeave);
-            this.missingGamesGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_ColumnHeaderMouseClick);
-            // 
-            // lblDropdown
-            // 
-            this.lblDropdown.AutoSize = true;
-            this.lblDropdown.BackColor = System.Drawing.Color.Transparent;
-            this.lblDropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDropdown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblDropdown.Location = new System.Drawing.Point(12, 37);
-            this.lblDropdown.Name = "lblDropdown";
-            this.lblDropdown.Size = new System.Drawing.Size(193, 20);
-            this.lblDropdown.TabIndex = 4;
-            this.lblDropdown.Text = "Select a platform to check";
-            // 
-            // lblOwnedGamesGridView
-            // 
-            this.lblOwnedGamesGridView.AutoSize = true;
-            this.lblOwnedGamesGridView.BackColor = System.Drawing.Color.Transparent;
-            this.lblOwnedGamesGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOwnedGamesGridView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblOwnedGamesGridView.Location = new System.Drawing.Point(244, 73);
-            this.lblOwnedGamesGridView.Name = "lblOwnedGamesGridView";
-            this.lblOwnedGamesGridView.Size = new System.Drawing.Size(149, 15);
-            this.lblOwnedGamesGridView.TabIndex = 5;
-            this.lblOwnedGamesGridView.Text = "Owned Games List Count:";
-            // 
-            // lblMissingGamesGridView
-            // 
-            this.lblMissingGamesGridView.AutoSize = true;
-            this.lblMissingGamesGridView.BackColor = System.Drawing.Color.Transparent;
-            this.lblMissingGamesGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMissingGamesGridView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblMissingGamesGridView.Location = new System.Drawing.Point(244, 261);
-            this.lblMissingGamesGridView.Name = "lblMissingGamesGridView";
-            this.lblMissingGamesGridView.Size = new System.Drawing.Size(153, 15);
-            this.lblMissingGamesGridView.TabIndex = 6;
-            this.lblMissingGamesGridView.Text = "Missing Games List Count:";
-            // 
-            // lblOwnedGamesCount
-            // 
-            this.lblOwnedGamesCount.AutoSize = true;
-            this.lblOwnedGamesCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblOwnedGamesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOwnedGamesCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblOwnedGamesCount.Location = new System.Drawing.Point(399, 73);
-            this.lblOwnedGamesCount.Name = "lblOwnedGamesCount";
-            this.lblOwnedGamesCount.Size = new System.Drawing.Size(14, 15);
-            this.lblOwnedGamesCount.TabIndex = 7;
-            this.lblOwnedGamesCount.Text = "0";
-            // 
-            // lblMissingGamesCount
-            // 
-            this.lblMissingGamesCount.AutoSize = true;
-            this.lblMissingGamesCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblMissingGamesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMissingGamesCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblMissingGamesCount.Location = new System.Drawing.Point(403, 261);
-            this.lblMissingGamesCount.Name = "lblMissingGamesCount";
-            this.lblMissingGamesCount.Size = new System.Drawing.Size(14, 15);
-            this.lblMissingGamesCount.TabIndex = 8;
-            this.lblMissingGamesCount.Text = "0";
-            // 
-            // btnOwnedCSV
-            // 
-            this.btnOwnedCSV.Enabled = false;
-            this.btnOwnedCSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOwnedCSV.Location = new System.Drawing.Point(851, 66);
-            this.btnOwnedCSV.Name = "btnOwnedCSV";
-            this.btnOwnedCSV.Size = new System.Drawing.Size(85, 20);
-            this.btnOwnedCSV.TabIndex = 9;
-            this.btnOwnedCSV.Text = "Export to CSV";
-            this.btnOwnedCSV.UseVisualStyleBackColor = true;
-            this.btnOwnedCSV.Click += new System.EventHandler(this.ExportOwnedGamesButton_Click);
-            // 
-            // btnMissingCSV
-            // 
-            this.btnMissingCSV.Enabled = false;
-            this.btnMissingCSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMissingCSV.Location = new System.Drawing.Point(851, 254);
-            this.btnMissingCSV.Name = "btnMissingCSV";
-            this.btnMissingCSV.Size = new System.Drawing.Size(85, 20);
-            this.btnMissingCSV.TabIndex = 10;
-            this.btnMissingCSV.Text = "Export to CSV";
-            this.btnMissingCSV.UseVisualStyleBackColor = true;
-            this.btnMissingCSV.Click += new System.EventHandler(this.ExportMissingGamesButton_Click);
-            // 
-            // gbOptional
-            // 
-            this.gbOptional.Controls.Add(this.clbColumnSelection);
-            this.gbOptional.Controls.Add(this.lblColumnSelection);
-            this.gbOptional.Controls.Add(this.chkReleasedOnly);
-            this.gbOptional.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.gbOptional.Location = new System.Drawing.Point(21, 129);
-            this.gbOptional.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.gbOptional.Name = "gbOptional";
-            this.gbOptional.Size = new System.Drawing.Size(204, 273);
-            this.gbOptional.TabIndex = 11;
-            this.gbOptional.TabStop = false;
-            this.gbOptional.Text = "Optional Items";
-            // 
-            // clbColumnSelection
-            // 
-            this.clbColumnSelection.CheckOnClick = true;
-            this.clbColumnSelection.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.clbColumnSelection.FormattingEnabled = true;
-            this.clbColumnSelection.Location = new System.Drawing.Point(3, 71);
-            this.clbColumnSelection.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.clbColumnSelection.Name = "clbColumnSelection";
-            this.clbColumnSelection.Size = new System.Drawing.Size(198, 199);
-            this.clbColumnSelection.TabIndex = 1;
-            this.clbColumnSelection.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CheckedListBox_ItemCheck);
-            // 
-            // lblColumnSelection
-            // 
-            this.lblColumnSelection.AutoSize = true;
-            this.lblColumnSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.lblColumnSelection.Location = new System.Drawing.Point(6, 50);
-            this.lblColumnSelection.Name = "lblColumnSelection";
-            this.lblColumnSelection.Size = new System.Drawing.Size(89, 13);
-            this.lblColumnSelection.TabIndex = 2;
-            this.lblColumnSelection.Text = "Column Selection";
-            // 
-            // chkReleasedOnly
-            // 
-            this.chkReleasedOnly.AutoSize = true;
-            this.chkReleasedOnly.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.chkReleasedOnly.Location = new System.Drawing.Point(10, 21);
-            this.chkReleasedOnly.Name = "chkReleasedOnly";
-            this.chkReleasedOnly.Size = new System.Drawing.Size(166, 17);
-            this.chkReleasedOnly.TabIndex = 0;
-            this.chkReleasedOnly.Text = "Only include Released games";
-            this.chkReleasedOnly.UseVisualStyleBackColor = true;
-            // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.Color.MidnightBlue;
-            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.btnClose.Location = new System.Drawing.Point(848, 11);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(97, 29);
-            this.btnClose.TabIndex = 13;
-            this.btnClose.Text = "Close MGC";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.FormClose_Click);
-            // 
-            // llbPoweredBy
-            // 
-            this.llbPoweredBy.ActiveLinkColor = System.Drawing.Color.MidnightBlue;
-            this.llbPoweredBy.AutoSize = true;
-            this.llbPoweredBy.BackColor = System.Drawing.Color.Transparent;
-            this.llbPoweredBy.Cursor = System.Windows.Forms.Cursors.Default;
-            this.llbPoweredBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llbPoweredBy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.llbPoweredBy.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.llbPoweredBy.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.llbPoweredBy.Location = new System.Drawing.Point(18, 460);
-            this.llbPoweredBy.Name = "llbPoweredBy";
-            this.llbPoweredBy.Size = new System.Drawing.Size(162, 13);
-            this.llbPoweredBy.TabIndex = 16;
-            this.llbPoweredBy.TabStop = true;
-            this.llbPoweredBy.Text = "MGC Powered by AgentJohnnyP";
-            this.llbPoweredBy.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.llbPoweredBy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PoweredBy_LinkClicked);
-            // 
-            // ssMetadataStatus
-            // 
-            this.ssMetadataStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ssMetadataStatus.AutoSize = false;
-            this.ssMetadataStatus.BackColor = System.Drawing.Color.Transparent;
-            this.ssMetadataStatus.Dock = System.Windows.Forms.DockStyle.None;
-            this.ssMetadataStatus.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ssMetadataStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsslIcon,
-            this.tsslText});
-            this.ssMetadataStatus.Location = new System.Drawing.Point(21, 402);
-            this.ssMetadataStatus.Name = "ssMetadataStatus";
-            this.ssMetadataStatus.Size = new System.Drawing.Size(205, 26);
-            this.ssMetadataStatus.SizingGrip = false;
-            this.ssMetadataStatus.TabIndex = 19;
-            // 
-            // tsslIcon
-            // 
-            this.tsslIcon.Image = ((System.Drawing.Image)(resources.GetObject("tsslIcon.Image")));
-            this.tsslIcon.Name = "tsslIcon";
-            this.tsslIcon.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
-            this.tsslIcon.Size = new System.Drawing.Size(25, 21);
-            // 
-            // tsslText
-            // 
-            this.tsslText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.tsslText.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tsslText.ForeColor = System.Drawing.Color.Black;
-            this.tsslText.Name = "tsslText";
-            this.tsslText.Padding = new System.Windows.Forms.Padding(10, 0, 0, 5);
-            this.tsslText.Size = new System.Drawing.Size(151, 21);
-            this.tsslText.Text = "Preparing Environment....";
-            // 
-            // pbMetadataLoading
-            // 
-            this.pbMetadataLoading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.pbMetadataLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
-            this.pbMetadataLoading.Location = new System.Drawing.Point(21, 432);
-            this.pbMetadataLoading.MarqueeAnimationSpeed = 50;
-            this.pbMetadataLoading.Name = "pbMetadataLoading";
-            this.pbMetadataLoading.Size = new System.Drawing.Size(215, 21);
-            this.pbMetadataLoading.TabIndex = 20;
-            this.pbMetadataLoading.Visible = false;
-            // 
-            // tbDebug
-            // 
-            this.tbDebug.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.tbDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.tbDebug.Location = new System.Drawing.Point(2, 43);
-            this.tbDebug.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tbDebug.MaxLength = 15000;
-            this.tbDebug.Multiline = true;
-            this.tbDebug.Name = "tbDebug";
-            this.tbDebug.ReadOnly = true;
-            this.tbDebug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDebug.Size = new System.Drawing.Size(534, 183);
-            this.tbDebug.TabIndex = 21;
-            this.tbDebug.Text = "Debug Log";
-            // 
-            // ssPlatformDropdownMsg
-            // 
-            this.ssPlatformDropdownMsg.AutoSize = false;
-            this.ssPlatformDropdownMsg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.ssPlatformDropdownMsg.Dock = System.Windows.Forms.DockStyle.None;
-            this.ssPlatformDropdownMsg.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ssPlatformDropdownMsg.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.tsslPlatformDropdownMsg});
-            this.ssPlatformDropdownMsg.Location = new System.Drawing.Point(0, 0);
-            this.ssPlatformDropdownMsg.Name = "ssPlatformDropdownMsg";
-            this.ssPlatformDropdownMsg.Size = new System.Drawing.Size(220, 26);
-            this.ssPlatformDropdownMsg.SizingGrip = false;
-            this.ssPlatformDropdownMsg.TabIndex = 23;
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel1.Image")));
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(25, 21);
-            // 
-            // tsslPlatformDropdownMsg
-            // 
-            this.tsslPlatformDropdownMsg.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.tsslPlatformDropdownMsg.ForeColor = System.Drawing.Color.Black;
-            this.tsslPlatformDropdownMsg.Name = "tsslPlatformDropdownMsg";
-            this.tsslPlatformDropdownMsg.Padding = new System.Windows.Forms.Padding(10, 0, 0, 5);
-            this.tsslPlatformDropdownMsg.Size = new System.Drawing.Size(166, 21);
-            this.tsslPlatformDropdownMsg.Text = "Please select a platform!";
-            // 
-            // pDebugLog
-            // 
-            this.pDebugLog.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pDebugLog.Controls.Add(this.tbDebug);
-            this.pDebugLog.Controls.Add(this.btnClearDebugLog);
-            this.pDebugLog.Controls.Add(this.btnCopyToClipboard);
-            this.pDebugLog.Controls.Add(this.label1);
-            this.pDebugLog.Controls.Add(this.btnCloseDebug);
-            this.pDebugLog.Controls.Add(this.pbDebugHeader);
-            this.pDebugLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.pDebugLog.Location = new System.Drawing.Point(325, 172);
-            this.pDebugLog.Name = "pDebugLog";
-            this.pDebugLog.Size = new System.Drawing.Size(543, 232);
-            this.pDebugLog.TabIndex = 24;
-            // 
-            // btnClearDebugLog
-            // 
-            this.btnClearDebugLog.BackColor = System.Drawing.Color.Transparent;
-            this.btnClearDebugLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClearDebugLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearDebugLog.ForeColor = System.Drawing.Color.Black;
-            this.btnClearDebugLog.Location = new System.Drawing.Point(309, 10);
-            this.btnClearDebugLog.Name = "btnClearDebugLog";
-            this.btnClearDebugLog.Size = new System.Drawing.Size(81, 21);
-            this.btnClearDebugLog.TabIndex = 26;
-            this.btnClearDebugLog.Text = "Clear Debug Log";
-            this.btnClearDebugLog.UseVisualStyleBackColor = false;
-            this.btnClearDebugLog.Click += new System.EventHandler(this.ClearDebugLog_Click);
-            // 
-            // btnCopyToClipboard
-            // 
-            this.btnCopyToClipboard.BackColor = System.Drawing.Color.Transparent;
-            this.btnCopyToClipboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCopyToClipboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopyToClipboard.ForeColor = System.Drawing.Color.Black;
-            this.btnCopyToClipboard.Location = new System.Drawing.Point(207, 10);
-            this.btnCopyToClipboard.Name = "btnCopyToClipboard";
-            this.btnCopyToClipboard.Size = new System.Drawing.Size(89, 21);
-            this.btnCopyToClipboard.TabIndex = 25;
-            this.btnCopyToClipboard.Text = "Copy To Clipboard";
-            this.btnCopyToClipboard.UseVisualStyleBackColor = false;
-            this.btnCopyToClipboard.Click += new System.EventHandler(this.CopyToClipboard_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(49, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 24);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "MGC Debug Log";
-            // 
-            // btnCloseDebug
-            // 
-            this.btnCloseDebug.BackColor = System.Drawing.Color.MidnightBlue;
-            this.btnCloseDebug.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.btnCloseDebug.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnCloseDebug.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
-            this.btnCloseDebug.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseDebug.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.btnCloseDebug.Location = new System.Drawing.Point(422, 4);
-            this.btnCloseDebug.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnCloseDebug.Name = "btnCloseDebug";
-            this.btnCloseDebug.Size = new System.Drawing.Size(114, 28);
-            this.btnCloseDebug.TabIndex = 23;
-            this.btnCloseDebug.Text = "Close Debug Log";
-            this.btnCloseDebug.UseVisualStyleBackColor = false;
-            this.btnCloseDebug.Click += new System.EventHandler(this.CloseDebug_Click);
-            // 
-            // pbDebugHeader
-            // 
-            this.pbDebugHeader.BackColor = System.Drawing.Color.Transparent;
-            this.pbDebugHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbDebugHeader.BackgroundImage")));
-            this.pbDebugHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbDebugHeader.Location = new System.Drawing.Point(4, 4);
-            this.pbDebugHeader.Name = "pbDebugHeader";
-            this.pbDebugHeader.Size = new System.Drawing.Size(39, 36);
-            this.pbDebugHeader.TabIndex = 22;
-            this.pbDebugHeader.TabStop = false;
-            // 
-            // noPlatformGridView
-            // 
-            this.noPlatformGridView.AllowUserToAddRows = false;
-            this.noPlatformGridView.AllowUserToDeleteRows = false;
-            this.noPlatformGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.noPlatformGridView.AutoGenerateColumns = false;
-            this.noPlatformGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.noPlatformGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.noPlatformGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.noPlatformGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            this.noPlatformGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.noPlatformGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.errorNoPlatform,
-            this.msgNoPlatform,
-            this.errorLBDbId});
-            this.noPlatformGridView.DataSource = this.noPlatformBindingSource;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle14;
-            this.noPlatformGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.noPlatformGridView.EnableHeadersVisualStyles = false;
-            this.noPlatformGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(255)))));
-            this.noPlatformGridView.Location = new System.Drawing.Point(247, 279);
-            this.noPlatformGridView.Name = "noPlatformGridView";
-            this.noPlatformGridView.ReadOnly = true;
-            this.noPlatformGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            this.noPlatformGridView.RowHeadersWidth = 51;
-            this.noPlatformGridView.Size = new System.Drawing.Size(697, 188);
-            this.noPlatformGridView.TabIndex = 25;
-            // 
-            // errorNoPlatform
-            // 
-            this.errorNoPlatform.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.errorNoPlatform.DataPropertyName = "Title";
-            this.errorNoPlatform.HeaderText = "Error";
-            this.errorNoPlatform.MinimumWidth = 6;
-            this.errorNoPlatform.Name = "errorNoPlatform";
-            this.errorNoPlatform.ReadOnly = true;
-            this.errorNoPlatform.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.errorNoPlatform.Width = 35;
-            // 
-            // msgNoPlatform
-            // 
-            this.msgNoPlatform.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.msgNoPlatform.DataPropertyName = "Platform";
-            this.msgNoPlatform.HeaderText = "Message";
-            this.msgNoPlatform.MinimumWidth = 6;
-            this.msgNoPlatform.Name = "msgNoPlatform";
-            this.msgNoPlatform.ReadOnly = true;
-            this.msgNoPlatform.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.msgNoPlatform.Width = 56;
-            // 
-            // errorLBDbId
-            // 
-            this.errorLBDbId.DataPropertyName = "LaunchBoxDbId";
-            this.errorLBDbId.HeaderText = "LaunchBoxDbId";
-            this.errorLBDbId.MinimumWidth = 6;
-            this.errorLBDbId.Name = "errorLBDbId";
-            this.errorLBDbId.ReadOnly = true;
-            this.errorLBDbId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.errorLBDbId.Visible = false;
-            this.errorLBDbId.Width = 125;
-            // 
-            // lblCongrats
-            // 
-            this.lblCongrats.AutoSize = true;
-            this.lblCongrats.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.lblCongrats.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCongrats.Location = new System.Drawing.Point(472, 253);
-            this.lblCongrats.Name = "lblCongrats";
-            this.lblCongrats.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.lblCongrats.Size = new System.Drawing.Size(281, 21);
-            this.lblCongrats.TabIndex = 27;
-            this.lblCongrats.Text = "Congrats! Your collection is complete!";
-            // 
-            // lblScrapeAs
-            // 
-            this.lblScrapeAs.AutoSize = true;
-            this.lblScrapeAs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScrapeAs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.lblScrapeAs.Location = new System.Drawing.Point(15, 21);
-            this.lblScrapeAs.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblScrapeAs.Name = "lblScrapeAs";
-            this.lblScrapeAs.Size = new System.Drawing.Size(76, 13);
-            this.lblScrapeAs.TabIndex = 28;
-            this.lblScrapeAs.Text = "Searching As: ";
-            // 
-            // gbFilterOptions
-            // 
-            this.gbFilterOptions.AutoSize = true;
-            this.gbFilterOptions.Controls.Add(this.pbCloseFilter);
-            this.gbFilterOptions.Controls.Add(this.btnFilterReset);
-            this.gbFilterOptions.Controls.Add(this.clbFilterOptions);
-            this.gbFilterOptions.Controls.Add(this.btnApplyFilters);
-            this.gbFilterOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.gbFilterOptions.Location = new System.Drawing.Point(231, 116);
-            this.gbFilterOptions.Name = "gbFilterOptions";
-            this.gbFilterOptions.Size = new System.Drawing.Size(148, 160);
-            this.gbFilterOptions.TabIndex = 29;
-            this.gbFilterOptions.TabStop = false;
-            this.gbFilterOptions.Text = "Filter";
-            // 
-            // pbCloseFilter
-            // 
-            this.pbCloseFilter.AccessibleDescription = "Close Filter Window";
-            this.pbCloseFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbCloseFilter.BackColor = System.Drawing.Color.Transparent;
-            this.pbCloseFilter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbCloseFilter.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.error;
-            this.pbCloseFilter.Location = new System.Drawing.Point(129, 10);
-            this.pbCloseFilter.Margin = new System.Windows.Forms.Padding(0);
-            this.pbCloseFilter.Name = "pbCloseFilter";
-            this.pbCloseFilter.Size = new System.Drawing.Size(13, 13);
-            this.pbCloseFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbCloseFilter.TabIndex = 3;
-            this.pbCloseFilter.TabStop = false;
-            this.pbCloseFilter.Click += new System.EventHandler(this.CloseFilter_Click);
-            // 
-            // btnFilterReset
-            // 
-            this.btnFilterReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFilterReset.ForeColor = System.Drawing.Color.Black;
-            this.btnFilterReset.Location = new System.Drawing.Point(59, 17);
-            this.btnFilterReset.Name = "btnFilterReset";
-            this.btnFilterReset.Size = new System.Drawing.Size(47, 21);
-            this.btnFilterReset.TabIndex = 2;
-            this.btnFilterReset.Text = "Reset";
-            this.btnFilterReset.UseVisualStyleBackColor = true;
-            this.btnFilterReset.Click += new System.EventHandler(this.FilterReset_Click);
-            // 
-            // clbFilterOptions
-            // 
-            this.clbFilterOptions.CheckOnClick = true;
-            this.clbFilterOptions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.clbFilterOptions.FormattingEnabled = true;
-            this.clbFilterOptions.Location = new System.Drawing.Point(3, 48);
-            this.clbFilterOptions.Name = "clbFilterOptions";
-            this.clbFilterOptions.Size = new System.Drawing.Size(142, 109);
-            this.clbFilterOptions.Sorted = true;
-            this.clbFilterOptions.TabIndex = 1;
-            this.clbFilterOptions.ThreeDCheckBoxes = true;
-            // 
-            // btnApplyFilters
-            // 
-            this.btnApplyFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyFilters.ForeColor = System.Drawing.Color.Black;
-            this.btnApplyFilters.Location = new System.Drawing.Point(6, 17);
-            this.btnApplyFilters.Name = "btnApplyFilters";
-            this.btnApplyFilters.Size = new System.Drawing.Size(47, 21);
-            this.btnApplyFilters.TabIndex = 0;
-            this.btnApplyFilters.Text = "Apply";
-            this.btnApplyFilters.UseVisualStyleBackColor = true;
-            this.btnApplyFilters.Click += new System.EventHandler(this.ApplyFilters_Click);
-            // 
-            // pbCongrats
-            // 
-            this.pbCongrats.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.congrats;
-            this.pbCongrats.Location = new System.Drawing.Point(424, 297);
-            this.pbCongrats.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pbCongrats.Name = "pbCongrats";
-            this.pbCongrats.Size = new System.Drawing.Size(343, 150);
-            this.pbCongrats.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbCongrats.TabIndex = 3;
-            this.pbCongrats.TabStop = false;
-            // 
-            // pbSpinner
-            // 
-            this.pbSpinner.BackColor = System.Drawing.Color.Transparent;
-            this.pbSpinner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbSpinner.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_spinner;
-            this.pbSpinner.Location = new System.Drawing.Point(445, 297);
-            this.pbSpinner.Name = "pbSpinner";
-            this.pbSpinner.Size = new System.Drawing.Size(302, 153);
-            this.pbSpinner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbSpinner.TabIndex = 26;
-            this.pbSpinner.TabStop = false;
-            // 
-            // pbDebugBtn
-            // 
-            this.pbDebugBtn.BackColor = System.Drawing.Color.Transparent;
-            this.pbDebugBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbDebugBtn.BackgroundImage")));
-            this.pbDebugBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbDebugBtn.Cursor = System.Windows.Forms.Cursors.Help;
-            this.pbDebugBtn.Location = new System.Drawing.Point(216, 458);
-            this.pbDebugBtn.Name = "pbDebugBtn";
-            this.pbDebugBtn.Size = new System.Drawing.Size(20, 20);
-            this.pbDebugBtn.TabIndex = 24;
-            this.pbDebugBtn.TabStop = false;
-            this.pbDebugBtn.Click += new System.EventHandler(this.DebugBtn_Click);
-            // 
-            // pbMGCHeader
-            // 
-            this.pbMGCHeader.BackColor = System.Drawing.Color.Transparent;
-            this.pbMGCHeader.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_header;
-            this.pbMGCHeader.Location = new System.Drawing.Point(361, -1);
-            this.pbMGCHeader.Name = "pbMGCHeader";
-            this.pbMGCHeader.Size = new System.Drawing.Size(471, 97);
-            this.pbMGCHeader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbMGCHeader.TabIndex = 15;
-            this.pbMGCHeader.TabStop = false;
-            this.pbMGCHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
-            // 
-            // pbMGCLogo
-            // 
-            this.pbMGCLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pbMGCLogo.Image = global::LBMissingGamesCheckerPlugin.Properties.Resources.mgc_logo;
-            this.pbMGCLogo.Location = new System.Drawing.Point(282, 11);
-            this.pbMGCLogo.Name = "pbMGCLogo";
-            this.pbMGCLogo.Size = new System.Drawing.Size(73, 59);
-            this.pbMGCLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbMGCLogo.TabIndex = 14;
-            this.pbMGCLogo.TabStop = false;
-            this.pbMGCLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
-            // 
-            // lblPlatformWarning
-            // 
-            this.lblPlatformWarning.AutoSize = true;
-            this.lblPlatformWarning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.lblPlatformWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlatformWarning.ForeColor = System.Drawing.Color.Black;
-            this.lblPlatformWarning.Location = new System.Drawing.Point(0, 85);
-            this.lblPlatformWarning.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPlatformWarning.Name = "lblPlatformWarning";
-            this.lblPlatformWarning.Padding = new System.Windows.Forms.Padding(2);
-            this.lblPlatformWarning.Size = new System.Drawing.Size(172, 43);
-            this.lblPlatformWarning.TabIndex = 30;
-            this.lblPlatformWarning.Text = "Warning! This platform contains\r\na lot of data! Processing may take \r\na few momen" +
-    "ts!";
-            // 
-            // TitleMissing
-            // 
-            this.TitleMissing.DataPropertyName = "Title";
-            this.TitleMissing.HeaderText = "Title";
-            this.TitleMissing.MinimumWidth = 6;
-            this.TitleMissing.Name = "TitleMissing";
-            this.TitleMissing.ReadOnly = true;
-            this.TitleMissing.Width = 125;
-            // 
-            // DeveloperMissing
-            // 
-            this.DeveloperMissing.DataPropertyName = "Developer";
-            this.DeveloperMissing.HeaderText = "Developer";
-            this.DeveloperMissing.MinimumWidth = 6;
-            this.DeveloperMissing.Name = "DeveloperMissing";
-            this.DeveloperMissing.ReadOnly = true;
-            this.DeveloperMissing.Width = 125;
-            // 
-            // PublisherMissing
-            // 
-            this.PublisherMissing.DataPropertyName = "Publisher";
-            this.PublisherMissing.HeaderText = "Publisher";
-            this.PublisherMissing.MinimumWidth = 6;
-            this.PublisherMissing.Name = "PublisherMissing";
-            this.PublisherMissing.ReadOnly = true;
-            this.PublisherMissing.Width = 125;
-            // 
-            // RegionMissing
-            // 
-            this.RegionMissing.DataPropertyName = "Region";
-            this.RegionMissing.HeaderText = "Region";
-            this.RegionMissing.MinimumWidth = 6;
-            this.RegionMissing.Name = "RegionMissing";
-            this.RegionMissing.ReadOnly = true;
-            this.RegionMissing.Width = 125;
-            // 
-            // ReleaseDateMissing
-            // 
-            this.ReleaseDateMissing.DataPropertyName = "ReleaseDate";
-            this.ReleaseDateMissing.HeaderText = "ReleaseDate";
-            this.ReleaseDateMissing.MinimumWidth = 6;
-            this.ReleaseDateMissing.Name = "ReleaseDateMissing";
-            this.ReleaseDateMissing.ReadOnly = true;
-            this.ReleaseDateMissing.Width = 125;
-            // 
-            // CommunityStarRatingMissing
-            // 
-            this.CommunityStarRatingMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CommunityStarRatingMissing.DataPropertyName = "CommunityStarRating";
-            this.CommunityStarRatingMissing.HeaderText = "CommunityStarRating";
-            this.CommunityStarRatingMissing.MinimumWidth = 6;
-            this.CommunityStarRatingMissing.Name = "CommunityStarRatingMissing";
-            this.CommunityStarRatingMissing.ReadOnly = true;
-            this.CommunityStarRatingMissing.Width = 133;
-            // 
-            // CommunityStarRatingTotalVotesMissing
-            // 
-            this.CommunityStarRatingTotalVotesMissing.DataPropertyName = "CommunityStarRatingTotalVotes";
-            this.CommunityStarRatingTotalVotesMissing.HeaderText = "CommunityStarRatingTotalVotes";
-            this.CommunityStarRatingTotalVotesMissing.MinimumWidth = 6;
-            this.CommunityStarRatingTotalVotesMissing.Name = "CommunityStarRatingTotalVotesMissing";
-            this.CommunityStarRatingTotalVotesMissing.ReadOnly = true;
-            this.CommunityStarRatingTotalVotesMissing.Width = 125;
-            // 
-            // PlatformMissing
-            // 
-            this.PlatformMissing.DataPropertyName = "Platform";
-            this.PlatformMissing.HeaderText = "Platform";
-            this.PlatformMissing.MinimumWidth = 6;
-            this.PlatformMissing.Name = "PlatformMissing";
-            this.PlatformMissing.ReadOnly = true;
-            this.PlatformMissing.Width = 125;
-            // 
-            // ReleaseTypeMissing
-            // 
-            this.ReleaseTypeMissing.DataPropertyName = "ReleaseType";
-            this.ReleaseTypeMissing.HeaderText = "ReleaseType";
-            this.ReleaseTypeMissing.MinimumWidth = 6;
-            this.ReleaseTypeMissing.Name = "ReleaseTypeMissing";
-            this.ReleaseTypeMissing.ReadOnly = true;
-            this.ReleaseTypeMissing.Width = 125;
-            // 
-            // GenresMissing
-            // 
-            this.GenresMissing.DataPropertyName = "Genres";
-            this.GenresMissing.HeaderText = "Genres";
-            this.GenresMissing.MinimumWidth = 6;
-            this.GenresMissing.Name = "GenresMissing";
-            this.GenresMissing.ReadOnly = true;
-            this.GenresMissing.Width = 125;
-            // 
-            // AlternateNamesMissing
-            // 
-            this.AlternateNamesMissing.DataPropertyName = "AlternateNames";
-            this.AlternateNamesMissing.HeaderText = "AlternateNames";
-            this.AlternateNamesMissing.MinimumWidth = 6;
-            this.AlternateNamesMissing.Name = "AlternateNamesMissing";
-            this.AlternateNamesMissing.ReadOnly = true;
-            this.AlternateNamesMissing.Width = 125;
-            // 
-            // MaxPlayersMissing
-            // 
-            this.MaxPlayersMissing.DataPropertyName = "MaxPlayers";
-            this.MaxPlayersMissing.HeaderText = "MaxPlayers";
-            this.MaxPlayersMissing.MinimumWidth = 6;
-            this.MaxPlayersMissing.Name = "MaxPlayersMissing";
-            this.MaxPlayersMissing.ReadOnly = true;
-            this.MaxPlayersMissing.Width = 125;
-            // 
-            // LaunchBoxDbIdMissing
-            // 
-            this.LaunchBoxDbIdMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.LaunchBoxDbIdMissing.DataPropertyName = "LaunchBoxDbId";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.LaunchBoxDbIdMissing.DefaultCellStyle = dataGridViewCellStyle8;
-            this.LaunchBoxDbIdMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.LaunchBoxDbIdMissing.HeaderText = "LaunchBoxDBID";
-            this.LaunchBoxDbIdMissing.MinimumWidth = 6;
-            this.LaunchBoxDbIdMissing.Name = "LaunchBoxDbIdMissing";
-            this.LaunchBoxDbIdMissing.ReadOnly = true;
-            this.LaunchBoxDbIdMissing.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.LaunchBoxDbIdMissing.Text = "";
-            this.LaunchBoxDbIdMissing.Width = 112;
-            // 
-            // VideoUrlMissing
-            // 
-            this.VideoUrlMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.VideoUrlMissing.DataPropertyName = "VideoUrl";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.VideoUrlMissing.DefaultCellStyle = dataGridViewCellStyle9;
-            this.VideoUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.VideoUrlMissing.HeaderText = "VideoURL";
-            this.VideoUrlMissing.MinimumWidth = 6;
-            this.VideoUrlMissing.Name = "VideoUrlMissing";
-            this.VideoUrlMissing.ReadOnly = true;
-            this.VideoUrlMissing.Text = "";
-            this.VideoUrlMissing.Width = 62;
-            // 
-            // WikipediaUrlMissing
-            // 
-            this.WikipediaUrlMissing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.WikipediaUrlMissing.DataPropertyName = "WikipediaUrl";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.WikipediaUrlMissing.DefaultCellStyle = dataGridViewCellStyle10;
-            this.WikipediaUrlMissing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.WikipediaUrlMissing.HeaderText = "WikipediaURL";
-            this.WikipediaUrlMissing.MinimumWidth = 6;
-            this.WikipediaUrlMissing.Name = "WikipediaUrlMissing";
-            this.WikipediaUrlMissing.ReadOnly = true;
-            this.WikipediaUrlMissing.Text = "";
-            this.WikipediaUrlMissing.Width = 82;
+            ownedGamesGridView.AllowUserToAddRows = false;
+            ownedGamesGridView.AllowUserToDeleteRows = false;
+            ownedGamesGridView.AllowUserToOrderColumns = true;
+            ownedGamesGridView.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            ownedGamesGridView.AutoGenerateColumns = false;
+            ownedGamesGridView.BackgroundColor = Color.FromArgb(54, 57, 63);
+            ownedGamesGridView.BorderStyle = BorderStyle.Fixed3D;
+            ownedGamesGridView.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
+            ownedGamesGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(44, 156, 255);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ownedGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            ownedGamesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ownedGamesGridView.Columns.AddRange(new DataGridViewColumn[] { TitleOwned, DeveloperOwned, PublisherOwned, RegionOwned, ReleaseDateOwned, CommunityStarRatingOwned, CommunityStarRatingTotalVotesOwned, PlatformOwned, ReleaseTypeOwned, GenresOwned, AlternateNamesOwned, MaxPlayersOwned, LaunchBoxDbIdOwned, VideoUrlOwned, WikipediaUrlOwned });
+            ownedGamesGridView.DataSource = ownedGamesBindingSource;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            ownedGamesGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            ownedGamesGridView.EnableHeadersVisualStyles = false;
+            ownedGamesGridView.GridColor = Color.FromArgb(44, 156, 255);
+            ownedGamesGridView.Location = new Point(288, 105);
+            ownedGamesGridView.Margin = new Padding(4, 3, 4, 3);
+            ownedGamesGridView.Name = "ownedGamesGridView";
+            ownedGamesGridView.ReadOnly = true;
+            ownedGamesGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            ownedGamesGridView.RowHeadersWidth = 51;
+            ownedGamesGridView.ShowEditingIcon = false;
+            ownedGamesGridView.Size = new Size(814, 173);
+            ownedGamesGridView.TabIndex = 2;
+            ownedGamesGridView.CellContentClick += GridView_CellContentClick;
+            ownedGamesGridView.CellFormatting += GridView_CellFormatting;
+            ownedGamesGridView.CellMouseEnter += GridView_CellMouseEnter;
+            ownedGamesGridView.CellMouseLeave += GridView_CellMouseLeave;
+            ownedGamesGridView.ColumnHeaderMouseClick += GridView_ColumnHeaderMouseClick;
             // 
             // TitleOwned
             // 
-            this.TitleOwned.DataPropertyName = "Title";
-            this.TitleOwned.HeaderText = "Title";
-            this.TitleOwned.MinimumWidth = 6;
-            this.TitleOwned.Name = "TitleOwned";
-            this.TitleOwned.ReadOnly = true;
-            this.TitleOwned.Width = 125;
+            TitleOwned.DataPropertyName = "Title";
+            TitleOwned.HeaderText = "Title";
+            TitleOwned.MinimumWidth = 6;
+            TitleOwned.Name = "TitleOwned";
+            TitleOwned.ReadOnly = true;
+            TitleOwned.Width = 125;
             // 
             // DeveloperOwned
             // 
-            this.DeveloperOwned.DataPropertyName = "Developer";
-            this.DeveloperOwned.HeaderText = "Developer";
-            this.DeveloperOwned.MinimumWidth = 6;
-            this.DeveloperOwned.Name = "DeveloperOwned";
-            this.DeveloperOwned.ReadOnly = true;
-            this.DeveloperOwned.Width = 125;
+            DeveloperOwned.DataPropertyName = "Developer";
+            DeveloperOwned.HeaderText = "Developer";
+            DeveloperOwned.MinimumWidth = 6;
+            DeveloperOwned.Name = "DeveloperOwned";
+            DeveloperOwned.ReadOnly = true;
+            DeveloperOwned.Width = 125;
             // 
             // PublisherOwned
             // 
-            this.PublisherOwned.DataPropertyName = "Publisher";
-            this.PublisherOwned.HeaderText = "Publisher";
-            this.PublisherOwned.MinimumWidth = 6;
-            this.PublisherOwned.Name = "PublisherOwned";
-            this.PublisherOwned.ReadOnly = true;
-            this.PublisherOwned.Width = 125;
+            PublisherOwned.DataPropertyName = "Publisher";
+            PublisherOwned.HeaderText = "Publisher";
+            PublisherOwned.MinimumWidth = 6;
+            PublisherOwned.Name = "PublisherOwned";
+            PublisherOwned.ReadOnly = true;
+            PublisherOwned.Width = 125;
             // 
             // RegionOwned
             // 
-            this.RegionOwned.DataPropertyName = "Region";
-            this.RegionOwned.HeaderText = "Region";
-            this.RegionOwned.MinimumWidth = 6;
-            this.RegionOwned.Name = "RegionOwned";
-            this.RegionOwned.ReadOnly = true;
-            this.RegionOwned.Width = 125;
+            RegionOwned.DataPropertyName = "Region";
+            RegionOwned.HeaderText = "Region";
+            RegionOwned.MinimumWidth = 6;
+            RegionOwned.Name = "RegionOwned";
+            RegionOwned.ReadOnly = true;
+            RegionOwned.Width = 125;
             // 
             // ReleaseDateOwned
             // 
-            this.ReleaseDateOwned.DataPropertyName = "ReleaseDate";
-            this.ReleaseDateOwned.HeaderText = "ReleaseDate";
-            this.ReleaseDateOwned.MinimumWidth = 6;
-            this.ReleaseDateOwned.Name = "ReleaseDateOwned";
-            this.ReleaseDateOwned.ReadOnly = true;
-            this.ReleaseDateOwned.Width = 125;
+            ReleaseDateOwned.DataPropertyName = "ReleaseDate";
+            ReleaseDateOwned.HeaderText = "ReleaseDate";
+            ReleaseDateOwned.MinimumWidth = 6;
+            ReleaseDateOwned.Name = "ReleaseDateOwned";
+            ReleaseDateOwned.ReadOnly = true;
+            ReleaseDateOwned.Width = 125;
             // 
             // CommunityStarRatingOwned
             // 
-            this.CommunityStarRatingOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CommunityStarRatingOwned.DataPropertyName = "CommunityStarRating";
-            this.CommunityStarRatingOwned.HeaderText = "CommunityStarRating";
-            this.CommunityStarRatingOwned.MinimumWidth = 6;
-            this.CommunityStarRatingOwned.Name = "CommunityStarRatingOwned";
-            this.CommunityStarRatingOwned.ReadOnly = true;
-            this.CommunityStarRatingOwned.Width = 133;
+            CommunityStarRatingOwned.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            CommunityStarRatingOwned.DataPropertyName = "CommunityStarRating";
+            CommunityStarRatingOwned.HeaderText = "CommunityStarRating";
+            CommunityStarRatingOwned.MinimumWidth = 6;
+            CommunityStarRatingOwned.Name = "CommunityStarRatingOwned";
+            CommunityStarRatingOwned.ReadOnly = true;
+            CommunityStarRatingOwned.Width = 133;
             // 
             // CommunityStarRatingTotalVotesOwned
             // 
-            this.CommunityStarRatingTotalVotesOwned.DataPropertyName = "CommunityStarRatingTotalVotes";
-            this.CommunityStarRatingTotalVotesOwned.HeaderText = "CommunityStarRatingTotalVotes";
-            this.CommunityStarRatingTotalVotesOwned.MinimumWidth = 6;
-            this.CommunityStarRatingTotalVotesOwned.Name = "CommunityStarRatingTotalVotesOwned";
-            this.CommunityStarRatingTotalVotesOwned.ReadOnly = true;
-            this.CommunityStarRatingTotalVotesOwned.Width = 125;
+            CommunityStarRatingTotalVotesOwned.DataPropertyName = "CommunityStarRatingTotalVotes";
+            CommunityStarRatingTotalVotesOwned.HeaderText = "CommunityStarRatingTotalVotes";
+            CommunityStarRatingTotalVotesOwned.MinimumWidth = 6;
+            CommunityStarRatingTotalVotesOwned.Name = "CommunityStarRatingTotalVotesOwned";
+            CommunityStarRatingTotalVotesOwned.ReadOnly = true;
+            CommunityStarRatingTotalVotesOwned.Width = 125;
             // 
             // PlatformOwned
             // 
-            this.PlatformOwned.DataPropertyName = "Platform";
-            this.PlatformOwned.HeaderText = "Platform";
-            this.PlatformOwned.MinimumWidth = 6;
-            this.PlatformOwned.Name = "PlatformOwned";
-            this.PlatformOwned.ReadOnly = true;
-            this.PlatformOwned.Width = 125;
+            PlatformOwned.DataPropertyName = "Platform";
+            PlatformOwned.HeaderText = "Platform";
+            PlatformOwned.MinimumWidth = 6;
+            PlatformOwned.Name = "PlatformOwned";
+            PlatformOwned.ReadOnly = true;
+            PlatformOwned.Width = 125;
             // 
             // ReleaseTypeOwned
             // 
-            this.ReleaseTypeOwned.DataPropertyName = "ReleaseType";
-            this.ReleaseTypeOwned.HeaderText = "ReleaseType";
-            this.ReleaseTypeOwned.MinimumWidth = 6;
-            this.ReleaseTypeOwned.Name = "ReleaseTypeOwned";
-            this.ReleaseTypeOwned.ReadOnly = true;
-            this.ReleaseTypeOwned.Width = 125;
+            ReleaseTypeOwned.DataPropertyName = "ReleaseType";
+            ReleaseTypeOwned.HeaderText = "ReleaseType";
+            ReleaseTypeOwned.MinimumWidth = 6;
+            ReleaseTypeOwned.Name = "ReleaseTypeOwned";
+            ReleaseTypeOwned.ReadOnly = true;
+            ReleaseTypeOwned.Width = 125;
             // 
             // GenresOwned
             // 
-            this.GenresOwned.DataPropertyName = "Genres";
-            this.GenresOwned.HeaderText = "Genres";
-            this.GenresOwned.MinimumWidth = 6;
-            this.GenresOwned.Name = "GenresOwned";
-            this.GenresOwned.ReadOnly = true;
-            this.GenresOwned.Width = 125;
+            GenresOwned.DataPropertyName = "Genres";
+            GenresOwned.HeaderText = "Genres";
+            GenresOwned.MinimumWidth = 6;
+            GenresOwned.Name = "GenresOwned";
+            GenresOwned.ReadOnly = true;
+            GenresOwned.Width = 125;
             // 
             // AlternateNamesOwned
             // 
-            this.AlternateNamesOwned.DataPropertyName = "AlternateNames";
-            this.AlternateNamesOwned.HeaderText = "AlternateNames";
-            this.AlternateNamesOwned.MinimumWidth = 6;
-            this.AlternateNamesOwned.Name = "AlternateNamesOwned";
-            this.AlternateNamesOwned.ReadOnly = true;
-            this.AlternateNamesOwned.Width = 125;
+            AlternateNamesOwned.DataPropertyName = "AlternateNames";
+            AlternateNamesOwned.HeaderText = "AlternateNames";
+            AlternateNamesOwned.MinimumWidth = 6;
+            AlternateNamesOwned.Name = "AlternateNamesOwned";
+            AlternateNamesOwned.ReadOnly = true;
+            AlternateNamesOwned.Width = 125;
             // 
             // MaxPlayersOwned
             // 
-            this.MaxPlayersOwned.DataPropertyName = "MaxPlayers";
-            this.MaxPlayersOwned.HeaderText = "MaxPlayers";
-            this.MaxPlayersOwned.MinimumWidth = 6;
-            this.MaxPlayersOwned.Name = "MaxPlayersOwned";
-            this.MaxPlayersOwned.ReadOnly = true;
-            this.MaxPlayersOwned.Width = 125;
+            MaxPlayersOwned.DataPropertyName = "MaxPlayers";
+            MaxPlayersOwned.HeaderText = "MaxPlayers";
+            MaxPlayersOwned.MinimumWidth = 6;
+            MaxPlayersOwned.Name = "MaxPlayersOwned";
+            MaxPlayersOwned.ReadOnly = true;
+            MaxPlayersOwned.Width = 125;
             // 
             // LaunchBoxDbIdOwned
             // 
-            this.LaunchBoxDbIdOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.LaunchBoxDbIdOwned.DataPropertyName = "LaunchBoxDbId";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.LaunchBoxDbIdOwned.DefaultCellStyle = dataGridViewCellStyle2;
-            this.LaunchBoxDbIdOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.LaunchBoxDbIdOwned.HeaderText = "LaunchBoxDBID";
-            this.LaunchBoxDbIdOwned.MinimumWidth = 6;
-            this.LaunchBoxDbIdOwned.Name = "LaunchBoxDbIdOwned";
-            this.LaunchBoxDbIdOwned.ReadOnly = true;
-            this.LaunchBoxDbIdOwned.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.LaunchBoxDbIdOwned.Text = "LaunchBoxDBID";
-            this.LaunchBoxDbIdOwned.Width = 112;
+            LaunchBoxDbIdOwned.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            LaunchBoxDbIdOwned.DataPropertyName = "LaunchBoxDbId";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle2.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.Padding = new Padding(3, 0, 3, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            LaunchBoxDbIdOwned.DefaultCellStyle = dataGridViewCellStyle2;
+            LaunchBoxDbIdOwned.FlatStyle = FlatStyle.Popup;
+            LaunchBoxDbIdOwned.HeaderText = "LaunchBoxDBID";
+            LaunchBoxDbIdOwned.MinimumWidth = 6;
+            LaunchBoxDbIdOwned.Name = "LaunchBoxDbIdOwned";
+            LaunchBoxDbIdOwned.ReadOnly = true;
+            LaunchBoxDbIdOwned.SortMode = DataGridViewColumnSortMode.Automatic;
+            LaunchBoxDbIdOwned.Text = "LaunchBoxDBID";
+            LaunchBoxDbIdOwned.Width = 112;
             // 
             // VideoUrlOwned
             // 
-            this.VideoUrlOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.VideoUrlOwned.DataPropertyName = "VideoUrl";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.VideoUrlOwned.DefaultCellStyle = dataGridViewCellStyle3;
-            this.VideoUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.VideoUrlOwned.HeaderText = "VideoURL";
-            this.VideoUrlOwned.MinimumWidth = 6;
-            this.VideoUrlOwned.Name = "VideoUrlOwned";
-            this.VideoUrlOwned.ReadOnly = true;
-            this.VideoUrlOwned.Text = "";
-            this.VideoUrlOwned.Width = 62;
+            VideoUrlOwned.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            VideoUrlOwned.DataPropertyName = "VideoUrl";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle3.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.Padding = new Padding(3, 0, 3, 0);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            VideoUrlOwned.DefaultCellStyle = dataGridViewCellStyle3;
+            VideoUrlOwned.FlatStyle = FlatStyle.Popup;
+            VideoUrlOwned.HeaderText = "VideoURL";
+            VideoUrlOwned.MinimumWidth = 6;
+            VideoUrlOwned.Name = "VideoUrlOwned";
+            VideoUrlOwned.ReadOnly = true;
+            VideoUrlOwned.Text = "";
+            VideoUrlOwned.Width = 62;
             // 
             // WikipediaUrlOwned
             // 
-            this.WikipediaUrlOwned.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.WikipediaUrlOwned.DataPropertyName = "WikipediaUrl";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(191)))), ((int)(((byte)(0)))));
-            this.WikipediaUrlOwned.DefaultCellStyle = dataGridViewCellStyle4;
-            this.WikipediaUrlOwned.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.WikipediaUrlOwned.HeaderText = "WikipediaURL";
-            this.WikipediaUrlOwned.MinimumWidth = 6;
-            this.WikipediaUrlOwned.Name = "WikipediaUrlOwned";
-            this.WikipediaUrlOwned.ReadOnly = true;
-            this.WikipediaUrlOwned.Text = "";
-            this.WikipediaUrlOwned.Width = 82;
+            WikipediaUrlOwned.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            WikipediaUrlOwned.DataPropertyName = "WikipediaUrl";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle4.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.Padding = new Padding(3, 0, 3, 0);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            WikipediaUrlOwned.DefaultCellStyle = dataGridViewCellStyle4;
+            WikipediaUrlOwned.FlatStyle = FlatStyle.Popup;
+            WikipediaUrlOwned.HeaderText = "WikipediaURL";
+            WikipediaUrlOwned.MinimumWidth = 6;
+            WikipediaUrlOwned.Name = "WikipediaUrlOwned";
+            WikipediaUrlOwned.ReadOnly = true;
+            WikipediaUrlOwned.Text = "";
+            WikipediaUrlOwned.Width = 82;
+            // 
+            // missingGamesGridView
+            // 
+            missingGamesGridView.AllowUserToAddRows = false;
+            missingGamesGridView.AllowUserToDeleteRows = false;
+            missingGamesGridView.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            missingGamesGridView.AutoGenerateColumns = false;
+            missingGamesGridView.BackgroundColor = Color.FromArgb(54, 57, 63);
+            missingGamesGridView.BorderStyle = BorderStyle.Fixed3D;
+            missingGamesGridView.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
+            missingGamesGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(44, 156, 255);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            missingGamesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            missingGamesGridView.Columns.AddRange(new DataGridViewColumn[] { TitleMissing, DeveloperMissing, PublisherMissing, RegionMissing, ReleaseDateMissing, CommunityStarRatingMissing, CommunityStarRatingTotalVotesMissing, PlatformMissing, ReleaseTypeMissing, GenresMissing, AlternateNamesMissing, MaxPlayersMissing, LaunchBoxDbIdMissing, VideoUrlMissing, WikipediaUrlMissing });
+            missingGamesGridView.DataSource = missingGamesBindingSource;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle11.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle11;
+            missingGamesGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            missingGamesGridView.EnableHeadersVisualStyles = false;
+            missingGamesGridView.GridColor = Color.FromArgb(44, 156, 255);
+            missingGamesGridView.Location = new Point(288, 322);
+            missingGamesGridView.Margin = new Padding(4, 3, 4, 3);
+            missingGamesGridView.Name = "missingGamesGridView";
+            missingGamesGridView.ReadOnly = true;
+            missingGamesGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            missingGamesGridView.RowHeadersWidth = 51;
+            missingGamesGridView.Size = new Size(814, 217);
+            missingGamesGridView.TabIndex = 3;
+            missingGamesGridView.CellContentClick += GridView_CellContentClick;
+            missingGamesGridView.CellFormatting += GridView_CellFormatting;
+            missingGamesGridView.CellMouseEnter += GridView_CellMouseEnter;
+            missingGamesGridView.CellMouseLeave += GridView_CellMouseLeave;
+            missingGamesGridView.ColumnHeaderMouseClick += GridView_ColumnHeaderMouseClick;
+            // 
+            // TitleMissing
+            // 
+            TitleMissing.DataPropertyName = "Title";
+            TitleMissing.HeaderText = "Title";
+            TitleMissing.MinimumWidth = 6;
+            TitleMissing.Name = "TitleMissing";
+            TitleMissing.ReadOnly = true;
+            TitleMissing.Width = 125;
+            // 
+            // DeveloperMissing
+            // 
+            DeveloperMissing.DataPropertyName = "Developer";
+            DeveloperMissing.HeaderText = "Developer";
+            DeveloperMissing.MinimumWidth = 6;
+            DeveloperMissing.Name = "DeveloperMissing";
+            DeveloperMissing.ReadOnly = true;
+            DeveloperMissing.Width = 125;
+            // 
+            // PublisherMissing
+            // 
+            PublisherMissing.DataPropertyName = "Publisher";
+            PublisherMissing.HeaderText = "Publisher";
+            PublisherMissing.MinimumWidth = 6;
+            PublisherMissing.Name = "PublisherMissing";
+            PublisherMissing.ReadOnly = true;
+            PublisherMissing.Width = 125;
+            // 
+            // RegionMissing
+            // 
+            RegionMissing.DataPropertyName = "Region";
+            RegionMissing.HeaderText = "Region";
+            RegionMissing.MinimumWidth = 6;
+            RegionMissing.Name = "RegionMissing";
+            RegionMissing.ReadOnly = true;
+            RegionMissing.Width = 125;
+            // 
+            // ReleaseDateMissing
+            // 
+            ReleaseDateMissing.DataPropertyName = "ReleaseDate";
+            ReleaseDateMissing.HeaderText = "ReleaseDate";
+            ReleaseDateMissing.MinimumWidth = 6;
+            ReleaseDateMissing.Name = "ReleaseDateMissing";
+            ReleaseDateMissing.ReadOnly = true;
+            ReleaseDateMissing.Width = 125;
+            // 
+            // CommunityStarRatingMissing
+            // 
+            CommunityStarRatingMissing.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            CommunityStarRatingMissing.DataPropertyName = "CommunityStarRating";
+            CommunityStarRatingMissing.HeaderText = "CommunityStarRating";
+            CommunityStarRatingMissing.MinimumWidth = 6;
+            CommunityStarRatingMissing.Name = "CommunityStarRatingMissing";
+            CommunityStarRatingMissing.ReadOnly = true;
+            CommunityStarRatingMissing.Width = 133;
+            // 
+            // CommunityStarRatingTotalVotesMissing
+            // 
+            CommunityStarRatingTotalVotesMissing.DataPropertyName = "CommunityStarRatingTotalVotes";
+            CommunityStarRatingTotalVotesMissing.HeaderText = "CommunityStarRatingTotalVotes";
+            CommunityStarRatingTotalVotesMissing.MinimumWidth = 6;
+            CommunityStarRatingTotalVotesMissing.Name = "CommunityStarRatingTotalVotesMissing";
+            CommunityStarRatingTotalVotesMissing.ReadOnly = true;
+            CommunityStarRatingTotalVotesMissing.Width = 125;
+            // 
+            // PlatformMissing
+            // 
+            PlatformMissing.DataPropertyName = "Platform";
+            PlatformMissing.HeaderText = "Platform";
+            PlatformMissing.MinimumWidth = 6;
+            PlatformMissing.Name = "PlatformMissing";
+            PlatformMissing.ReadOnly = true;
+            PlatformMissing.Width = 125;
+            // 
+            // ReleaseTypeMissing
+            // 
+            ReleaseTypeMissing.DataPropertyName = "ReleaseType";
+            ReleaseTypeMissing.HeaderText = "ReleaseType";
+            ReleaseTypeMissing.MinimumWidth = 6;
+            ReleaseTypeMissing.Name = "ReleaseTypeMissing";
+            ReleaseTypeMissing.ReadOnly = true;
+            ReleaseTypeMissing.Width = 125;
+            // 
+            // GenresMissing
+            // 
+            GenresMissing.DataPropertyName = "Genres";
+            GenresMissing.HeaderText = "Genres";
+            GenresMissing.MinimumWidth = 6;
+            GenresMissing.Name = "GenresMissing";
+            GenresMissing.ReadOnly = true;
+            GenresMissing.Width = 125;
+            // 
+            // AlternateNamesMissing
+            // 
+            AlternateNamesMissing.DataPropertyName = "AlternateNames";
+            AlternateNamesMissing.HeaderText = "AlternateNames";
+            AlternateNamesMissing.MinimumWidth = 6;
+            AlternateNamesMissing.Name = "AlternateNamesMissing";
+            AlternateNamesMissing.ReadOnly = true;
+            AlternateNamesMissing.Width = 125;
+            // 
+            // MaxPlayersMissing
+            // 
+            MaxPlayersMissing.DataPropertyName = "MaxPlayers";
+            MaxPlayersMissing.HeaderText = "MaxPlayers";
+            MaxPlayersMissing.MinimumWidth = 6;
+            MaxPlayersMissing.Name = "MaxPlayersMissing";
+            MaxPlayersMissing.ReadOnly = true;
+            MaxPlayersMissing.Width = 125;
+            // 
+            // LaunchBoxDbIdMissing
+            // 
+            LaunchBoxDbIdMissing.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            LaunchBoxDbIdMissing.DataPropertyName = "LaunchBoxDbId";
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle8.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            LaunchBoxDbIdMissing.DefaultCellStyle = dataGridViewCellStyle8;
+            LaunchBoxDbIdMissing.FlatStyle = FlatStyle.Popup;
+            LaunchBoxDbIdMissing.HeaderText = "LaunchBoxDBID";
+            LaunchBoxDbIdMissing.MinimumWidth = 6;
+            LaunchBoxDbIdMissing.Name = "LaunchBoxDbIdMissing";
+            LaunchBoxDbIdMissing.ReadOnly = true;
+            LaunchBoxDbIdMissing.SortMode = DataGridViewColumnSortMode.Automatic;
+            LaunchBoxDbIdMissing.Text = "";
+            LaunchBoxDbIdMissing.Width = 112;
+            // 
+            // VideoUrlMissing
+            // 
+            VideoUrlMissing.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            VideoUrlMissing.DataPropertyName = "VideoUrl";
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle9.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            VideoUrlMissing.DefaultCellStyle = dataGridViewCellStyle9;
+            VideoUrlMissing.FlatStyle = FlatStyle.Popup;
+            VideoUrlMissing.HeaderText = "VideoURL";
+            VideoUrlMissing.MinimumWidth = 6;
+            VideoUrlMissing.Name = "VideoUrlMissing";
+            VideoUrlMissing.ReadOnly = true;
+            VideoUrlMissing.Text = "";
+            VideoUrlMissing.Width = 62;
+            // 
+            // WikipediaUrlMissing
+            // 
+            WikipediaUrlMissing.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            WikipediaUrlMissing.DataPropertyName = "WikipediaUrl";
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle10.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle10.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            WikipediaUrlMissing.DefaultCellStyle = dataGridViewCellStyle10;
+            WikipediaUrlMissing.FlatStyle = FlatStyle.Popup;
+            WikipediaUrlMissing.HeaderText = "WikipediaURL";
+            WikipediaUrlMissing.MinimumWidth = 6;
+            WikipediaUrlMissing.Name = "WikipediaUrlMissing";
+            WikipediaUrlMissing.ReadOnly = true;
+            WikipediaUrlMissing.Text = "";
+            WikipediaUrlMissing.Width = 82;
+            // 
+            // lblDropdown
+            // 
+            lblDropdown.AutoSize = true;
+            lblDropdown.BackColor = Color.Transparent;
+            lblDropdown.Font = new Font("Microsoft Sans Serif", 11.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDropdown.ForeColor = Color.FromArgb(230, 230, 230);
+            lblDropdown.Location = new Point(14, 43);
+            lblDropdown.Margin = new Padding(4, 0, 4, 0);
+            lblDropdown.Name = "lblDropdown";
+            lblDropdown.Size = new Size(193, 20);
+            lblDropdown.TabIndex = 4;
+            lblDropdown.Text = "Select a platform to check";
+            // 
+            // lblOwnedGamesGridView
+            // 
+            lblOwnedGamesGridView.AutoSize = true;
+            lblOwnedGamesGridView.BackColor = Color.Transparent;
+            lblOwnedGamesGridView.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblOwnedGamesGridView.ForeColor = Color.FromArgb(230, 230, 230);
+            lblOwnedGamesGridView.Location = new Point(285, 84);
+            lblOwnedGamesGridView.Margin = new Padding(4, 0, 4, 0);
+            lblOwnedGamesGridView.Name = "lblOwnedGamesGridView";
+            lblOwnedGamesGridView.Size = new Size(149, 15);
+            lblOwnedGamesGridView.TabIndex = 5;
+            lblOwnedGamesGridView.Text = "Owned Games List Count:";
+            // 
+            // lblMissingGamesGridView
+            // 
+            lblMissingGamesGridView.AutoSize = true;
+            lblMissingGamesGridView.BackColor = Color.Transparent;
+            lblMissingGamesGridView.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMissingGamesGridView.ForeColor = Color.FromArgb(230, 230, 230);
+            lblMissingGamesGridView.Location = new Point(285, 301);
+            lblMissingGamesGridView.Margin = new Padding(4, 0, 4, 0);
+            lblMissingGamesGridView.Name = "lblMissingGamesGridView";
+            lblMissingGamesGridView.Size = new Size(153, 15);
+            lblMissingGamesGridView.TabIndex = 6;
+            lblMissingGamesGridView.Text = "Missing Games List Count:";
+            // 
+            // lblOwnedGamesCount
+            // 
+            lblOwnedGamesCount.AutoSize = true;
+            lblOwnedGamesCount.BackColor = Color.Transparent;
+            lblOwnedGamesCount.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblOwnedGamesCount.ForeColor = Color.FromArgb(230, 230, 230);
+            lblOwnedGamesCount.Location = new Point(465, 84);
+            lblOwnedGamesCount.Margin = new Padding(4, 0, 4, 0);
+            lblOwnedGamesCount.Name = "lblOwnedGamesCount";
+            lblOwnedGamesCount.Size = new Size(14, 15);
+            lblOwnedGamesCount.TabIndex = 7;
+            lblOwnedGamesCount.Text = "0";
+            // 
+            // lblMissingGamesCount
+            // 
+            lblMissingGamesCount.AutoSize = true;
+            lblMissingGamesCount.BackColor = Color.Transparent;
+            lblMissingGamesCount.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMissingGamesCount.ForeColor = Color.FromArgb(230, 230, 230);
+            lblMissingGamesCount.Location = new Point(470, 301);
+            lblMissingGamesCount.Margin = new Padding(4, 0, 4, 0);
+            lblMissingGamesCount.Name = "lblMissingGamesCount";
+            lblMissingGamesCount.Size = new Size(14, 15);
+            lblMissingGamesCount.TabIndex = 8;
+            lblMissingGamesCount.Text = "0";
+            // 
+            // btnOwnedCSV
+            // 
+            btnOwnedCSV.Enabled = false;
+            btnOwnedCSV.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOwnedCSV.Location = new Point(993, 76);
+            btnOwnedCSV.Margin = new Padding(4, 3, 4, 3);
+            btnOwnedCSV.Name = "btnOwnedCSV";
+            btnOwnedCSV.Size = new Size(99, 23);
+            btnOwnedCSV.TabIndex = 9;
+            btnOwnedCSV.Text = "Export to CSV";
+            btnOwnedCSV.UseVisualStyleBackColor = true;
+            btnOwnedCSV.Click += ExportOwnedGamesButton_Click;
+            // 
+            // btnMissingCSV
+            // 
+            btnMissingCSV.Enabled = false;
+            btnMissingCSV.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnMissingCSV.Location = new Point(993, 293);
+            btnMissingCSV.Margin = new Padding(4, 3, 4, 3);
+            btnMissingCSV.Name = "btnMissingCSV";
+            btnMissingCSV.Size = new Size(99, 23);
+            btnMissingCSV.TabIndex = 10;
+            btnMissingCSV.Text = "Export to CSV";
+            btnMissingCSV.UseVisualStyleBackColor = true;
+            btnMissingCSV.Click += ExportMissingGamesButton_Click;
+            // 
+            // gbOptional
+            // 
+            gbOptional.Controls.Add(clbColumnSelection);
+            gbOptional.Controls.Add(lblColumnSelection);
+            gbOptional.Controls.Add(chkReleasedOnly);
+            gbOptional.ForeColor = Color.FromArgb(255, 191, 0);
+            gbOptional.Location = new Point(24, 149);
+            gbOptional.Margin = new Padding(4, 3, 4, 0);
+            gbOptional.Name = "gbOptional";
+            gbOptional.Padding = new Padding(4, 3, 4, 3);
+            gbOptional.Size = new Size(238, 315);
+            gbOptional.TabIndex = 11;
+            gbOptional.TabStop = false;
+            gbOptional.Text = "Optional Items";
+            // 
+            // clbColumnSelection
+            // 
+            clbColumnSelection.CheckOnClick = true;
+            clbColumnSelection.Dock = DockStyle.Bottom;
+            clbColumnSelection.FormattingEnabled = true;
+            clbColumnSelection.Location = new Point(4, 92);
+            clbColumnSelection.Margin = new Padding(4, 1, 4, 2);
+            clbColumnSelection.Name = "clbColumnSelection";
+            clbColumnSelection.Size = new Size(230, 220);
+            clbColumnSelection.TabIndex = 1;
+            clbColumnSelection.ItemCheck += CheckedListBox_ItemCheck;
+            // 
+            // lblColumnSelection
+            // 
+            lblColumnSelection.AutoSize = true;
+            lblColumnSelection.ForeColor = Color.FromArgb(255, 191, 0);
+            lblColumnSelection.Location = new Point(7, 58);
+            lblColumnSelection.Margin = new Padding(4, 0, 4, 0);
+            lblColumnSelection.Name = "lblColumnSelection";
+            lblColumnSelection.Size = new Size(101, 15);
+            lblColumnSelection.TabIndex = 2;
+            lblColumnSelection.Text = "Column Selection";
+            // 
+            // chkReleasedOnly
+            // 
+            chkReleasedOnly.AutoSize = true;
+            chkReleasedOnly.ForeColor = Color.FromArgb(255, 191, 0);
+            chkReleasedOnly.Location = new Point(12, 24);
+            chkReleasedOnly.Margin = new Padding(4, 3, 4, 3);
+            chkReleasedOnly.Name = "chkReleasedOnly";
+            chkReleasedOnly.Size = new Size(180, 19);
+            chkReleasedOnly.TabIndex = 0;
+            chkReleasedOnly.Text = "Only include Released games";
+            chkReleasedOnly.UseVisualStyleBackColor = true;
+            // 
+            // btnClose
+            // 
+            btnClose.BackColor = Color.MidnightBlue;
+            btnClose.FlatAppearance.BorderColor = Color.FromArgb(30, 130, 200);
+            btnClose.FlatAppearance.MouseDownBackColor = Color.Black;
+            btnClose.FlatAppearance.MouseOverBackColor = Color.Navy;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClose.ForeColor = Color.FromArgb(255, 191, 0);
+            btnClose.Location = new Point(989, 13);
+            btnClose.Margin = new Padding(2);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(113, 33);
+            btnClose.TabIndex = 13;
+            btnClose.Text = "Close MGC";
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += FormClose_Click;
+            // 
+            // llbPoweredBy
+            // 
+            llbPoweredBy.ActiveLinkColor = Color.MidnightBlue;
+            llbPoweredBy.AutoSize = true;
+            llbPoweredBy.BackColor = Color.Transparent;
+            llbPoweredBy.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            llbPoweredBy.ForeColor = Color.FromArgb(255, 191, 0);
+            llbPoweredBy.LinkBehavior = LinkBehavior.AlwaysUnderline;
+            llbPoweredBy.LinkColor = Color.FromArgb(255, 191, 0);
+            llbPoweredBy.Location = new Point(21, 531);
+            llbPoweredBy.Margin = new Padding(4, 0, 4, 0);
+            llbPoweredBy.Name = "llbPoweredBy";
+            llbPoweredBy.Size = new Size(162, 13);
+            llbPoweredBy.TabIndex = 16;
+            llbPoweredBy.TabStop = true;
+            llbPoweredBy.Text = "MGC Powered by AgentJohnnyP";
+            llbPoweredBy.VisitedLinkColor = Color.FromArgb(255, 191, 0);
+            llbPoweredBy.LinkClicked += PoweredBy_LinkClicked;
+            // 
+            // ssMetadataStatus
+            // 
+            ssMetadataStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            ssMetadataStatus.AutoSize = false;
+            ssMetadataStatus.BackColor = Color.Transparent;
+            ssMetadataStatus.Dock = DockStyle.None;
+            ssMetadataStatus.ImageScalingSize = new Size(20, 20);
+            ssMetadataStatus.Items.AddRange(new ToolStripItem[] { tsslIcon, tsslText });
+            ssMetadataStatus.Location = new Point(24, 464);
+            ssMetadataStatus.Name = "ssMetadataStatus";
+            ssMetadataStatus.Padding = new Padding(1, 0, 16, 0);
+            ssMetadataStatus.Size = new Size(239, 30);
+            ssMetadataStatus.SizingGrip = false;
+            ssMetadataStatus.TabIndex = 19;
+            // 
+            // tsslIcon
+            // 
+            tsslIcon.Image = (Image)resources.GetObject("tsslIcon.Image");
+            tsslIcon.Name = "tsslIcon";
+            tsslIcon.Padding = new Padding(5, 0, 0, 5);
+            tsslIcon.Size = new Size(25, 25);
+            // 
+            // tsslText
+            // 
+            tsslText.BackColor = Color.FromArgb(255, 191, 0);
+            tsslText.Font = new Font("Segoe UI", 9F);
+            tsslText.ForeColor = Color.Black;
+            tsslText.Name = "tsslText";
+            tsslText.Padding = new Padding(10, 0, 0, 5);
+            tsslText.Size = new Size(151, 25);
+            tsslText.Text = "Preparing Environment....";
+            // 
+            // pbMetadataLoading
+            // 
+            pbMetadataLoading.BackColor = Color.FromArgb(54, 57, 63);
+            pbMetadataLoading.ForeColor = Color.FromArgb(4, 173, 255);
+            pbMetadataLoading.Location = new Point(24, 498);
+            pbMetadataLoading.Margin = new Padding(4, 3, 4, 3);
+            pbMetadataLoading.MarqueeAnimationSpeed = 50;
+            pbMetadataLoading.Name = "pbMetadataLoading";
+            pbMetadataLoading.Size = new Size(251, 24);
+            pbMetadataLoading.TabIndex = 20;
+            pbMetadataLoading.Visible = false;
+            // 
+            // tbDebug
+            // 
+            tbDebug.BackColor = Color.FromArgb(54, 57, 63);
+            tbDebug.ForeColor = Color.FromArgb(255, 191, 0);
+            tbDebug.Location = new Point(2, 50);
+            tbDebug.Margin = new Padding(2);
+            tbDebug.MaxLength = 15000;
+            tbDebug.Multiline = true;
+            tbDebug.Name = "tbDebug";
+            tbDebug.ReadOnly = true;
+            tbDebug.ScrollBars = ScrollBars.Vertical;
+            tbDebug.Size = new Size(622, 211);
+            tbDebug.TabIndex = 21;
+            tbDebug.Text = "Debug Log";
+            // 
+            // ssPlatformDropdownMsg
+            // 
+            ssPlatformDropdownMsg.AutoSize = false;
+            ssPlatformDropdownMsg.BackColor = Color.FromArgb(255, 191, 0);
+            ssPlatformDropdownMsg.Dock = DockStyle.None;
+            ssPlatformDropdownMsg.ImageScalingSize = new Size(20, 20);
+            ssPlatformDropdownMsg.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, tsslPlatformDropdownMsg });
+            ssPlatformDropdownMsg.Location = new Point(0, 0);
+            ssPlatformDropdownMsg.Name = "ssPlatformDropdownMsg";
+            ssPlatformDropdownMsg.Padding = new Padding(1, 0, 16, 0);
+            ssPlatformDropdownMsg.Size = new Size(257, 30);
+            ssPlatformDropdownMsg.SizingGrip = false;
+            ssPlatformDropdownMsg.TabIndex = 23;
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Image = (Image)resources.GetObject("toolStripStatusLabel1.Image");
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Padding = new Padding(5, 0, 0, 5);
+            toolStripStatusLabel1.Size = new Size(25, 25);
+            // 
+            // tsslPlatformDropdownMsg
+            // 
+            tsslPlatformDropdownMsg.Font = new Font("Segoe UI", 10F);
+            tsslPlatformDropdownMsg.ForeColor = Color.Black;
+            tsslPlatformDropdownMsg.Name = "tsslPlatformDropdownMsg";
+            tsslPlatformDropdownMsg.Padding = new Padding(10, 0, 0, 5);
+            tsslPlatformDropdownMsg.Size = new Size(166, 25);
+            tsslPlatformDropdownMsg.Text = "Please select a platform!";
+            // 
+            // pDebugLog
+            // 
+            pDebugLog.BorderStyle = BorderStyle.Fixed3D;
+            pDebugLog.Controls.Add(tbDebug);
+            pDebugLog.Controls.Add(btnClearDebugLog);
+            pDebugLog.Controls.Add(btnCopyToClipboard);
+            pDebugLog.Controls.Add(label1);
+            pDebugLog.Controls.Add(btnCloseDebug);
+            pDebugLog.Controls.Add(pbDebugHeader);
+            pDebugLog.ForeColor = Color.FromArgb(255, 191, 0);
+            pDebugLog.Location = new Point(379, 198);
+            pDebugLog.Margin = new Padding(4, 3, 4, 3);
+            pDebugLog.Name = "pDebugLog";
+            pDebugLog.Size = new Size(633, 267);
+            pDebugLog.TabIndex = 24;
+            // 
+            // btnClearDebugLog
+            // 
+            btnClearDebugLog.BackColor = Color.Transparent;
+            btnClearDebugLog.BackgroundImageLayout = ImageLayout.Zoom;
+            btnClearDebugLog.Font = new Font("Microsoft Sans Serif", 6.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClearDebugLog.ForeColor = Color.Black;
+            btnClearDebugLog.Location = new Point(360, 12);
+            btnClearDebugLog.Margin = new Padding(4, 3, 4, 3);
+            btnClearDebugLog.Name = "btnClearDebugLog";
+            btnClearDebugLog.Size = new Size(94, 24);
+            btnClearDebugLog.TabIndex = 26;
+            btnClearDebugLog.Text = "Clear Debug Log";
+            btnClearDebugLog.UseVisualStyleBackColor = false;
+            btnClearDebugLog.Click += ClearDebugLog_Click;
+            // 
+            // btnCopyToClipboard
+            // 
+            btnCopyToClipboard.BackColor = Color.Transparent;
+            btnCopyToClipboard.BackgroundImageLayout = ImageLayout.Zoom;
+            btnCopyToClipboard.Font = new Font("Microsoft Sans Serif", 6.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCopyToClipboard.ForeColor = Color.Black;
+            btnCopyToClipboard.Location = new Point(241, 12);
+            btnCopyToClipboard.Margin = new Padding(4, 3, 4, 3);
+            btnCopyToClipboard.Name = "btnCopyToClipboard";
+            btnCopyToClipboard.Size = new Size(104, 24);
+            btnCopyToClipboard.TabIndex = 25;
+            btnCopyToClipboard.Text = "Copy To Clipboard";
+            btnCopyToClipboard.UseVisualStyleBackColor = false;
+            btnCopyToClipboard.Click += CopyToClipboard_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(57, 8);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(152, 24);
+            label1.TabIndex = 24;
+            label1.Text = "MGC Debug Log";
+            // 
+            // btnCloseDebug
+            // 
+            btnCloseDebug.BackColor = Color.MidnightBlue;
+            btnCloseDebug.FlatAppearance.BorderColor = Color.FromArgb(30, 130, 200);
+            btnCloseDebug.FlatAppearance.MouseDownBackColor = Color.Black;
+            btnCloseDebug.FlatAppearance.MouseOverBackColor = Color.Navy;
+            btnCloseDebug.FlatStyle = FlatStyle.Flat;
+            btnCloseDebug.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCloseDebug.ForeColor = Color.FromArgb(255, 191, 0);
+            btnCloseDebug.Location = new Point(492, 5);
+            btnCloseDebug.Margin = new Padding(2);
+            btnCloseDebug.Name = "btnCloseDebug";
+            btnCloseDebug.Size = new Size(133, 32);
+            btnCloseDebug.TabIndex = 23;
+            btnCloseDebug.Text = "Close Debug Log";
+            btnCloseDebug.UseVisualStyleBackColor = false;
+            btnCloseDebug.Click += CloseDebug_Click;
+            // 
+            // pbDebugHeader
+            // 
+            pbDebugHeader.BackColor = Color.Transparent;
+            pbDebugHeader.BackgroundImage = (Image)resources.GetObject("pbDebugHeader.BackgroundImage");
+            pbDebugHeader.BackgroundImageLayout = ImageLayout.Stretch;
+            pbDebugHeader.Location = new Point(5, 5);
+            pbDebugHeader.Margin = new Padding(4, 3, 4, 3);
+            pbDebugHeader.Name = "pbDebugHeader";
+            pbDebugHeader.Size = new Size(46, 42);
+            pbDebugHeader.TabIndex = 22;
+            pbDebugHeader.TabStop = false;
+            // 
+            // noPlatformGridView
+            // 
+            noPlatformGridView.AllowUserToAddRows = false;
+            noPlatformGridView.AllowUserToDeleteRows = false;
+            noPlatformGridView.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            noPlatformGridView.AutoGenerateColumns = false;
+            noPlatformGridView.BackgroundColor = Color.FromArgb(54, 57, 63);
+            noPlatformGridView.BorderStyle = BorderStyle.Fixed3D;
+            noPlatformGridView.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
+            noPlatformGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle13.ForeColor = Color.Black;
+            dataGridViewCellStyle13.SelectionBackColor = Color.Black;
+            dataGridViewCellStyle13.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            noPlatformGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            noPlatformGridView.Columns.AddRange(new DataGridViewColumn[] { errorNoPlatform, msgNoPlatform, errorLBDbId });
+            noPlatformGridView.DataSource = noPlatformBindingSource;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle14.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle14.ForeColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle14.SelectionForeColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle14;
+            noPlatformGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            noPlatformGridView.EnableHeadersVisualStyles = false;
+            noPlatformGridView.GridColor = Color.FromArgb(44, 156, 255);
+            noPlatformGridView.Location = new Point(288, 322);
+            noPlatformGridView.Margin = new Padding(4, 3, 4, 3);
+            noPlatformGridView.Name = "noPlatformGridView";
+            noPlatformGridView.ReadOnly = true;
+            noPlatformGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle15.ForeColor = Color.White;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            noPlatformGridView.RowHeadersWidth = 51;
+            noPlatformGridView.Size = new Size(813, 217);
+            noPlatformGridView.TabIndex = 25;
+            // 
+            // errorNoPlatform
+            // 
+            errorNoPlatform.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            errorNoPlatform.DataPropertyName = "Title";
+            errorNoPlatform.HeaderText = "Error";
+            errorNoPlatform.MinimumWidth = 6;
+            errorNoPlatform.Name = "errorNoPlatform";
+            errorNoPlatform.ReadOnly = true;
+            errorNoPlatform.SortMode = DataGridViewColumnSortMode.NotSortable;
+            errorNoPlatform.Width = 35;
+            // 
+            // msgNoPlatform
+            // 
+            msgNoPlatform.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            msgNoPlatform.DataPropertyName = "Platform";
+            msgNoPlatform.HeaderText = "Message";
+            msgNoPlatform.MinimumWidth = 6;
+            msgNoPlatform.Name = "msgNoPlatform";
+            msgNoPlatform.ReadOnly = true;
+            msgNoPlatform.SortMode = DataGridViewColumnSortMode.NotSortable;
+            msgNoPlatform.Width = 56;
+            // 
+            // errorLBDbId
+            // 
+            errorLBDbId.DataPropertyName = "LaunchBoxDbId";
+            errorLBDbId.HeaderText = "LaunchBoxDbId";
+            errorLBDbId.MinimumWidth = 6;
+            errorLBDbId.Name = "errorLBDbId";
+            errorLBDbId.ReadOnly = true;
+            errorLBDbId.SortMode = DataGridViewColumnSortMode.NotSortable;
+            errorLBDbId.Visible = false;
+            errorLBDbId.Width = 125;
+            // 
+            // lblCongrats
+            // 
+            lblCongrats.AutoSize = true;
+            lblCongrats.BackColor = Color.FromArgb(255, 191, 0);
+            lblCongrats.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCongrats.Location = new Point(551, 292);
+            lblCongrats.Margin = new Padding(4, 0, 4, 0);
+            lblCongrats.Name = "lblCongrats";
+            lblCongrats.Padding = new Padding(0, 2, 0, 2);
+            lblCongrats.Size = new Size(281, 21);
+            lblCongrats.TabIndex = 27;
+            lblCongrats.Text = "Congrats! Your collection is complete!";
+            // 
+            // lblScrapeAs
+            // 
+            lblScrapeAs.AutoSize = true;
+            lblScrapeAs.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblScrapeAs.ForeColor = Color.FromArgb(255, 191, 0);
+            lblScrapeAs.Location = new Point(18, 24);
+            lblScrapeAs.Margin = new Padding(2, 0, 2, 0);
+            lblScrapeAs.Name = "lblScrapeAs";
+            lblScrapeAs.Size = new Size(76, 13);
+            lblScrapeAs.TabIndex = 28;
+            lblScrapeAs.Text = "Searching As: ";
+            // 
+            // gbFilterOptions
+            // 
+            gbFilterOptions.AutoSize = true;
+            gbFilterOptions.Controls.Add(chkSelectAll);
+            gbFilterOptions.Controls.Add(pbCloseFilter);
+            gbFilterOptions.Controls.Add(btnFilterReset);
+            gbFilterOptions.Controls.Add(clbFilterOptions);
+            gbFilterOptions.Controls.Add(btnApplyFilters);
+            gbFilterOptions.ForeColor = Color.FromArgb(255, 191, 0);
+            gbFilterOptions.Location = new Point(270, 134);
+            gbFilterOptions.Margin = new Padding(4, 3, 4, 3);
+            gbFilterOptions.Name = "gbFilterOptions";
+            gbFilterOptions.Padding = new Padding(4, 3, 4, 3);
+            gbFilterOptions.Size = new Size(173, 210);
+            gbFilterOptions.TabIndex = 29;
+            gbFilterOptions.TabStop = false;
+            gbFilterOptions.Text = "Filter";
+            // 
+            // chkSelectAll
+            // 
+            chkSelectAll.AutoSize = true;
+            chkSelectAll.Checked = true;
+            chkSelectAll.CheckState = CheckState.Checked;
+            chkSelectAll.Location = new Point(7, 50);
+            chkSelectAll.Name = "chkSelectAll";
+            chkSelectAll.Size = new Size(108, 19);
+            chkSelectAll.TabIndex = 4;
+            chkSelectAll.Text = "Select All/None";
+            chkSelectAll.UseVisualStyleBackColor = true;
+            chkSelectAll.CheckedChanged += chkSelectAll_CheckedChanged;
+            // 
+            // pbCloseFilter
+            // 
+            pbCloseFilter.AccessibleDescription = "Close Filter Window";
+            pbCloseFilter.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pbCloseFilter.BackColor = Color.Transparent;
+            pbCloseFilter.Cursor = Cursors.Hand;
+            pbCloseFilter.Image = Properties.Resources.error;
+            pbCloseFilter.Location = new Point(150, 12);
+            pbCloseFilter.Margin = new Padding(0);
+            pbCloseFilter.Name = "pbCloseFilter";
+            pbCloseFilter.Size = new Size(15, 15);
+            pbCloseFilter.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCloseFilter.TabIndex = 3;
+            pbCloseFilter.TabStop = false;
+            pbCloseFilter.Click += CloseFilter_Click;
+            // 
+            // btnFilterReset
+            // 
+            btnFilterReset.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnFilterReset.ForeColor = Color.Black;
+            btnFilterReset.Location = new Point(69, 20);
+            btnFilterReset.Margin = new Padding(4, 3, 4, 3);
+            btnFilterReset.Name = "btnFilterReset";
+            btnFilterReset.Size = new Size(55, 24);
+            btnFilterReset.TabIndex = 2;
+            btnFilterReset.Text = "Reset";
+            btnFilterReset.UseVisualStyleBackColor = true;
+            btnFilterReset.Click += FilterReset_Click;
+            // 
+            // clbFilterOptions
+            // 
+            clbFilterOptions.CheckOnClick = true;
+            clbFilterOptions.Dock = DockStyle.Bottom;
+            clbFilterOptions.FormattingEnabled = true;
+            clbFilterOptions.Location = new Point(4, 77);
+            clbFilterOptions.Margin = new Padding(4, 3, 4, 3);
+            clbFilterOptions.Name = "clbFilterOptions";
+            clbFilterOptions.Size = new Size(165, 130);
+            clbFilterOptions.Sorted = true;
+            clbFilterOptions.TabIndex = 1;
+            clbFilterOptions.ThreeDCheckBoxes = true;
+            // 
+            // btnApplyFilters
+            // 
+            btnApplyFilters.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnApplyFilters.ForeColor = Color.Black;
+            btnApplyFilters.Location = new Point(7, 20);
+            btnApplyFilters.Margin = new Padding(4, 3, 4, 3);
+            btnApplyFilters.Name = "btnApplyFilters";
+            btnApplyFilters.Size = new Size(55, 24);
+            btnApplyFilters.TabIndex = 0;
+            btnApplyFilters.Text = "Apply";
+            btnApplyFilters.UseVisualStyleBackColor = true;
+            btnApplyFilters.Click += ApplyFilters_Click;
+            // 
+            // pbCongrats
+            // 
+            pbCongrats.Image = Properties.Resources.congrats;
+            pbCongrats.Location = new Point(495, 343);
+            pbCongrats.Margin = new Padding(2);
+            pbCongrats.Name = "pbCongrats";
+            pbCongrats.Size = new Size(400, 173);
+            pbCongrats.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCongrats.TabIndex = 3;
+            pbCongrats.TabStop = false;
+            // 
+            // pbSpinner
+            // 
+            pbSpinner.BackColor = Color.Transparent;
+            pbSpinner.BackgroundImageLayout = ImageLayout.Zoom;
+            pbSpinner.Image = Properties.Resources.mgc_spinner;
+            pbSpinner.Location = new Point(519, 343);
+            pbSpinner.Margin = new Padding(4, 3, 4, 3);
+            pbSpinner.Name = "pbSpinner";
+            pbSpinner.Size = new Size(352, 177);
+            pbSpinner.SizeMode = PictureBoxSizeMode.Zoom;
+            pbSpinner.TabIndex = 26;
+            pbSpinner.TabStop = false;
+            // 
+            // pbDebugBtn
+            // 
+            pbDebugBtn.BackColor = Color.Transparent;
+            pbDebugBtn.BackgroundImage = (Image)resources.GetObject("pbDebugBtn.BackgroundImage");
+            pbDebugBtn.BackgroundImageLayout = ImageLayout.Zoom;
+            pbDebugBtn.Cursor = Cursors.Help;
+            pbDebugBtn.Location = new Point(252, 528);
+            pbDebugBtn.Margin = new Padding(4, 3, 4, 3);
+            pbDebugBtn.Name = "pbDebugBtn";
+            pbDebugBtn.Size = new Size(23, 23);
+            pbDebugBtn.TabIndex = 24;
+            pbDebugBtn.TabStop = false;
+            pbDebugBtn.Click += DebugBtn_Click;
+            // 
+            // pbMGCHeader
+            // 
+            pbMGCHeader.BackColor = Color.Transparent;
+            pbMGCHeader.Image = Properties.Resources.mgc_header;
+            pbMGCHeader.Location = new Point(421, -1);
+            pbMGCHeader.Margin = new Padding(4, 3, 4, 3);
+            pbMGCHeader.Name = "pbMGCHeader";
+            pbMGCHeader.Size = new Size(550, 112);
+            pbMGCHeader.SizeMode = PictureBoxSizeMode.Zoom;
+            pbMGCHeader.TabIndex = 15;
+            pbMGCHeader.TabStop = false;
+            pbMGCHeader.MouseDown += PlatformSelectionForm_MouseDown;
+            // 
+            // pbMGCLogo
+            // 
+            pbMGCLogo.BackColor = Color.Transparent;
+            pbMGCLogo.Image = Properties.Resources.mgc_logo;
+            pbMGCLogo.Location = new Point(329, 13);
+            pbMGCLogo.Margin = new Padding(4, 3, 4, 3);
+            pbMGCLogo.Name = "pbMGCLogo";
+            pbMGCLogo.Size = new Size(85, 68);
+            pbMGCLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            pbMGCLogo.TabIndex = 14;
+            pbMGCLogo.TabStop = false;
+            pbMGCLogo.MouseDown += PlatformSelectionForm_MouseDown;
+            // 
+            // lblPlatformWarning
+            // 
+            lblPlatformWarning.AutoSize = true;
+            lblPlatformWarning.BackColor = Color.FromArgb(255, 191, 0);
+            lblPlatformWarning.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPlatformWarning.ForeColor = Color.Black;
+            lblPlatformWarning.Location = new Point(0, 98);
+            lblPlatformWarning.Margin = new Padding(2, 0, 2, 0);
+            lblPlatformWarning.Name = "lblPlatformWarning";
+            lblPlatformWarning.Padding = new Padding(2);
+            lblPlatformWarning.Size = new Size(172, 43);
+            lblPlatformWarning.TabIndex = 30;
+            lblPlatformWarning.Text = "Warning! This platform contains\r\na lot of data! Processing may take \r\na few moments!";
             // 
             // PlatformSelectionForm
             // 
-            this.AccessibleDescription = "A LaunchBox plugin designed to help users identify missing games in their collect" +
-    "ion based on platform metadata.";
-            this.AccessibleName = "Missing Games Checker";
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
-            this.ClientSize = new System.Drawing.Size(956, 479);
-            this.ControlBox = false;
-            this.Controls.Add(this.lblPlatformWarning);
-            this.Controls.Add(this.gbFilterOptions);
-            this.Controls.Add(this.pbCongrats);
-            this.Controls.Add(this.pbSpinner);
-            this.Controls.Add(this.lblScrapeAs);
-            this.Controls.Add(this.pDebugLog);
-            this.Controls.Add(this.noPlatformGridView);
-            this.Controls.Add(this.missingGamesGridView);
-            this.Controls.Add(this.ssPlatformDropdownMsg);
-            this.Controls.Add(this.pbMetadataLoading);
-            this.Controls.Add(this.pbDebugBtn);
-            this.Controls.Add(this.ssMetadataStatus);
-            this.Controls.Add(this.llbPoweredBy);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.gbOptional);
-            this.Controls.Add(this.btnMissingCSV);
-            this.Controls.Add(this.btnOwnedCSV);
-            this.Controls.Add(this.lblMissingGamesCount);
-            this.Controls.Add(this.lblOwnedGamesCount);
-            this.Controls.Add(this.lblMissingGamesGridView);
-            this.Controls.Add(this.lblOwnedGamesGridView);
-            this.Controls.Add(this.lblDropdown);
-            this.Controls.Add(this.ownedGamesGridView);
-            this.Controls.Add(this.confirmButton);
-            this.Controls.Add(this.platformDropdown);
-            this.Controls.Add(this.pbMGCHeader);
-            this.Controls.Add(this.pbMGCLogo);
-            this.Controls.Add(this.lblCongrats);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(956, 479);
-            this.Name = "PlatformSelectionForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Missing Games Checker";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PlatformSelectionForm_FormClosing);
-            this.Load += new System.EventHandler(this.PlatformSelectionForm_Load);
-            this.Shown += new System.EventHandler(this.PlatformSelectionForm_Shown);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlatformSelectionForm_MouseDown);
-            ((System.ComponentModel.ISupportInitialize)(this.ownedGamesGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ownedGamesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.missingGamesGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.missingGamesBindingSource)).EndInit();
-            this.gbOptional.ResumeLayout(false);
-            this.gbOptional.PerformLayout();
-            this.ssMetadataStatus.ResumeLayout(false);
-            this.ssMetadataStatus.PerformLayout();
-            this.ssPlatformDropdownMsg.ResumeLayout(false);
-            this.ssPlatformDropdownMsg.PerformLayout();
-            this.pDebugLog.ResumeLayout(false);
-            this.pDebugLog.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDebugHeader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noPlatformGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noPlatformBindingSource)).EndInit();
-            this.gbFilterOptions.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbCloseFilter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCongrats)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbSpinner)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDebugBtn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMGCHeader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMGCLogo)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AccessibleDescription = "A LaunchBox plugin designed to help users identify missing games in their collection based on platform metadata.";
+            AccessibleName = "Missing Games Checker";
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(54, 57, 63);
+            ClientSize = new Size(1115, 553);
+            ControlBox = false;
+            Controls.Add(lblPlatformWarning);
+            Controls.Add(gbFilterOptions);
+            Controls.Add(pbCongrats);
+            Controls.Add(pbSpinner);
+            Controls.Add(lblScrapeAs);
+            Controls.Add(pDebugLog);
+            Controls.Add(noPlatformGridView);
+            Controls.Add(missingGamesGridView);
+            Controls.Add(ssPlatformDropdownMsg);
+            Controls.Add(pbMetadataLoading);
+            Controls.Add(pbDebugBtn);
+            Controls.Add(ssMetadataStatus);
+            Controls.Add(llbPoweredBy);
+            Controls.Add(btnClose);
+            Controls.Add(gbOptional);
+            Controls.Add(btnMissingCSV);
+            Controls.Add(btnOwnedCSV);
+            Controls.Add(lblMissingGamesCount);
+            Controls.Add(lblOwnedGamesCount);
+            Controls.Add(lblMissingGamesGridView);
+            Controls.Add(lblOwnedGamesGridView);
+            Controls.Add(lblDropdown);
+            Controls.Add(ownedGamesGridView);
+            Controls.Add(confirmButton);
+            Controls.Add(platformDropdown);
+            Controls.Add(pbMGCHeader);
+            Controls.Add(pbMGCLogo);
+            Controls.Add(lblCongrats);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4, 3, 4, 3);
+            MinimumSize = new Size(1115, 553);
+            Name = "PlatformSelectionForm";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Missing Games Checker";
+            FormClosing += PlatformSelectionForm_FormClosing;
+            Load += PlatformSelectionForm_Load;
+            Shown += PlatformSelectionForm_Shown;
+            MouseDown += PlatformSelectionForm_MouseDown;
+            ((System.ComponentModel.ISupportInitialize)ownedGamesGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ownedGamesBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)missingGamesGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)missingGamesBindingSource).EndInit();
+            gbOptional.ResumeLayout(false);
+            gbOptional.PerformLayout();
+            ssMetadataStatus.ResumeLayout(false);
+            ssMetadataStatus.PerformLayout();
+            ssPlatformDropdownMsg.ResumeLayout(false);
+            ssPlatformDropdownMsg.PerformLayout();
+            pDebugLog.ResumeLayout(false);
+            pDebugLog.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbDebugHeader).EndInit();
+            ((System.ComponentModel.ISupportInitialize)noPlatformGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)noPlatformBindingSource).EndInit();
+            gbFilterOptions.ResumeLayout(false);
+            gbFilterOptions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbCloseFilter).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCongrats).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbSpinner).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbDebugBtn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbMGCHeader).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbMGCLogo).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -1414,5 +1424,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn LaunchBoxDbIdOwned;
         private System.Windows.Forms.DataGridViewButtonColumn VideoUrlOwned;
         private System.Windows.Forms.DataGridViewButtonColumn WikipediaUrlOwned;
+        private CheckBox chkSelectAll;
     }
 }

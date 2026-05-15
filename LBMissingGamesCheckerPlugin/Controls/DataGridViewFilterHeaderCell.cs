@@ -76,6 +76,8 @@ namespace LBMissingGamesCheckerPlugin.Controls
 
             gbFilterOptions.Location = new Point(clickPosition.X, clickPosition.Y);
             gbFilterOptions.Visible = true;
+
+            form.UpdateSelectAllState();
         }
     }
 }

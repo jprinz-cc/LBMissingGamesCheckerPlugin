@@ -4,8 +4,19 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    
+    <Version>2.0.0.1</Version>
+    <AssemblyVersion>2.0.0.1</AssemblyVersion>
+    <FileVersion>2.0.0.1</FileVersion>
+    <Company>JP Consulting</Company>
+    <Product>LB Missing Games Checker Plugin</Product>
+    <Description>Check which games you have and don't have for a selected platform in LaunchBox.</Description>
+    <Copyright>Copyright © 2026</Copyright>
+    <ApplicationIcon>mgc.ico</ApplicationIcon>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="mgc.ico" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.0" />
   </ItemGroup>
