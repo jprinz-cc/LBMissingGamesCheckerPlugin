@@ -1298,319 +1298,319 @@ namespace LBMissingGamesCheckerPlugin
 
 
         // Process the directories to find the metadata.xml file
-        private async void FindMetadataFile()
-        {
-            // Flag to track if the file was found
-            var fileFound = false;
-            // Get files from allowed directories
-            var files = new List<string>();
+        //private async void FindMetadataFile()
+        //{
+        //    // Flag to track if the file was found
+        //    var fileFound = false;
+        //    // Get files from allowed directories
+        //    var files = new List<string>();
 
-            try
-            {
-                fileFound = await Task.Run(() => ProcessingAppDirectories(_CancellationTokenSource.Token, files));
-            }
-            catch (OperationCanceledException)
-            {
-                _CancellationTokenSource.Cancel();
-            }
+        //    try
+        //    {
+        //        fileFound = await Task.Run(() => ProcessingAppDirectories(_CancellationTokenSource.Token, files));
+        //    }
+        //    catch (OperationCanceledException)
+        //    {
+        //        _CancellationTokenSource.Cancel();
+        //    }
 
-            // If metadata.xml found, add to metadataFilePath, else throw to the try and display error
-            if (fileFound)
-            {
-                metadataFilePath = files.Any() ? files[0] : metadataFilePath;
-                DebugTxt($"metadataFilePath: {metadataFilePath}");
-                UpdateStatus("success", "Metadata Found!");
-                StopProgressBar();
-                await Task.Delay(3500);
-                StartProgressBar();
-                // Process the metadata.xml
-                UpdateStatus("processing", "Processing Metadata...");
-                try
-                {
-                    await Task.Run(() =>
-                    {
-                        GetGamesFromMetadata(_CancellationTokenSource.Token);
-                    });
-                }
-                catch (OperationCanceledException)
-                {
-                    _CancellationTokenSource.Cancel();
-                }
-            }
-            else
-            {
-                DebugTxt($"metadata File Not Found! Path: {metadataFilePath}");
-                pbSpinner.Visible = false;
-                pbMetadataLoading.Visible = false;
-                UpdateStatus("error", "metadata File Not Found!");
-                DebugTxt(true);
-            }
-        }
+        //    // If metadata.xml found, add to metadataFilePath, else throw to the try and display error
+        //    if (fileFound)
+        //    {
+        //        metadataFilePath = files.Any() ? files[0] : metadataFilePath;
+        //        DebugTxt($"metadataFilePath: {metadataFilePath}");
+        //        UpdateStatus("success", "Metadata Found!");
+        //        StopProgressBar();
+        //        await Task.Delay(3500);
+        //        StartProgressBar();
+        //        // Process the metadata.xml
+        //        UpdateStatus("processing", "Processing Metadata...");
+        //        try
+        //        {
+        //            await Task.Run(() =>
+        //            {
+        //                GetGamesFromMetadata(_CancellationTokenSource.Token);
+        //            });
+        //        }
+        //        catch (OperationCanceledException)
+        //        {
+        //            _CancellationTokenSource.Cancel();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        DebugTxt($"metadata File Not Found! Path: {metadataFilePath}");
+        //        pbSpinner.Visible = false;
+        //        pbMetadataLoading.Visible = false;
+        //        UpdateStatus("error", "metadata File Not Found!");
+        //        DebugTxt(true);
+        //    }
+        //}
 
-        private async Task<bool> ProcessingAppDirectories(CancellationToken token, List<string> files)
-        {
-            var fileFound = false;
-            // Check for cancellation
-            if (token.IsCancellationRequested)
-            {
-                token.ThrowIfCancellationRequested();
-                return false;
-            }
+        //private async Task<bool> ProcessingAppDirectories(CancellationToken token, List<string> files)
+        //{
+        //    var fileFound = false;
+        //    // Check for cancellation
+        //    if (token.IsCancellationRequested)
+        //    {
+        //        token.ThrowIfCancellationRequested();
+        //        return false;
+        //    }
 
-            try
-            {
-                DebugTxt("->Looking for Metadata...");
-                string currentFolder = AppDomain.CurrentDomain.BaseDirectory;
-                string launchboxRootFolder = currentFolder.Replace("\\Core", ""); // Remove the "\Core" part
-                metadataFilePath = Path.Combine(launchboxRootFolder, "Metadata", "metadata.xml");
-                DebugTxt($"Looking for Metadata at {metadataFilePath}...");
-                fileFound = await Task.Run(() =>
-                {
-                    return File.Exists(metadataFilePath);
-                });
-                if (fileFound)
-                {
-                    DebugTxt($"Metadata found at {metadataFilePath}!");
-                    return true;
-                }
-                else
-                {
-                    DebugTxt($"Metadata not found at {metadataFilePath}...");
-                    metadataFilePath = string.Empty;
-                    DebugTxt("Searching for Metadata...");
-                    // Directories to exclude
-                    var excludedDirectories = new List<string>
-                    {
-                        "Games",
-                        "Images",
-                        "Videos",
-                        "eXo",
-                        "Content",
-                        "Emulators",
-                        "Manuals",
-                        "LBThemes",
-                        "Music",
-                        "PauseThemes",
-                        "StartupThemes",
-                        "Themes",
-                        "ThirdParty",
-                        "Plugins"
-                    };
+        //    try
+        //    {
+        //        DebugTxt("->Looking for Metadata...");
+        //        string currentFolder = AppDomain.CurrentDomain.BaseDirectory;
+        //        string launchboxRootFolder = currentFolder.Replace("\\Core", ""); // Remove the "\Core" part
+        //        metadataFilePath = Path.Combine(launchboxRootFolder, "Metadata", "metadata.xml");
+        //        DebugTxt($"Looking for Metadata at {metadataFilePath}...");
+        //        fileFound = await Task.Run(() =>
+        //        {
+        //            return File.Exists(metadataFilePath);
+        //        });
+        //        if (fileFound)
+        //        {
+        //            DebugTxt($"Metadata found at {metadataFilePath}!");
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            DebugTxt($"Metadata not found at {metadataFilePath}...");
+        //            metadataFilePath = string.Empty;
+        //            DebugTxt("Searching for Metadata...");
+        //            // Directories to exclude
+        //            var excludedDirectories = new List<string>
+        //            {
+        //                "Games",
+        //                "Images",
+        //                "Videos",
+        //                "eXo",
+        //                "Content",
+        //                "Emulators",
+        //                "Manuals",
+        //                "LBThemes",
+        //                "Music",
+        //                "PauseThemes",
+        //                "StartupThemes",
+        //                "Themes",
+        //                "ThirdParty",
+        //                "Plugins"
+        //            };
 
-                    // Get all directories except the excluded ones (case-insensitive)
-                    List<string> allDirectories = new List<string>();
-                    await Task.Run(() =>
-                    {
-                        allDirectories = Directory.GetDirectories(Directory.GetCurrentDirectory(), "*", SearchOption.AllDirectories)
-                        .Where(dir => !excludedDirectories.Any(excludedDir => dir.IndexOf(excludedDir, StringComparison.OrdinalIgnoreCase) >= 0)) // Case-insensitive comparison
-                        .ToList();
-                    });
+        //            // Get all directories except the excluded ones (case-insensitive)
+        //            List<string> allDirectories = new List<string>();
+        //            await Task.Run(() =>
+        //            {
+        //                allDirectories = Directory.GetDirectories(Directory.GetCurrentDirectory(), "*", SearchOption.AllDirectories)
+        //                .Where(dir => !excludedDirectories.Any(excludedDir => dir.IndexOf(excludedDir, StringComparison.OrdinalIgnoreCase) >= 0)) // Case-insensitive comparison
+        //                .ToList();
+        //            });
 
-                    fileFound = await Task.Run(() =>
-                    {
-                        foreach (string dir in allDirectories)
-                        {
-                            // Get all files from the current directory in a case-insensitive manner
-                            files.AddRange(Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly)
-                                .Where(f => Path.GetFileName(f).Equals(metadataFile, StringComparison.OrdinalIgnoreCase))
-                            );
+        //            fileFound = await Task.Run(() =>
+        //            {
+        //                foreach (string dir in allDirectories)
+        //                {
+        //                    // Get all files from the current directory in a case-insensitive manner
+        //                    files.AddRange(Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly)
+        //                        .Where(f => Path.GetFileName(f).Equals(metadataFile, StringComparison.OrdinalIgnoreCase))
+        //                    );
 
-                            // Break if we found the metadata file
-                            if (files.Count > 0)
-                            {
-                                return true;
-                            }
-                        }
-                        return false;
-                    });
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                DebugTxt($"An Exception occured: {ex.Message}");
-                return false;
-            }
-        }
+        //                    // Break if we found the metadata file
+        //                    if (files.Count > 0)
+        //                    {
+        //                        return true;
+        //                    }
+        //                }
+        //                return false;
+        //            });
+        //        }
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        DebugTxt($"An Exception occured: {ex.Message}");
+        //        return false;
+        //    }
+        //}
 
-        // Get the platform games from the metadata.xml file
-        private async void GetGamesFromMetadata(CancellationToken token)
-        {
-            // Check for cancellation
-            if (token.IsCancellationRequested)
-            {
-                token.ThrowIfCancellationRequested();
-            }
-            bool xmlReadCompleted = false;
-            // Debugging
-            int gameCount = 0;
-            int platformCount = 0;
-            int GameAltNamesCount = 0;
-            int processedGamesCounter = 0;
-            int processedAltNamesCounter = 0;
+        //// Get the platform games from the metadata.xml file
+        //private async void GetGamesFromMetadata(CancellationToken token)
+        //{
+        //    // Check for cancellation
+        //    if (token.IsCancellationRequested)
+        //    {
+        //        token.ThrowIfCancellationRequested();
+        //    }
+        //    bool xmlReadCompleted = false;
+        //    // Debugging
+        //    int gameCount = 0;
+        //    int platformCount = 0;
+        //    int GameAltNamesCount = 0;
+        //    int processedGamesCounter = 0;
+        //    int processedAltNamesCounter = 0;
 
-            FileStream fs = new FileStream(metadataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, FileOptions.Asynchronous);
-            try
-            {
-                using (fs)
-                {
-                    XmlReaderSettings settings = new XmlReaderSettings { Async = true };
+        //    FileStream fs = new FileStream(metadataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, FileOptions.Asynchronous);
+        //    try
+        //    {
+        //        using (fs)
+        //        {
+        //            XmlReaderSettings settings = new XmlReaderSettings { Async = true };
 
-                    using (XmlReader reader = XmlReader.Create(fs, settings))
-                    {
-                        while (await reader.ReadAsync())
-                        {
-                            reader.MoveToContent();
+        //            using (XmlReader reader = XmlReader.Create(fs, settings))
+        //            {
+        //                while (await reader.ReadAsync())
+        //                {
+        //                    reader.MoveToContent();
 
-                            if (reader.NodeType == XmlNodeType.Element && reader.Name == "LaunchBox")
-                            {
-                                while (await reader.ReadAsync())
-                                {
-                                    if (reader.NodeType == XmlNodeType.Element)
-                                    {
-                                        if (reader.Name == "Platform")
-                                        {
-                                            // Process the Platforms in the xml and add to xmlPlatforms
-                                            var xmlElement = XNode.ReadFrom(reader) as XElement;
-                                            if (xmlElement.Element("Name") != null && !xmlElement.Element("Name").IsEmpty)
-                                            {
-                                                var platform = new XmlPlatform(
-                                                    (string)xmlElement.Element("Name")
-                                                );
-                                                xmlPlatforms.Add(platform);
-                                                platformCount++;
-                                            }
-                                        }
-                                        else if (reader.Name == "Game")
-                                        {
-                                            var xmlElement = XNode.ReadFrom(reader) as XElement;
-                                            var game = new XmlGame(
-                                                (string)xmlElement.Element("Name"),
-                                                (string)xmlElement.Element("Developer"),
-                                                (string)xmlElement.Element("Publisher"),
-                                                (string)xmlElement.Element("Region"),
-                                                ParseDate((string)xmlElement.Element("ReleaseDate")),
-                                                ParseFloat((string)xmlElement.Element("CommunityRating")),
-                                                ParseInt((string)xmlElement.Element("CommunityRatingCount")),
-                                                (string)xmlElement.Element("Platform"),
-                                                (string)xmlElement.Element("ReleaseType"),
-                                                (string)xmlElement.Element("Genres"),
-                                                new IAlternateName[0],
-                                                ParseInt((string)xmlElement.Element("MaxPlayers")),
-                                                ParseInt((string)xmlElement.Element("DatabaseID")),
-                                                (string)xmlElement.Element("VideoURL"),
-                                                (string)xmlElement.Element("WikipediaURL")
-                                            );
-                                            xmlGames.Add(game);
-                                            gameCount++;
-                                        }
-                                        else if (reader.Name == "GameAlternateName")
-                                        {
-                                            var xmlElement = XNode.ReadFrom(reader) as XElement;
-                                            var altName = new XmlGameAlternateName(
-                                                (string)xmlElement.Element("DatabaseID"),
-                                                (string)xmlElement.Element("AlternateName"),
-                                                (string)xmlElement.Element("Region")
-                                            );
-                                            xmlGameAltNames.Add(altName);
-                                            GameAltNamesCount++;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        xmlReadCompleted = true;
-                    }
-                    xmlReadCompleted = true;
-                }
-                xmlReadCompleted = true;
-            }
-            catch (Exception ex)
-            {
-                xmlGames.Add(new XmlGame($"An unexpected error occurred: {ex.Message}",
-                        string.Empty, string.Empty, string.Empty, null, null, null, "Exception", string.Empty, string.Empty,
-                        null, null, null, string.Empty, string.Empty));
-                UpdateStatus("error", "An unexpected error occurred");
-                StopProgressBar();
-            }
-            finally
-            {
-                fs?.Close();
-                DebugTxt($"xmlReadCompleted: {xmlReadCompleted}");
-                DebugTxt($"xmlGames.Count:  {xmlGames.Count}");
-                DebugTxt($"gameCount: {gameCount}");
-                DebugTxt($"platformCount:  {platformCount}");
-                DebugTxt($"GameAltNamesCount:  {GameAltNamesCount}");
+        //                    if (reader.NodeType == XmlNodeType.Element && reader.Name == "LaunchBox")
+        //                    {
+        //                        while (await reader.ReadAsync())
+        //                        {
+        //                            if (reader.NodeType == XmlNodeType.Element)
+        //                            {
+        //                                if (reader.Name == "Platform")
+        //                                {
+        //                                    // Process the Platforms in the xml and add to xmlPlatforms
+        //                                    var xmlElement = XNode.ReadFrom(reader) as XElement;
+        //                                    if (xmlElement.Element("Name") != null && !xmlElement.Element("Name").IsEmpty)
+        //                                    {
+        //                                        var platform = new XmlPlatform(
+        //                                            (string)xmlElement.Element("Name")
+        //                                        );
+        //                                        xmlPlatforms.Add(platform);
+        //                                        platformCount++;
+        //                                    }
+        //                                }
+        //                                else if (reader.Name == "Game")
+        //                                {
+        //                                    var xmlElement = XNode.ReadFrom(reader) as XElement;
+        //                                    var game = new XmlGame(
+        //                                        (string)xmlElement.Element("Name"),
+        //                                        (string)xmlElement.Element("Developer"),
+        //                                        (string)xmlElement.Element("Publisher"),
+        //                                        (string)xmlElement.Element("Region"),
+        //                                        ParseDate((string)xmlElement.Element("ReleaseDate")),
+        //                                        ParseFloat((string)xmlElement.Element("CommunityRating")),
+        //                                        ParseInt((string)xmlElement.Element("CommunityRatingCount")),
+        //                                        (string)xmlElement.Element("Platform"),
+        //                                        (string)xmlElement.Element("ReleaseType"),
+        //                                        (string)xmlElement.Element("Genres"),
+        //                                        new IAlternateName[0],
+        //                                        ParseInt((string)xmlElement.Element("MaxPlayers")),
+        //                                        ParseInt((string)xmlElement.Element("DatabaseID")),
+        //                                        (string)xmlElement.Element("VideoURL"),
+        //                                        (string)xmlElement.Element("WikipediaURL")
+        //                                    );
+        //                                    xmlGames.Add(game);
+        //                                    gameCount++;
+        //                                }
+        //                                else if (reader.Name == "GameAlternateName")
+        //                                {
+        //                                    var xmlElement = XNode.ReadFrom(reader) as XElement;
+        //                                    var altName = new XmlGameAlternateName(
+        //                                        (string)xmlElement.Element("DatabaseID"),
+        //                                        (string)xmlElement.Element("AlternateName"),
+        //                                        (string)xmlElement.Element("Region")
+        //                                    );
+        //                                    xmlGameAltNames.Add(altName);
+        //                                    GameAltNamesCount++;
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //                xmlReadCompleted = true;
+        //            }
+        //            xmlReadCompleted = true;
+        //        }
+        //        xmlReadCompleted = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        xmlGames.Add(new XmlGame($"An unexpected error occurred: {ex.Message}",
+        //                string.Empty, string.Empty, string.Empty, null, null, null, "Exception", string.Empty, string.Empty,
+        //                null, null, null, string.Empty, string.Empty));
+        //        UpdateStatus("error", "An unexpected error occurred");
+        //        StopProgressBar();
+        //    }
+        //    finally
+        //    {
+        //        fs?.Close();
+        //        DebugTxt($"xmlReadCompleted: {xmlReadCompleted}");
+        //        DebugTxt($"xmlGames.Count:  {xmlGames.Count}");
+        //        DebugTxt($"gameCount: {gameCount}");
+        //        DebugTxt($"platformCount:  {platformCount}");
+        //        DebugTxt($"GameAltNamesCount:  {GameAltNamesCount}");
 
-                if (xmlReadCompleted)
-                {
-                    DebugTxt("Started processing games...");
-                    // Create a dictionary for faster lookup of alternate names by GameId
-                    DebugTxt("Adding alt names to game data");
-                    var altNamesDict = xmlGameAltNames
-                        .Where(altName => !string.IsNullOrEmpty(altName.GameId))
-                        .GroupBy(altName => altName.GameId)
-                        .ToDictionary(g => g.Key, g => g.ToList());
-                    DebugTxt($"altNameDict contains {altNamesDict.Count} entries.");
-                    await Task.Run(() =>
-                    {
-                        foreach (var game in xmlGames)
-                        {
-                            if (game.LaunchBoxDbId.HasValue)
-                            {
-                                // Check if we have alternate names for this game using the dictionary
-                                if (altNamesDict.TryGetValue(game.LaunchBoxDbId.ToString(), out var matchingAltNames))
-                                {
-                                    // Use StringBuilder for building the region string
-                                    var regionBuilder = new StringBuilder(game.Region);
-                                    game.AlternateNames = new IAlternateName[matchingAltNames.Count];
-                                    Array.Copy(matchingAltNames.ToArray(), game.AlternateNames, matchingAltNames.Count);
-                                    foreach (var altName in matchingAltNames)
-                                    {
-                                        if (!string.IsNullOrWhiteSpace(altName.Region) &&
-                                            !game.Region.Contains(altName.Region) &&
-                                            !regionBuilder.ToString().Contains(altName.Region))
-                                        {
-                                            if (regionBuilder.Length > 0 || game.Region.Length > 0)
-                                            {
-                                                regionBuilder.Append(", ");
-                                            }
-                                            regionBuilder.Append(altName.Region);
-                                        }
-                                    }
-                                    game.Region = regionBuilder.ToString();
-                                    processedAltNamesCounter++;
-                                }
-                                processedGamesCounter++;
-                            }
-                        }
-                    });
+        //        if (xmlReadCompleted)
+        //        {
+        //            DebugTxt("Started processing games...");
+        //            // Create a dictionary for faster lookup of alternate names by GameId
+        //            DebugTxt("Adding alt names to game data");
+        //            var altNamesDict = xmlGameAltNames
+        //                .Where(altName => !string.IsNullOrEmpty(altName.GameId))
+        //                .GroupBy(altName => altName.GameId)
+        //                .ToDictionary(g => g.Key, g => g.ToList());
+        //            DebugTxt($"altNameDict contains {altNamesDict.Count} entries.");
+        //            await Task.Run(() =>
+        //            {
+        //                foreach (var game in xmlGames)
+        //                {
+        //                    if (game.LaunchBoxDbId.HasValue)
+        //                    {
+        //                        // Check if we have alternate names for this game using the dictionary
+        //                        if (altNamesDict.TryGetValue(game.LaunchBoxDbId.ToString(), out var matchingAltNames))
+        //                        {
+        //                            // Use StringBuilder for building the region string
+        //                            var regionBuilder = new StringBuilder(game.Region);
+        //                            game.AlternateNames = new IAlternateName[matchingAltNames.Count];
+        //                            Array.Copy(matchingAltNames.ToArray(), game.AlternateNames, matchingAltNames.Count);
+        //                            foreach (var altName in matchingAltNames)
+        //                            {
+        //                                if (!string.IsNullOrWhiteSpace(altName.Region) &&
+        //                                    !game.Region.Contains(altName.Region) &&
+        //                                    !regionBuilder.ToString().Contains(altName.Region))
+        //                                {
+        //                                    if (regionBuilder.Length > 0 || game.Region.Length > 0)
+        //                                    {
+        //                                        regionBuilder.Append(", ");
+        //                                    }
+        //                                    regionBuilder.Append(altName.Region);
+        //                                }
+        //                            }
+        //                            game.Region = regionBuilder.ToString();
+        //                            processedAltNamesCounter++;
+        //                        }
+        //                        processedGamesCounter++;
+        //                    }
+        //                }
+        //            });
 
-                    DebugTxt($"Processed: {processedGamesCounter} metadata games!");
-                    DebugTxt($"Processed: {processedAltNamesCounter} AltGameNames!");
-                    UpdateStatus("success");
-                    StopProgressBar();
-                    Invoke(new Action(() =>
-                    {
-                        pbSpinner.Visible = false;
-                        confirmButton.Enabled = true;
-                    }));
+        //            DebugTxt($"Processed: {processedGamesCounter} metadata games!");
+        //            DebugTxt($"Processed: {processedAltNamesCounter} AltGameNames!");
+        //            UpdateStatus("success");
+        //            StopProgressBar();
+        //            Invoke(new Action(() =>
+        //            {
+        //                pbSpinner.Visible = false;
+        //                confirmButton.Enabled = true;
+        //            }));
 
-                }
-                else
-                {
-                    UpdateStatus("error");
-                    DebugTxt(true);
-                }
-                DebugTxt("Ended processing games");
-                StopProgressBar();
-                Invoke(new Action(() =>
-                {
-                    pbSpinner.Visible = false;
-                    confirmButton.Enabled = true;
-                }));
-            }
-        }
+        //        }
+        //        else
+        //        {
+        //            UpdateStatus("error");
+        //            DebugTxt(true);
+        //        }
+        //        DebugTxt("Ended processing games");
+        //        StopProgressBar();
+        //        Invoke(new Action(() =>
+        //        {
+        //            pbSpinner.Visible = false;
+        //            confirmButton.Enabled = true;
+        //        }));
+        //    }
+        //}
         #endregion
 
         #region HelperMethods
@@ -1830,6 +1830,61 @@ namespace LBMissingGamesCheckerPlugin
                     SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
                 });
             }
+        }
+
+        // Grid Search Handlers
+        private void tbOwnedSearch_TextChanged(object sender, EventArgs e)
+        {
+            // Suspend layout for performance
+            ownedGamesGridView.SuspendLayout();
+
+            string query = tbOwnedSearch.Text.Trim().ToLower();
+
+            // If search is empty, restore the original list
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                ownedGamesBindingSource.DataSource = OriginalOwnedGameList;
+                lblOwnedGamesCount.Text = OriginalOwnedGameList?.Count.ToString() ?? "0";
+            }
+            else
+            {
+                // Filter the original list in real-time
+                var searchResults = OriginalOwnedGameList
+                    .Where(g => g.Title.ToLower().Contains(query))
+                    .ToList();
+
+                ownedGamesBindingSource.DataSource = new BindingList<GameDisplayData>(searchResults);
+                lblOwnedGamesCount.Text = searchResults.Count.ToString();
+            }
+
+            ownedGamesGridView.ResumeLayout();
+        }
+
+        private void tbMissingSearch_TextChanged(object sender, EventArgs e)
+        {
+            // Suspend layout for performance
+            missingGamesGridView.SuspendLayout();
+
+            string query = tbMissingSearch.Text.Trim().ToLower();
+
+            // If search is empty, restore the original list
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                missingGamesBindingSource.DataSource = OriginalMissingGameList;
+                lblMissingGamesCount.Text = OriginalMissingGameList?.Count.ToString() ?? "0";
+            }
+            else
+            {
+                // Filter the original list in real-time
+                var searchResults = OriginalMissingGameList
+                    .Where(g => g.Title.ToLower().Contains(query))
+                    .ToList();
+
+                missingGamesBindingSource.DataSource = new BindingList<GameDisplayData>(searchResults);
+                lblMissingGamesCount.Text = searchResults.Count.ToString();
+            }
+
+            missingGamesGridView.ResumeLayout();
         }
 
         // Handle URL requests
@@ -2057,6 +2112,7 @@ namespace LBMissingGamesCheckerPlugin
                 }
             }
         }
+
         #endregion
 
     }
