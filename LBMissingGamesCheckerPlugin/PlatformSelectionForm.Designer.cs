@@ -164,6 +164,7 @@
             lblOwnedSearch = new Label();
             tbMissingSearch = new TextBox();
             lblMissingSearch = new Label();
+            lblCompletionStats = new Label();
             ((System.ComponentModel.ISupportInitialize)ownedGamesGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ownedGamesBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)missingGamesGridView).BeginInit();
@@ -477,6 +478,7 @@
             missingGamesGridView.TabIndex = 3;
             missingGamesGridView.CellContentClick += GridView_CellContentClick;
             missingGamesGridView.CellFormatting += GridView_CellFormatting;
+            missingGamesGridView.CellMouseDown += missingGamesGridView_CellMouseDown;
             missingGamesGridView.CellMouseEnter += GridView_CellMouseEnter;
             missingGamesGridView.CellMouseLeave += GridView_CellMouseLeave;
             missingGamesGridView.ColumnHeaderMouseClick += GridView_ColumnHeaderMouseClick;
@@ -693,12 +695,13 @@
             lblOwnedGamesCount.BackColor = Color.Transparent;
             lblOwnedGamesCount.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblOwnedGamesCount.ForeColor = Color.FromArgb(230, 230, 230);
-            lblOwnedGamesCount.Location = new Point(465, 125);
+            lblOwnedGamesCount.Location = new Point(433, 125);
             lblOwnedGamesCount.Margin = new Padding(4, 0, 4, 0);
             lblOwnedGamesCount.Name = "lblOwnedGamesCount";
             lblOwnedGamesCount.Size = new Size(14, 15);
             lblOwnedGamesCount.TabIndex = 7;
             lblOwnedGamesCount.Text = "0";
+            lblOwnedGamesCount.TextAlign = ContentAlignment.TopCenter;
             // 
             // lblMissingGamesCount
             // 
@@ -706,18 +709,19 @@
             lblMissingGamesCount.BackColor = Color.Transparent;
             lblMissingGamesCount.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMissingGamesCount.ForeColor = Color.FromArgb(230, 230, 230);
-            lblMissingGamesCount.Location = new Point(470, 342);
+            lblMissingGamesCount.Location = new Point(438, 342);
             lblMissingGamesCount.Margin = new Padding(4, 0, 4, 0);
             lblMissingGamesCount.Name = "lblMissingGamesCount";
             lblMissingGamesCount.Size = new Size(14, 15);
             lblMissingGamesCount.TabIndex = 8;
             lblMissingGamesCount.Text = "0";
+            lblMissingGamesCount.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnOwnedCSV
             // 
             btnOwnedCSV.Enabled = false;
             btnOwnedCSV.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnOwnedCSV.Location = new Point(993, 116);
+            btnOwnedCSV.Location = new Point(989, 116);
             btnOwnedCSV.Margin = new Padding(4, 3, 4, 3);
             btnOwnedCSV.Name = "btnOwnedCSV";
             btnOwnedCSV.Size = new Size(99, 23);
@@ -730,7 +734,7 @@
             // 
             btnMissingCSV.Enabled = false;
             btnMissingCSV.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnMissingCSV.Location = new Point(993, 333);
+            btnMissingCSV.Location = new Point(989, 333);
             btnMissingCSV.Margin = new Padding(4, 3, 4, 3);
             btnMissingCSV.Name = "btnMissingCSV";
             btnMissingCSV.Size = new Size(99, 23);
@@ -926,7 +930,7 @@
             pDebugLog.Controls.Add(pbDebugHeader);
             pDebugLog.Controls.Add(pbSpinner);
             pDebugLog.ForeColor = Color.FromArgb(255, 191, 0);
-            pDebugLog.Location = new Point(321, 220);
+            pDebugLog.Location = new Point(304, 197);
             pDebugLog.Margin = new Padding(4, 3, 4, 3);
             pDebugLog.Name = "pDebugLog";
             pDebugLog.Size = new Size(633, 267);
@@ -1234,7 +1238,7 @@
             // 
             pbMGCHeader.BackColor = Color.Transparent;
             pbMGCHeader.Image = Properties.Resources.mgc_header;
-            pbMGCHeader.Location = new Point(413, -1);
+            pbMGCHeader.Location = new Point(396, -1);
             pbMGCHeader.Margin = new Padding(4, 3, 4, 3);
             pbMGCHeader.Name = "pbMGCHeader";
             pbMGCHeader.Size = new Size(550, 112);
@@ -1247,7 +1251,7 @@
             // 
             pbMGCLogo.BackColor = Color.Transparent;
             pbMGCLogo.Image = Properties.Resources.mgc_logo;
-            pbMGCLogo.Location = new Point(321, 13);
+            pbMGCLogo.Location = new Point(304, 13);
             pbMGCLogo.Margin = new Padding(4, 3, 4, 3);
             pbMGCLogo.Name = "pbMGCLogo";
             pbMGCLogo.Size = new Size(85, 68);
@@ -1272,9 +1276,9 @@
             // 
             // tbOwnedSearch
             // 
-            tbOwnedSearch.Location = new Point(777, 116);
+            tbOwnedSearch.Location = new Point(862, 116);
             tbOwnedSearch.Name = "tbOwnedSearch";
-            tbOwnedSearch.Size = new Size(188, 23);
+            tbOwnedSearch.Size = new Size(117, 23);
             tbOwnedSearch.TabIndex = 31;
             tbOwnedSearch.TextChanged += tbOwnedSearch_TextChanged;
             // 
@@ -1282,18 +1286,19 @@
             // 
             lblOwnedSearch.AutoSize = true;
             lblOwnedSearch.ForeColor = Color.FromArgb(230, 230, 230);
-            lblOwnedSearch.Location = new Point(648, 122);
+            lblOwnedSearch.Location = new Point(769, 119);
             lblOwnedSearch.Margin = new Padding(4, 0, 4, 0);
             lblOwnedSearch.Name = "lblOwnedSearch";
-            lblOwnedSearch.Size = new Size(122, 15);
+            lblOwnedSearch.Size = new Size(86, 15);
             lblOwnedSearch.TabIndex = 32;
-            lblOwnedSearch.Text = "Search Owned Games";
+            lblOwnedSearch.Text = "Search Owned:";
+            lblOwnedSearch.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tbMissingSearch
             // 
-            tbMissingSearch.Location = new Point(777, 333);
+            tbMissingSearch.Location = new Point(862, 333);
             tbMissingSearch.Name = "tbMissingSearch";
-            tbMissingSearch.Size = new Size(188, 23);
+            tbMissingSearch.Size = new Size(117, 23);
             tbMissingSearch.TabIndex = 31;
             tbMissingSearch.TextChanged += tbMissingSearch_TextChanged;
             // 
@@ -1301,12 +1306,27 @@
             // 
             lblMissingSearch.AutoSize = true;
             lblMissingSearch.ForeColor = Color.FromArgb(230, 230, 230);
-            lblMissingSearch.Location = new Point(648, 339);
+            lblMissingSearch.Location = new Point(769, 336);
             lblMissingSearch.Margin = new Padding(4, 0, 4, 0);
             lblMissingSearch.Name = "lblMissingSearch";
-            lblMissingSearch.Size = new Size(125, 15);
+            lblMissingSearch.Size = new Size(89, 15);
             lblMissingSearch.TabIndex = 32;
-            lblMissingSearch.Text = "Search Missing Games";
+            lblMissingSearch.Text = "Search Missing:";
+            lblMissingSearch.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblCompletionStats
+            // 
+            lblCompletionStats.AutoSize = true;
+            lblCompletionStats.BackColor = Color.Transparent;
+            lblCompletionStats.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCompletionStats.ForeColor = Color.LightCoral;
+            lblCompletionStats.Location = new Point(479, 342);
+            lblCompletionStats.Margin = new Padding(4, 0, 4, 0);
+            lblCompletionStats.Name = "lblCompletionStats";
+            lblCompletionStats.Size = new Size(212, 15);
+            lblCompletionStats.TabIndex = 33;
+            lblCompletionStats.Text = "Platform Completion: 0% 0 / 0 Games";
+            lblCompletionStats.Visible = false;
             // 
             // PlatformSelectionForm
             // 
@@ -1317,6 +1337,7 @@
             BackColor = Color.FromArgb(54, 57, 63);
             ClientSize = new Size(1115, 586);
             ControlBox = false;
+            Controls.Add(lblCompletionStats);
             Controls.Add(lblMissingSearch);
             Controls.Add(tbMissingSearch);
             Controls.Add(lblOwnedSearch);
@@ -1475,5 +1496,6 @@
         private Label lblOwnedSearch;
         private TextBox tbMissingSearch;
         private Label lblMissingSearch;
+        private Label lblCompletionStats;
     }
 }

@@ -191,6 +191,8 @@ namespace LBMissingGamesCheckerPlugin
                 ColumnCheckedItems?.Clear();
                 OriginalOwnedGameList?.Clear();
                 OriginalMissingGameList?.Clear();
+                tbOwnedSearch.Text = string.Empty;
+                tbMissingSearch.Text = string.Empty;
                 try
                 {
                     DebugTxt($"-> Starting GridView loading. Dropdown Item: {platformDropdown.SelectedItem}");
@@ -1081,6 +1083,9 @@ namespace LBMissingGamesCheckerPlugin
                             lblCongrats.Visible = false;
                             pbCongrats.Visible = false;
                         }
+
+                        
+
                         DebugTxt("Binding missingGamesBindingSource completed!");
                     }
                     else if (noPlatformErrorDisplayData != null && noPlatformErrorDisplayData.Any() && noPlatformErrorDisplayData.First() != null && noPlatformErrorDisplayData.First().LaunchBoxDbId != null && noPlatformErrorDisplayData.First().LaunchBoxDbId == "0")
@@ -1207,6 +1212,40 @@ namespace LBMissingGamesCheckerPlugin
 
                     confirmButton.Enabled = true;
                     clbColumnSelection.Enabled = true;
+                }
+                // Calculate Completion Statistics
+                if (OriginalOwnedGameList != null && OriginalMissingGameList != null)
+                {
+                    DebugTxt("Calculating Completion Statistics...");
+                    int ownedCount = OriginalOwnedGameList.Count;
+                    int missingCount = OriginalMissingGameList.Count;
+                    int totalGames = ownedCount + missingCount;
+
+                    if (totalGames > 0)
+                    {
+                        double percentage = Math.Round((double)ownedCount / totalGames * 100, 1);
+                        lblCompletionStats.Text = $"Platform Completion: {percentage}% ({ownedCount} / {totalGames} Games)";
+
+                        // Color coding based on Completion Percentage
+                        if (percentage >= 80)
+                        {
+                            // 80%+ Complete (Very few missing) -> Green
+                            lblCompletionStats.ForeColor = Color.LightGreen;
+                        }
+                        else if (percentage >= 30)
+                        {
+                            // 30% to 79% Complete -> Yellow
+                            lblCompletionStats.ForeColor = Color.Gold;
+                        }
+                        else
+                        {
+                            // 0% to 29% Complete (Mostly missing) -> Red
+                            lblCompletionStats.ForeColor = Color.LightCoral;
+                        }
+
+                        lblCompletionStats.Visible = true;
+                    }
+                    DebugTxt("Calculated Completion Statistics!");
                 }
                 DebugTxt("Resuming GridViews completed!");
             }
@@ -2115,5 +2154,54 @@ namespace LBMissingGamesCheckerPlugin
 
         #endregion
 
+        private void missingGamesGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            // Ensure Right-Click and not on the header row
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
+            {
+                // Select the row user right-clicked
+                missingGamesGridView.ClearSelection();
+                missingGamesGridView.Rows[e.RowIndex].Selected = true;
+
+                string gameTitle = string.Empty;
+                string gamePlatform = string.Empty;
+
+                // Grab the underlying object bound to this row
+                var boundItem = missingGamesGridView.Rows[e.RowIndex].DataBoundItem;
+
+                if (boundItem is GameDisplayData gameData)
+                {
+                    gameTitle = gameData.Title;
+                    gamePlatform = gameData.Platform;
+                }
+
+                if (!string.IsNullOrEmpty(gameTitle))
+                {
+                    // Build the context menu dynamically
+                    ContextMenuStrip menu = new ContextMenuStrip();
+
+                    // Item 1: Copy to Clipboard
+                    menu.Items.Add("📋 Copy Title/Platform to Clipboard", null, (s, args) =>
+                    {
+                        Clipboard.SetText($"{gameTitle} {gamePlatform}".Trim());
+                    });
+
+                    // Item 2: Search eBay
+                    string searchTerm = $"{gameTitle} {gamePlatform}".Trim();
+
+                    menu.Items.Add($"🌐 Search eBay for '{searchTerm}'", null, (s, args) =>
+                    {
+                        // Ensure spaces and symbols are URL-encoded properly
+                        string encodedSearch = Uri.EscapeDataString(searchTerm);
+                        string ebayUrl = $"https://www.ebay.com/sch/i.html?_nkw={encodedSearch}";
+
+                        Process.Start(new ProcessStartInfo(ebayUrl) { UseShellExecute = true });
+                    });
+
+                    // Show the menu at the mouse cursor location
+                    menu.Show(Cursor.Position);
+                }
+            }
+        }
     }
 }
