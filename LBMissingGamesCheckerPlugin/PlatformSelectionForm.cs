@@ -1227,7 +1227,7 @@ namespace LBMissingGamesCheckerPlugin
             foreach (DataGridViewColumn column in dgv.Columns)
             {
                 if (column.HeaderText == "Developer" || column.HeaderText == "Publisher" || column.HeaderText == "Region" ||
-                    column.HeaderText == "CommunityStarRating" || column.HeaderText == "Genres")
+                    column.HeaderText == "CommunityStarRating" || column.HeaderText == "ReleaseType" || column.HeaderText == "Genres" || column.HeaderText == "MaxPlayers")
                 {
                     if (column.HeaderText == "Region")
                     {
@@ -1711,7 +1711,7 @@ namespace LBMissingGamesCheckerPlugin
         {
             foreach (DataGridViewColumn column in ownedGamesGridView.Columns)
             {
-                if (column.HeaderText == "Developer" || column.HeaderText == "Publisher" || column.HeaderText == "Region" || column.HeaderText == "CommunityStarRating" || column.HeaderText == "Genres")
+                if (column.HeaderText == "Developer" || column.HeaderText == "Publisher" || column.HeaderText == "Region" || column.HeaderText == "CommunityStarRating" || column.HeaderText == "ReleaseType" || column.HeaderText == "Genres" || column.HeaderText == "MaxPlayers")
                 {
                     column.HeaderCell = new DataGridViewFilterHeaderCell(column.HeaderCell, ownedGamesGridView, missingGamesGridView, clbFilterOptions, gbFilterOptions, this);
                 }
@@ -1719,7 +1719,7 @@ namespace LBMissingGamesCheckerPlugin
 
             foreach (DataGridViewColumn column in missingGamesGridView.Columns)
             {
-                if (column.HeaderText == "Developer" || column.HeaderText == "Publisher" || column.HeaderText == "Region" || column.HeaderText == "CommunityStarRating" || column.HeaderText == "Genres")
+                if (column.HeaderText == "Developer" || column.HeaderText == "Publisher" || column.HeaderText == "Region" || column.HeaderText == "CommunityStarRating" || column.HeaderText == "ReleaseType" || column.HeaderText == "Genres" || column.HeaderText == "MaxPlayers")
                 {
                     column.HeaderCell = new DataGridViewFilterHeaderCell(column.HeaderCell, ownedGamesGridView, missingGamesGridView, clbFilterOptions, gbFilterOptions, this);
                 }
