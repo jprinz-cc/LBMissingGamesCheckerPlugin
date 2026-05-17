@@ -30,7 +30,10 @@ namespace LBMissingGamesCheckerPlugin
         public void OnSelected()
         {
             // Get all platforms
-            var platforms = PluginHelper.DataManager.GetAllPlatforms().OrderBy(p => p.SortTitleOrTitle ?? p.Name).ToList();
+            var platforms = PluginHelper.DataManager.GetAllPlatforms()
+                .Where(p => !p.Name.EndsWith(" Wishlists", StringComparison.OrdinalIgnoreCase))
+                .OrderBy(p => p.SortTitleOrTitle ?? p.Name)
+                .ToList();
 
             if (platforms == null || !platforms.Any())
             {

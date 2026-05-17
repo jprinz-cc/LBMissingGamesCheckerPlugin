@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "LBMissingGamesCheckerPlugin": {
+      "commandName": "Project"
+    },
+    "Profile 1": {
+      "commandName": "Executable",
+      "executablePath": "H:\\LaunchBoxDev\\LaunchBox.exe"
+    }
+  }
+}

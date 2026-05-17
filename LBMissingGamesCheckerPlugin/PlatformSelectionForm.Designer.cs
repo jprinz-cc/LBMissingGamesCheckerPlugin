@@ -118,8 +118,7 @@
             lblMissingGamesGridView = new Label();
             lblOwnedGamesCount = new Label();
             lblMissingGamesCount = new Label();
-            btnOwnedCSV = new Button();
-            btnMissingCSV = new Button();
+            btnMissingExportOptions = new Button();
             gbOptional = new GroupBox();
             clbColumnSelection = new CheckedListBox();
             lblColumnSelection = new Label();
@@ -165,6 +164,12 @@
             tbMissingSearch = new TextBox();
             lblMissingSearch = new Label();
             lblCompletionStats = new Label();
+            btnOwnedExportOptions = new Button();
+            cmsOwnedExportOptions = new ContextMenuStrip(components);
+            exportToCSVToolStripMenuItem = new ToolStripMenuItem();
+            cmsMissingExportOptions = new ContextMenuStrip(components);
+            exportMissingGamesListToCSVToolStripMenuItem = new ToolStripMenuItem();
+            createLaunchBoxWishlistPlaylistToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)ownedGamesGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ownedGamesBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)missingGamesGridView).BeginInit();
@@ -183,6 +188,8 @@
             ((System.ComponentModel.ISupportInitialize)pbDebugBtn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbMGCHeader).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbMGCLogo).BeginInit();
+            cmsOwnedExportOptions.SuspendLayout();
+            cmsMissingExportOptions.SuspendLayout();
             SuspendLayout();
             // 
             // platformDropdown
@@ -717,31 +724,18 @@
             lblMissingGamesCount.Text = "0";
             lblMissingGamesCount.TextAlign = ContentAlignment.TopCenter;
             // 
-            // btnOwnedCSV
+            // btnMissingExportOptions
             // 
-            btnOwnedCSV.Enabled = false;
-            btnOwnedCSV.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnOwnedCSV.Location = new Point(989, 116);
-            btnOwnedCSV.Margin = new Padding(4, 3, 4, 3);
-            btnOwnedCSV.Name = "btnOwnedCSV";
-            btnOwnedCSV.Size = new Size(99, 23);
-            btnOwnedCSV.TabIndex = 9;
-            btnOwnedCSV.Text = "Export to CSV";
-            btnOwnedCSV.UseVisualStyleBackColor = true;
-            btnOwnedCSV.Click += ExportOwnedGamesButton_Click;
-            // 
-            // btnMissingCSV
-            // 
-            btnMissingCSV.Enabled = false;
-            btnMissingCSV.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnMissingCSV.Location = new Point(989, 333);
-            btnMissingCSV.Margin = new Padding(4, 3, 4, 3);
-            btnMissingCSV.Name = "btnMissingCSV";
-            btnMissingCSV.Size = new Size(99, 23);
-            btnMissingCSV.TabIndex = 10;
-            btnMissingCSV.Text = "Export to CSV";
-            btnMissingCSV.UseVisualStyleBackColor = true;
-            btnMissingCSV.Click += ExportMissingGamesButton_Click;
+            btnMissingExportOptions.Enabled = false;
+            btnMissingExportOptions.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnMissingExportOptions.Location = new Point(997, 333);
+            btnMissingExportOptions.Margin = new Padding(4, 3, 4, 3);
+            btnMissingExportOptions.Name = "btnMissingExportOptions";
+            btnMissingExportOptions.Size = new Size(68, 23);
+            btnMissingExportOptions.TabIndex = 10;
+            btnMissingExportOptions.Text = "Export...";
+            btnMissingExportOptions.UseVisualStyleBackColor = true;
+            btnMissingExportOptions.Click += ExportMissingGamesButton_Click;
             // 
             // gbOptional
             // 
@@ -1237,7 +1231,7 @@
             // pbMGCHeader
             // 
             pbMGCHeader.BackColor = Color.Transparent;
-            pbMGCHeader.Image = Properties.Resources.mgc_header;
+            pbMGCHeader.Image = (Image)resources.GetObject("pbMGCHeader.Image");
             pbMGCHeader.Location = new Point(396, -1);
             pbMGCHeader.Margin = new Padding(4, 3, 4, 3);
             pbMGCHeader.Name = "pbMGCHeader";
@@ -1328,6 +1322,52 @@
             lblCompletionStats.Text = "Platform Completion: 0% 0 / 0 Games";
             lblCompletionStats.Visible = false;
             // 
+            // btnOwnedExportOptions
+            // 
+            btnOwnedExportOptions.Enabled = false;
+            btnOwnedExportOptions.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOwnedExportOptions.Location = new Point(997, 116);
+            btnOwnedExportOptions.Margin = new Padding(4, 3, 4, 3);
+            btnOwnedExportOptions.Name = "btnOwnedExportOptions";
+            btnOwnedExportOptions.Size = new Size(68, 23);
+            btnOwnedExportOptions.TabIndex = 9;
+            btnOwnedExportOptions.Text = "Export...";
+            btnOwnedExportOptions.UseVisualStyleBackColor = true;
+            btnOwnedExportOptions.Click += ExportOwnedGamesButton_Click;
+            // 
+            // cmsOwnedExportOptions
+            // 
+            cmsOwnedExportOptions.Items.AddRange(new ToolStripItem[] { exportToCSVToolStripMenuItem });
+            cmsOwnedExportOptions.Name = "cmsOwnedExportOptions";
+            cmsOwnedExportOptions.Size = new Size(247, 26);
+            // 
+            // exportToCSVToolStripMenuItem
+            // 
+            exportToCSVToolStripMenuItem.Name = "exportToCSVToolStripMenuItem";
+            exportToCSVToolStripMenuItem.Size = new Size(246, 22);
+            exportToCSVToolStripMenuItem.Text = "Export Owned Games List to CSV";
+            exportToCSVToolStripMenuItem.Click += cmsOwnedExportCSV_Click;
+            // 
+            // cmsMissingExportOptions
+            // 
+            cmsMissingExportOptions.Items.AddRange(new ToolStripItem[] { exportMissingGamesListToCSVToolStripMenuItem, createLaunchBoxWishlistPlaylistToolStripMenuItem });
+            cmsMissingExportOptions.Name = "contextMenuStrip1";
+            cmsMissingExportOptions.Size = new Size(263, 70);
+            // 
+            // exportMissingGamesListToCSVToolStripMenuItem
+            // 
+            exportMissingGamesListToCSVToolStripMenuItem.Name = "exportMissingGamesListToCSVToolStripMenuItem";
+            exportMissingGamesListToCSVToolStripMenuItem.Size = new Size(262, 22);
+            exportMissingGamesListToCSVToolStripMenuItem.Text = "Export Missing Games List to CSV";
+            exportMissingGamesListToCSVToolStripMenuItem.Click += exportMissingGamesListToCSVToolStripMenuItem_Click;
+            // 
+            // createLaunchBoxWishlistPlaylistToolStripMenuItem
+            // 
+            createLaunchBoxWishlistPlaylistToolStripMenuItem.Name = "createLaunchBoxWishlistPlaylistToolStripMenuItem";
+            createLaunchBoxWishlistPlaylistToolStripMenuItem.Size = new Size(262, 22);
+            createLaunchBoxWishlistPlaylistToolStripMenuItem.Text = "Create LaunchBox Wishlist Platform";
+            createLaunchBoxWishlistPlaylistToolStripMenuItem.Click += createLaunchBoxWishlistPlaylistToolStripMenuItem_Click;
+            // 
             // PlatformSelectionForm
             // 
             AccessibleDescription = "A LaunchBox plugin designed to help users identify missing games in their collection based on platform metadata.";
@@ -1357,8 +1397,8 @@
             Controls.Add(llbPoweredBy);
             Controls.Add(btnClose);
             Controls.Add(gbOptional);
-            Controls.Add(btnMissingCSV);
-            Controls.Add(btnOwnedCSV);
+            Controls.Add(btnMissingExportOptions);
+            Controls.Add(btnOwnedExportOptions);
             Controls.Add(lblMissingGamesCount);
             Controls.Add(lblOwnedGamesCount);
             Controls.Add(lblMissingGamesGridView);
@@ -1402,6 +1442,8 @@
             ((System.ComponentModel.ISupportInitialize)pbDebugBtn).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbMGCHeader).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbMGCLogo).EndInit();
+            cmsOwnedExportOptions.ResumeLayout(false);
+            cmsMissingExportOptions.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
 
@@ -1418,8 +1460,7 @@
         private System.Windows.Forms.Label lblMissingGamesGridView;
         private System.Windows.Forms.Label lblOwnedGamesCount;
         private System.Windows.Forms.Label lblMissingGamesCount;
-        private System.Windows.Forms.Button btnOwnedCSV;
-        private System.Windows.Forms.Button btnMissingCSV;
+        private System.Windows.Forms.Button btnMissingExportOptions;
         private System.Windows.Forms.GroupBox gbOptional;
         private System.Windows.Forms.CheckBox chkReleasedOnly;
         private System.Windows.Forms.CheckedListBox clbColumnSelection;
@@ -1497,5 +1538,14 @@
         private TextBox tbMissingSearch;
         private Label lblMissingSearch;
         private Label lblCompletionStats;
+        private Button btnOwnedExportOptions;
+        private ContextMenuStrip cmsOwnedExportOptions;
+        private ToolStripMenuItem exportToCSVToolStripMenuItem;
+        private ContextMenuStrip cmsExportOptions;
+        private ToolStripMenuItem cmsExportCSV;
+        private ToolStripMenuItem cmsExportPlaylist;
+        private ContextMenuStrip cmsMissingExportOptions;
+        private ToolStripMenuItem exportMissingGamesListToCSVToolStripMenuItem;
+        private ToolStripMenuItem createLaunchBoxWishlistPlaylistToolStripMenuItem;
     }
 }

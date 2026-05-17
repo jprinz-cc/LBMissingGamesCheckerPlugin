@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LBMissingGamesCheckerPlugin.Controls;
+using LBMissingGamesCheckerPlugin.Models;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +19,7 @@ using System.Xml;
 using System.Xml.Linq;
 using Unbroken.LaunchBox.Plugins;
 using Unbroken.LaunchBox.Plugins.Data;
-using LBMissingGamesCheckerPlugin.Models;
-using LBMissingGamesCheckerPlugin.Controls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LBMissingGamesCheckerPlugin
 {
@@ -655,32 +656,110 @@ namespace LBMissingGamesCheckerPlugin
         // Export to CSV handler for OwnedGames
         private void ExportOwnedGamesButton_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
-                saveFileDialog.Title = "Save Owned Games as CSV";
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    ExportGridViewToCSV(ownedGamesGridView, saveFileDialog.FileName);
-                    MessageBox.Show("Owned games exported successfully!");
-                }
-            }
+            // Show the export dropdown menu right under the button
+            cmsOwnedExportOptions.Show(btnOwnedExportOptions, new Point(0, btnOwnedExportOptions.Height));
         }
 
         // Export to CSV handler for MissingGames
         private void ExportMissingGamesButton_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
-                saveFileDialog.Title = "Save Missing Games as CSV";
+            cmsMissingExportOptions.Show(btnMissingExportOptions, new Point(0, btnMissingExportOptions.Height));
+        }
 
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+        // Export MissingGames to LaunchBox Playlist
+        private void createLaunchBoxWishlistPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (SelectedPlatform == null || OriginalMissingGameList == null || OriginalMissingGameList.Count == 0)
+            {
+                MessageBox.Show("There are no missing games to export for this platform.", "Export Interrupted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                DebugTxt($"Starting LaunchBox Wishlist creation for {SelectedPlatform.Name}...");
+
+                string shadowPlatformName = $"{SelectedPlatform.Name} Wishlists";
+
+                // 1. Explicitly handle the Shadow Platform
+                var shadowPlatform = PluginHelper.DataManager.GetPlatformByName(shadowPlatformName);
+
+                if (shadowPlatform != null)
                 {
-                    ExportGridViewToCSV(missingGamesGridView, saveFileDialog.FileName);
-                    MessageBox.Show("Missing games exported successfully!");
+                    // The platform exists. Prompt the user to overwrite!
+                    var result = MessageBox.Show(
+                        $"A wishlist platform named '{shadowPlatformName}' already exists.\n\nWould you like to overwrite it with a fresh list? (Selecting 'No' will cancel the export).",
+                        "Wishlist Exists",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        DebugTxt($"Clearing old placeholder games from {shadowPlatformName}...");
+
+                        // Find all existing games in this specific shadow platform and delete them
+                        var oldGames = PluginHelper.DataManager.GetAllGames().Where(g => g.Platform == shadowPlatformName).ToList();
+                        foreach (var oldGame in oldGames)
+                        {
+                            PluginHelper.DataManager.TryRemoveGame(oldGame);
+                        }
+                    }
+                    else
+                    {
+                        // User clicked No, abort the export gracefully
+                        return;
+                    }
                 }
+                else
+                {
+                    // It doesn't exist yet, so we create it natively
+                    shadowPlatform = PluginHelper.DataManager.AddNewPlatform(shadowPlatformName);
+
+                    // Assign ScrapeAs to the PLATFORM so the user can download 3D Box Art!
+                    shadowPlatform.ScrapeAs = SelectedPlatform.Name;
+                    string pluginVersion = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "2.0.0.0";
+                    shadowPlatform.Notes = $"Automated Platform Wishlist generated by Missing Games Checker v{pluginVersion} on {DateTime.Now.ToShortDateString()}.";
+                }
+
+                // 2. Create Placeholder Games
+                int addedCount = 0;
+                foreach (var missingGame in OriginalMissingGameList)
+                {
+                    // Skip structural row markers like "NoPlatformFound"
+                    if (missingGame.Title == "NoPlatformFound" || missingGame.Title.StartsWith("==")) continue;
+
+                    // Create the physical game
+                    var newGame = PluginHelper.DataManager.AddNewGame(missingGame.Title);
+
+                    // Assign it to our isolated shadow platform
+                    newGame.Platform = shadowPlatformName;
+                    newGame.Source = "Missing Games Checker";
+
+                    // Safely parse the Database ID
+                    if (!string.IsNullOrWhiteSpace(missingGame.LaunchBoxDbId) && int.TryParse(missingGame.LaunchBoxDbId.ToString(), out int parsedDbId))
+                    {
+                        newGame.LaunchBoxDbId = parsedDbId;
+                    }
+
+                    // Mark as unplayed Wishlist item
+                    newGame.Status = "Wishlist";
+                    newGame.Progress = "Not Started / Want to Play";
+
+                    addedCount++;
+                }
+
+                // 3. Save to disk
+                PluginHelper.DataManager.Save();
+
+                DebugTxt($"Wishlist successfully committed with {addedCount} placeholder games.");
+
+                MessageBox.Show($"Successfully added {addedCount} placeholder games to LaunchBox!\n\nThey have been safely isolated in a new platform called '{shadowPlatformName}' in your sidebar.", "Export Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                LogException(ex);
+                MessageBox.Show($"An error occurred while communicating with the LaunchBox API: {ex.Message}", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -777,8 +856,8 @@ namespace LBMissingGamesCheckerPlugin
             {
                 confirmButton.Enabled = false;
                 clbColumnSelection.Enabled = false;
-                btnOwnedCSV.Enabled = false;
-                btnMissingCSV.Enabled = false;
+                btnOwnedExportOptions.Enabled = false;
+                btnMissingExportOptions.Enabled = false;
                 lblOwnedGamesCount.Text = "0";
                 lblMissingGamesCount.Text = "0";
             }));
@@ -1017,7 +1096,7 @@ namespace LBMissingGamesCheckerPlugin
                             ownedGamesBindingSource.DataSource = ownedGamesDisplayData;
                             OriginalOwnedGameList = ownedGamesDisplayData;
                             lblOwnedGamesCount.Text = ownedGamesDisplayData.Count > 0 ? ownedGamesDisplayData.Count.ToString() : "0";
-                            btnOwnedCSV.Enabled = true;
+                            btnOwnedExportOptions.Enabled = true;
                             LoadFilterOptions(ownedGamesGridView);
                         }));
                     }
@@ -1027,7 +1106,7 @@ namespace LBMissingGamesCheckerPlugin
                         ownedGamesBindingSource.DataSource = ownedGamesDisplayData;
                         OriginalOwnedGameList = ownedGamesDisplayData;
                         lblOwnedGamesCount.Text = ownedGamesDisplayData.Count > 0 ? ownedGamesDisplayData.Count.ToString() : "0";
-                        btnOwnedCSV.Enabled = true;
+                        btnOwnedExportOptions.Enabled = true;
                         LoadFilterOptions(ownedGamesGridView);
                     }
                     DebugTxt("Binding ownedGamesBindingSource completed!");
@@ -1069,7 +1148,7 @@ namespace LBMissingGamesCheckerPlugin
                             this.Invoke(new Action(() =>
                             {
                                 lblMissingGamesCount.Text = missingGamesDisplayData.Count.ToString();
-                                btnMissingCSV.Enabled = true;
+                                btnMissingExportOptions.Enabled = true;
                                 DebugTxt($"missingGames.Count: {missingGamesDisplayData.Count}");
                                 lblCongrats.Visible = false;
                                 pbCongrats.Visible = false;
@@ -1078,13 +1157,13 @@ namespace LBMissingGamesCheckerPlugin
                         else
                         {
                             lblMissingGamesCount.Text = missingGamesDisplayData.Count.ToString();
-                            btnMissingCSV.Enabled = true;
+                            btnMissingExportOptions.Enabled = true;
                             DebugTxt($"missingGames.Count: {missingGamesDisplayData.Count}");
                             lblCongrats.Visible = false;
                             pbCongrats.Visible = false;
                         }
 
-                        
+
 
                         DebugTxt("Binding missingGamesBindingSource completed!");
                     }
@@ -2203,5 +2282,37 @@ namespace LBMissingGamesCheckerPlugin
                 }
             }
         }
+
+        private void cmsOwnedExportCSV_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+                saveFileDialog.Title = "Save Owned Games as CSV";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ExportGridViewToCSV(ownedGamesGridView, saveFileDialog.FileName);
+                    MessageBox.Show("Owned games exported successfully!");
+                }
+            }
+        }
+
+        private void exportMissingGamesListToCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+                saveFileDialog.Title = "Save Missing Games as CSV";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ExportGridViewToCSV(missingGamesGridView, saveFileDialog.FileName);
+                    MessageBox.Show("Missing games exported successfully!");
+                }
+            }
+        }
+
+        
     }
 }
