@@ -2,13 +2,13 @@
 
 namespace LBMissingGamesCheckerPlugin.Models
 {
-    public class XmlGameAlternateName : IAlternateName
+    public class MetadataDbAlternateName : IAlternateName
     {
         public string Name { get; set; }
         public string GameId { get; set; }
         public string Region { get; set; }
 
-        public XmlGameAlternateName(string databaseID, string alternateName, string region)
+        public MetadataDbAlternateName(string databaseID, string alternateName, string region)
         {
             Name = alternateName ?? string.Empty;
             GameId = databaseID;

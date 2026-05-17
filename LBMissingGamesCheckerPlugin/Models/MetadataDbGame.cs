@@ -3,7 +3,7 @@ using Unbroken.LaunchBox.Plugins.Data;
 
 namespace LBMissingGamesCheckerPlugin.Models
 {
-    public class XmlGame
+    public class MetadataDbGame
     {
         public string Title { get; set; }
         public string Developer { get; set; }
@@ -21,7 +21,7 @@ namespace LBMissingGamesCheckerPlugin.Models
         public string VideoUrl { get; set; }
         public string WikipediaUrl { get; set; }
 
-        public XmlGame(
+        public MetadataDbGame(
             string title,
             string developer,
             string publisher,

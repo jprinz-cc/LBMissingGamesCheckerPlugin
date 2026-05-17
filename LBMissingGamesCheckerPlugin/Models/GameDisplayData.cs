@@ -20,7 +20,7 @@ namespace LBMissingGamesCheckerPlugin.Models
         public string VideoUrl { get; set; }
         public string WikipediaUrl { get; set; }
 
-        public GameDisplayData(XmlGame game)
+        public GameDisplayData(MetadataDbGame game)
         {
             Title = game.Title ?? string.Empty;
             Developer = game.Developer ?? string.Empty;

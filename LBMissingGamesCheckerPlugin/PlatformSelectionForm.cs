@@ -1,25 +1,13 @@
 ﻿using LBMissingGamesCheckerPlugin.Controls;
 using LBMissingGamesCheckerPlugin.Models;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
 using Unbroken.LaunchBox.Plugins;
 using Unbroken.LaunchBox.Plugins.Data;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LBMissingGamesCheckerPlugin
 {
@@ -29,18 +17,9 @@ namespace LBMissingGamesCheckerPlugin
         // Holds the currently selected platform
         public IPlatform SelectedPlatform { get; private set; }
 
-        // Propertie to hold the location of the Metadata.xml file
-        private string metadataFilePath = string.Empty;
-        private readonly string metadataFile = "metadata.xml";
-
-        // Lists to hold XML game/platform data
-        readonly ConcurrentBag<XmlPlatform> xmlPlatforms = new ConcurrentBag<XmlPlatform>();
-        readonly ConcurrentBag<XmlGame> xmlGames = new ConcurrentBag<XmlGame>();
-        readonly ConcurrentBag<IAlternateName> xmlGameAltNames = new ConcurrentBag<IAlternateName>();
-
         // Lists to hold sorted games
         private ConcurrentBag<IGame> ownedGames = new ConcurrentBag<IGame>();
-        private ConcurrentBag<XmlGame> missingGames = new ConcurrentBag<XmlGame>();
+        private ConcurrentBag<MetadataDbGame> missingGames = new ConcurrentBag<MetadataDbGame>();
 
         private BindingList<GameDisplayData> ownedGamesDisplayData = new BindingList<GameDisplayData>();
         private BindingList<GameDisplayData> missingGamesDisplayData = new BindingList<GameDisplayData>();
@@ -73,9 +52,12 @@ namespace LBMissingGamesCheckerPlugin
         public PlatformSelectionForm(IList<IPlatform> platforms)
         {
             InitializeComponent();
+
+            this.Load += new EventHandler(this.PlatformSelectionForm_Load);
+            this.Shown += new EventHandler(this.PlatformSelectionForm_Shown);
             this.Paint += new PaintEventHandler(this.PlatformSelectionForm_Paint);
             this.Resize += new EventHandler(this.PlatformSelectionForm_Resize);
-
+            this.FormClosing += new FormClosingEventHandler(this.PlatformSelectionForm_FormClosing);
             Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
 
             AddFilterIcons();
@@ -91,21 +73,24 @@ namespace LBMissingGamesCheckerPlugin
             noPlatformGridView.Visible = false;
             ssPlatformDropdownMsg.Visible = false;
             gbFilterOptions.Visible = false;
-            DebugTxt(false);
-            pbSpinner.Visible = true;
-            pbSpinner.BringToFront();
             lblCongrats.Visible = false;
             pbCongrats.Visible = false;
+
+            DebugTxt(false);
 
             // Populate dropdown with user platforms
             foreach (var platform in platforms)
             {
                 platformDropdown.Items.Add(platform.Name);
             }
-            platformDropdown.SelectedIndex = 0;
+            if (platformDropdown.Items.Count > 0) platformDropdown.SelectedIndex = 0;
 
             // Populate column selection checkboxes
             PopulateColumnSelection();
+
+            // Populate Region Filter dropdown
+            cmbRegionFilter.Items.AddRange(new string[] { "All Regions", "North America", "Europe", "Japan" });
+            cmbRegionFilter.SelectedIndex = 0;
         }
 
         // Form Load
@@ -120,19 +105,22 @@ namespace LBMissingGamesCheckerPlugin
         #region EventHandlers
         private void PlatformSelectionForm_Shown(object sender, EventArgs e)
         {
+            DebugTxt("Form Shown Event Triggered!");
+            DebugTxt("Checking LaunchBox SQLite Metadata Database status...");
+
             var repo = new Data.MetadataRepository();
             var status = repo.CheckMetadataStatus();
 
             if (status == Data.MetadataStatus.SqliteFound)
             {
+                DebugTxt("Status: SQLite Database Ready!");
                 UpdateStatus("success", "Database Ready!");
-                pbSpinner.Visible = false;
                 confirmButton.Enabled = true;
             }
             else if (status == Data.MetadataStatus.XmlFound)
             {
+                DebugTxt("Status: Legacy XML Found!");
                 UpdateStatus("error", "Legacy XML File Found");
-                pbSpinner.Visible = false;
                 confirmButton.Enabled = false;
 
                 MessageBox.Show(
@@ -143,8 +131,8 @@ namespace LBMissingGamesCheckerPlugin
             }
             else
             {
+                DebugTxt("Status: Metadata Database Not Found!");
                 UpdateStatus("error", "Metadata Database Not Found!");
-                pbSpinner.Visible = false;
                 confirmButton.Enabled = false;
             }
         }
@@ -680,6 +668,7 @@ namespace LBMissingGamesCheckerPlugin
                 DebugTxt($"Starting LaunchBox Wishlist creation for {SelectedPlatform.Name}...");
 
                 string shadowPlatformName = $"{SelectedPlatform.Name} Wishlists";
+                string pluginVersion = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "2.0.0.0";
 
                 // 1. Explicitly handle the Shadow Platform
                 var shadowPlatform = PluginHelper.DataManager.GetPlatformByName(shadowPlatformName);
@@ -688,7 +677,7 @@ namespace LBMissingGamesCheckerPlugin
                 {
                     // The platform exists. Prompt the user to overwrite!
                     var result = MessageBox.Show(
-                        $"A wishlist platform named '{shadowPlatformName}' already exists.\n\nWould you like to overwrite it with a fresh list? (Selecting 'No' will cancel the export).",
+                        $"A wishlist platform named '{shadowPlatformName}' already exists.\n\nWould you like to overwrite it with a fresh list?\n\n(Selecting 'No' will cancel the export).",
                         "Wishlist Exists",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question
@@ -718,7 +707,6 @@ namespace LBMissingGamesCheckerPlugin
 
                     // Assign ScrapeAs to the PLATFORM so the user can download 3D Box Art!
                     shadowPlatform.ScrapeAs = SelectedPlatform.Name;
-                    string pluginVersion = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "2.0.0.0";
                     shadowPlatform.Notes = $"Automated Platform Wishlist generated by Missing Games Checker v{pluginVersion} on {DateTime.Now.ToShortDateString()}.";
                 }
 
@@ -735,6 +723,7 @@ namespace LBMissingGamesCheckerPlugin
                     // Assign it to our isolated shadow platform
                     newGame.Platform = shadowPlatformName;
                     newGame.Source = "Missing Games Checker";
+                    newGame.Notes = $"Automated '{shadowPlatformName}' Game generated by Missing Games Checker v{pluginVersion} on {DateTime.Now.ToShortDateString()}.";
 
                     // Safely parse the Database ID
                     if (!string.IsNullOrWhiteSpace(missingGame.LaunchBoxDbId) && int.TryParse(missingGame.LaunchBoxDbId.ToString(), out int parsedDbId))
@@ -754,7 +743,7 @@ namespace LBMissingGamesCheckerPlugin
 
                 DebugTxt($"Wishlist successfully committed with {addedCount} placeholder games.");
 
-                MessageBox.Show($"Successfully added {addedCount} placeholder games to LaunchBox!\n\nThey have been safely isolated in a new platform called '{shadowPlatformName}' in your sidebar.", "Export Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Successfully added {addedCount} placeholder games to LaunchBox!\n\nThey have been safely isolated in a new platform called\n\n'{shadowPlatformName}' in your sidebar.", "Export Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -864,7 +853,11 @@ namespace LBMissingGamesCheckerPlugin
 
             DebugTxt("Starting GetAllPlatformGames via SQLite...");
             HashSet<int> ownedGameIds = new HashSet<int>();
+
+            // CAPTURE UI STATE ON THE MAIN THREAD BEFORE BACKGROUND TASKS
             bool filterReleasedOnly = chkReleasedOnly.Checked;
+            string selectedRegion = cmbRegionFilter.SelectedItem?.ToString() ?? "All Regions";
+            bool includeEmptyRegions = chkIncludeEmptyRegions.Checked;
 
             if (selectedPlatform == null)
             {
@@ -874,11 +867,11 @@ namespace LBMissingGamesCheckerPlugin
 
             try
             {
-                DebugTxt($"Filter by Released: {filterReleasedOnly}");
+                DebugTxt($"Filter by Released: {filterReleasedOnly} | Region: {selectedRegion} | Include Empty: {includeEmptyRegions}");
 
                 // Clear lists of populated data
                 ownedGames = new ConcurrentBag<IGame>();
-                missingGames = new ConcurrentBag<XmlGame>();
+                missingGames = new ConcurrentBag<MetadataDbGame>();
 
                 DebugTxt("Fetching Owned Games from LaunchBox API...");
                 var ownedGamesList = await Task.Run(() => selectedPlatform.GetAllGames(true, true));
@@ -889,19 +882,40 @@ namespace LBMissingGamesCheckerPlugin
                     {
                         foreach (var game in ownedGamesList)
                         {
+                            // 1. ALWAYS add to the exclusion list IF IT HAS AN ID 
+                            // (so we don't say they are missing a game they already own)
                             if (game.LaunchBoxDbId.HasValue && game.LaunchBoxDbId != 0)
                             {
-                                // Check released filter before adding to our lists
-                                if (!filterReleasedOnly || game.ReleaseType == "Released")
-                                {
-                                    ownedGames.Add(game);
-                                    ownedGameIds.Add(game.LaunchBoxDbId.Value);
-                                }
+                                ownedGameIds.Add(game.LaunchBoxDbId.Value);
+                            }
+
+                            // 2. Process EVERYTHING for the visual Owned grid (even unscraped games!)
+
+                            // Check Released filter
+                            bool passesReleased = !filterReleasedOnly || game.ReleaseType == "Released";
+
+                            // Evaluate Region Logic cleanly
+                            bool passesRegion;
+                            if (string.IsNullOrWhiteSpace(game.Region))
+                            {
+                                // The game has NO region. Only pass it if the user checked the safety net box!
+                                passesRegion = includeEmptyRegions;
+                            }
+                            else
+                            {
+                                // The game HAS a region. Pass it if they want "All", or if it matches their specific choice.
+                                passesRegion = (selectedRegion == "All Regions") || game.Region.Contains(selectedRegion, StringComparison.OrdinalIgnoreCase);
+                            }
+
+                            // Only add to the visual display list if it passes both optional filters
+                            if (passesReleased && passesRegion)
+                            {
+                                ownedGames.Add(game);
                             }
                         }
                     });
                 }
-                DebugTxt($"ownedGames Count: {ownedGames.Count}");
+                DebugTxt($"ownedGames Count (Filtered): {ownedGames.Count}");
 
                 DebugTxt("Fetching Platform Games from SQLite DB...");
                 var repo = new Data.MetadataRepository();
@@ -909,31 +923,37 @@ namespace LBMissingGamesCheckerPlugin
 
                 if (platformGames.Count > 0)
                 {
-                    // Filter out games we already own, and apply the 'Released' filter
+                    // Filter out games we already own, and apply the 'Released' and 'Region' filters
                     var filteredMissing = await Task.Run(() =>
                     {
                         return platformGames
                             .Where(dbGame => dbGame.LaunchBoxDbId.HasValue && !ownedGameIds.Contains(dbGame.LaunchBoxDbId.Value))
                             .Where(dbGame => !filterReleasedOnly || dbGame.ReleaseType == "Released")
+                            // Use a ternary operator to perfectly mirror the strict if/else logic from the owned list
+                            .Where(dbGame =>
+                                string.IsNullOrWhiteSpace(dbGame.Region)
+                                    ? includeEmptyRegions
+                                    : (selectedRegion == "All Regions" || dbGame.Region.Contains(selectedRegion, StringComparison.OrdinalIgnoreCase))
+                            )
                             .ToList();
                     });
 
-                    missingGames = new ConcurrentBag<XmlGame>(filteredMissing);
-                    DebugTxt($"missingGames Count: {missingGames.Count}");
+                    missingGames = new ConcurrentBag<MetadataDbGame>(filteredMissing);
+                    DebugTxt($"missingGames Count (Filtered): {missingGames.Count}");
                 }
                 else
                 {
                     // Add final "NoPlatformFound" message row
                     DebugTxt("Adding error to missingGames List...");
-                    var noPlatformErrorList = new List<XmlGame>
+                    var noPlatformErrorList = new List<MetadataDbGame>
             {
-                new XmlGame("NoPlatformFound", string.Empty, string.Empty, string.Empty, null, null, null,
+                new MetadataDbGame("NoPlatformFound", string.Empty, string.Empty, string.Empty, null, null, null,
                     $"The selected platform '{platformToCheck}' was not found in the LaunchBox DB.", string.Empty, string.Empty, null, null, 0, string.Empty, string.Empty),
-                new XmlGame("=====================", string.Empty, string.Empty, string.Empty, null, null, null,
+                new MetadataDbGame("=====================", string.Empty, string.Empty, string.Empty, null, null, null,
                     "=====================", string.Empty, string.Empty, null, null, 0, string.Empty, string.Empty)
             };
 
-                    missingGames = new ConcurrentBag<XmlGame>(noPlatformErrorList);
+                    missingGames = new ConcurrentBag<MetadataDbGame>(noPlatformErrorList);
                     DebugTxt($"ownedGames: {ownedGames.Count} - missingGames: NoPlatformFound");
                 }
 
@@ -948,7 +968,7 @@ namespace LBMissingGamesCheckerPlugin
         }
 
         // Populate the GridViews with the game lists
-        private async void PopulateGameList(ConcurrentBag<IGame> ownedGames, ConcurrentBag<XmlGame> missingGames)
+        private async void PopulateGameList(ConcurrentBag<IGame> ownedGames, ConcurrentBag<MetadataDbGame> missingGames)
         {
 
             if (this.InvokeRequired)
@@ -1005,7 +1025,7 @@ namespace LBMissingGamesCheckerPlugin
                 var ownedGamesList = await Task.Run(() =>
                 {
                     return ownedGames.OrderBy(game => game.Title)
-                    .Select(game => new GameDisplayData(new XmlGame(
+                    .Select(game => new GameDisplayData(new MetadataDbGame(
                         game.Title, game.Developer, game.Publisher, game.Region, (DateTime?)game.ReleaseDate,
                         (float?)game.CommunityStarRating, (int?)game.CommunityStarRatingTotalVotes,
                         game.Platform, game.ReleaseType, game.GenresString, game.GetAllAlternateNames(),
@@ -1413,322 +1433,6 @@ namespace LBMissingGamesCheckerPlugin
                 }
             }
         }
-
-
-        // Process the directories to find the metadata.xml file
-        //private async void FindMetadataFile()
-        //{
-        //    // Flag to track if the file was found
-        //    var fileFound = false;
-        //    // Get files from allowed directories
-        //    var files = new List<string>();
-
-        //    try
-        //    {
-        //        fileFound = await Task.Run(() => ProcessingAppDirectories(_CancellationTokenSource.Token, files));
-        //    }
-        //    catch (OperationCanceledException)
-        //    {
-        //        _CancellationTokenSource.Cancel();
-        //    }
-
-        //    // If metadata.xml found, add to metadataFilePath, else throw to the try and display error
-        //    if (fileFound)
-        //    {
-        //        metadataFilePath = files.Any() ? files[0] : metadataFilePath;
-        //        DebugTxt($"metadataFilePath: {metadataFilePath}");
-        //        UpdateStatus("success", "Metadata Found!");
-        //        StopProgressBar();
-        //        await Task.Delay(3500);
-        //        StartProgressBar();
-        //        // Process the metadata.xml
-        //        UpdateStatus("processing", "Processing Metadata...");
-        //        try
-        //        {
-        //            await Task.Run(() =>
-        //            {
-        //                GetGamesFromMetadata(_CancellationTokenSource.Token);
-        //            });
-        //        }
-        //        catch (OperationCanceledException)
-        //        {
-        //            _CancellationTokenSource.Cancel();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        DebugTxt($"metadata File Not Found! Path: {metadataFilePath}");
-        //        pbSpinner.Visible = false;
-        //        pbMetadataLoading.Visible = false;
-        //        UpdateStatus("error", "metadata File Not Found!");
-        //        DebugTxt(true);
-        //    }
-        //}
-
-        //private async Task<bool> ProcessingAppDirectories(CancellationToken token, List<string> files)
-        //{
-        //    var fileFound = false;
-        //    // Check for cancellation
-        //    if (token.IsCancellationRequested)
-        //    {
-        //        token.ThrowIfCancellationRequested();
-        //        return false;
-        //    }
-
-        //    try
-        //    {
-        //        DebugTxt("->Looking for Metadata...");
-        //        string currentFolder = AppDomain.CurrentDomain.BaseDirectory;
-        //        string launchboxRootFolder = currentFolder.Replace("\\Core", ""); // Remove the "\Core" part
-        //        metadataFilePath = Path.Combine(launchboxRootFolder, "Metadata", "metadata.xml");
-        //        DebugTxt($"Looking for Metadata at {metadataFilePath}...");
-        //        fileFound = await Task.Run(() =>
-        //        {
-        //            return File.Exists(metadataFilePath);
-        //        });
-        //        if (fileFound)
-        //        {
-        //            DebugTxt($"Metadata found at {metadataFilePath}!");
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            DebugTxt($"Metadata not found at {metadataFilePath}...");
-        //            metadataFilePath = string.Empty;
-        //            DebugTxt("Searching for Metadata...");
-        //            // Directories to exclude
-        //            var excludedDirectories = new List<string>
-        //            {
-        //                "Games",
-        //                "Images",
-        //                "Videos",
-        //                "eXo",
-        //                "Content",
-        //                "Emulators",
-        //                "Manuals",
-        //                "LBThemes",
-        //                "Music",
-        //                "PauseThemes",
-        //                "StartupThemes",
-        //                "Themes",
-        //                "ThirdParty",
-        //                "Plugins"
-        //            };
-
-        //            // Get all directories except the excluded ones (case-insensitive)
-        //            List<string> allDirectories = new List<string>();
-        //            await Task.Run(() =>
-        //            {
-        //                allDirectories = Directory.GetDirectories(Directory.GetCurrentDirectory(), "*", SearchOption.AllDirectories)
-        //                .Where(dir => !excludedDirectories.Any(excludedDir => dir.IndexOf(excludedDir, StringComparison.OrdinalIgnoreCase) >= 0)) // Case-insensitive comparison
-        //                .ToList();
-        //            });
-
-        //            fileFound = await Task.Run(() =>
-        //            {
-        //                foreach (string dir in allDirectories)
-        //                {
-        //                    // Get all files from the current directory in a case-insensitive manner
-        //                    files.AddRange(Directory.GetFiles(dir, "*", SearchOption.TopDirectoryOnly)
-        //                        .Where(f => Path.GetFileName(f).Equals(metadataFile, StringComparison.OrdinalIgnoreCase))
-        //                    );
-
-        //                    // Break if we found the metadata file
-        //                    if (files.Count > 0)
-        //                    {
-        //                        return true;
-        //                    }
-        //                }
-        //                return false;
-        //            });
-        //        }
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        DebugTxt($"An Exception occured: {ex.Message}");
-        //        return false;
-        //    }
-        //}
-
-        //// Get the platform games from the metadata.xml file
-        //private async void GetGamesFromMetadata(CancellationToken token)
-        //{
-        //    // Check for cancellation
-        //    if (token.IsCancellationRequested)
-        //    {
-        //        token.ThrowIfCancellationRequested();
-        //    }
-        //    bool xmlReadCompleted = false;
-        //    // Debugging
-        //    int gameCount = 0;
-        //    int platformCount = 0;
-        //    int GameAltNamesCount = 0;
-        //    int processedGamesCounter = 0;
-        //    int processedAltNamesCounter = 0;
-
-        //    FileStream fs = new FileStream(metadataFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, FileOptions.Asynchronous);
-        //    try
-        //    {
-        //        using (fs)
-        //        {
-        //            XmlReaderSettings settings = new XmlReaderSettings { Async = true };
-
-        //            using (XmlReader reader = XmlReader.Create(fs, settings))
-        //            {
-        //                while (await reader.ReadAsync())
-        //                {
-        //                    reader.MoveToContent();
-
-        //                    if (reader.NodeType == XmlNodeType.Element && reader.Name == "LaunchBox")
-        //                    {
-        //                        while (await reader.ReadAsync())
-        //                        {
-        //                            if (reader.NodeType == XmlNodeType.Element)
-        //                            {
-        //                                if (reader.Name == "Platform")
-        //                                {
-        //                                    // Process the Platforms in the xml and add to xmlPlatforms
-        //                                    var xmlElement = XNode.ReadFrom(reader) as XElement;
-        //                                    if (xmlElement.Element("Name") != null && !xmlElement.Element("Name").IsEmpty)
-        //                                    {
-        //                                        var platform = new XmlPlatform(
-        //                                            (string)xmlElement.Element("Name")
-        //                                        );
-        //                                        xmlPlatforms.Add(platform);
-        //                                        platformCount++;
-        //                                    }
-        //                                }
-        //                                else if (reader.Name == "Game")
-        //                                {
-        //                                    var xmlElement = XNode.ReadFrom(reader) as XElement;
-        //                                    var game = new XmlGame(
-        //                                        (string)xmlElement.Element("Name"),
-        //                                        (string)xmlElement.Element("Developer"),
-        //                                        (string)xmlElement.Element("Publisher"),
-        //                                        (string)xmlElement.Element("Region"),
-        //                                        ParseDate((string)xmlElement.Element("ReleaseDate")),
-        //                                        ParseFloat((string)xmlElement.Element("CommunityRating")),
-        //                                        ParseInt((string)xmlElement.Element("CommunityRatingCount")),
-        //                                        (string)xmlElement.Element("Platform"),
-        //                                        (string)xmlElement.Element("ReleaseType"),
-        //                                        (string)xmlElement.Element("Genres"),
-        //                                        new IAlternateName[0],
-        //                                        ParseInt((string)xmlElement.Element("MaxPlayers")),
-        //                                        ParseInt((string)xmlElement.Element("DatabaseID")),
-        //                                        (string)xmlElement.Element("VideoURL"),
-        //                                        (string)xmlElement.Element("WikipediaURL")
-        //                                    );
-        //                                    xmlGames.Add(game);
-        //                                    gameCount++;
-        //                                }
-        //                                else if (reader.Name == "GameAlternateName")
-        //                                {
-        //                                    var xmlElement = XNode.ReadFrom(reader) as XElement;
-        //                                    var altName = new XmlGameAlternateName(
-        //                                        (string)xmlElement.Element("DatabaseID"),
-        //                                        (string)xmlElement.Element("AlternateName"),
-        //                                        (string)xmlElement.Element("Region")
-        //                                    );
-        //                                    xmlGameAltNames.Add(altName);
-        //                                    GameAltNamesCount++;
-        //                                }
-        //                            }
-        //                        }
-        //                    }
-        //                }
-        //                xmlReadCompleted = true;
-        //            }
-        //            xmlReadCompleted = true;
-        //        }
-        //        xmlReadCompleted = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        xmlGames.Add(new XmlGame($"An unexpected error occurred: {ex.Message}",
-        //                string.Empty, string.Empty, string.Empty, null, null, null, "Exception", string.Empty, string.Empty,
-        //                null, null, null, string.Empty, string.Empty));
-        //        UpdateStatus("error", "An unexpected error occurred");
-        //        StopProgressBar();
-        //    }
-        //    finally
-        //    {
-        //        fs?.Close();
-        //        DebugTxt($"xmlReadCompleted: {xmlReadCompleted}");
-        //        DebugTxt($"xmlGames.Count:  {xmlGames.Count}");
-        //        DebugTxt($"gameCount: {gameCount}");
-        //        DebugTxt($"platformCount:  {platformCount}");
-        //        DebugTxt($"GameAltNamesCount:  {GameAltNamesCount}");
-
-        //        if (xmlReadCompleted)
-        //        {
-        //            DebugTxt("Started processing games...");
-        //            // Create a dictionary for faster lookup of alternate names by GameId
-        //            DebugTxt("Adding alt names to game data");
-        //            var altNamesDict = xmlGameAltNames
-        //                .Where(altName => !string.IsNullOrEmpty(altName.GameId))
-        //                .GroupBy(altName => altName.GameId)
-        //                .ToDictionary(g => g.Key, g => g.ToList());
-        //            DebugTxt($"altNameDict contains {altNamesDict.Count} entries.");
-        //            await Task.Run(() =>
-        //            {
-        //                foreach (var game in xmlGames)
-        //                {
-        //                    if (game.LaunchBoxDbId.HasValue)
-        //                    {
-        //                        // Check if we have alternate names for this game using the dictionary
-        //                        if (altNamesDict.TryGetValue(game.LaunchBoxDbId.ToString(), out var matchingAltNames))
-        //                        {
-        //                            // Use StringBuilder for building the region string
-        //                            var regionBuilder = new StringBuilder(game.Region);
-        //                            game.AlternateNames = new IAlternateName[matchingAltNames.Count];
-        //                            Array.Copy(matchingAltNames.ToArray(), game.AlternateNames, matchingAltNames.Count);
-        //                            foreach (var altName in matchingAltNames)
-        //                            {
-        //                                if (!string.IsNullOrWhiteSpace(altName.Region) &&
-        //                                    !game.Region.Contains(altName.Region) &&
-        //                                    !regionBuilder.ToString().Contains(altName.Region))
-        //                                {
-        //                                    if (regionBuilder.Length > 0 || game.Region.Length > 0)
-        //                                    {
-        //                                        regionBuilder.Append(", ");
-        //                                    }
-        //                                    regionBuilder.Append(altName.Region);
-        //                                }
-        //                            }
-        //                            game.Region = regionBuilder.ToString();
-        //                            processedAltNamesCounter++;
-        //                        }
-        //                        processedGamesCounter++;
-        //                    }
-        //                }
-        //            });
-
-        //            DebugTxt($"Processed: {processedGamesCounter} metadata games!");
-        //            DebugTxt($"Processed: {processedAltNamesCounter} AltGameNames!");
-        //            UpdateStatus("success");
-        //            StopProgressBar();
-        //            Invoke(new Action(() =>
-        //            {
-        //                pbSpinner.Visible = false;
-        //                confirmButton.Enabled = true;
-        //            }));
-
-        //        }
-        //        else
-        //        {
-        //            UpdateStatus("error");
-        //            DebugTxt(true);
-        //        }
-        //        DebugTxt("Ended processing games");
-        //        StopProgressBar();
-        //        Invoke(new Action(() =>
-        //        {
-        //            pbSpinner.Visible = false;
-        //            confirmButton.Enabled = true;
-        //        }));
-        //    }
-        //}
         #endregion
 
         #region HelperMethods
@@ -1869,6 +1573,7 @@ namespace LBMissingGamesCheckerPlugin
                     break;
                 case "error":
                     tsslIcon.Image = Properties.Resources.error;
+                    tsslText.Text = message ?? "Metadata Load Failed";
                     tsslText.ForeColor = Color.Black;
                     tsslText.BackColor = Color.FromArgb(255, 191, 0);
                     break;
@@ -1906,26 +1611,6 @@ namespace LBMissingGamesCheckerPlugin
             {
                 LogException(ex);
             }
-        }
-
-        // Format helpers
-        private DateTime? ParseDate(string dateStr)
-        {
-            if (DateTime.TryParse(dateStr, out DateTime date))
-                return date;
-            return null;
-        }
-        private int? ParseInt(string intStr)
-        {
-            if (int.TryParse(intStr, out int value))
-                return value;
-            return 0;
-        }
-        private float? ParseFloat(string floatStr)
-        {
-            if (float.TryParse(floatStr, out float value))
-                return value;
-            return 0f;
         }
 
         // Form draggable code
@@ -2032,7 +1717,7 @@ namespace LBMissingGamesCheckerPlugin
 
         }
 
-        // Export to CSV method
+        // Export to CSV methods
         private void ExportGridViewToCSV(DataGridView gridView, string filePath)
         {
             // Check if the GridView has any rows
@@ -2068,31 +1753,84 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
-        // Setup the progressBar
-        private void StartProgressBar()
+        private void missingGamesGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (pbMetadataLoading.InvokeRequired)
+            // Ensure Right-Click and not on the header row
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
             {
-                pbMetadataLoading.BeginInvoke(new Action(StartProgressBar));
-                return;
+                // Select the row user right-clicked
+                missingGamesGridView.ClearSelection();
+                missingGamesGridView.Rows[e.RowIndex].Selected = true;
+
+                string gameTitle = string.Empty;
+                string gamePlatform = string.Empty;
+
+                // Grab the underlying object bound to this row
+                var boundItem = missingGamesGridView.Rows[e.RowIndex].DataBoundItem;
+
+                if (boundItem is GameDisplayData gameData)
+                {
+                    gameTitle = gameData.Title;
+                    gamePlatform = gameData.Platform;
+                }
+
+                if (!string.IsNullOrEmpty(gameTitle))
+                {
+                    // Build the context menu dynamically
+                    ContextMenuStrip menu = new ContextMenuStrip();
+
+                    // Item 1: Copy to Clipboard
+                    menu.Items.Add("📋 Copy Title/Platform to Clipboard", null, (s, args) =>
+                    {
+                        Clipboard.SetText($"{gameTitle} {gamePlatform}".Trim());
+                    });
+
+                    // Item 2: Search eBay
+                    string searchTerm = $"{gameTitle} {gamePlatform}".Trim();
+
+                    menu.Items.Add($"🌐 Search eBay for '{searchTerm}'", null, (s, args) =>
+                    {
+                        // Ensure spaces and symbols are URL-encoded properly
+                        string encodedSearch = Uri.EscapeDataString(searchTerm);
+                        string ebayUrl = $"https://www.ebay.com/sch/i.html?_nkw={encodedSearch}";
+
+                        Process.Start(new ProcessStartInfo(ebayUrl) { UseShellExecute = true });
+                    });
+
+                    // Show the menu at the mouse cursor location
+                    menu.Show(Cursor.Position);
+                }
             }
-            // Set the progress bar style to Marquee for continuous movement
-            pbMetadataLoading.Visible = true;
-            pbMetadataLoading.Style = ProgressBarStyle.Marquee;
-            pbMetadataLoading.Refresh();
         }
 
-        // Method to stop the progress bar and hide it when processing is complete
-        private void StopProgressBar()
+        private void cmsOwnedExportCSV_Click(object sender, EventArgs e)
         {
-            if (pbMetadataLoading.InvokeRequired)
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                pbMetadataLoading.BeginInvoke(new Action(StopProgressBar));
-                return;
+                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+                saveFileDialog.Title = "Save Owned Games as CSV";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ExportGridViewToCSV(ownedGamesGridView, saveFileDialog.FileName);
+                    MessageBox.Show("Owned games exported successfully!");
+                }
             }
-            pbMetadataLoading.Visible = false;
-            pbMetadataLoading.Style = ProgressBarStyle.Blocks;
-            pbMetadataLoading.Refresh();
+        }
+
+        private void exportMissingGamesListToCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+                saveFileDialog.Title = "Save Missing Games as CSV";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ExportGridViewToCSV(missingGamesGridView, saveFileDialog.FileName);
+                    MessageBox.Show("Missing games exported successfully!");
+                }
+            }
         }
 
         // Add text to debug textbox
@@ -2232,87 +1970,5 @@ namespace LBMissingGamesCheckerPlugin
         }
 
         #endregion
-
-        private void missingGamesGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            // Ensure Right-Click and not on the header row
-            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
-            {
-                // Select the row user right-clicked
-                missingGamesGridView.ClearSelection();
-                missingGamesGridView.Rows[e.RowIndex].Selected = true;
-
-                string gameTitle = string.Empty;
-                string gamePlatform = string.Empty;
-
-                // Grab the underlying object bound to this row
-                var boundItem = missingGamesGridView.Rows[e.RowIndex].DataBoundItem;
-
-                if (boundItem is GameDisplayData gameData)
-                {
-                    gameTitle = gameData.Title;
-                    gamePlatform = gameData.Platform;
-                }
-
-                if (!string.IsNullOrEmpty(gameTitle))
-                {
-                    // Build the context menu dynamically
-                    ContextMenuStrip menu = new ContextMenuStrip();
-
-                    // Item 1: Copy to Clipboard
-                    menu.Items.Add("📋 Copy Title/Platform to Clipboard", null, (s, args) =>
-                    {
-                        Clipboard.SetText($"{gameTitle} {gamePlatform}".Trim());
-                    });
-
-                    // Item 2: Search eBay
-                    string searchTerm = $"{gameTitle} {gamePlatform}".Trim();
-
-                    menu.Items.Add($"🌐 Search eBay for '{searchTerm}'", null, (s, args) =>
-                    {
-                        // Ensure spaces and symbols are URL-encoded properly
-                        string encodedSearch = Uri.EscapeDataString(searchTerm);
-                        string ebayUrl = $"https://www.ebay.com/sch/i.html?_nkw={encodedSearch}";
-
-                        Process.Start(new ProcessStartInfo(ebayUrl) { UseShellExecute = true });
-                    });
-
-                    // Show the menu at the mouse cursor location
-                    menu.Show(Cursor.Position);
-                }
-            }
-        }
-
-        private void cmsOwnedExportCSV_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
-                saveFileDialog.Title = "Save Owned Games as CSV";
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    ExportGridViewToCSV(ownedGamesGridView, saveFileDialog.FileName);
-                    MessageBox.Show("Owned games exported successfully!");
-                }
-            }
-        }
-
-        private void exportMissingGamesListToCSVToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
-                saveFileDialog.Title = "Save Missing Games as CSV";
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    ExportGridViewToCSV(missingGamesGridView, saveFileDialog.FileName);
-                    MessageBox.Show("Missing games exported successfully!");
-                }
-            }
-        }
-
-        
     }
 }

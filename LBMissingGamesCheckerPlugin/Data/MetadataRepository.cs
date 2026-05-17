@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
+﻿using LBMissingGamesCheckerPlugin.Models;
 using Microsoft.Data.Sqlite;
-using LBMissingGamesCheckerPlugin.Models;
 
 namespace LBMissingGamesCheckerPlugin.Data
 {
@@ -37,9 +33,9 @@ namespace LBMissingGamesCheckerPlugin.Data
         }
 
         // Fetch only the games for the selected platform
-        public async Task<List<XmlGame>> GetGamesForPlatformAsync(string platformName)
+        public async Task<List<MetadataDbGame>> GetGamesForPlatformAsync(string platformName)
         {
-            var games = new List<XmlGame>();
+            var games = new List<MetadataDbGame>();
 
             if (CheckMetadataStatus() != MetadataStatus.SqliteFound) return games;
 
@@ -71,7 +67,7 @@ namespace LBMissingGamesCheckerPlugin.Data
                                 releaseDate = parsedDate;
                             }
 
-                            var game = new XmlGame(
+                            var game = new MetadataDbGame(
                                 title: reader.IsDBNull(1) ? string.Empty : reader.GetString(1),
                                 developer: reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
                                 publisher: reader.IsDBNull(3) ? string.Empty : reader.GetString(3),
@@ -100,7 +96,7 @@ namespace LBMissingGamesCheckerPlugin.Data
                     FROM GameAlternateTitles 
                     WHERE DatabaseID IN (SELECT DatabaseID FROM Games WHERE Platform = @Platform)";
 
-                var altNamesDict = new Dictionary<int, List<XmlGameAlternateName>>();
+                var altNamesDict = new Dictionary<int, List<MetadataDbAlternateName>>();
 
                 using (var altCommand = new SqliteCommand(altNameQuery, connection))
                 {
@@ -111,7 +107,7 @@ namespace LBMissingGamesCheckerPlugin.Data
                         while (await reader.ReadAsync())
                         {
                             int dbId = reader.GetInt32(0);
-                            var altName = new XmlGameAlternateName(
+                            var altName = new MetadataDbAlternateName(
                                 databaseID: dbId.ToString(),
                                 alternateName: reader.IsDBNull(1) ? string.Empty : reader.GetString(1),
                                 region: reader.IsDBNull(2) ? string.Empty : reader.GetString(2)
@@ -119,7 +115,7 @@ namespace LBMissingGamesCheckerPlugin.Data
 
                             if (!altNamesDict.ContainsKey(dbId))
                             {
-                                altNamesDict[dbId] = new List<XmlGameAlternateName>();
+                                altNamesDict[dbId] = new List<MetadataDbAlternateName>();
                             }
                             altNamesDict[dbId].Add(altName);
                         }

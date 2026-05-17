@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-
-namespace LBMissingGamesCheckerPlugin.Controls
+﻿namespace LBMissingGamesCheckerPlugin.Controls
 {
     public class DataGridViewFilterHeaderCell : DataGridViewColumnHeaderCell
     {
