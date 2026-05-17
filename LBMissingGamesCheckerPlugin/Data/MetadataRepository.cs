@@ -43,7 +43,7 @@ namespace LBMissingGamesCheckerPlugin.Data
             {
                 await connection.OpenAsync();
 
-                // 1. Fetch the base games
+                // Fetch the base games
                 string gameQuery = @"
                     SELECT DatabaseID, Name, Developer, Publisher, ReleaseDate, 
                            CommunityRating, CommunityRatingCount, Platform, ReleaseType, 
@@ -90,7 +90,7 @@ namespace LBMissingGamesCheckerPlugin.Data
                     }
                 }
 
-                // 2. Fetch Alternate Names & Regions ONLY for the games on this platform
+                // Fetch Alternate Names & Regions ONLY for the games on this platform
                 string altNameQuery = @"
                     SELECT DatabaseID, AlternateName, Region 
                     FROM GameAlternateTitles 
@@ -122,7 +122,7 @@ namespace LBMissingGamesCheckerPlugin.Data
                     }
                 }
 
-                // 3. Attach Alternate Names to their respective games
+                // Attach Alternate Names to their respective games
                 foreach (var game in games)
                 {
                     if (game.LaunchBoxDbId.HasValue && altNamesDict.TryGetValue(game.LaunchBoxDbId.Value, out var altNames))
