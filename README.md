@@ -42,20 +42,21 @@ MGC has been completely rebuilt from the ground up to utilize LaunchBox's modern
 
 ### New Features!
 4. **Filtering & Options**
+   - **Export Missing Games to LaunchBox:** Use the new Export feature for the Missing Games list to *safely* save a new "[Platform] Wishlists" category in your sidebar. From here you can download metadata and media for games you don't even have yet! Delete the platform direct from LaunchBox or override it with a new Wishlist based on filters!
    - **Regional Filtering:** Use the Region dropdown to strict-filter missing games (e.g., North America only). Toggle the "Include games with unknown regions" checkbox to catch database entries lacking region data.
    - **Quick Column Filtering:** Quickly sort through large columns of data with the Select All/None option in the column filtering options panel.
    - **Platform Completion Status:** See how many games you have/don't have at a glance with colour coded feedback that calculates the percentage of your missing titles.
    - **Real-time Search:** Use the search boxes above the grids to instantly filter the view.
-   - **Grid Sorting:** Sort columns by clicking on the column header, or filter select columns by clicking the filter icon. 
-   - **Web Links:** Click on grid links for additional info, such as Video URLs, Wikipedia links, and direct links to the [LaunchBox DB](https://gamesdb.launchbox-app.com/).
+   - **New Right-Click Menu:** Right-click on any missing game and find options to copy the games title/platform data to the clipboard or do an instant search on eBay for that missing game to add to your collection!!
 
-5. **Additional Features from v1.2**
+6. **Additional Features from v1.2**
    - Filter games by **Released** status if you only want to check released titles.
    - Sort columns by clicking on the column header.
+   - Export your Owned and Missing game lists to CSV.
    - Filter select columns by clicking on the filter icon in the column header.
       - If the filtered column has multiple values (ie. North America, Japan) the row will still show if any of the filters are not applied. All values need to be unchecked in the filter to hide the row.
    - Window resizing (Right edge only)
-   - Click on links in the list for additional info, such as video URLs, Wikipedia links, and links to the [LaunchBox DB](https://gamesdb.launchbox-app.com/) website.
+   - Click on links in the games lists for additional info, such as video URLs, Wikipedia links, and links to the [LaunchBox DB](https://gamesdb.launchbox-app.com/) website.
    - **Leo will give you a CHEERS🥂 with a PERFECT COLLECTION!**
 
 Missing Games Checker v2.0 Screenshot:
