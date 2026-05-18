@@ -1650,9 +1650,16 @@ namespace LBMissingGamesCheckerPlugin
             }
             else
             {
-                // Filter the original list in real-time
+                // Smart Global Search: Filter across key text columns
                 var searchResults = OriginalOwnedGameList
-                    .Where(g => g.Title.ToLower().Contains(query))
+                    .Where(g =>
+                        (g.Title != null && g.Title.ToLower().Contains(query)) ||
+                        (g.Developer != null && g.Developer.ToLower().Contains(query)) ||
+                        (g.Publisher != null && g.Publisher.ToLower().Contains(query)) ||
+                        (g.Region != null && g.Region.ToLower().Contains(query)) ||
+                        (g.Genres != null && g.Genres.ToLower().Contains(query)) ||
+                        (g.ReleaseDate != null && g.ReleaseDate.ToLower().Contains(query))
+                    )
                     .ToList();
 
                 ownedGamesBindingSource.DataSource = new BindingList<GameDisplayData>(searchResults);
@@ -1677,9 +1684,16 @@ namespace LBMissingGamesCheckerPlugin
             }
             else
             {
-                // Filter the original list in real-time
+                // Smart Global Search: Filter across key text columns
                 var searchResults = OriginalMissingGameList
-                    .Where(g => g.Title.ToLower().Contains(query))
+                    .Where(g =>
+                        (g.Title != null && g.Title.ToLower().Contains(query)) ||
+                        (g.Developer != null && g.Developer.ToLower().Contains(query)) ||
+                        (g.Publisher != null && g.Publisher.ToLower().Contains(query)) ||
+                        (g.Region != null && g.Region.ToLower().Contains(query)) ||
+                        (g.Genres != null && g.Genres.ToLower().Contains(query)) ||
+                        (g.ReleaseDate != null && g.ReleaseDate.ToLower().Contains(query))
+                    )
                     .ToList();
 
                 missingGamesBindingSource.DataSource = new BindingList<GameDisplayData>(searchResults);
