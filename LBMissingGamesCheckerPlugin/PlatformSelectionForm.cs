@@ -440,7 +440,6 @@ namespace LBMissingGamesCheckerPlugin
                 return;
             }
 
-            // Apply filtering logic
             if (CurrentGridView != null && CurrentColumn != null)
             {
                 CurrentGridView.SuspendLayout();
@@ -454,88 +453,105 @@ namespace LBMissingGamesCheckerPlugin
                     return;
                 }
 
-                var filteredList = new List<GameDisplayData>();
-
-
-                foreach (var item in clbFilterOptions.CheckedItems)
+                // Update the Dictionary state for the current column from the checkboxes
+                var currentKey = (CurrentGridView.Name, CurrentColumn.HeaderText);
+                if (ColumnCheckedItems.ContainsKey(currentKey))
                 {
-                    string value = item.ToString();
-                    if (CurrentColumn.HeaderText == "Genres")
+                    var checkedItems = ColumnCheckedItems[currentKey];
+                    for (int i = 0; i < clbFilterOptions.Items.Count; i++)
                     {
-                        var values = value.Split(new[] { ';' }, StringSplitOptions.None).Select(v => v.Trim()).ToList();
+                        string itemText = clbFilterOptions.Items[i].ToString();
+                        bool isChecked = clbFilterOptions.GetItemChecked(i);
 
-                        filteredList.AddRange(gameList.Where(game =>
+                        var index = checkedItems.FindIndex(x => x.Item == itemText);
+                        if (index >= 0)
                         {
-                            var genres = game.Genres.Split(new[] { ';' }, StringSplitOptions.None).Select(g => g.Trim()).ToList();
-                            return values.Any(v => genres.Contains(v));
-                        }).ToList());
+                            checkedItems[index] = (itemText, isChecked);
+                        }
                     }
-                    else if (CurrentColumn.HeaderText == "Region")
-                    {
-                        var values = value.Split(new[] { ',' }, StringSplitOptions.None).Select(v => v.Trim()).ToList();
+                }
 
-                        filteredList.AddRange(gameList.Where(game =>
-                        {
-                            var genres = game.Region.Split(new[] { ',' }, StringSplitOptions.None).Select(g => g.Trim()).ToList();
-                            return values.Any(v => genres.Contains(v));
-                        }).ToList());
-                    }
-                    else if (CurrentColumn.HeaderText == "CommunityStarRating")
+                // Start with the full OG list
+                var workingList = gameList.ToList();
+
+                // Apply filters from ALL columns for this grid
+                var gridFilters = ColumnCheckedItems.Where(kvp => kvp.Key.GridViewName == CurrentGridView.Name).ToList();
+
+                foreach (var filterColumn in gridFilters)
+                {
+                    string colHeader = filterColumn.Key.ColumnHeaderText;
+                    var checkedValues = filterColumn.Value.Where(x => x.IsChecked).Select(x => x.Item).ToList();
+                    var allValuesCount = filterColumn.Value.Count;
+
+                    // If everything is checked in this column, skip filtering it
+                    if (checkedValues.Count == allValuesCount || allValuesCount == 0) continue;
+
+                    // Otherwise, filter the working list down
+                    if (colHeader == "Genres")
                     {
-                        filteredList.AddRange(gameList.Where(game =>
+                        workingList = workingList.Where(game =>
+                        {
+                            var genres = game.Genres?.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(g => g.Trim()).ToList() ?? new List<string>();
+                            if (!genres.Any() && checkedValues.Contains(string.Empty)) return true;
+                            return genres.Any(g => checkedValues.Contains(g));
+                        }).ToList();
+                    }
+                    else if (colHeader == "Region")
+                    {
+                        workingList = workingList.Where(game =>
+                        {
+                            var regions = game.Region?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => r.Trim()).ToList() ?? new List<string>();
+                            if (!regions.Any() && checkedValues.Contains(string.Empty)) return true;
+                            return regions.Any(r => checkedValues.Contains(r));
+                        }).ToList();
+                    }
+                    else if (colHeader == "CommunityStarRating")
+                    {
+                        workingList = workingList.Where(game =>
                         {
                             var rating = float.TryParse(game.CommunityStarRating, out float parsedRating) ? parsedRating : 0f;
-                            var bucket = value.Split('-');
-                            if (bucket.Length == 2 && float.TryParse(bucket[0], out float min) && float.TryParse(bucket[1], out float max))
+                            foreach (var val in checkedValues)
                             {
-                                return rating >= min && rating < max;
+                                var bucket = val.Split('-');
+                                if (bucket.Length == 2 && float.TryParse(bucket[0], out float min) && float.TryParse(bucket[1], out float max))
+                                {
+                                    if (rating >= min && rating < max) return true;
+                                }
                             }
                             return false;
-                        }).ToList());
+                        }).ToList();
                     }
                     else
                     {
-                        var propertyName = CurrentColumn.DataPropertyName;
+                        // Generic property match using DataPropertyName
+                        string dataPropName = CurrentGridView.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.HeaderText == colHeader)?.DataPropertyName ?? colHeader;
+                        var propInfo = typeof(GameDisplayData).GetProperty(dataPropName);
 
-                        filteredList.AddRange(gameList.Where(game =>
+                        if (propInfo != null)
                         {
-                            var propertyValue = game.GetType().GetProperty(propertyName)?.GetValue(game, null);
-                            return propertyValue?.ToString() == value;
-                        }).ToList());
+                            workingList = workingList.Where(game =>
+                            {
+                                var propertyValue = propInfo.GetValue(game, null)?.ToString() ?? string.Empty;
+                                return checkedValues.Contains(propertyValue);
+                            }).ToList();
+                        }
                     }
                 }
 
-                // Remove duplicates from filteredList
-                filteredList = filteredList.Distinct().ToList();
+                // Bing the final filtered list
+                var finalFilteredList = workingList.Distinct().ToList();
 
-                // Apply the filtered list to the BindingSource
                 if (CurrentGridView.Name == "ownedGamesGridView")
                 {
-                    ownedGamesBindingSource.DataSource = new BindingList<GameDisplayData>(filteredList);
-                    lblOwnedGamesCount.Text = filteredList.Count.ToString();
+                    ownedGamesBindingSource.DataSource = new BindingList<GameDisplayData>(finalFilteredList);
+                    lblOwnedGamesCount.Text = finalFilteredList.Count.ToString();
+                    FilteredOwnedGameList = finalFilteredList;
                 }
                 else if (CurrentGridView.Name == "missingGamesGridView")
                 {
-                    missingGamesBindingSource.DataSource = new BindingList<GameDisplayData>(filteredList);
-                    lblMissingGamesCount.Text = filteredList.Count.ToString();
-                }
-
-                // Update checked status in the columnCheckedItems dictionary against each item in the clbFilterOptions
-                if (CurrentColumn != null)
-                {
-                    var key = (CurrentGridView.Name, CurrentColumn.HeaderText);
-                    var checkedItems = ColumnCheckedItems[key];
-                    for (int i = 0; i < clbFilterOptions.Items.Count; i++)
-                    {
-                        string item = clbFilterOptions.Items[i].ToString();
-                        bool isChecked = clbFilterOptions.GetItemChecked(i);
-
-                        var index = checkedItems.FindIndex(x => x.Item == item);
-                        if (index >= 0)
-                        {
-                            checkedItems[index] = (item, isChecked);
-                        }
-                    }
+                    missingGamesBindingSource.DataSource = new BindingList<GameDisplayData>(finalFilteredList);
+                    lblMissingGamesCount.Text = finalFilteredList.Count.ToString();
+                    FilteredMissingGameList = finalFilteredList;
                 }
 
                 CurrentGridView.Refresh();
@@ -552,29 +568,15 @@ namespace LBMissingGamesCheckerPlugin
                 this.BeginInvoke(new Action<object, EventArgs>(FilterReset_Click), new object[] { sender, e });
                 return;
             }
-            CurrentGridView.SuspendLayout();
 
-            if (CurrentGridView.Name == "ownedGamesGridView")
+            // Verify all items in the UI checklist
+            for (int i = 0; i < clbFilterOptions.Items.Count; i++)
             {
-                ownedGamesBindingSource.DataSource = OriginalOwnedGameList;
-                lblOwnedGamesCount.Text = OriginalOwnedGameList.Count.ToString();
-                FilteredOwnedGameList.Clear();
-            }
-            else if (CurrentGridView.Name == "missingGamesGridView")
-            {
-                lblMissingGamesCount.Text = OriginalMissingGameList.Count.ToString();
-                missingGamesBindingSource.DataSource = OriginalMissingGameList;
-                FilteredMissingGameList.Clear();
+                clbFilterOptions.SetItemChecked(i, true);
             }
 
-            var key = (CurrentGridView.Name, CurrentColumn.HeaderText);
-            for (int i = 0; i < ColumnCheckedItems[key].Count; i++)
-            {
-                ColumnCheckedItems[key][i] = (ColumnCheckedItems[key][i].Item, true);
-            }
-            CurrentGridView.Refresh();
-            CurrentGridView.ResumeLayout();
-            gbFilterOptions.Visible = false;
+            // Call ApplyFilters logic so it processes the reset 
+            ApplyFilters_Click(sender, e);
         }
 
         // Toggle column visibility based on the CheckedListBox 
