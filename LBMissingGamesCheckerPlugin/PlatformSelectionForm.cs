@@ -1230,7 +1230,7 @@ namespace LBMissingGamesCheckerPlugin
                         }
                         else
                         {
-                            DebugTxt("There are no Missing Games! Congrates!");
+                            DebugTxt("There are no Missing Games! Congrats!");
                             missingGamesGridView.Visible = true;
                             noPlatformGridView.Visible = false;
                             lblCongrats.Visible = true;
