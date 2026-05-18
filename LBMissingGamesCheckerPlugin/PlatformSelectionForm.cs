@@ -1218,7 +1218,7 @@ namespace LBMissingGamesCheckerPlugin
                         {
                             this.Invoke(new Action(() =>
                             {
-                                DebugTxt("There are no Missing Games! Congrates!");
+                                DebugTxt("There are no Missing Games! Congrats!");
                                 missingGamesGridView.Visible = true;
                                 noPlatformGridView.Visible = false;
                                 lblCongrats.Visible = true;
@@ -1750,20 +1750,22 @@ namespace LBMissingGamesCheckerPlugin
             }
         }
 
-        private void missingGamesGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        private void GridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (!(sender is DataGridView grid)) return;
+
             // Ensure Right-Click and not on the header row
             if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
             {
                 // Select the row user right-clicked
-                missingGamesGridView.ClearSelection();
-                missingGamesGridView.Rows[e.RowIndex].Selected = true;
+                grid.ClearSelection();
+                grid.Rows[e.RowIndex].Selected = true;
 
                 string gameTitle = string.Empty;
                 string gamePlatform = string.Empty;
 
                 // Grab the underlying object bound to this row
-                var boundItem = missingGamesGridView.Rows[e.RowIndex].DataBoundItem;
+                var boundItem = grid.Rows[e.RowIndex].DataBoundItem;
 
                 if (boundItem is GameDisplayData gameData)
                 {
@@ -1776,13 +1778,65 @@ namespace LBMissingGamesCheckerPlugin
                     // Build the context menu dynamically
                     ContextMenuStrip menu = new ContextMenuStrip();
 
-                    // Item 1: Copy to Clipboard
+                    // Item 1: Copy Title/Platform to Clipboard
                     menu.Items.Add("📋 Copy Title/Platform to Clipboard", null, (s, args) =>
                     {
                         Clipboard.SetText($"{gameTitle} {gamePlatform}".Trim());
                     });
 
-                    // Item 2: Search eBay
+                    // Item 2: Formatted Data Row Copy
+                    menu.Items.Add("📝 Copy Row Data to Clipboard", null, (s, args) =>
+                    {
+                        var formattedValues = new List<string>();
+
+                        foreach (DataGridViewCell cell in grid.Rows[e.RowIndex].Cells)
+                        {
+                            // Only include visible columns that actually have a value
+                            if (cell.OwningColumn.Visible && cell.Value != null)
+                            {
+                                string cellValue = cell.Value.ToString();
+
+                                if (!string.IsNullOrWhiteSpace(cellValue))
+                                {
+                                    // Output format -> HeaderText: Value
+                                    formattedValues.Add($"{cell.OwningColumn.HeaderText}→ {cellValue}");
+                                }
+                            }
+                        }
+
+                        string rowData = string.Join("; ", formattedValues);
+
+                        if (!string.IsNullOrWhiteSpace(rowData))
+                        {
+                            Clipboard.SetText(rowData);
+                        }
+                    });
+
+                    // Item 3: Copy Row for CSV/Spreadsheet
+                    menu.Items.Add("🗄️ Copy Row for CSV/Spreadsheet (Tab)", null, (s, args) =>
+                    {
+                        var rowValues = new List<string>();
+
+                        // Loop through all cells in the clicked row
+                        foreach (DataGridViewCell cell in grid.Rows[e.RowIndex].Cells)
+                        {
+                            // Only copy the data if the column is currently visible on the screen
+                            if (cell.OwningColumn.Visible)
+                            {
+                                rowValues.Add(cell.Value?.ToString() ?? "");
+                            }
+                        }
+
+                        // Join them with a tab character so it pastes perfectly into Excel
+                        string rowData = string.Join("\t", rowValues);
+
+                        if (!string.IsNullOrWhiteSpace(rowData))
+                        {
+                            Clipboard.SetText(rowData);
+                        }
+                    });
+
+                    // Item 4: Search eBay
                     string searchTerm = $"{gameTitle} {gamePlatform}".Trim();
 
                     menu.Items.Add($"🌐 Search eBay for '{searchTerm}'", null, (s, args) =>

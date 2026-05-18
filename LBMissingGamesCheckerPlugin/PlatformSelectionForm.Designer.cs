@@ -61,22 +61,22 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlatformSelectionForm));
-            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             platformDropdown = new ComboBox();
             confirmButton = new Button();
             ownedGamesGridView = new DataGridView();
@@ -200,10 +200,10 @@
             platformDropdown.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             platformDropdown.FormattingEnabled = true;
             platformDropdown.Items.AddRange(new object[] { "Select a Platform" });
-            platformDropdown.Location = new Point(19, 69);
-            platformDropdown.Margin = new Padding(4, 3, 4, 3);
+            platformDropdown.Location = new Point(22, 92);
+            platformDropdown.Margin = new Padding(5, 4, 5, 4);
             platformDropdown.Name = "platformDropdown";
-            platformDropdown.Size = new Size(256, 21);
+            platformDropdown.Size = new Size(292, 24);
             platformDropdown.TabIndex = 0;
             platformDropdown.SelectedIndexChanged += PlatformDropdown_SelectedIndexChanged;
             // 
@@ -211,10 +211,10 @@
             // 
             confirmButton.Enabled = false;
             confirmButton.Font = new Font("Microsoft Sans Serif", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            confirmButton.Location = new Point(187, 98);
-            confirmButton.Margin = new Padding(4, 3, 4, 3);
+            confirmButton.Location = new Point(214, 131);
+            confirmButton.Margin = new Padding(5, 4, 5, 4);
             confirmButton.Name = "confirmButton";
-            confirmButton.Size = new Size(88, 27);
+            confirmButton.Size = new Size(101, 36);
             confirmButton.TabIndex = 1;
             confirmButton.Text = "Check It!";
             confirmButton.UseVisualStyleBackColor = true;
@@ -231,43 +231,44 @@
             ownedGamesGridView.BorderStyle = BorderStyle.Fixed3D;
             ownedGamesGridView.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
             ownedGamesGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = Color.FromArgb(44, 156, 255);
-            dataGridViewCellStyle16.ForeColor = Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle16.SelectionForeColor = Color.White;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            ownedGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(44, 156, 255);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ownedGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             ownedGamesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ownedGamesGridView.Columns.AddRange(new DataGridViewColumn[] { TitleOwned, DeveloperOwned, PublisherOwned, RegionOwned, ReleaseDateOwned, CommunityStarRatingOwned, CommunityStarRatingTotalVotesOwned, PlatformOwned, ReleaseTypeOwned, GenresOwned, AlternateNamesOwned, MaxPlayersOwned, LaunchBoxDbIdOwned, VideoUrlOwned, WikipediaUrlOwned });
             ownedGamesGridView.DataSource = ownedGamesBindingSource;
-            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle20.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle20.ForeColor = Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = DataGridViewTriState.False;
-            ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle5;
             ownedGamesGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             ownedGamesGridView.EnableHeadersVisualStyles = false;
             ownedGamesGridView.GridColor = Color.FromArgb(44, 156, 255);
-            ownedGamesGridView.Location = new Point(288, 146);
-            ownedGamesGridView.Margin = new Padding(4, 3, 4, 3);
+            ownedGamesGridView.Location = new Point(329, 195);
+            ownedGamesGridView.Margin = new Padding(5, 4, 5, 4);
             ownedGamesGridView.Name = "ownedGamesGridView";
             ownedGamesGridView.ReadOnly = true;
             ownedGamesGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle21.ForeColor = Color.White;
-            dataGridViewCellStyle21.WrapMode = DataGridViewTriState.True;
-            ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             ownedGamesGridView.RowHeadersWidth = 51;
             ownedGamesGridView.ShowEditingIcon = false;
-            ownedGamesGridView.Size = new Size(814, 173);
+            ownedGamesGridView.Size = new Size(930, 231);
             ownedGamesGridView.TabIndex = 2;
             ownedGamesGridView.CellContentClick += GridView_CellContentClick;
             ownedGamesGridView.CellFormatting += GridView_CellFormatting;
+            ownedGamesGridView.CellMouseDown += GridView_CellMouseDown;
             ownedGamesGridView.CellMouseEnter += GridView_CellMouseEnter;
             ownedGamesGridView.CellMouseLeave += GridView_CellMouseLeave;
             ownedGamesGridView.ColumnHeaderMouseClick += GridView_ColumnHeaderMouseClick;
@@ -325,7 +326,7 @@
             CommunityStarRatingOwned.MinimumWidth = 6;
             CommunityStarRatingOwned.Name = "CommunityStarRatingOwned";
             CommunityStarRatingOwned.ReadOnly = true;
-            CommunityStarRatingOwned.Width = 133;
+            CommunityStarRatingOwned.Width = 173;
             // 
             // CommunityStarRatingTotalVotesOwned
             // 
@@ -385,14 +386,14 @@
             // 
             LaunchBoxDbIdOwned.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             LaunchBoxDbIdOwned.DataPropertyName = "LaunchBoxDbId";
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle17.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle17.ForeColor = Color.Black;
-            dataGridViewCellStyle17.Padding = new Padding(3, 0, 3, 0);
-            dataGridViewCellStyle17.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle17.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            LaunchBoxDbIdOwned.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle2.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.Padding = new Padding(3, 0, 3, 0);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            LaunchBoxDbIdOwned.DefaultCellStyle = dataGridViewCellStyle2;
             LaunchBoxDbIdOwned.FlatStyle = FlatStyle.Popup;
             LaunchBoxDbIdOwned.HeaderText = "LaunchBoxDBID";
             LaunchBoxDbIdOwned.MinimumWidth = 6;
@@ -400,47 +401,47 @@
             LaunchBoxDbIdOwned.ReadOnly = true;
             LaunchBoxDbIdOwned.SortMode = DataGridViewColumnSortMode.Automatic;
             LaunchBoxDbIdOwned.Text = "LaunchBoxDBID";
-            LaunchBoxDbIdOwned.Width = 112;
+            LaunchBoxDbIdOwned.Width = 139;
             // 
             // VideoUrlOwned
             // 
             VideoUrlOwned.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             VideoUrlOwned.DataPropertyName = "VideoUrl";
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle18.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle18.ForeColor = Color.Black;
-            dataGridViewCellStyle18.Padding = new Padding(3, 0, 3, 0);
-            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle18.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            VideoUrlOwned.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle3.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.Padding = new Padding(3, 0, 3, 0);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            VideoUrlOwned.DefaultCellStyle = dataGridViewCellStyle3;
             VideoUrlOwned.FlatStyle = FlatStyle.Popup;
             VideoUrlOwned.HeaderText = "VideoURL";
             VideoUrlOwned.MinimumWidth = 6;
             VideoUrlOwned.Name = "VideoUrlOwned";
             VideoUrlOwned.ReadOnly = true;
             VideoUrlOwned.Text = "";
-            VideoUrlOwned.Width = 62;
+            VideoUrlOwned.Width = 78;
             // 
             // WikipediaUrlOwned
             // 
             WikipediaUrlOwned.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             WikipediaUrlOwned.DataPropertyName = "WikipediaUrl";
-            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle19.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle19.ForeColor = Color.Black;
-            dataGridViewCellStyle19.Padding = new Padding(3, 0, 3, 0);
-            dataGridViewCellStyle19.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle19.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            WikipediaUrlOwned.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle4.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.Padding = new Padding(3, 0, 3, 0);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            WikipediaUrlOwned.DefaultCellStyle = dataGridViewCellStyle4;
             WikipediaUrlOwned.FlatStyle = FlatStyle.Popup;
             WikipediaUrlOwned.HeaderText = "WikipediaURL";
             WikipediaUrlOwned.MinimumWidth = 6;
             WikipediaUrlOwned.Name = "WikipediaUrlOwned";
             WikipediaUrlOwned.ReadOnly = true;
             WikipediaUrlOwned.Text = "";
-            WikipediaUrlOwned.Width = 82;
+            WikipediaUrlOwned.Width = 103;
             // 
             // missingGamesGridView
             // 
@@ -452,42 +453,42 @@
             missingGamesGridView.BorderStyle = BorderStyle.Fixed3D;
             missingGamesGridView.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
             missingGamesGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = Color.FromArgb(44, 156, 255);
-            dataGridViewCellStyle22.ForeColor = Color.White;
-            dataGridViewCellStyle22.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.True;
-            missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(44, 156, 255);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             missingGamesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             missingGamesGridView.Columns.AddRange(new DataGridViewColumn[] { TitleMissing, DeveloperMissing, PublisherMissing, RegionMissing, ReleaseDateMissing, CommunityStarRatingMissing, CommunityStarRatingTotalVotesMissing, PlatformMissing, ReleaseTypeMissing, GenresMissing, AlternateNamesMissing, MaxPlayersMissing, LaunchBoxDbIdMissing, VideoUrlMissing, WikipediaUrlMissing });
             missingGamesGridView.DataSource = missingGamesBindingSource;
-            dataGridViewCellStyle26.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle26.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle26.ForeColor = Color.White;
-            dataGridViewCellStyle26.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = DataGridViewTriState.False;
-            missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle11.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle11;
             missingGamesGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             missingGamesGridView.EnableHeadersVisualStyles = false;
             missingGamesGridView.GridColor = Color.FromArgb(44, 156, 255);
-            missingGamesGridView.Location = new Point(288, 363);
-            missingGamesGridView.Margin = new Padding(4, 3, 4, 3);
+            missingGamesGridView.Location = new Point(329, 484);
+            missingGamesGridView.Margin = new Padding(5, 4, 5, 4);
             missingGamesGridView.Name = "missingGamesGridView";
             missingGamesGridView.ReadOnly = true;
             missingGamesGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle27.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle27.ForeColor = Color.White;
-            dataGridViewCellStyle27.WrapMode = DataGridViewTriState.True;
-            missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             missingGamesGridView.RowHeadersWidth = 51;
-            missingGamesGridView.Size = new Size(814, 217);
+            missingGamesGridView.Size = new Size(930, 289);
             missingGamesGridView.TabIndex = 3;
             missingGamesGridView.CellContentClick += GridView_CellContentClick;
             missingGamesGridView.CellFormatting += GridView_CellFormatting;
-            missingGamesGridView.CellMouseDown += missingGamesGridView_CellMouseDown;
+            missingGamesGridView.CellMouseDown += GridView_CellMouseDown;
             missingGamesGridView.CellMouseEnter += GridView_CellMouseEnter;
             missingGamesGridView.CellMouseLeave += GridView_CellMouseLeave;
             missingGamesGridView.ColumnHeaderMouseClick += GridView_ColumnHeaderMouseClick;
@@ -545,7 +546,7 @@
             CommunityStarRatingMissing.MinimumWidth = 6;
             CommunityStarRatingMissing.Name = "CommunityStarRatingMissing";
             CommunityStarRatingMissing.ReadOnly = true;
-            CommunityStarRatingMissing.Width = 133;
+            CommunityStarRatingMissing.Width = 173;
             // 
             // CommunityStarRatingTotalVotesMissing
             // 
@@ -605,13 +606,13 @@
             // 
             LaunchBoxDbIdMissing.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             LaunchBoxDbIdMissing.DataPropertyName = "LaunchBoxDbId";
-            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle23.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle23.ForeColor = Color.Black;
-            dataGridViewCellStyle23.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle23.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            LaunchBoxDbIdMissing.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle8.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            LaunchBoxDbIdMissing.DefaultCellStyle = dataGridViewCellStyle8;
             LaunchBoxDbIdMissing.FlatStyle = FlatStyle.Popup;
             LaunchBoxDbIdMissing.HeaderText = "LaunchBoxDBID";
             LaunchBoxDbIdMissing.MinimumWidth = 6;
@@ -619,45 +620,45 @@
             LaunchBoxDbIdMissing.ReadOnly = true;
             LaunchBoxDbIdMissing.SortMode = DataGridViewColumnSortMode.Automatic;
             LaunchBoxDbIdMissing.Text = "";
-            LaunchBoxDbIdMissing.Width = 112;
+            LaunchBoxDbIdMissing.Width = 139;
             // 
             // VideoUrlMissing
             // 
             VideoUrlMissing.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             VideoUrlMissing.DataPropertyName = "VideoUrl";
-            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle24.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle24.ForeColor = Color.Black;
-            dataGridViewCellStyle24.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle24.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            VideoUrlMissing.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle9.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            VideoUrlMissing.DefaultCellStyle = dataGridViewCellStyle9;
             VideoUrlMissing.FlatStyle = FlatStyle.Popup;
             VideoUrlMissing.HeaderText = "VideoURL";
             VideoUrlMissing.MinimumWidth = 6;
             VideoUrlMissing.Name = "VideoUrlMissing";
             VideoUrlMissing.ReadOnly = true;
             VideoUrlMissing.Text = "";
-            VideoUrlMissing.Width = 62;
+            VideoUrlMissing.Width = 78;
             // 
             // WikipediaUrlMissing
             // 
             WikipediaUrlMissing.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             WikipediaUrlMissing.DataPropertyName = "WikipediaUrl";
-            dataGridViewCellStyle25.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle25.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle25.ForeColor = Color.Black;
-            dataGridViewCellStyle25.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle25.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            WikipediaUrlMissing.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle10.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle10.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            WikipediaUrlMissing.DefaultCellStyle = dataGridViewCellStyle10;
             WikipediaUrlMissing.FlatStyle = FlatStyle.Popup;
             WikipediaUrlMissing.HeaderText = "WikipediaURL";
             WikipediaUrlMissing.MinimumWidth = 6;
             WikipediaUrlMissing.Name = "WikipediaUrlMissing";
             WikipediaUrlMissing.ReadOnly = true;
             WikipediaUrlMissing.Text = "";
-            WikipediaUrlMissing.Width = 82;
+            WikipediaUrlMissing.Width = 103;
             // 
             // lblDropdown
             // 
@@ -665,10 +666,10 @@
             lblDropdown.BackColor = Color.Transparent;
             lblDropdown.Font = new Font("Microsoft Sans Serif", 11.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblDropdown.ForeColor = Color.FromArgb(230, 230, 230);
-            lblDropdown.Location = new Point(14, 43);
-            lblDropdown.Margin = new Padding(4, 0, 4, 0);
+            lblDropdown.Location = new Point(16, 57);
+            lblDropdown.Margin = new Padding(5, 0, 5, 0);
             lblDropdown.Name = "lblDropdown";
-            lblDropdown.Size = new Size(193, 20);
+            lblDropdown.Size = new Size(235, 25);
             lblDropdown.TabIndex = 4;
             lblDropdown.Text = "Select a platform to check";
             // 
@@ -678,10 +679,10 @@
             lblOwnedGamesGridView.BackColor = Color.Transparent;
             lblOwnedGamesGridView.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblOwnedGamesGridView.ForeColor = Color.FromArgb(230, 230, 230);
-            lblOwnedGamesGridView.Location = new Point(285, 129);
-            lblOwnedGamesGridView.Margin = new Padding(4, 0, 4, 0);
+            lblOwnedGamesGridView.Location = new Point(326, 172);
+            lblOwnedGamesGridView.Margin = new Padding(5, 0, 5, 0);
             lblOwnedGamesGridView.Name = "lblOwnedGamesGridView";
-            lblOwnedGamesGridView.Size = new Size(149, 15);
+            lblOwnedGamesGridView.Size = new Size(183, 18);
             lblOwnedGamesGridView.TabIndex = 5;
             lblOwnedGamesGridView.Text = "Owned Games List Count:";
             // 
@@ -691,10 +692,10 @@
             lblMissingGamesGridView.BackColor = Color.Transparent;
             lblMissingGamesGridView.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMissingGamesGridView.ForeColor = Color.FromArgb(230, 230, 230);
-            lblMissingGamesGridView.Location = new Point(285, 346);
-            lblMissingGamesGridView.Margin = new Padding(4, 0, 4, 0);
+            lblMissingGamesGridView.Location = new Point(326, 461);
+            lblMissingGamesGridView.Margin = new Padding(5, 0, 5, 0);
             lblMissingGamesGridView.Name = "lblMissingGamesGridView";
-            lblMissingGamesGridView.Size = new Size(153, 15);
+            lblMissingGamesGridView.Size = new Size(187, 18);
             lblMissingGamesGridView.TabIndex = 6;
             lblMissingGamesGridView.Text = "Missing Games List Count:";
             // 
@@ -704,10 +705,10 @@
             lblOwnedGamesCount.BackColor = Color.Transparent;
             lblOwnedGamesCount.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblOwnedGamesCount.ForeColor = Color.FromArgb(230, 230, 230);
-            lblOwnedGamesCount.Location = new Point(433, 129);
-            lblOwnedGamesCount.Margin = new Padding(4, 0, 4, 0);
+            lblOwnedGamesCount.Location = new Point(495, 172);
+            lblOwnedGamesCount.Margin = new Padding(5, 0, 5, 0);
             lblOwnedGamesCount.Name = "lblOwnedGamesCount";
-            lblOwnedGamesCount.Size = new Size(14, 15);
+            lblOwnedGamesCount.Size = new Size(16, 18);
             lblOwnedGamesCount.TabIndex = 7;
             lblOwnedGamesCount.Text = "0";
             lblOwnedGamesCount.TextAlign = ContentAlignment.TopCenter;
@@ -718,10 +719,10 @@
             lblMissingGamesCount.BackColor = Color.Transparent;
             lblMissingGamesCount.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMissingGamesCount.ForeColor = Color.FromArgb(230, 230, 230);
-            lblMissingGamesCount.Location = new Point(438, 346);
-            lblMissingGamesCount.Margin = new Padding(4, 0, 4, 0);
+            lblMissingGamesCount.Location = new Point(501, 461);
+            lblMissingGamesCount.Margin = new Padding(5, 0, 5, 0);
             lblMissingGamesCount.Name = "lblMissingGamesCount";
-            lblMissingGamesCount.Size = new Size(14, 15);
+            lblMissingGamesCount.Size = new Size(16, 18);
             lblMissingGamesCount.TabIndex = 8;
             lblMissingGamesCount.Text = "0";
             lblMissingGamesCount.TextAlign = ContentAlignment.TopCenter;
@@ -730,10 +731,10 @@
             // 
             btnMissingExportOptions.Enabled = false;
             btnMissingExportOptions.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnMissingExportOptions.Location = new Point(997, 337);
-            btnMissingExportOptions.Margin = new Padding(4, 3, 4, 3);
+            btnMissingExportOptions.Location = new Point(1173, 449);
+            btnMissingExportOptions.Margin = new Padding(5, 4, 5, 4);
             btnMissingExportOptions.Name = "btnMissingExportOptions";
-            btnMissingExportOptions.Size = new Size(68, 23);
+            btnMissingExportOptions.Size = new Size(78, 31);
             btnMissingExportOptions.TabIndex = 10;
             btnMissingExportOptions.Text = "Export...";
             btnMissingExportOptions.UseVisualStyleBackColor = true;
@@ -750,11 +751,11 @@
             gbOptional.Controls.Add(lblColumnSelection);
             gbOptional.Controls.Add(chkReleasedOnly);
             gbOptional.ForeColor = Color.FromArgb(255, 191, 0);
-            gbOptional.Location = new Point(24, 144);
-            gbOptional.Margin = new Padding(4, 3, 4, 0);
+            gbOptional.Location = new Point(22, 192);
+            gbOptional.Margin = new Padding(5, 4, 5, 0);
             gbOptional.Name = "gbOptional";
-            gbOptional.Padding = new Padding(4, 3, 4, 3);
-            gbOptional.Size = new Size(238, 405);
+            gbOptional.Padding = new Padding(5, 4, 5, 4);
+            gbOptional.Size = new Size(292, 540);
             gbOptional.TabIndex = 11;
             gbOptional.TabStop = false;
             gbOptional.Text = "Optional Items";
@@ -763,9 +764,10 @@
             // 
             pnlDivider1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             pnlDivider1.BackColor = Color.FromArgb(224, 224, 224);
-            pnlDivider1.Location = new Point(7, 91);
+            pnlDivider1.Location = new Point(8, 121);
+            pnlDivider1.Margin = new Padding(3, 4, 3, 4);
             pnlDivider1.Name = "pnlDivider1";
-            pnlDivider1.Size = new Size(225, 1);
+            pnlDivider1.Size = new Size(277, 1);
             pnlDivider1.TabIndex = 6;
             // 
             // chkIncludeEmptyRegions
@@ -773,9 +775,10 @@
             chkIncludeEmptyRegions.AutoSize = true;
             chkIncludeEmptyRegions.Checked = true;
             chkIncludeEmptyRegions.CheckState = CheckState.Checked;
-            chkIncludeEmptyRegions.Location = new Point(13, 65);
+            chkIncludeEmptyRegions.Location = new Point(15, 87);
+            chkIncludeEmptyRegions.Margin = new Padding(3, 4, 3, 4);
             chkIncludeEmptyRegions.Name = "chkIncludeEmptyRegions";
-            chkIncludeEmptyRegions.Size = new Size(211, 19);
+            chkIncludeEmptyRegions.Size = new Size(263, 24);
             chkIncludeEmptyRegions.TabIndex = 5;
             chkIncludeEmptyRegions.Text = "Include games with empty Region?";
             chkIncludeEmptyRegions.UseVisualStyleBackColor = true;
@@ -784,19 +787,20 @@
             // 
             pnlDivider2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             pnlDivider2.BackColor = Color.FromArgb(224, 224, 224);
-            pnlDivider2.Location = new Point(7, 122);
+            pnlDivider2.Location = new Point(8, 163);
+            pnlDivider2.Margin = new Padding(3, 4, 3, 4);
             pnlDivider2.Name = "pnlDivider2";
-            pnlDivider2.Size = new Size(225, 1);
+            pnlDivider2.Size = new Size(277, 1);
             pnlDivider2.TabIndex = 6;
             // 
             // lblRegionFilter
             // 
             lblRegionFilter.AutoSize = true;
             lblRegionFilter.ForeColor = Color.FromArgb(255, 191, 0);
-            lblRegionFilter.Location = new Point(8, 21);
-            lblRegionFilter.Margin = new Padding(4, 0, 4, 0);
+            lblRegionFilter.Location = new Point(9, 28);
+            lblRegionFilter.Margin = new Padding(5, 0, 5, 0);
             lblRegionFilter.Name = "lblRegionFilter";
-            lblRegionFilter.Size = new Size(125, 15);
+            lblRegionFilter.Size = new Size(157, 20);
             lblRegionFilter.TabIndex = 4;
             lblRegionFilter.Text = "Platform Region Filter:";
             // 
@@ -804,9 +808,10 @@
             // 
             cmbRegionFilter.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbRegionFilter.FormattingEnabled = true;
-            cmbRegionFilter.Location = new Point(12, 38);
+            cmbRegionFilter.Location = new Point(14, 51);
+            cmbRegionFilter.Margin = new Padding(3, 4, 3, 4);
             cmbRegionFilter.Name = "cmbRegionFilter";
-            cmbRegionFilter.Size = new Size(171, 23);
+            cmbRegionFilter.Size = new Size(195, 28);
             cmbRegionFilter.TabIndex = 3;
             // 
             // clbColumnSelection
@@ -814,10 +819,10 @@
             clbColumnSelection.CheckOnClick = true;
             clbColumnSelection.Dock = DockStyle.Bottom;
             clbColumnSelection.FormattingEnabled = true;
-            clbColumnSelection.Location = new Point(4, 146);
-            clbColumnSelection.Margin = new Padding(4, 1, 4, 2);
+            clbColumnSelection.Location = new Point(5, 202);
+            clbColumnSelection.Margin = new Padding(5, 1, 5, 3);
             clbColumnSelection.Name = "clbColumnSelection";
-            clbColumnSelection.Size = new Size(230, 256);
+            clbColumnSelection.Size = new Size(282, 334);
             clbColumnSelection.TabIndex = 1;
             clbColumnSelection.ItemCheck += CheckedListBox_ItemCheck;
             // 
@@ -825,10 +830,10 @@
             // 
             lblColumnSelection.AutoSize = true;
             lblColumnSelection.ForeColor = Color.FromArgb(255, 191, 0);
-            lblColumnSelection.Location = new Point(8, 129);
-            lblColumnSelection.Margin = new Padding(4, 0, 4, 0);
+            lblColumnSelection.Location = new Point(9, 172);
+            lblColumnSelection.Margin = new Padding(5, 0, 5, 0);
             lblColumnSelection.Name = "lblColumnSelection";
-            lblColumnSelection.Size = new Size(104, 15);
+            lblColumnSelection.Size = new Size(128, 20);
             lblColumnSelection.TabIndex = 2;
             lblColumnSelection.Text = "Column Selection:";
             // 
@@ -836,10 +841,10 @@
             // 
             chkReleasedOnly.AutoSize = true;
             chkReleasedOnly.ForeColor = Color.FromArgb(255, 191, 0);
-            chkReleasedOnly.Location = new Point(12, 99);
-            chkReleasedOnly.Margin = new Padding(4, 3, 4, 3);
+            chkReleasedOnly.Location = new Point(14, 132);
+            chkReleasedOnly.Margin = new Padding(5, 4, 5, 4);
             chkReleasedOnly.Name = "chkReleasedOnly";
-            chkReleasedOnly.Size = new Size(185, 19);
+            chkReleasedOnly.Size = new Size(232, 24);
             chkReleasedOnly.TabIndex = 0;
             chkReleasedOnly.Text = "Only include Released games?";
             chkReleasedOnly.UseVisualStyleBackColor = true;
@@ -853,10 +858,10 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClose.ForeColor = Color.FromArgb(255, 191, 0);
-            btnClose.Location = new Point(988, 11);
-            btnClose.Margin = new Padding(2);
+            btnClose.Location = new Point(1129, 15);
+            btnClose.Margin = new Padding(2, 3, 2, 3);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(113, 33);
+            btnClose.Size = new Size(129, 44);
             btnClose.TabIndex = 13;
             btnClose.Text = "Close MGC";
             btnClose.UseVisualStyleBackColor = false;
@@ -871,10 +876,10 @@
             llbPoweredBy.ForeColor = Color.FromArgb(255, 191, 0);
             llbPoweredBy.LinkBehavior = LinkBehavior.AlwaysUnderline;
             llbPoweredBy.LinkColor = Color.FromArgb(255, 191, 0);
-            llbPoweredBy.Location = new Point(943, 580);
-            llbPoweredBy.Margin = new Padding(4, 0, 4, 0);
+            llbPoweredBy.Location = new Point(1078, 773);
+            llbPoweredBy.Margin = new Padding(5, 0, 5, 0);
             llbPoweredBy.Name = "llbPoweredBy";
-            llbPoweredBy.Size = new Size(162, 13);
+            llbPoweredBy.Size = new Size(183, 15);
             llbPoweredBy.TabIndex = 16;
             llbPoweredBy.TabStop = true;
             llbPoweredBy.Text = "MGC Powered by AgentJohnnyP";
@@ -889,10 +894,10 @@
             ssMetadataStatus.Dock = DockStyle.None;
             ssMetadataStatus.ImageScalingSize = new Size(20, 20);
             ssMetadataStatus.Items.AddRange(new ToolStripItem[] { tsslIcon, tsslText });
-            ssMetadataStatus.Location = new Point(0, 564);
+            ssMetadataStatus.Location = new Point(0, 752);
             ssMetadataStatus.Name = "ssMetadataStatus";
-            ssMetadataStatus.Padding = new Padding(1, 0, 16, 0);
-            ssMetadataStatus.Size = new Size(230, 30);
+            ssMetadataStatus.Padding = new Padding(1, 0, 18, 0);
+            ssMetadataStatus.Size = new Size(263, 40);
             ssMetadataStatus.SizingGrip = false;
             ssMetadataStatus.TabIndex = 19;
             // 
@@ -901,7 +906,7 @@
             tsslIcon.Image = (Image)resources.GetObject("tsslIcon.Image");
             tsslIcon.Name = "tsslIcon";
             tsslIcon.Padding = new Padding(5, 0, 0, 5);
-            tsslIcon.Size = new Size(25, 25);
+            tsslIcon.Size = new Size(25, 34);
             // 
             // tsslText
             // 
@@ -910,21 +915,21 @@
             tsslText.ForeColor = Color.Black;
             tsslText.Name = "tsslText";
             tsslText.Padding = new Padding(10, 0, 0, 5);
-            tsslText.Size = new Size(151, 25);
+            tsslText.Size = new Size(182, 34);
             tsslText.Text = "Preparing Environment....";
             // 
             // tbDebug
             // 
             tbDebug.BackColor = Color.FromArgb(54, 57, 63);
             tbDebug.ForeColor = Color.FromArgb(255, 191, 0);
-            tbDebug.Location = new Point(2, 50);
-            tbDebug.Margin = new Padding(2);
+            tbDebug.Location = new Point(2, 67);
+            tbDebug.Margin = new Padding(2, 3, 2, 3);
             tbDebug.MaxLength = 15000;
             tbDebug.Multiline = true;
             tbDebug.Name = "tbDebug";
             tbDebug.ReadOnly = true;
             tbDebug.ScrollBars = ScrollBars.Vertical;
-            tbDebug.Size = new Size(622, 211);
+            tbDebug.Size = new Size(710, 280);
             tbDebug.TabIndex = 21;
             tbDebug.Text = "Debug Log";
             // 
@@ -937,8 +942,8 @@
             ssPlatformDropdownMsg.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, tsslPlatformDropdownMsg });
             ssPlatformDropdownMsg.Location = new Point(0, 0);
             ssPlatformDropdownMsg.Name = "ssPlatformDropdownMsg";
-            ssPlatformDropdownMsg.Padding = new Padding(1, 0, 16, 0);
-            ssPlatformDropdownMsg.Size = new Size(257, 30);
+            ssPlatformDropdownMsg.Padding = new Padding(1, 0, 18, 0);
+            ssPlatformDropdownMsg.Size = new Size(294, 40);
             ssPlatformDropdownMsg.SizingGrip = false;
             ssPlatformDropdownMsg.TabIndex = 23;
             // 
@@ -947,7 +952,7 @@
             toolStripStatusLabel1.Image = (Image)resources.GetObject("toolStripStatusLabel1.Image");
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Padding = new Padding(5, 0, 0, 5);
-            toolStripStatusLabel1.Size = new Size(25, 25);
+            toolStripStatusLabel1.Size = new Size(25, 34);
             // 
             // tsslPlatformDropdownMsg
             // 
@@ -955,7 +960,7 @@
             tsslPlatformDropdownMsg.ForeColor = Color.Black;
             tsslPlatformDropdownMsg.Name = "tsslPlatformDropdownMsg";
             tsslPlatformDropdownMsg.Padding = new Padding(10, 0, 0, 5);
-            tsslPlatformDropdownMsg.Size = new Size(166, 25);
+            tsslPlatformDropdownMsg.Size = new Size(205, 34);
             tsslPlatformDropdownMsg.Text = "Please select a platform!";
             // 
             // pDebugLog
@@ -968,10 +973,10 @@
             pDebugLog.Controls.Add(btnCloseDebug);
             pDebugLog.Controls.Add(pbDebugHeader);
             pDebugLog.ForeColor = Color.FromArgb(255, 191, 0);
-            pDebugLog.Location = new Point(323, 209);
-            pDebugLog.Margin = new Padding(4, 3, 4, 3);
+            pDebugLog.Location = new Point(375, 313);
+            pDebugLog.Margin = new Padding(5, 4, 5, 4);
             pDebugLog.Name = "pDebugLog";
-            pDebugLog.Size = new Size(633, 267);
+            pDebugLog.Size = new Size(723, 355);
             pDebugLog.TabIndex = 24;
             // 
             // btnClearDebugLog
@@ -980,10 +985,10 @@
             btnClearDebugLog.BackgroundImageLayout = ImageLayout.Zoom;
             btnClearDebugLog.Font = new Font("Microsoft Sans Serif", 6.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClearDebugLog.ForeColor = Color.Black;
-            btnClearDebugLog.Location = new Point(360, 12);
-            btnClearDebugLog.Margin = new Padding(4, 3, 4, 3);
+            btnClearDebugLog.Location = new Point(411, 16);
+            btnClearDebugLog.Margin = new Padding(5, 4, 5, 4);
             btnClearDebugLog.Name = "btnClearDebugLog";
-            btnClearDebugLog.Size = new Size(94, 24);
+            btnClearDebugLog.Size = new Size(107, 32);
             btnClearDebugLog.TabIndex = 26;
             btnClearDebugLog.Text = "Clear Debug Log";
             btnClearDebugLog.UseVisualStyleBackColor = false;
@@ -995,10 +1000,10 @@
             btnCopyToClipboard.BackgroundImageLayout = ImageLayout.Zoom;
             btnCopyToClipboard.Font = new Font("Microsoft Sans Serif", 6.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCopyToClipboard.ForeColor = Color.Black;
-            btnCopyToClipboard.Location = new Point(241, 12);
-            btnCopyToClipboard.Margin = new Padding(4, 3, 4, 3);
+            btnCopyToClipboard.Location = new Point(275, 16);
+            btnCopyToClipboard.Margin = new Padding(5, 4, 5, 4);
             btnCopyToClipboard.Name = "btnCopyToClipboard";
-            btnCopyToClipboard.Size = new Size(104, 24);
+            btnCopyToClipboard.Size = new Size(119, 32);
             btnCopyToClipboard.TabIndex = 25;
             btnCopyToClipboard.Text = "Copy To Clipboard";
             btnCopyToClipboard.UseVisualStyleBackColor = false;
@@ -1008,10 +1013,10 @@
             // 
             lblMGCDebugLog.AutoSize = true;
             lblMGCDebugLog.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblMGCDebugLog.Location = new Point(57, 8);
-            lblMGCDebugLog.Margin = new Padding(4, 0, 4, 0);
+            lblMGCDebugLog.Location = new Point(65, 11);
+            lblMGCDebugLog.Margin = new Padding(5, 0, 5, 0);
             lblMGCDebugLog.Name = "lblMGCDebugLog";
-            lblMGCDebugLog.Size = new Size(152, 24);
+            lblMGCDebugLog.Size = new Size(193, 29);
             lblMGCDebugLog.TabIndex = 24;
             lblMGCDebugLog.Text = "MGC Debug Log";
             // 
@@ -1024,10 +1029,10 @@
             btnCloseDebug.FlatStyle = FlatStyle.Flat;
             btnCloseDebug.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCloseDebug.ForeColor = Color.FromArgb(255, 191, 0);
-            btnCloseDebug.Location = new Point(492, 5);
-            btnCloseDebug.Margin = new Padding(2);
+            btnCloseDebug.Location = new Point(562, 7);
+            btnCloseDebug.Margin = new Padding(2, 3, 2, 3);
             btnCloseDebug.Name = "btnCloseDebug";
-            btnCloseDebug.Size = new Size(133, 32);
+            btnCloseDebug.Size = new Size(152, 43);
             btnCloseDebug.TabIndex = 23;
             btnCloseDebug.Text = "Close Debug Log";
             btnCloseDebug.UseVisualStyleBackColor = false;
@@ -1038,10 +1043,10 @@
             pbDebugHeader.BackColor = Color.Transparent;
             pbDebugHeader.BackgroundImage = (Image)resources.GetObject("pbDebugHeader.BackgroundImage");
             pbDebugHeader.BackgroundImageLayout = ImageLayout.Stretch;
-            pbDebugHeader.Location = new Point(5, 5);
-            pbDebugHeader.Margin = new Padding(4, 3, 4, 3);
+            pbDebugHeader.Location = new Point(6, 7);
+            pbDebugHeader.Margin = new Padding(5, 4, 5, 4);
             pbDebugHeader.Name = "pbDebugHeader";
-            pbDebugHeader.Size = new Size(46, 42);
+            pbDebugHeader.Size = new Size(53, 56);
             pbDebugHeader.TabIndex = 22;
             pbDebugHeader.TabStop = false;
             // 
@@ -1050,11 +1055,11 @@
             lblCongrats.AutoSize = true;
             lblCongrats.BackColor = Color.FromArgb(255, 191, 0);
             lblCongrats.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCongrats.Location = new Point(288, 105);
-            lblCongrats.Margin = new Padding(4, 0, 4, 0);
+            lblCongrats.Location = new Point(329, 140);
+            lblCongrats.Margin = new Padding(5, 0, 5, 0);
             lblCongrats.Name = "lblCongrats";
-            lblCongrats.Padding = new Padding(0, 2, 0, 2);
-            lblCongrats.Size = new Size(281, 21);
+            lblCongrats.Padding = new Padding(0, 3, 0, 3);
+            lblCongrats.Size = new Size(331, 26);
             lblCongrats.TabIndex = 27;
             lblCongrats.Text = "Congrats! Your collection is complete!";
             // 
@@ -1068,39 +1073,39 @@
             noPlatformGridView.BorderStyle = BorderStyle.Fixed3D;
             noPlatformGridView.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
             noPlatformGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle28.ForeColor = Color.Black;
-            dataGridViewCellStyle28.SelectionBackColor = Color.Black;
-            dataGridViewCellStyle28.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle28.WrapMode = DataGridViewTriState.True;
-            noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle13.ForeColor = Color.Black;
+            dataGridViewCellStyle13.SelectionBackColor = Color.Black;
+            dataGridViewCellStyle13.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             noPlatformGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             noPlatformGridView.Columns.AddRange(new DataGridViewColumn[] { errorNoPlatform, msgNoPlatform, errorLBDbId });
             noPlatformGridView.DataSource = noPlatformBindingSource;
-            dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle29.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle29.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle29.ForeColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle29.SelectionBackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle29.SelectionForeColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle29.WrapMode = DataGridViewTriState.False;
-            noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle14.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle14.ForeColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle14.SelectionForeColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle14;
             noPlatformGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             noPlatformGridView.EnableHeadersVisualStyles = false;
             noPlatformGridView.GridColor = Color.FromArgb(44, 156, 255);
-            noPlatformGridView.Location = new Point(288, 363);
-            noPlatformGridView.Margin = new Padding(4, 3, 4, 3);
+            noPlatformGridView.Location = new Point(329, 484);
+            noPlatformGridView.Margin = new Padding(5, 4, 5, 4);
             noPlatformGridView.Name = "noPlatformGridView";
             noPlatformGridView.ReadOnly = true;
             noPlatformGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle30.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle30.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle30.ForeColor = Color.White;
-            dataGridViewCellStyle30.WrapMode = DataGridViewTriState.True;
-            noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle15.ForeColor = Color.White;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             noPlatformGridView.RowHeadersWidth = 51;
-            noPlatformGridView.Size = new Size(813, 217);
+            noPlatformGridView.Size = new Size(929, 289);
             noPlatformGridView.TabIndex = 25;
             // 
             // errorNoPlatform
@@ -1112,7 +1117,7 @@
             errorNoPlatform.Name = "errorNoPlatform";
             errorNoPlatform.ReadOnly = true;
             errorNoPlatform.SortMode = DataGridViewColumnSortMode.NotSortable;
-            errorNoPlatform.Width = 35;
+            errorNoPlatform.Width = 46;
             // 
             // msgNoPlatform
             // 
@@ -1123,7 +1128,7 @@
             msgNoPlatform.Name = "msgNoPlatform";
             msgNoPlatform.ReadOnly = true;
             msgNoPlatform.SortMode = DataGridViewColumnSortMode.NotSortable;
-            msgNoPlatform.Width = 56;
+            msgNoPlatform.Width = 71;
             // 
             // errorLBDbId
             // 
@@ -1141,10 +1146,10 @@
             lblScrapeAs.AutoSize = true;
             lblScrapeAs.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblScrapeAs.ForeColor = Color.FromArgb(255, 191, 0);
-            lblScrapeAs.Location = new Point(18, 24);
+            lblScrapeAs.Location = new Point(21, 32);
             lblScrapeAs.Margin = new Padding(2, 0, 2, 0);
             lblScrapeAs.Name = "lblScrapeAs";
-            lblScrapeAs.Size = new Size(76, 13);
+            lblScrapeAs.Size = new Size(100, 17);
             lblScrapeAs.TabIndex = 28;
             lblScrapeAs.Text = "Searching As: ";
             // 
@@ -1157,11 +1162,11 @@
             gbFilterOptions.Controls.Add(clbFilterOptions);
             gbFilterOptions.Controls.Add(btnApplyFilters);
             gbFilterOptions.ForeColor = Color.FromArgb(255, 191, 0);
-            gbFilterOptions.Location = new Point(446, 144);
-            gbFilterOptions.Margin = new Padding(4, 3, 4, 3);
+            gbFilterOptions.Location = new Point(510, 192);
+            gbFilterOptions.Margin = new Padding(5, 4, 5, 4);
             gbFilterOptions.Name = "gbFilterOptions";
-            gbFilterOptions.Padding = new Padding(4, 3, 4, 3);
-            gbFilterOptions.Size = new Size(173, 210);
+            gbFilterOptions.Padding = new Padding(5, 4, 5, 4);
+            gbFilterOptions.Size = new Size(198, 280);
             gbFilterOptions.TabIndex = 29;
             gbFilterOptions.TabStop = false;
             gbFilterOptions.Text = "Filter";
@@ -1171,9 +1176,10 @@
             chkSelectAll.AutoSize = true;
             chkSelectAll.Checked = true;
             chkSelectAll.CheckState = CheckState.Checked;
-            chkSelectAll.Location = new Point(7, 50);
+            chkSelectAll.Location = new Point(8, 67);
+            chkSelectAll.Margin = new Padding(3, 4, 3, 4);
             chkSelectAll.Name = "chkSelectAll";
-            chkSelectAll.Size = new Size(108, 19);
+            chkSelectAll.Size = new Size(135, 24);
             chkSelectAll.TabIndex = 4;
             chkSelectAll.Text = "Select All/None";
             chkSelectAll.UseVisualStyleBackColor = true;
@@ -1186,10 +1192,10 @@
             pbCloseFilter.BackColor = Color.Transparent;
             pbCloseFilter.Cursor = Cursors.Hand;
             pbCloseFilter.Image = Properties.Resources.error;
-            pbCloseFilter.Location = new Point(150, 12);
+            pbCloseFilter.Location = new Point(171, 16);
             pbCloseFilter.Margin = new Padding(0);
             pbCloseFilter.Name = "pbCloseFilter";
-            pbCloseFilter.Size = new Size(15, 15);
+            pbCloseFilter.Size = new Size(17, 20);
             pbCloseFilter.SizeMode = PictureBoxSizeMode.Zoom;
             pbCloseFilter.TabIndex = 3;
             pbCloseFilter.TabStop = false;
@@ -1199,10 +1205,10 @@
             // 
             btnFilterReset.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnFilterReset.ForeColor = Color.Black;
-            btnFilterReset.Location = new Point(69, 20);
-            btnFilterReset.Margin = new Padding(4, 3, 4, 3);
+            btnFilterReset.Location = new Point(79, 27);
+            btnFilterReset.Margin = new Padding(5, 4, 5, 4);
             btnFilterReset.Name = "btnFilterReset";
-            btnFilterReset.Size = new Size(55, 24);
+            btnFilterReset.Size = new Size(63, 32);
             btnFilterReset.TabIndex = 2;
             btnFilterReset.Text = "Reset";
             btnFilterReset.UseVisualStyleBackColor = true;
@@ -1213,10 +1219,10 @@
             clbFilterOptions.CheckOnClick = true;
             clbFilterOptions.Dock = DockStyle.Bottom;
             clbFilterOptions.FormattingEnabled = true;
-            clbFilterOptions.Location = new Point(4, 77);
-            clbFilterOptions.Margin = new Padding(4, 3, 4, 3);
+            clbFilterOptions.Location = new Point(5, 118);
+            clbFilterOptions.Margin = new Padding(5, 4, 5, 4);
             clbFilterOptions.Name = "clbFilterOptions";
-            clbFilterOptions.Size = new Size(165, 130);
+            clbFilterOptions.Size = new Size(188, 158);
             clbFilterOptions.Sorted = true;
             clbFilterOptions.TabIndex = 1;
             clbFilterOptions.ThreeDCheckBoxes = true;
@@ -1225,10 +1231,10 @@
             // 
             btnApplyFilters.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnApplyFilters.ForeColor = Color.Black;
-            btnApplyFilters.Location = new Point(7, 20);
-            btnApplyFilters.Margin = new Padding(4, 3, 4, 3);
+            btnApplyFilters.Location = new Point(8, 27);
+            btnApplyFilters.Margin = new Padding(5, 4, 5, 4);
             btnApplyFilters.Name = "btnApplyFilters";
-            btnApplyFilters.Size = new Size(55, 24);
+            btnApplyFilters.Size = new Size(63, 32);
             btnApplyFilters.TabIndex = 0;
             btnApplyFilters.Text = "Apply";
             btnApplyFilters.UseVisualStyleBackColor = true;
@@ -1237,10 +1243,10 @@
             // pbCongrats
             // 
             pbCongrats.Image = Properties.Resources.congrats;
-            pbCongrats.Location = new Point(497, 387);
-            pbCongrats.Margin = new Padding(2);
+            pbCongrats.Location = new Point(568, 516);
+            pbCongrats.Margin = new Padding(2, 3, 2, 3);
             pbCongrats.Name = "pbCongrats";
-            pbCongrats.Size = new Size(400, 173);
+            pbCongrats.Size = new Size(457, 231);
             pbCongrats.SizeMode = PictureBoxSizeMode.Zoom;
             pbCongrats.TabIndex = 3;
             pbCongrats.TabStop = false;
@@ -1251,10 +1257,10 @@
             pbDebugBtn.BackgroundImage = (Image)resources.GetObject("pbDebugBtn.BackgroundImage");
             pbDebugBtn.BackgroundImageLayout = ImageLayout.Zoom;
             pbDebugBtn.Cursor = Cursors.Help;
-            pbDebugBtn.Location = new Point(238, 564);
-            pbDebugBtn.Margin = new Padding(4, 3, 4, 3);
+            pbDebugBtn.Location = new Point(272, 752);
+            pbDebugBtn.Margin = new Padding(5, 4, 5, 4);
             pbDebugBtn.Name = "pbDebugBtn";
-            pbDebugBtn.Size = new Size(23, 23);
+            pbDebugBtn.Size = new Size(26, 31);
             pbDebugBtn.TabIndex = 24;
             pbDebugBtn.TabStop = false;
             pbDebugBtn.Click += DebugBtn_Click;
@@ -1263,10 +1269,10 @@
             // 
             pbMGCHeader.BackColor = Color.Transparent;
             pbMGCHeader.Image = (Image)resources.GetObject("pbMGCHeader.Image");
-            pbMGCHeader.Location = new Point(396, -1);
-            pbMGCHeader.Margin = new Padding(4, 3, 4, 3);
+            pbMGCHeader.Location = new Point(453, -1);
+            pbMGCHeader.Margin = new Padding(5, 4, 5, 4);
             pbMGCHeader.Name = "pbMGCHeader";
-            pbMGCHeader.Size = new Size(550, 112);
+            pbMGCHeader.Size = new Size(629, 149);
             pbMGCHeader.SizeMode = PictureBoxSizeMode.Zoom;
             pbMGCHeader.TabIndex = 15;
             pbMGCHeader.TabStop = false;
@@ -1276,10 +1282,10 @@
             // 
             pbMGCLogo.BackColor = Color.Transparent;
             pbMGCLogo.Image = Properties.Resources.mgc_logo;
-            pbMGCLogo.Location = new Point(304, 13);
-            pbMGCLogo.Margin = new Padding(4, 3, 4, 3);
+            pbMGCLogo.Location = new Point(347, 17);
+            pbMGCLogo.Margin = new Padding(5, 4, 5, 4);
             pbMGCLogo.Name = "pbMGCLogo";
-            pbMGCLogo.Size = new Size(85, 68);
+            pbMGCLogo.Size = new Size(97, 91);
             pbMGCLogo.SizeMode = PictureBoxSizeMode.Zoom;
             pbMGCLogo.TabIndex = 14;
             pbMGCLogo.TabStop = false;
@@ -1291,19 +1297,20 @@
             lblPlatformWarning.BackColor = Color.FromArgb(255, 191, 0);
             lblPlatformWarning.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPlatformWarning.ForeColor = Color.Black;
-            lblPlatformWarning.Location = new Point(0, 98);
+            lblPlatformWarning.Location = new Point(0, 131);
             lblPlatformWarning.Margin = new Padding(2, 0, 2, 0);
             lblPlatformWarning.Name = "lblPlatformWarning";
-            lblPlatformWarning.Padding = new Padding(2);
-            lblPlatformWarning.Size = new Size(172, 43);
+            lblPlatformWarning.Padding = new Padding(2, 3, 2, 3);
+            lblPlatformWarning.Size = new Size(196, 51);
             lblPlatformWarning.TabIndex = 30;
             lblPlatformWarning.Text = "Warning! This platform contains\r\na lot of data! Processing may take \r\na few moments!";
             // 
             // tbOwnedSearch
             // 
-            tbOwnedSearch.Location = new Point(862, 120);
+            tbOwnedSearch.Location = new Point(1003, 160);
+            tbOwnedSearch.Margin = new Padding(3, 4, 3, 4);
             tbOwnedSearch.Name = "tbOwnedSearch";
-            tbOwnedSearch.Size = new Size(117, 23);
+            tbOwnedSearch.Size = new Size(133, 27);
             tbOwnedSearch.TabIndex = 31;
             tbOwnedSearch.TextChanged += tbOwnedSearch_TextChanged;
             // 
@@ -1311,19 +1318,20 @@
             // 
             lblOwnedSearch.AutoSize = true;
             lblOwnedSearch.ForeColor = Color.FromArgb(230, 230, 230);
-            lblOwnedSearch.Location = new Point(769, 123);
-            lblOwnedSearch.Margin = new Padding(4, 0, 4, 0);
+            lblOwnedSearch.Location = new Point(890, 164);
+            lblOwnedSearch.Margin = new Padding(5, 0, 5, 0);
             lblOwnedSearch.Name = "lblOwnedSearch";
-            lblOwnedSearch.Size = new Size(86, 15);
+            lblOwnedSearch.Size = new Size(107, 20);
             lblOwnedSearch.TabIndex = 32;
             lblOwnedSearch.Text = "Search Owned:";
             lblOwnedSearch.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tbMissingSearch
             // 
-            tbMissingSearch.Location = new Point(862, 337);
+            tbMissingSearch.Location = new Point(1003, 449);
+            tbMissingSearch.Margin = new Padding(3, 4, 3, 4);
             tbMissingSearch.Name = "tbMissingSearch";
-            tbMissingSearch.Size = new Size(117, 23);
+            tbMissingSearch.Size = new Size(133, 27);
             tbMissingSearch.TabIndex = 31;
             tbMissingSearch.TextChanged += tbMissingSearch_TextChanged;
             // 
@@ -1331,10 +1339,10 @@
             // 
             lblMissingSearch.AutoSize = true;
             lblMissingSearch.ForeColor = Color.FromArgb(230, 230, 230);
-            lblMissingSearch.Location = new Point(769, 340);
-            lblMissingSearch.Margin = new Padding(4, 0, 4, 0);
+            lblMissingSearch.Location = new Point(887, 452);
+            lblMissingSearch.Margin = new Padding(5, 0, 5, 0);
             lblMissingSearch.Name = "lblMissingSearch";
-            lblMissingSearch.Size = new Size(89, 15);
+            lblMissingSearch.Size = new Size(110, 20);
             lblMissingSearch.TabIndex = 32;
             lblMissingSearch.Text = "Search Missing:";
             lblMissingSearch.TextAlign = ContentAlignment.MiddleRight;
@@ -1345,10 +1353,10 @@
             lblCompletionStats.BackColor = Color.Transparent;
             lblCompletionStats.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCompletionStats.ForeColor = Color.LightCoral;
-            lblCompletionStats.Location = new Point(479, 346);
-            lblCompletionStats.Margin = new Padding(4, 0, 4, 0);
+            lblCompletionStats.Location = new Point(547, 461);
+            lblCompletionStats.Margin = new Padding(5, 0, 5, 0);
             lblCompletionStats.Name = "lblCompletionStats";
-            lblCompletionStats.Size = new Size(212, 15);
+            lblCompletionStats.Size = new Size(258, 18);
             lblCompletionStats.TabIndex = 33;
             lblCompletionStats.Text = "Platform Completion: 0% 0 / 0 Games";
             lblCompletionStats.Visible = false;
@@ -1357,10 +1365,10 @@
             // 
             btnOwnedExportOptions.Enabled = false;
             btnOwnedExportOptions.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnOwnedExportOptions.Location = new Point(997, 120);
-            btnOwnedExportOptions.Margin = new Padding(4, 3, 4, 3);
+            btnOwnedExportOptions.Location = new Point(1173, 160);
+            btnOwnedExportOptions.Margin = new Padding(5, 4, 5, 4);
             btnOwnedExportOptions.Name = "btnOwnedExportOptions";
-            btnOwnedExportOptions.Size = new Size(68, 23);
+            btnOwnedExportOptions.Size = new Size(78, 31);
             btnOwnedExportOptions.TabIndex = 9;
             btnOwnedExportOptions.Text = "Export...";
             btnOwnedExportOptions.UseVisualStyleBackColor = true;
@@ -1368,34 +1376,36 @@
             // 
             // cmsOwnedExportOptions
             // 
+            cmsOwnedExportOptions.ImageScalingSize = new Size(20, 20);
             cmsOwnedExportOptions.Items.AddRange(new ToolStripItem[] { exportToCSVToolStripMenuItem });
             cmsOwnedExportOptions.Name = "cmsOwnedExportOptions";
-            cmsOwnedExportOptions.Size = new Size(247, 26);
+            cmsOwnedExportOptions.Size = new Size(296, 28);
             // 
             // exportToCSVToolStripMenuItem
             // 
             exportToCSVToolStripMenuItem.Name = "exportToCSVToolStripMenuItem";
-            exportToCSVToolStripMenuItem.Size = new Size(246, 22);
+            exportToCSVToolStripMenuItem.Size = new Size(295, 24);
             exportToCSVToolStripMenuItem.Text = "Export Owned Games List to CSV";
             exportToCSVToolStripMenuItem.Click += cmsOwnedExportCSV_Click;
             // 
             // cmsMissingExportOptions
             // 
+            cmsMissingExportOptions.ImageScalingSize = new Size(20, 20);
             cmsMissingExportOptions.Items.AddRange(new ToolStripItem[] { exportMissingGamesListToCSVToolStripMenuItem, createLaunchBoxWishlistPlaylistToolStripMenuItem });
             cmsMissingExportOptions.Name = "contextMenuStrip1";
-            cmsMissingExportOptions.Size = new Size(263, 48);
+            cmsMissingExportOptions.Size = new Size(313, 52);
             // 
             // exportMissingGamesListToCSVToolStripMenuItem
             // 
             exportMissingGamesListToCSVToolStripMenuItem.Name = "exportMissingGamesListToCSVToolStripMenuItem";
-            exportMissingGamesListToCSVToolStripMenuItem.Size = new Size(262, 22);
+            exportMissingGamesListToCSVToolStripMenuItem.Size = new Size(312, 24);
             exportMissingGamesListToCSVToolStripMenuItem.Text = "Export Missing Games List to CSV";
             exportMissingGamesListToCSVToolStripMenuItem.Click += exportMissingGamesListToCSVToolStripMenuItem_Click;
             // 
             // createLaunchBoxWishlistPlaylistToolStripMenuItem
             // 
             createLaunchBoxWishlistPlaylistToolStripMenuItem.Name = "createLaunchBoxWishlistPlaylistToolStripMenuItem";
-            createLaunchBoxWishlistPlaylistToolStripMenuItem.Size = new Size(262, 22);
+            createLaunchBoxWishlistPlaylistToolStripMenuItem.Size = new Size(312, 24);
             createLaunchBoxWishlistPlaylistToolStripMenuItem.Text = "Create LaunchBox Wishlist Platform";
             createLaunchBoxWishlistPlaylistToolStripMenuItem.Click += createLaunchBoxWishlistPlaylistToolStripMenuItem_Click;
             // 
@@ -1403,10 +1413,10 @@
             // 
             AccessibleDescription = "A LaunchBox plugin designed to help users identify missing games in their collection based on platform metadata.";
             AccessibleName = "Missing Games Checker";
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(54, 57, 63);
-            ClientSize = new Size(1115, 594);
+            ClientSize = new Size(1274, 792);
             ControlBox = false;
             Controls.Add(pDebugLog);
             Controls.Add(gbFilterOptions);
@@ -1440,8 +1450,8 @@
             Controls.Add(pbMGCHeader);
             Controls.Add(pbMGCLogo);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(4, 3, 4, 3);
-            MinimumSize = new Size(1115, 553);
+            Margin = new Padding(5, 4, 5, 4);
+            MinimumSize = new Size(1274, 737);
             Name = "PlatformSelectionForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Missing Games Checker";
