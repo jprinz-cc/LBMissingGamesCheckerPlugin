@@ -18,6 +18,19 @@ MGC has been completely rebuilt from the ground up to utilize LaunchBox's modern
 * **Native 3D Box Art Scraping:** Wishlist platforms automatically inherit the `Scrape As` property of the parent console, allowing you to instantly download 3D Box Art and Clear Logos for games you don't even own yet!
 * **"Purist" Regional Filtering:** Only collect North American or European releases? Use the new Region Filter to hide global releases you don't care about. Includes a safety net to include/exclude games with missing region metadata. Also included is a new Select All/None option in the column filtering.
 * **Right-Click Quick Actions:** Right-click any missing game in the grid to instantly search eBay for physical copies or copy the title to your clipboard.
+
+### Version 2.0.1 - The "Power User" Update
+
+This is a rapid-follow patch to the massive 2.0 release, bringing some highly requested quality-of-life features, vastly improved searching, and a few under-the-hood fixes!
+
+**What's New & Improved:**
+* **Smart Global Search:** The search boxes are no longer limited to just game titles! Typing in the search bar will now instantly filter across **Title, Developer, Publisher, Region, Genres, and Release Year**. 
+* **Expanded Right-Click Menus:** The context menu is no longer exclusive to your Missing Games. You can now right-click games directly inside your **Owned Games** grid for quick actions.
+* **New "Copy Row" Quick Actions:** Need to grab data fast? You can now right-click any game and select "Copy Row". 
+  * *Spreadsheet Mode:* Copies the row with tabbed formatting so you can paste it perfectly into Excel or Google Sheets.
+  * *Formatted Mode:* Copies a clean, readable text string (e.g., `Title→ [Name]; Genre→ [Genre]`) for easy sharing.
+* **Filter Stacking (Bug Fix):** Multi-column filtering has been completely overhauled. You can now stack filters on top of each other (e.g., filter by *North America*, then by *Capcom*, then by *4-Star Rating*) and the grid will perfectly remember and combine your choices. 
+* **UI & Under-the-Hood Polish:** Cleaned up some syntax and minor UI issues to ensure the interface stays snappy and responsive.
 ---
 ## Instructions for Using the Missing Games Checker (MGC) v2.0
 ### Requirements
