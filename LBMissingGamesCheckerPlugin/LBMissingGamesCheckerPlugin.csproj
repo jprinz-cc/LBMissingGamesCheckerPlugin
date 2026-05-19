@@ -22,7 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Unbroken.LaunchBox.Plugins">
-      <HintPath>C:\Users\jprinz\LaunchBox\Core\Unbroken.LaunchBox.Plugins.dll</HintPath>
+      <HintPath>H:\LaunchBoxDev\Core\Unbroken.LaunchBox.Plugins.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
