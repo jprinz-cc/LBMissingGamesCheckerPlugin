@@ -7,10 +7,10 @@ namespace LBMissingGamesCheckerPlugin
 {
     public class MissingGamesChecker : ISystemMenuItemPlugin
     {
-        public string Caption => "Missing Games Checker (v2.0)";
+        public string Caption => "Missing Games Checker (v2.1)";
         public string Description => "Check which games you have and don't have for a selected platform.";
-        public string Version => "2.0";
-        public string MenuItemTitle => "Missing Games Checker (v2.0)";
+        public string Version => "2.1";
+        public string MenuItemTitle => "Missing Games Checker (v2.1)";
 
         public System.Drawing.Image IconImage
         { get { return Properties.Resources.mgc_logo; } }
@@ -31,7 +31,7 @@ namespace LBMissingGamesCheckerPlugin
         {
             // Get all platforms
             var platforms = PluginHelper.DataManager.GetAllPlatforms()
-                .Where(p => !p.Name.EndsWith(" Wishlists", StringComparison.OrdinalIgnoreCase))
+                .Where(p => !p.Name.EndsWith(" Wishlist", StringComparison.OrdinalIgnoreCase))
                 .OrderBy(p => p.SortTitleOrTitle ?? p.Name)
                 .ToList();
 

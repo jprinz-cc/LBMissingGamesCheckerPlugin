@@ -61,22 +61,22 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle31 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle35 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle36 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle32 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle33 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle34 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle37 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle41 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle42 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle38 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle39 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle40 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlatformSelectionForm));
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle43 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle44 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle45 = new DataGridViewCellStyle();
             platformDropdown = new ComboBox();
             confirmButton = new Button();
             ownedGamesGridView = new DataGridView();
@@ -173,6 +173,7 @@
             cmsMissingExportOptions = new ContextMenuStrip(components);
             exportMissingGamesListToCSVToolStripMenuItem = new ToolStripMenuItem();
             createLaunchBoxWishlistPlaylistToolStripMenuItem = new ToolStripMenuItem();
+            toggleNestedWishlistToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)ownedGamesGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ownedGamesBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)missingGamesGridView).BeginInit();
@@ -231,24 +232,24 @@
             ownedGamesGridView.BorderStyle = BorderStyle.Fixed3D;
             ownedGamesGridView.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
             ownedGamesGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(44, 156, 255);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            ownedGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle31.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = Color.FromArgb(44, 156, 255);
+            dataGridViewCellStyle31.ForeColor = Color.White;
+            dataGridViewCellStyle31.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle31.SelectionForeColor = Color.White;
+            dataGridViewCellStyle31.WrapMode = DataGridViewTriState.True;
+            ownedGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             ownedGamesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ownedGamesGridView.Columns.AddRange(new DataGridViewColumn[] { TitleOwned, DeveloperOwned, PublisherOwned, RegionOwned, ReleaseDateOwned, CommunityStarRatingOwned, CommunityStarRatingTotalVotesOwned, PlatformOwned, ReleaseTypeOwned, GenresOwned, AlternateNamesOwned, MaxPlayersOwned, LaunchBoxDbIdOwned, VideoUrlOwned, WikipediaUrlOwned });
             ownedGamesGridView.DataSource = ownedGamesBindingSource;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle35.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle35.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle35.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle35.ForeColor = Color.White;
+            dataGridViewCellStyle35.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle35.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle35.WrapMode = DataGridViewTriState.False;
+            ownedGamesGridView.DefaultCellStyle = dataGridViewCellStyle35;
             ownedGamesGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             ownedGamesGridView.EnableHeadersVisualStyles = false;
             ownedGamesGridView.GridColor = Color.FromArgb(44, 156, 255);
@@ -257,11 +258,11 @@
             ownedGamesGridView.Name = "ownedGamesGridView";
             ownedGamesGridView.ReadOnly = true;
             ownedGamesGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle36.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle36.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle36.ForeColor = Color.White;
+            dataGridViewCellStyle36.WrapMode = DataGridViewTriState.True;
+            ownedGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle36;
             ownedGamesGridView.RowHeadersWidth = 51;
             ownedGamesGridView.ShowEditingIcon = false;
             ownedGamesGridView.Size = new Size(814, 173);
@@ -386,14 +387,14 @@
             // 
             LaunchBoxDbIdOwned.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             LaunchBoxDbIdOwned.DataPropertyName = "LaunchBoxDbId";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle2.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.Padding = new Padding(3, 0, 3, 0);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            LaunchBoxDbIdOwned.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle32.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle32.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle32.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle32.ForeColor = Color.Black;
+            dataGridViewCellStyle32.Padding = new Padding(3, 0, 3, 0);
+            dataGridViewCellStyle32.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle32.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            LaunchBoxDbIdOwned.DefaultCellStyle = dataGridViewCellStyle32;
             LaunchBoxDbIdOwned.FlatStyle = FlatStyle.Popup;
             LaunchBoxDbIdOwned.HeaderText = "LaunchBoxDBID";
             LaunchBoxDbIdOwned.MinimumWidth = 6;
@@ -407,14 +408,14 @@
             // 
             VideoUrlOwned.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             VideoUrlOwned.DataPropertyName = "VideoUrl";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle3.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.Padding = new Padding(3, 0, 3, 0);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            VideoUrlOwned.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle33.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle33.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle33.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle33.ForeColor = Color.Black;
+            dataGridViewCellStyle33.Padding = new Padding(3, 0, 3, 0);
+            dataGridViewCellStyle33.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle33.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            VideoUrlOwned.DefaultCellStyle = dataGridViewCellStyle33;
             VideoUrlOwned.FlatStyle = FlatStyle.Popup;
             VideoUrlOwned.HeaderText = "VideoURL";
             VideoUrlOwned.MinimumWidth = 6;
@@ -427,14 +428,14 @@
             // 
             WikipediaUrlOwned.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             WikipediaUrlOwned.DataPropertyName = "WikipediaUrl";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle4.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.Black;
-            dataGridViewCellStyle4.Padding = new Padding(3, 0, 3, 0);
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            WikipediaUrlOwned.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle34.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle34.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle34.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle34.ForeColor = Color.Black;
+            dataGridViewCellStyle34.Padding = new Padding(3, 0, 3, 0);
+            dataGridViewCellStyle34.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle34.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            WikipediaUrlOwned.DefaultCellStyle = dataGridViewCellStyle34;
             WikipediaUrlOwned.FlatStyle = FlatStyle.Popup;
             WikipediaUrlOwned.HeaderText = "WikipediaURL";
             WikipediaUrlOwned.MinimumWidth = 6;
@@ -453,23 +454,23 @@
             missingGamesGridView.BorderStyle = BorderStyle.Fixed3D;
             missingGamesGridView.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
             missingGamesGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(44, 156, 255);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.SteelBlue;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle37.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle37.BackColor = Color.FromArgb(44, 156, 255);
+            dataGridViewCellStyle37.ForeColor = Color.White;
+            dataGridViewCellStyle37.SelectionBackColor = Color.SteelBlue;
+            dataGridViewCellStyle37.WrapMode = DataGridViewTriState.True;
+            missingGamesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             missingGamesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             missingGamesGridView.Columns.AddRange(new DataGridViewColumn[] { TitleMissing, DeveloperMissing, PublisherMissing, RegionMissing, ReleaseDateMissing, CommunityStarRatingMissing, CommunityStarRatingTotalVotesMissing, PlatformMissing, ReleaseTypeMissing, GenresMissing, AlternateNamesMissing, MaxPlayersMissing, LaunchBoxDbIdMissing, VideoUrlMissing, WikipediaUrlMissing });
             missingGamesGridView.DataSource = missingGamesBindingSource;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle11.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle11.ForeColor = Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
-            missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle41.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle41.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle41.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle41.ForeColor = Color.White;
+            dataGridViewCellStyle41.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle41.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle41.WrapMode = DataGridViewTriState.False;
+            missingGamesGridView.DefaultCellStyle = dataGridViewCellStyle41;
             missingGamesGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             missingGamesGridView.EnableHeadersVisualStyles = false;
             missingGamesGridView.GridColor = Color.FromArgb(44, 156, 255);
@@ -478,11 +479,11 @@
             missingGamesGridView.Name = "missingGamesGridView";
             missingGamesGridView.ReadOnly = true;
             missingGamesGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle12.ForeColor = Color.White;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle42.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle42.ForeColor = Color.White;
+            dataGridViewCellStyle42.WrapMode = DataGridViewTriState.True;
+            missingGamesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle42;
             missingGamesGridView.RowHeadersWidth = 51;
             missingGamesGridView.Size = new Size(814, 217);
             missingGamesGridView.TabIndex = 3;
@@ -606,13 +607,13 @@
             // 
             LaunchBoxDbIdMissing.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             LaunchBoxDbIdMissing.DataPropertyName = "LaunchBoxDbId";
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle8.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            LaunchBoxDbIdMissing.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle38.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle38.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle38.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle38.ForeColor = Color.Black;
+            dataGridViewCellStyle38.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle38.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            LaunchBoxDbIdMissing.DefaultCellStyle = dataGridViewCellStyle38;
             LaunchBoxDbIdMissing.FlatStyle = FlatStyle.Popup;
             LaunchBoxDbIdMissing.HeaderText = "LaunchBoxDBID";
             LaunchBoxDbIdMissing.MinimumWidth = 6;
@@ -626,13 +627,13 @@
             // 
             VideoUrlMissing.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             VideoUrlMissing.DataPropertyName = "VideoUrl";
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle9.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle9.ForeColor = Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            VideoUrlMissing.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle39.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle39.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle39.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle39.ForeColor = Color.Black;
+            dataGridViewCellStyle39.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle39.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            VideoUrlMissing.DefaultCellStyle = dataGridViewCellStyle39;
             VideoUrlMissing.FlatStyle = FlatStyle.Popup;
             VideoUrlMissing.HeaderText = "VideoURL";
             VideoUrlMissing.MinimumWidth = 6;
@@ -645,13 +646,13 @@
             // 
             WikipediaUrlMissing.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             WikipediaUrlMissing.DataPropertyName = "WikipediaUrl";
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle10.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle10.ForeColor = Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle10.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            WikipediaUrlMissing.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle40.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle40.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle40.Font = new Font("Arial", 8.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle40.ForeColor = Color.Black;
+            dataGridViewCellStyle40.SelectionBackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle40.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            WikipediaUrlMissing.DefaultCellStyle = dataGridViewCellStyle40;
             WikipediaUrlMissing.FlatStyle = FlatStyle.Popup;
             WikipediaUrlMissing.HeaderText = "WikipediaURL";
             WikipediaUrlMissing.MinimumWidth = 6;
@@ -731,7 +732,7 @@
             // 
             btnMissingExportOptions.Enabled = false;
             btnMissingExportOptions.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnMissingExportOptions.Location = new Point(1026, 337);
+            btnMissingExportOptions.Location = new Point(1031, 337);
             btnMissingExportOptions.Margin = new Padding(4, 3, 4, 3);
             btnMissingExportOptions.Name = "btnMissingExportOptions";
             btnMissingExportOptions.Size = new Size(68, 23);
@@ -855,7 +856,7 @@
             btnClose.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClose.ForeColor = Color.FromArgb(255, 191, 0);
             btnClose.Location = new Point(988, 11);
-            btnClose.Margin = new Padding(2, 2, 2, 2);
+            btnClose.Margin = new Padding(2);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(113, 33);
             btnClose.TabIndex = 13;
@@ -919,7 +920,7 @@
             tbDebug.BackColor = Color.FromArgb(54, 57, 63);
             tbDebug.ForeColor = Color.FromArgb(255, 191, 0);
             tbDebug.Location = new Point(2, 50);
-            tbDebug.Margin = new Padding(2, 2, 2, 2);
+            tbDebug.Margin = new Padding(2);
             tbDebug.MaxLength = 15000;
             tbDebug.Multiline = true;
             tbDebug.Name = "tbDebug";
@@ -969,7 +970,7 @@
             pDebugLog.Controls.Add(btnCloseDebug);
             pDebugLog.Controls.Add(pbDebugHeader);
             pDebugLog.ForeColor = Color.FromArgb(255, 191, 0);
-            pDebugLog.Location = new Point(385, 243);
+            pDebugLog.Location = new Point(313, 212);
             pDebugLog.Margin = new Padding(4, 3, 4, 3);
             pDebugLog.Name = "pDebugLog";
             pDebugLog.Size = new Size(633, 267);
@@ -1026,7 +1027,7 @@
             btnCloseDebug.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCloseDebug.ForeColor = Color.FromArgb(255, 191, 0);
             btnCloseDebug.Location = new Point(492, 5);
-            btnCloseDebug.Margin = new Padding(2, 2, 2, 2);
+            btnCloseDebug.Margin = new Padding(2);
             btnCloseDebug.Name = "btnCloseDebug";
             btnCloseDebug.Size = new Size(133, 32);
             btnCloseDebug.TabIndex = 23;
@@ -1069,24 +1070,24 @@
             noPlatformGridView.BorderStyle = BorderStyle.Fixed3D;
             noPlatformGridView.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
             noPlatformGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle13.ForeColor = Color.Black;
-            dataGridViewCellStyle13.SelectionBackColor = Color.Black;
-            dataGridViewCellStyle13.SelectionForeColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
-            noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle43.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle43.ForeColor = Color.Black;
+            dataGridViewCellStyle43.SelectionBackColor = Color.Black;
+            dataGridViewCellStyle43.SelectionForeColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle43.WrapMode = DataGridViewTriState.True;
+            noPlatformGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
             noPlatformGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             noPlatformGridView.Columns.AddRange(new DataGridViewColumn[] { errorNoPlatform, msgNoPlatform, errorLBDbId });
             noPlatformGridView.DataSource = noPlatformBindingSource;
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle14.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle14.ForeColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(255, 191, 0);
-            dataGridViewCellStyle14.SelectionForeColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
-            noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle44.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle44.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle44.ForeColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle44.SelectionBackColor = Color.FromArgb(255, 191, 0);
+            dataGridViewCellStyle44.SelectionForeColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle44.WrapMode = DataGridViewTriState.False;
+            noPlatformGridView.DefaultCellStyle = dataGridViewCellStyle44;
             noPlatformGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             noPlatformGridView.EnableHeadersVisualStyles = false;
             noPlatformGridView.GridColor = Color.FromArgb(44, 156, 255);
@@ -1095,11 +1096,11 @@
             noPlatformGridView.Name = "noPlatformGridView";
             noPlatformGridView.ReadOnly = true;
             noPlatformGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = Color.FromArgb(54, 57, 63);
-            dataGridViewCellStyle15.ForeColor = Color.White;
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
-            noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle45.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle45.BackColor = Color.FromArgb(54, 57, 63);
+            dataGridViewCellStyle45.ForeColor = Color.White;
+            dataGridViewCellStyle45.WrapMode = DataGridViewTriState.True;
+            noPlatformGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle45;
             noPlatformGridView.RowHeadersWidth = 51;
             noPlatformGridView.Size = new Size(813, 217);
             noPlatformGridView.TabIndex = 25;
@@ -1158,7 +1159,7 @@
             gbFilterOptions.Controls.Add(clbFilterOptions);
             gbFilterOptions.Controls.Add(btnApplyFilters);
             gbFilterOptions.ForeColor = Color.FromArgb(255, 191, 0);
-            gbFilterOptions.Location = new Point(598, 123);
+            gbFilterOptions.Location = new Point(633, 117);
             gbFilterOptions.Margin = new Padding(4, 3, 4, 3);
             gbFilterOptions.Name = "gbFilterOptions";
             gbFilterOptions.Padding = new Padding(4, 3, 4, 3);
@@ -1239,7 +1240,7 @@
             // 
             pbCongrats.Image = Properties.Resources.congrats;
             pbCongrats.Location = new Point(497, 387);
-            pbCongrats.Margin = new Padding(2, 2, 2, 2);
+            pbCongrats.Margin = new Padding(2);
             pbCongrats.Name = "pbCongrats";
             pbCongrats.Size = new Size(400, 173);
             pbCongrats.SizeMode = PictureBoxSizeMode.Zoom;
@@ -1295,16 +1296,16 @@
             lblPlatformWarning.Location = new Point(0, 98);
             lblPlatformWarning.Margin = new Padding(2, 0, 2, 0);
             lblPlatformWarning.Name = "lblPlatformWarning";
-            lblPlatformWarning.Padding = new Padding(2, 2, 2, 2);
+            lblPlatformWarning.Padding = new Padding(2);
             lblPlatformWarning.Size = new Size(172, 43);
             lblPlatformWarning.TabIndex = 30;
             lblPlatformWarning.Text = "Warning! This platform contains\r\na lot of data! Processing may take \r\na few moments!";
             // 
             // tbOwnedSearch
             // 
-            tbOwnedSearch.Location = new Point(878, 120);
+            tbOwnedSearch.Location = new Point(860, 120);
             tbOwnedSearch.Name = "tbOwnedSearch";
-            tbOwnedSearch.Size = new Size(117, 23);
+            tbOwnedSearch.Size = new Size(159, 23);
             tbOwnedSearch.TabIndex = 31;
             tbOwnedSearch.TextChanged += tbOwnedSearch_TextChanged;
             // 
@@ -1312,7 +1313,7 @@
             // 
             lblOwnedSearch.AutoSize = true;
             lblOwnedSearch.ForeColor = Color.FromArgb(230, 230, 230);
-            lblOwnedSearch.Location = new Point(779, 123);
+            lblOwnedSearch.Location = new Point(767, 123);
             lblOwnedSearch.Margin = new Padding(4, 0, 4, 0);
             lblOwnedSearch.Name = "lblOwnedSearch";
             lblOwnedSearch.Size = new Size(86, 15);
@@ -1322,9 +1323,9 @@
             // 
             // tbMissingSearch
             // 
-            tbMissingSearch.Location = new Point(878, 337);
+            tbMissingSearch.Location = new Point(860, 337);
             tbMissingSearch.Name = "tbMissingSearch";
-            tbMissingSearch.Size = new Size(117, 23);
+            tbMissingSearch.Size = new Size(159, 23);
             tbMissingSearch.TabIndex = 31;
             tbMissingSearch.TextChanged += tbMissingSearch_TextChanged;
             // 
@@ -1332,7 +1333,7 @@
             // 
             lblMissingSearch.AutoSize = true;
             lblMissingSearch.ForeColor = Color.FromArgb(230, 230, 230);
-            lblMissingSearch.Location = new Point(776, 339);
+            lblMissingSearch.Location = new Point(764, 339);
             lblMissingSearch.Margin = new Padding(4, 0, 4, 0);
             lblMissingSearch.Name = "lblMissingSearch";
             lblMissingSearch.Size = new Size(89, 15);
@@ -1358,7 +1359,7 @@
             // 
             btnOwnedExportOptions.Enabled = false;
             btnOwnedExportOptions.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnOwnedExportOptions.Location = new Point(1026, 120);
+            btnOwnedExportOptions.Location = new Point(1031, 120);
             btnOwnedExportOptions.Margin = new Padding(4, 3, 4, 3);
             btnOwnedExportOptions.Name = "btnOwnedExportOptions";
             btnOwnedExportOptions.Size = new Size(68, 23);
@@ -1384,23 +1385,34 @@
             // cmsMissingExportOptions
             // 
             cmsMissingExportOptions.ImageScalingSize = new Size(20, 20);
-            cmsMissingExportOptions.Items.AddRange(new ToolStripItem[] { exportMissingGamesListToCSVToolStripMenuItem, createLaunchBoxWishlistPlaylistToolStripMenuItem });
+            cmsMissingExportOptions.Items.AddRange(new ToolStripItem[] { exportMissingGamesListToCSVToolStripMenuItem, createLaunchBoxWishlistPlaylistToolStripMenuItem, toggleNestedWishlistToolStripMenuItem });
             cmsMissingExportOptions.Name = "contextMenuStrip1";
-            cmsMissingExportOptions.Size = new Size(263, 48);
+            cmsMissingExportOptions.Size = new Size(288, 92);
+            cmsMissingExportOptions.Closing += cmsMissingExportOptions_Closing;
             // 
             // exportMissingGamesListToCSVToolStripMenuItem
             // 
             exportMissingGamesListToCSVToolStripMenuItem.Name = "exportMissingGamesListToCSVToolStripMenuItem";
-            exportMissingGamesListToCSVToolStripMenuItem.Size = new Size(262, 22);
+            exportMissingGamesListToCSVToolStripMenuItem.Size = new Size(287, 22);
             exportMissingGamesListToCSVToolStripMenuItem.Text = "Export Missing Games List to CSV";
             exportMissingGamesListToCSVToolStripMenuItem.Click += exportMissingGamesListToCSVToolStripMenuItem_Click;
             // 
             // createLaunchBoxWishlistPlaylistToolStripMenuItem
             // 
             createLaunchBoxWishlistPlaylistToolStripMenuItem.Name = "createLaunchBoxWishlistPlaylistToolStripMenuItem";
-            createLaunchBoxWishlistPlaylistToolStripMenuItem.Size = new Size(262, 22);
+            createLaunchBoxWishlistPlaylistToolStripMenuItem.Size = new Size(287, 22);
             createLaunchBoxWishlistPlaylistToolStripMenuItem.Text = "Create LaunchBox Wishlist Platform";
             createLaunchBoxWishlistPlaylistToolStripMenuItem.Click += createLaunchBoxWishlistPlaylistToolStripMenuItem_Click;
+            // 
+            // toggleNestedWishlistToolStripMenuItem
+            // 
+            toggleNestedWishlistToolStripMenuItem.Checked = true;
+            toggleNestedWishlistToolStripMenuItem.CheckOnClick = true;
+            toggleNestedWishlistToolStripMenuItem.CheckState = CheckState.Checked;
+            toggleNestedWishlistToolStripMenuItem.Margin = new Padding(10, 0, 0, 0);
+            toggleNestedWishlistToolStripMenuItem.Name = "toggleNestedWishlistToolStripMenuItem";
+            toggleNestedWishlistToolStripMenuItem.Size = new Size(287, 22);
+            toggleNestedWishlistToolStripMenuItem.Text = "Nest Wishlists under 'Wishlists' Category";
             // 
             // PlatformSelectionForm
             // 
@@ -1582,5 +1594,6 @@
         private CheckBox chkIncludeEmptyRegions;
         private Panel pnlDivider1;
         private Panel pnlDivider2;
+        private ToolStripMenuItem toggleNestedWishlistToolStripMenuItem;
     }
 }
