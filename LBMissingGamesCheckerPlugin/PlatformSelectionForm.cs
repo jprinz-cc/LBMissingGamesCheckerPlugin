@@ -723,7 +723,11 @@ namespace LBMissingGamesCheckerPlugin
                     {
                         wishlistCategory = PluginHelper.DataManager.AddNewPlatformCategory(targetCategoryName);
                         wishlistCategory.Notes = "Root category for all Missing Games Checker wishlist platforms.";
-                        DebugTxt($"Created new root Platform Category '{targetCategoryName}'.");
+                        
+                        // Auto-install custom Clear Logo for the Wishlists category
+                        EnsureWishlistCategoryIcon();
+
+                        DebugTxt($"Created new root Platform Category '{targetCategoryName}' and added icon.");
                     }
 
                     shadowPlatform.Category = targetCategoryName;
@@ -1483,6 +1487,39 @@ namespace LBMissingGamesCheckerPlugin
         #endregion
 
         #region HelperMethods
+        // Add wishlist icon when creating Wishlist category in LaunchBox
+        private void EnsureWishlistCategoryIcon()
+        {
+            try
+            {
+                // Resolve LaunchBox's Platform Category Clear Logo folder
+                string lbBaseDir = AppDomain.CurrentDomain.BaseDirectory;
+                string categoryImagesDir = Path.Combine(lbBaseDir, "Images", "Platform Categories", "Clear Logo");
+
+                if (!Directory.Exists(categoryImagesDir))
+                {
+                    Directory.CreateDirectory(categoryImagesDir);
+                }
+
+                string targetImagePath = Path.Combine(categoryImagesDir, "Wishlists.png");
+
+                // If the image doesn't exist yet, extract it from Plugin Resources
+                if (!File.Exists(targetImagePath))
+                {
+                    using (var iconImage = Properties.Resources.Wishlists)
+                    {
+                        iconImage.Save(targetImagePath, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+
+                    DebugTxt("Successfully installed custom 'Wishlists.png' category Clear Logo!");
+                }
+            }
+            catch (Exception ex)
+            {
+                DebugTxt($"Warning: Could not auto-install Wishlists category icon: {ex.Message}");
+            }
+        }
+
         // Populate the clbColumnSelection with the GridViews columns
         private void PopulateColumnSelection()
         {
