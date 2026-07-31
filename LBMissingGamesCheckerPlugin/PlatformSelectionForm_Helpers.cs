@@ -332,11 +332,10 @@ namespace LBMissingGamesCheckerPlugin
             btnClearOwnedSearch.Visible = false;
             btnClearMissingSearch.Visible = false;
 
-            // Click handlers
+            // Handlers
             btnClearOwnedSearch.Click += (s, e) => tbOwnedSearch.Text = string.Empty;
             btnClearMissingSearch.Click += (s, e) => tbMissingSearch.Text = string.Empty;
 
-            // Hover styling
             btnClearOwnedSearch.MouseEnter += (s, e) => btnClearOwnedSearch.ForeColor = Color.Red;
             btnClearOwnedSearch.MouseLeave += (s, e) => btnClearOwnedSearch.ForeColor = Color.Gray;
 
