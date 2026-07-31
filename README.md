@@ -1,38 +1,36 @@
-![mgc-header](https://github.com/user-attachments/assets/fe33a7bd-86a4-43c0-a5a9-bb92de84e50a)
+![mgc-header](https://github.com/user-attachments/assets/35368a7d-52d0-4ac3-bb6f-22a21294a6a5)
+
 ## Overview
 
-Missing Games Checker (MGC) is a LaunchBox plugin designed to help users identify missing games in their collection based on platform metadata. It provides an easy-to-use interface that lets you view owned and missing games, and export the results.
+Missing Games Checker (MGC) is a powerful LaunchBox plugin designed to help collectors instantly identify missing games from their platform libraries based on official LaunchBox metadata. Compare your local collection against the LaunchBox database, track completion percentages, filter regional variants, and export missing titles directly into LaunchBox Wishlists!
 
 ![Version](https://img.shields.io/github/v/release/jprinz-cc/LBMissingGamesCheckerPlugin?include_prereleases)
 ![Commit-Activity](https://img.shields.io/github/commit-activity/t/jprinz-cc/LBMissingGamesCheckerPlugin)
 ![License](https://img.shields.io/github/license/jprinz-cc/LBMissingGamesCheckerPlugin)
 
 ---
-![announcing](https://github.com/user-attachments/assets/244300db-4430-4333-866d-3fd4568a0c40)  
-**VERSION 2.0 IS HERE! The SQLite & Quality-of-Life Update!** 
-MGC has been completely rebuilt from the ground up to utilize LaunchBox's modern SQLite database. Gone are the heavy XML parsers and loading bars. V2.0 brings instant load times, a highly optimized 1.3MB footprint, and powerful new collector tools!
+![announcing](https://github.com/user-attachments/assets/244300db-4430-4333-866d-3fd4568a0c40)
+### NEW in v2.1!
+* **Dedicated "Wishlists" Category Nesting: When exporting missing games to LaunchBox, MGC can now seamlessly create a custom Wishlists root category in your sidebar—complete with an auto-installed Wishlists.png Clear Logo icon.
+* **Dynamic Hardware vs. Wishlist Categorization: Toggle between nesting wishlist platforms under the new Wishlists category or keeping them inside their default hardware categories (Consoles, Handhelds, etc.). Moving * **platforms back and forth carries all scraped metadata and box art automatically without duplicates!
+* **Enhanced Right-Click Context Menu: Added "📋 Copy Title to Clipboard" alongside existing title/platform export tools for ultra-quick search workflows.
+* **One-Click Search Clear: A sleek, interactive 'X' button now appears beside search boxes whenever text is typed, allowing you to reset your search filter instantly.
+* **Title Columns Locked: The 'Title' columns are now locked in place while scrolling across the table details.
+* **Improved UI & Stats Layout: Moved Platform Completion Statistics directly above the Owned Games grid for immediate visual feedback.
 
-### What's New in Version 2.0
-* **Lightning Fast SQLite Integration:** Queries that used to take seconds now take milliseconds. Instant filtering and zero UI lockups.
-* **Automated "Shadow Platform" Wishlists:** You can now export your missing games directly into LaunchBox! MGC automatically creates an isolated "[Platform] Wishlists" category in your sidebar, populated with your missing games. 
-* **Native 3D Box Art Scraping:** Wishlist platforms automatically inherit the `Scrape As` property of the parent console, allowing you to instantly download 3D Box Art and Clear Logos for games you don't even own yet!
-* **"Purist" Regional Filtering:** Only collect North American or European releases? Use the new Region Filter to hide global releases you don't care about. Includes a safety net to include/exclude games with missing region metadata. Also included is a new Select All/None option in the column filtering.
-* **Right-Click Quick Actions:** Right-click any missing game in the grid to instantly search eBay for physical copies or copy the title to your clipboard.
-
-### Version 2.0.1 - The "Power User" Update
-
-This is a rapid-follow patch to the massive 2.0 release, bringing some highly requested quality-of-life features, vastly improved searching, and a few under-the-hood fixes!
-
-**What's New & Improved:**
-* **Smart Global Search:** The search boxes are no longer limited to just game titles! Typing in the search bar will now instantly filter across **Title, Developer, Publisher, Region, Genres, and Release Year**. 
-* **Expanded Right-Click Menus:** The context menu is no longer exclusive to your Missing Games. You can now right-click games directly inside your **Owned Games** grid for quick actions.
-* **New "Copy Row" Quick Actions:** Need to grab data fast? You can now right-click any game and select "Copy Row". 
-  * *Spreadsheet Mode:* Copies the row with tabbed formatting so you can paste it perfectly into Excel or Google Sheets.
-  * *Formatted Mode:* Copies a clean, readable text string (e.g., `Title→ [Name]; Genre→ [Genre]`) for easy sharing.
-* **Filter Stacking (Bug Fix):** Multi-column filtering has been completely overhauled. You can now stack filters on top of each other (e.g., filter by *North America*, then by *Capcom*, then by *4-Star Rating*) and the grid will perfectly remember and combine your choices. 
-* **UI & Under-the-Hood Polish:** Cleaned up some syntax and minor UI issues to ensure the interface stays snappy and responsive.
 ---
-## Instructions for Using the Missing Games Checker (MGC) v2.0
+### CORE FEATURES AT A GLANCE
+* **Powered by LaunchBox SQLite: Built on LaunchBox’s modern SQLite database for sub-second load times, instant processing, and a ultra-lightweight ~1.3MB footprint.
+* **Platform Completion Statistics: Color-coded completion metrics give you immediate percentage feedback ($80\%+$ Green, $30\%-79\%$ Yellow, $<30\%$ Red) on your library progress.
+* **Export Wishlist Platforms Directly to LaunchBox: Generate shadow platforms filled with placeholder games for missing titles. Download box art, banners, and media in LaunchBox for games you don't even own yet!
+* **Regional & Released Filters: Strict-filter missing games by region (North America, Europe, Japan) or toggle the safety-net checkbox to capture titles with missing region data.
+* **Interactive Grid Search & Column Filters: Real-time global search, column header sorting, multi-value field filtering (Genres, Region, Developers), and frozen title columns for easy horizontal scrolling.
+* **Collector Clipboard & eBay Search Integration: Right-click any missing game to quickly copy formatting, spreadsheet-ready tabbed data, or launch an instant eBay search query in your browser.
+* **Clickable Media Links: Direct links to YouTube gameplay videos, Wikipedia articles, and LaunchBox Games Database entries right inside grid cells.
+* **CSV Exporting: Export owned or missing game tables to standard CSV format for offline library management.
+
+---
+## Instructions for Using the Missing Games Checker (MGC) v2.1
 ### Requirements
 1. LaunchBox **v13.19 or higher**. *(v13.18 and lower should use MGC v1.2)*
 2. Games in LaunchBox
@@ -46,38 +44,18 @@ This is a rapid-follow patch to the massive 2.0 release, bringing some highly re
       - *Or if you have a folder already for the MGC plugin, replace the one that is there with the new version.*
 
 2. **Access the Plugin**
-   - Launch LaunchBox, then access the **Tools** menu and find **Missing Games Checker(v2.0)**.
+   - Launch LaunchBox, then access the **Tools** menu and find **Missing Games Checker(v2.1)**.
 
 3. **Using the Plugin**
    - Select a platform from the dropdown menu and click **Check It!**.
    - MGC will instantly display a list of games you own and a list of games missing from your collection based on the LaunchBox metadata.
    - You can export the lists to a CSV file, or use the Missing Games export button to generate a LaunchBox Wishlist Platform!
 
-### New Features!
-4. **Filtering & Options**
-   - **Export Missing Games to LaunchBox:** Use the new Export feature for the Missing Games list to *safely* save a new "[Platform] Wishlists" category in your sidebar. From here you can download metadata and media for games you don't even have yet! Delete the platform direct from LaunchBox or override it with a new Wishlist based on filters!
-   - **Regional Filtering:** Use the Region dropdown to strict-filter missing games (e.g., North America only). Toggle the "Include games with unknown regions" checkbox to catch database entries lacking region data.
-   - **Quick Column Filtering:** Quickly sort through large columns of data with the Select All/None option in the column filtering options panel.
-   - **Platform Completion Status:** See how many games you have/don't have at a glance with colour coded feedback that calculates the percentage of your missing titles.
-   - **Real-time Search:** Use the search boxes above the grids to instantly filter the view.
-   - **New Right-Click Menu:** Right-click on any missing game and find options to copy the games title/platform data to the clipboard or do an instant search on eBay for that missing game to add to your collection!!
-
-6. **Additional Features from v1.2**
-   - Filter games by **Released** status if you only want to check released titles.
-   - Sort columns by clicking on the column header.
-   - Export your Owned and Missing game lists to CSV.
-   - Filter select columns by clicking on the filter icon in the column header.
-      - If the filtered column has multiple values (ie. North America, Japan) the row will still show if any of the filters are not applied. All values need to be unchecked in the filter to hide the row.
-   - Window resizing (Right edge only)
-   - Click on links in the games lists for additional info, such as video URLs, Wikipedia links, and links to the [LaunchBox DB](https://gamesdb.launchbox-app.com/) website.
-   - **Leo will give you a CHEERS🥂 with a PERFECT COLLECTION!**
-
-Missing Games Checker v2.0 Screenshot:
-![MissingGameChecker](https://github.com/user-attachments/assets/5aa266e1-7776-4a34-886f-f749c7c44efc)
+Missing Games Checker v2.1 Screenshot:
+![MissingGameChecker](https://github.com/user-attachments/assets/359c284d-a358-48d7-bdb2-13f8107adabf)
 
 
 ---
-
 ## Getting Started: Setting Up a LaunchBox Plugin Project
 
 For those looking to get into LaunchBox plugin development, here is how you can set up a modern plugin project:
@@ -101,7 +79,6 @@ For those looking to get into LaunchBox plugin development, here is how you can 
 For a quick visual overview of plugin development, check out this [video guide by Jason](https://youtu.be/U2bFY_c8iGA).
 
 ---
-
 ## Special Thanks
 
 A huge thanks to the LaunchBox team and their [API documentation](https://pluginapi.launchbox-app.com/) for making this project possible, as well as Jason's helpful video tutorial.
