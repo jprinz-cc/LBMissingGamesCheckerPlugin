@@ -669,12 +669,12 @@ namespace LBMissingGamesCheckerPlugin
             {
                 DebugTxt($"Starting LaunchBox Wishlist creation for {SelectedPlatform.Name}...");
 
-                string shadowPlatformName = $"{SelectedPlatform.Name} Wishlist";
                 string pluginVersion = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "2.1.0.0";
+                string shadowPlatformName = $"{SelectedPlatform.Name} Wishlist";
+                string targetCategoryName = "Wishlists";
 
                 // Check Nesting State
                 bool shouldNestUnderCategory = toggleNestedWishlistToolStripMenuItem.Checked;
-                string targetCategoryName = "Wishlists";
 
                 // Resolve or Create Shadow Platform
                 var shadowPlatform = PluginHelper.DataManager.GetPlatformByName(shadowPlatformName);
@@ -724,7 +724,7 @@ namespace LBMissingGamesCheckerPlugin
                         wishlistCategory = PluginHelper.DataManager.AddNewPlatformCategory(targetCategoryName);
                         wishlistCategory.Notes = "Root category for all Missing Games Checker wishlist platforms.";
                         
-                        // Auto-install custom Clear Logo for the Wishlists category
+                        // Auto-install custom logo for the Wishlists category
                         EnsureWishlistCategoryIcon();
 
                         DebugTxt($"Created new root Platform Category '{targetCategoryName}' and added icon.");
@@ -1487,14 +1487,14 @@ namespace LBMissingGamesCheckerPlugin
         #endregion
 
         #region HelperMethods
-        // Add wishlist icon when creating Wishlist category in LaunchBox
+        // Add wishlists icon when creating Wishlists category in LaunchBox
         private void EnsureWishlistCategoryIcon()
         {
             try
             {
-                // Resolve LaunchBox's Platform Category Clear Logo folder
+                // Resolve LaunchBox's Platform Category folder
                 string lbBaseDir = AppDomain.CurrentDomain.BaseDirectory;
-                string categoryImagesDir = Path.Combine(lbBaseDir, "Images", "Platform Categories", "Clear Logo");
+                string categoryImagesDir = Path.Combine(lbBaseDir, "Images", "Media Packs", "Platform Icons", "Legacy Conversion Icon Pack", "Platform Categories");
 
                 if (!Directory.Exists(categoryImagesDir))
                 {
@@ -1510,8 +1510,9 @@ namespace LBMissingGamesCheckerPlugin
                     {
                         iconImage.Save(targetImagePath, System.Drawing.Imaging.ImageFormat.Png);
                     }
-
-                    DebugTxt("Successfully installed custom 'Wishlists.png' category Clear Logo!");
+                    DebugTxt($"Successfully installed custom 'Wishlists.png' category icon to: '{categoryImagesDir}'");
+                } else {
+                    DebugTxt("'Wishlists.png' category icon already exists. No action taken.");
                 }
             }
             catch (Exception ex)
