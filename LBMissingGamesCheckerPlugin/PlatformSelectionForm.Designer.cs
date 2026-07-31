@@ -174,6 +174,8 @@
             exportMissingGamesListToCSVToolStripMenuItem = new ToolStripMenuItem();
             createLaunchBoxWishlistPlaylistToolStripMenuItem = new ToolStripMenuItem();
             toggleNestedWishlistToolStripMenuItem = new ToolStripMenuItem();
+            btnClearOwnedSearch = new Label();
+            btnClearMissingSearch = new Label();
             ((System.ComponentModel.ISupportInitialize)ownedGamesGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ownedGamesBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)missingGamesGridView).BeginInit();
@@ -1306,8 +1308,9 @@
             // tbOwnedSearch
             // 
             tbOwnedSearch.Location = new Point(860, 120);
+            tbOwnedSearch.MaxLength = 500;
             tbOwnedSearch.Name = "tbOwnedSearch";
-            tbOwnedSearch.Size = new Size(159, 23);
+            tbOwnedSearch.Size = new Size(144, 23);
             tbOwnedSearch.TabIndex = 31;
             tbOwnedSearch.TextChanged += tbOwnedSearch_TextChanged;
             // 
@@ -1327,7 +1330,7 @@
             // 
             tbMissingSearch.Location = new Point(860, 337);
             tbMissingSearch.Name = "tbMissingSearch";
-            tbMissingSearch.Size = new Size(159, 23);
+            tbMissingSearch.Size = new Size(144, 23);
             tbMissingSearch.TabIndex = 31;
             tbMissingSearch.TextChanged += tbMissingSearch_TextChanged;
             // 
@@ -1416,6 +1419,40 @@
             toggleNestedWishlistToolStripMenuItem.Size = new Size(287, 22);
             toggleNestedWishlistToolStripMenuItem.Text = "Nest Wishlists under 'Wishlists' Category";
             // 
+            // btnClearOwnedSearch
+            // 
+            btnClearOwnedSearch.Anchor = AnchorStyles.Right;
+            btnClearOwnedSearch.BackColor = Color.White;
+            btnClearOwnedSearch.BorderStyle = BorderStyle.Fixed3D;
+            btnClearOwnedSearch.Cursor = Cursors.Hand;
+            btnClearOwnedSearch.FlatStyle = FlatStyle.Popup;
+            btnClearOwnedSearch.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnClearOwnedSearch.ForeColor = SystemColors.ControlDarkDark;
+            btnClearOwnedSearch.Location = new Point(1004, 120);
+            btnClearOwnedSearch.Margin = new Padding(3);
+            btnClearOwnedSearch.Name = "btnClearOwnedSearch";
+            btnClearOwnedSearch.Size = new Size(18, 22);
+            btnClearOwnedSearch.TabIndex = 34;
+            btnClearOwnedSearch.Text = "X";
+            btnClearOwnedSearch.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // btnClearMissingSearch
+            // 
+            btnClearMissingSearch.Anchor = AnchorStyles.Right;
+            btnClearMissingSearch.BackColor = Color.White;
+            btnClearMissingSearch.BorderStyle = BorderStyle.Fixed3D;
+            btnClearMissingSearch.Cursor = Cursors.Hand;
+            btnClearMissingSearch.FlatStyle = FlatStyle.Popup;
+            btnClearMissingSearch.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnClearMissingSearch.ForeColor = SystemColors.ControlDarkDark;
+            btnClearMissingSearch.Location = new Point(1004, 337);
+            btnClearMissingSearch.Margin = new Padding(3);
+            btnClearMissingSearch.Name = "btnClearMissingSearch";
+            btnClearMissingSearch.Size = new Size(18, 21);
+            btnClearMissingSearch.TabIndex = 35;
+            btnClearMissingSearch.Text = "X";
+            btnClearMissingSearch.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // PlatformSelectionForm
             // 
             AccessibleDescription = "A LaunchBox plugin designed to help users identify missing games in their collection based on platform metadata.";
@@ -1425,6 +1462,8 @@
             BackColor = Color.FromArgb(54, 57, 63);
             ClientSize = new Size(1115, 594);
             ControlBox = false;
+            Controls.Add(btnClearMissingSearch);
+            Controls.Add(btnClearOwnedSearch);
             Controls.Add(pDebugLog);
             Controls.Add(gbFilterOptions);
             Controls.Add(lblPlatformWarning);
@@ -1597,5 +1636,7 @@
         private DataGridViewButtonColumn LaunchBoxDbIdMissing;
         private DataGridViewButtonColumn VideoUrlMissing;
         private DataGridViewButtonColumn WikipediaUrlMissing;
+        private Label btnClearOwnedSearch;
+        private Label btnClearMissingSearch;
     }
 }

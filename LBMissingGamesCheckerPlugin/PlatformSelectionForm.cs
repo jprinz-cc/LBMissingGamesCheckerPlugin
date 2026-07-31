@@ -47,6 +47,8 @@ namespace LBMissingGamesCheckerPlugin
         {
             InitializeComponent();
 
+            SetupSearchClearButtons();
+
             this.Load += new EventHandler(this.PlatformSelectionForm_Load);
             this.Shown += new EventHandler(this.PlatformSelectionForm_Shown);
             this.Paint += new PaintEventHandler(this.PlatformSelectionForm_Paint);

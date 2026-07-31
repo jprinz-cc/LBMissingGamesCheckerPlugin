@@ -248,10 +248,16 @@ namespace LBMissingGamesCheckerPlugin
         // Grid Search Handlers
         private void tbOwnedSearch_TextChanged(object sender, EventArgs e)
         {
-            // Suspend layout for performance
-            ownedGamesGridView.SuspendLayout();
+            // Toggle 'X' button visibility based on text content
+            if (!UpdateSearchState(tbOwnedSearch, btnClearOwnedSearch, OriginalOwnedGameList))
+            {
+                return;
+            }
 
             string query = tbOwnedSearch.Text.Trim().ToLower();
+
+            // Suspend layout for performance
+            ownedGamesGridView.SuspendLayout();
 
             // If search is empty, restore the original list
             if (string.IsNullOrWhiteSpace(query))
@@ -282,10 +288,16 @@ namespace LBMissingGamesCheckerPlugin
 
         private void tbMissingSearch_TextChanged(object sender, EventArgs e)
         {
-            // Suspend layout for performance
-            missingGamesGridView.SuspendLayout();
+            // Toggle 'X' button visibility based on text content
+            if (!UpdateSearchState(tbMissingSearch, btnClearMissingSearch, OriginalMissingGameList))
+            {
+                return;
+            }
 
             string query = tbMissingSearch.Text.Trim().ToLower();
+
+            // Suspend layout for performance
+            missingGamesGridView.SuspendLayout();
 
             // If search is empty, restore the original list
             if (string.IsNullOrWhiteSpace(query))
@@ -312,6 +324,33 @@ namespace LBMissingGamesCheckerPlugin
             }
 
             missingGamesGridView.ResumeLayout();
+        }
+
+        private void SetupSearchClearButtons()
+        {
+            // Initially hide clear icons
+            btnClearOwnedSearch.Visible = false;
+            btnClearMissingSearch.Visible = false;
+
+            // Click handlers
+            btnClearOwnedSearch.Click += (s, e) => tbOwnedSearch.Text = string.Empty;
+            btnClearMissingSearch.Click += (s, e) => tbMissingSearch.Text = string.Empty;
+
+            // Hover styling
+            btnClearOwnedSearch.MouseEnter += (s, e) => btnClearOwnedSearch.ForeColor = Color.Red;
+            btnClearOwnedSearch.MouseLeave += (s, e) => btnClearOwnedSearch.ForeColor = Color.Gray;
+
+            btnClearMissingSearch.MouseEnter += (s, e) => btnClearMissingSearch.ForeColor = Color.Red;
+            btnClearMissingSearch.MouseLeave += (s, e) => btnClearMissingSearch.ForeColor = Color.Gray;
+        }
+
+        private bool UpdateSearchState(TextBox textBox, Control clearButton, System.Collections.IEnumerable sourceList)
+        {
+            // Toggle 'X' visibility based on whether text is present
+            clearButton.Visible = !string.IsNullOrWhiteSpace(textBox.Text);
+
+            // Return true if list is populated, false if null
+            return sourceList != null;
         }
 
         // Handle URL requests
